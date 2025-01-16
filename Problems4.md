@@ -58,7 +58,7 @@ System.out.print("hello java") ;
 hello java 
 ```
 
-6. 다음은 System.out.print(“1”);과 System.out.print(“ ”); System.out.println(“”); System.out.print(“2”); System.out.print(“3”); 만 사용해서 다음 출력을 완성해 보자. 
+6. 다음은 `System.out.print(“1”);`과 `System.out.print(“ ”);` `System.out.println(“”);` `System.out.print(“2”);` `System.out.print(“3”);` 만 사용해서 다음 출력을 완성해 보자. 
 
 입력
 ```
@@ -81,7 +81,7 @@ System.out.print("3");
 123 
 ```
 
-7. 다음은 System.out.print(“*”);과 System.out.println(“”); 만 사용해서 다음 출력을 완성해 보자. 
+7. 다음은 `System.out.print(“*”);`과 `System.out.println(“”);` 만 사용해서 다음 출력을 완성해 보자. 
 
 입력
 ```
@@ -142,7 +142,7 @@ System.out.println(“”);
 
 ​
 
-9. 다음은 System.out.print(“*”);System.out.print(“ ”);System.out.println(“”); 만 사용해서 다음 출력을 완성해 보자. 
+9. 다음은 `System.out.print(“*”);` `System.out.print(“ ”);` `System.out.println(“”);` 만 사용해서 다음 출력을 완성해 보자. 
 
 입력 
 ```
@@ -174,7 +174,7 @@ System.out.println(“”);
  *** 
 **** 
 ```
-10. 다음은 System.out.print(“*”);System.out.print(“ ”);System.out.println(“”); 만 사용해서 다음 출력을 완성해 보자. 
+10. 다음은 `System.out.print(“*”);` `System.out.print(“ ”);` `System.out.println(“”);` 만 사용해서 다음 출력을 완성해 보자. 
 
 입력
 ```
