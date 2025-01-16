@@ -59,3 +59,187 @@ System.out.println(d);
 30 
 60
 ```
+7.입력 
+```
+int d=30; 
+int c=60; 
+System.out.println(c); 
+System.out.println(d); 
+```
+출력 
+```
+60 
+30 
+```
+
+8.입력 
+```
+int i1=22; 
+int i2=11; 
+int i3=33; 
+System.out.println(i1+i2+i3); 
+```
+출력 
+```
+66 
+```
+
+9.입력 
+```
+int world = 5;
+System.out.println(world); 
+int a = 6;
+System.out.println(world+a); 
+```
+출력 
+```
+5 
+11 
+```
+
+10.입력 
+```
+int world=5; 
+System.out.println(world+5); 
+```
+출력 
+```
+10 
+```
+
+11.입력 
+```
+int world=5; 
+System.out.println(“world”+5); 
+```
+출력 
+```
+world5 
+```
+
+12.입력 
+```
+int world=5; 
+System.out.println(“world”+world); 
+```
+출력 
+```
+world5
+```
+
+13.입력 
+```
+int a=5; 
+int b=6; 
+System.out.println(“a+b=”+a+b); 
+```
+출력 
+```
+a+b=56
+```
+
+14.입력 
+```
+int a=5; 
+int b=6; 
+System.out.println(“a+b=”+(a+b));
+```
+출력
+```
+a+b=11
+```
+
+15.입력 
+```
+int a=5; 
+System.out.println(a); 
+a=3; 
+System.out.println(a); 
+```
+출력 
+```
+5 
+3 
+```
+
+16.입력 
+```
+int a=5;//처음 a를 선언할때는 자료형을 붙인다. 
+System.out.println(a); 
+a=6;//기존 a를 사용할때는 자료형을 붙이지 않는다. 
+System.out.println(a); 
+int b=5; 
+System.out.println(a+b); 
+```
+출력
+```
+5
+6
+11
+```
+
+17.입력 
+```
+int a=5; 
+a=6; 
+a=7; 
+a=8; 
+System.out.println(a); 
+```
+출력
+```
+8
+```
+
+// 소수점이 있는 실수는 double사용 문자열은 String사용 
+18. 입력 
+```
+int a=5; 
+double b=5.1; 
+String st= “hello”; 
+System.out.println(a+b+st); 
+System.out.println(st+b+a); 
+System.out.println(“a+b=”+(a+b)+st); 
+```
+출력
+```
+10.1hello
+hello5.15
+a+b=10.1hello
+```
+
+19.입력 
+```
+int a=5; 
+a=a+2; 
+System.out.println(a); 
+```
+출력 
+```
+7 
+```
+
+20.입력 
+```
+int sum=0; 
+sum=sum+1; 
+System.out.println(sum); 
+sum=sum+2; 
+System.out.println(sum); 
+sum=sum+3; 
+System.out.println(sum); 
+int a=5; 
+sum=a+5; 
+System.out.println(sum); 
+a=7; 
+sum=sum+a; 
+System.out.println(sum); 
+```
+출력 
+```
+1 
+3 
+6 
+10 
+17
+```
