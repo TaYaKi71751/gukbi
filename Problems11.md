@@ -34,13 +34,13 @@ int _a=5; //된다. 되도록 사용하지 말자.
 ```
 3. 다음 변수가 정상인지 잘못 되었는지 판별하고 이유를 설명 하시오.
 ```
-int 3i=5;//x 
+int 3i=5;//x starting with number
 int i3i=5;//o 
 int __hello=55;//o
-int hello=5.3;//x 
+int hello=5.3;//x type mismatch
 int i+j=4;//특수기호는 x 
 int public=5;//키워드 x
-int i#2=5;//x 
+int i#2=5;//x  특수문자
 int MyCatAge=10;//관용적 X 
 int mycatage=20;//관용적 X
 public class myCat(){}//관용적 X
@@ -65,4 +65,17 @@ System.out.println(name + "\n" + age + "\n" + height);
 int a = 5;
 int b = 10;
 System.out.println(a + b);
+```
+7. 다음을 변수명,클래스명,상수명으로 만들어보자.
+해석: My computer specifications
+```
+변수:myComputerSpecifications
+클래스:MyComputerSpecifications
+상수:MY_COMPUTER_SPECIFICATIONS
+```
+해석: Play with the cat
+```
+변수:playWithTheCat
+클래스:PlayWithTheCat
+상수:PLAY_WITH_THE_CAT
 ```
