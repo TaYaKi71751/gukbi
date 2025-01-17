@@ -16,7 +16,7 @@
 int age = 156;
 String name "hong";
 double height = 175.3;
-System.out.println(String.format("이름 : %s \n나이: %d \n키: %f"),name,age,height);
+System.out.println(String.format("이름 : %s \n나이: %d \n키: %f",name,age,height));
 ```
 4. 사용자로부터 2개의 정수를 받아서 첫번째 정수를 두번째 정수로 나누었을때의 몫과 나머지를 계산하는 프로그램을 작성하시오. 
 ```
