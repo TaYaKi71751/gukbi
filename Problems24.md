@@ -30,9 +30,9 @@
 ![image](./images/image7.png)
 문제4) 왼쪽 이미지에서 각각의 다이아몬드가 조건인지 반복인지 정의해 보자.
 ```
-i < 7 => 조건
+i < 7 => 반복
 a[i] > max => 조건
-a[i] < min => 반복
+a[i] < min => 조건
 ```
 ![image](./images/image8.png)
 ```
