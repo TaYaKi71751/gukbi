@@ -166,7 +166,7 @@ public class Main {
     }
 }
 ```
-3.
+답안 10번.
 ```
 Scanner scanner = new Scanner(System.in);
 System.out.print("숫자를 입력하세요: ");
