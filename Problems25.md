@@ -1,3 +1,4 @@
+[pdf](./JAVA240812simple254.pdf)
 ![image](./images/image14.png)
 문제1. 왼쪽 순서도 의사코드를 작성하시오.
 ```
