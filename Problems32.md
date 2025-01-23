@@ -231,13 +231,13 @@ int java = Integer.parseInt(sc.nextLine());
 int html = Integer.parseInt(sc.nextLine());
 int db = Integer.parseInt(sc.nextLine());
 if(java <= 40){
-    System.out.println("java 과락");
+    System.out.println("java " + java + " 과락");
 }
 if(html <= 40){
-    System.out.println("html 과락");
+    System.out.println("html " + html + " 과락");
 }
 if(db <= 40){
-    System.out.println("db 과락");
+    System.out.println("db " + db + " 과락");
 }
 if(((java + html + db) / 3) >= 60){
     System.out.println("합격");
