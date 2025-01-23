@@ -85,7 +85,6 @@ if(a <= 5 && a > 9){
 3. 입력받은 수가 3의 배수 이거나 7의 배수이면 ‘3또는 7의 배수’가 출력되고, 
 2의 배수도 되고 5의 배수도 되면 ‘2와 5의 배수’를 출력하고 
 두가지 경우 다 만족하면 2가지 다 출력하는 프로그램을 만들어 보자.
-
 ![image](./images/image27.png)
 4. 왼쪽 이미지는 하나의 점이 x,y좌표를 가질때 위치할 수 있는 장소를 4개로 구분한 것이다. 
 ```
@@ -240,7 +239,6 @@ if(((java + html + db) / 3) >= 60){
 } else {
     System.out.println("불합격");
 }
-
 ```
 10. 왼쪽은 비만도 산출식이다. 
 사용자 입력을 받아 결과가 아래 표와 같은 분류가 나오도록 프로그램을 구현하여라.
@@ -682,5 +680,4 @@ long under50000 = (earn - under1200 - under4600 - under8800 - under15000 - under
 long over50000 = (earn - under1200 - under4600 - under8800 - under15000 - under30000 - under50000);
 long result = (under1200 * 6l / 100l) + (under4600 * 15l / 100l) + (under8800 * 24l / 100l) + (under15000 * 35l / 100l) + (under30000 * 38l / 100l) + (under50000 * 40l / 100l) + (over50000 * 42l / 100l);
 System.out.println(result + "원");
-
 ```
