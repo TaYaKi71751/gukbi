@@ -153,6 +153,57 @@ c. 밥을 먹었으면 ‘밥을 먹었음’, 빵을 먹었으면 ‘빵을 먹
 d. 식사로 ‘밥’과 ‘빵’이 있고 후식으로 국,우유, 아이스크림, 커피가 있는데 밥을 먹으면
 국과 아이스크림중 하나를 빵을 먹으면 우유 커피 중 하나를 후식으로 먹을수 있도록 구현해 보자.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+boolean ateRice = false, ateBread = false;
+boolean milk = false;
+boolean coffee = false;
+boolean soup = false;
+boolean icecream = false;
+boolean validInput = false;
+System.out.println("밥을 먹었는가? (true/false)");
+ateRice = Boolean.parseBoolean(sc.nextLine());
+System.out.println("빵을 먹었는가? (true/false)");
+ateBread = Boolean.parseBoolean(sc.nextLine());
+if(!ateBread){
+    ateRice = true;
+}
+if(!ateRice && !ateBread){
+    System.out.println("아무것도 먹지 않음");
+    System.out.println("후식을 고를 수 없음");
+}
+if(ateRice){
+    System.out.println("밥을 먹었음");
+    String input = sc.nextLine();
+    do {
+        System.out.println("국,아이스크림 중 하나를 고르세요.");
+        switch(input){
+            case "국": soup = true; validInput = true; break;
+            case "아이스크림": icecream = true; validInput = true; break;
+            default: System.out.println("Invalid input"); break;
+        }
+        if(validInput){
+            break;
+        }
+    } while(!(soup || milk || icecream || coffee) || !validInput);
+}
+if(ateBread){
+    System.out.println("빵을 먹었음");
+    String input = sc.nextLine();
+    do {
+        System.out.println("우유,커피 중 하나를 고르세요.");
+        switch(input){
+            case "우유": milk = true; validInput = true; break;
+            case "커피": coffee = true; validInput = true; break;
+            default: System.out.println("Invalid input"); break;
+        }
+        if(validInput){
+            break;
+        }
+    } while(!(soup || milk || icecream || coffee) || !validInput);
+}
+System.out.println("선택한 후식 : " + input);
+```
 7. 다음과 같이 기술하면 오늘의 요일이 i에 숫자로 들어간다. 
 ```
 i가 7일 경우 일요일이고 월화수목금토일은 1234567과 같다. 
