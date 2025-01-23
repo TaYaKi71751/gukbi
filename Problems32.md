@@ -16,8 +16,71 @@ if (str1.equals(str2) == true) {
 ![image](./images/image26.png)
 1. 왼쪽 이미지에서 색칠한 부분의 값들이 들어 왔을때 true가출력 되는 조건식을 가진 if문을 각각 3개 만들어 
 색칠한 부분인지 아닌지 출력하는 프로그램 형태로 구현해 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(a > 14){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(a <= 12 && a > 22){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(a > 5 && a <= 9){
+    System.out.println(true);
+}
+```
 2. 왼쪽 이미지에서 색칠 안한 부분의 값들이 들어 왔을때 true가되는 조건식을 만들어 보자.
-not연산자는 사용방법과 not를 사용하지 않는 방법 각각 2개씩 총 6개 if문 수식에 넣어서 만들어 보자.
+not연산자를 사용하는 방법과 not연산자를 사용하지 않는 방법 각각 2개씩 총 6개 if문 수식에 넣어서 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(!(a > 14)){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(a <= 14){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(!(a <= 12 && a > 22)){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(a > 12 && a <= 22){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(!(a > 5 && a <= 9)){
+    System.out.println(true);
+}
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+if(a <= 5 && a > 9){
+    System.out.println(true);
+}
+```
 3. 입력받은 수가 3의 배수 이거나 7의 배수이면 ‘3또는 7의 배수’가 출력되고, 
 2의 배수도 되고 5의 배수도 되면 ‘2와 5의 배수’를 출력하고 
 두가지 경우 다 만족하면 2가지 다 출력하는 프로그램을 만들어 보자.
