@@ -54,6 +54,11 @@ if(a > b) {
     a = b;
     b = tmp;
 }
+if(a > c) {
+    tmp = a;
+    a = c;
+    c = tmp;
+}
 if(b > c) {
     tmp = b;
     b = c;
