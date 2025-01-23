@@ -181,6 +181,7 @@ if(!ateBread){
 if(!ateRice && !ateBread){
     System.out.println("아무것도 먹지 않음");
     System.out.println("후식을 고를 수 없음");
+    return;
 }
 if(ateRice){
     System.out.println("밥을 먹었음");
@@ -190,7 +191,7 @@ if(ateRice){
         switch(input.trim()){
             case "국": soup = true; validInput = true; break;
             case "아이스크림": icecream = true; validInput = true; break;
-            default: System.out.println("Invalid input"); break;
+            default: System.out.println("Invalid input"); continue;
         }
         if(validInput){
             break;
@@ -205,7 +206,7 @@ if(ateBread){
         switch(input.trim()){
             case "우유": milk = true; validInput = true; break;
             case "커피": coffee = true; validInput = true; break;
-            default: System.out.println("Invalid input"); break;
+            default: System.out.println("Invalid input"); continue;
         }
         if(validInput){
             break;
