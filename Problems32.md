@@ -118,7 +118,7 @@ if(x == 0 && y == 0){
 } else {
     side = "null";
 }
-System.out.println(side + "위에 있습니다.");
+System.out.println(side + " 위에 있습니다.");
 ```
 5. 버스요금계산하는 프로그램을 구현해 보자. 
 ```
