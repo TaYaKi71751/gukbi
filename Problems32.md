@@ -586,7 +586,6 @@ int number = random.nextInt(10); // 0부터 9까지의 정수를 반환
 ● int randomNum = random.nextInt(3) + 5; //5,6,7를 얻을 수 있다.
 ```
 15. 1~45까지의 수를 랜덤하게 만들어 3개의 수를 뽑은 다음 본인이 입력한 3개의 수와 몇개 같은지 확인하는 프로그램을 배열로 만들어 보자.
-![image](./images/image32.png)
 ```
 java.util.Scanner sc = new java.util.Scanner(System.in);
 java.util.Random random = new java.util.Random();
@@ -608,6 +607,7 @@ if(a == f || b == f || c == f){
 }
 System.out.println(count + "개 같습니다.");
 ```
+![image](./images/image32.png)
 16. 왼쪽표를 기본으로 본인이 낼 새금이 얼마인지 출력하는 프로그램을 구현해 보자. 
 만약에 본인이 번돈이 1600만원 이라면 1200만원은 세율이 6%이고 나머지 400만원은 세율이 15%이다.
 ```
