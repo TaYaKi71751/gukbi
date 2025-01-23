@@ -733,13 +733,59 @@ System.out.println(count + "개 같습니다.");
 ```
 java.util.Scanner sc = new java.util.Scanner(System.in);
 long earn = Long.parseLong(sc.nextLine());
-long under1200 = (earn % 12000000l);
-long under4600 = (earn - under1200) % 46000000l;
-long under8800 = (earn - under1200 - under4600) % 88000000l;
-long under15000 = (earn - under1200 - under4600 - under8800) % 150000000l;
-long under30000 = (earn - under1200 - under4600 - under8800 - under15000) % 300000000l;
-long under50000 = (earn - under1200 - under4600 - under8800 - under15000 - under30000) % 500000000l;
-long over50000 = (earn - under1200 - under4600 - under8800 - under15000 - under30000 - under50000);
+long under1200 = 0,under4600 = 0,under8800 = 0,under15000 = 0,under30000 = 0, under50000 = 0,over50000 = 0;
+if(earn >= 12000000l){
+    under1200 = 12000000l;
+    earn -= under1200;
+} else if (earn == 0l) {
+} else {
+    under1200 = earn;
+    earn = 0l;
+}
+if(earn >= (46000000l - 12000000l)){
+    under4600 = (46000000l - 12000000l);
+    earn -= under4600;
+} else if(earn == 0l) {
+} else {
+    under4600 = earn;
+    earn = 0l;
+}
+if(earn >= (88000000l - 46000000l)){
+    under8800 = (88000000l - 46000000l);
+    earn -= under8800;
+} else if(earn == 0l){
+} else {
+    under8800 = earn;
+    earn = 0l;
+}
+if(earn >= (150000000l - 88000000l)){
+    under15000 = (150000000l - 88000000l);
+    earn -= under15000;
+} else if(earn == 0){
+} else {
+    under15000 = earn;
+    earn = 0;
+}
+if(earn >= (300000000l - 150000000l)){
+    under30000 = (300000000l - 150000000l);
+    earn -= under30000;
+} else if(earn == 0){
+} else {
+    under30000 = earn;
+    earn = 0;
+}
+if(earn >= (500000000l - 300000000l)){
+    under50000 = (500000000l - 300000000l);
+    earn -= under50000;
+} else if(earn == 0){
+} else {
+    under50000 = earn;
+    earn = 0;
+}
+if(earn > 500000000l){
+    over50000 = earn;
+    earn = 0;
+}
 long result = (under1200 * 6l / 100l) + (under4600 * 15l / 100l) + (under8800 * 24l / 100l) + (under15000 * 35l / 100l) + (under30000 * 38l / 100l) + (under50000 * 40l / 100l) + (over50000 * 42l / 100l);
 System.out.println(result + "원");
 ```
