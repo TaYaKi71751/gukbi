@@ -85,6 +85,16 @@ if(a <= 5 && a > 9){
 3. 입력받은 수가 3의 배수 이거나 7의 배수이면 ‘3또는 7의 배수’가 출력되고, 
 2의 배수도 되고 5의 배수도 되면 ‘2와 5의 배수’를 출력하고 
 두가지 경우 다 만족하면 2가지 다 출력하는 프로그램을 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int n = Integer.parseInt(sc.nextLine());
+if(n % 3 == 0 || n % 7 == 0){
+    System.out.println("3 또는 7의 배수");
+}
+if(n % 2 == 0 && n % 5 == 0){
+    System.out.println("2 와 5의 배수");
+}
+```
 ![image](./images/image27.png)
 4. 왼쪽 이미지는 하나의 점이 x,y좌표를 가질때 위치할 수 있는 장소를 4개로 구분한 것이다. 
 ```
