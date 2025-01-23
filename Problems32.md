@@ -187,7 +187,7 @@ if(ateRice){
     String input = sc.nextLine();
     do {
         System.out.println("국,아이스크림 중 하나를 고르세요.");
-        switch(input){
+        switch(input.trim()){
             case "국": soup = true; validInput = true; break;
             case "아이스크림": icecream = true; validInput = true; break;
             default: System.out.println("Invalid input"); break;
@@ -202,7 +202,7 @@ if(ateBread){
     String input = sc.nextLine();
     do {
         System.out.println("우유,커피 중 하나를 고르세요.");
-        switch(input){
+        switch(input.trim()){
             case "우유": milk = true; validInput = true; break;
             case "커피": coffee = true; validInput = true; break;
             default: System.out.println("Invalid input"); break;
