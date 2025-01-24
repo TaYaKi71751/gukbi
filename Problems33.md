@@ -266,13 +266,56 @@ for(int j = 1;j <= a;j++){
 System.out.println("소수" + (aFactors.size() == 2 ? "입니다." : "가 아닙니다."));
 ```
 17. 숫자를 하나 입력받아 1~1000사이에 입력받은 숫자의 배수가 몇 개인지 출력하는 프로그램을 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int input = Integer.parseInt(sc.nextLine());
+int count = 0;
+for(int i = 1;i <= 1000;i++){
+    if(input == 0){
+        System.out.println("0을 입력했습니다. 더 이상 진행 하지 않습니다.");
+        break;
+    }
+    if(i % input == 0 && input != 0){
+        count++;
+    }
+}
+System.out.println(count);
+```
 18. 사용자에게 열의 데이터 개수을 입력받아 열에 맞춰서 1부터 100까지 순서대로 출력하는 프로그램을 구현해 보자.
 ```
 ex) 3을 입력하면 한줄에 3개씩 출력 하면 된다.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int input = Integer.parseInt(sc.nextLine());
+for(int i = 1;i < (1 + input);i++){
+    System.out.print(i + ",");
+}
+```
 19. 컴퓨터가 던진 동전이 앞면 인지 뒷면 인지 맞추는 프로그램을 구현해 보자. 
 ```
 맞춘 횟수와 틀린 횟수를 기록해서 보여주고 3번 맞추면 프로그램이 종료되게 만들자.
+```
+```
+String coinSide = "";
+int input = 0;
+int success = 0;
+int fail = 0;
+java.util.random random = new java.util.random();
+while(success != 3){
+    coinSide = random.nextInt(2) == 0 ? "앞면" : "뒷면";
+    switch(sc.nextLine()){
+        case "앞면": input = 0; break;
+        case "뒷면": input = 1; break;
+        default: continue;
+    }
+    if(coinSide == input){
+        success++;
+    } else {
+        fail++;
+    }
+}
+System.out.println("맞춘 횟수:" + success + ", 틀린 횟수:" + fail);
 ```
 20. 컴퓨터가 던진 주사위 수를 맞추는 프로그램을 구현해 보자. 
 ```
