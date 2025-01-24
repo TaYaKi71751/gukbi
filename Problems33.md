@@ -77,9 +77,9 @@ for(int i = 1;i < target;i++){
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
-java.util.ArrayList<Integer> aFactors = new ArrayList<Integer>();
-java.util.ArrayList<Integer> bFactors = new ArrayList<Integer>();
-java.util.ArrayList<Integer> commonFactors = new ArrayList<Integer>();
+java.util.ArrayList<Integer> aFactors = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> bFactors = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> commonFactors = new java.util.ArrayList<Integer>();
 for(int i = 1;i <= a;i++){
     if(a % i == 0){
         aFactors.add(i);
@@ -110,8 +110,8 @@ for(int i = 0;i < commonFactors.toArray().length;i++){
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
-java.util.ArrayList<Integer> aFactors = new ArrayList<Integer>();
-java.util.ArrayList<Integer> bFactors = new ArrayList<Integer>();
+java.util.ArrayList<Integer> aFactors = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> bFactors = new java.util.ArrayList<Integer>();
 int commonFactor = 0;
 for(int i = 1;i <= a;i++){
     if(a % i == 0){
@@ -257,13 +257,13 @@ ex) 2부터 본인 보다 하나 작은 숫자를 차례대로 나눠서 나누�
 ```
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
-java.util.ArrayList<Integer> aFactors = new ArrayList<Integer>();
+java.util.ArrayList<Integer> aFactors = new java.util.ArrayList<Integer>();
 for(int j = 1;j <= a;j++){
     if(a % j == 0){
         aFactors.add(j);
     }
 }
-System.out.println("소수" + (aFactors.length == 2 ? "입니다." : "가 아닙니다."));
+System.out.println("소수" + (aFactors.size() == 2 ? "입니다." : "가 아닙니다."));
 ```
 17. 숫자를 하나 입력받아 1~1000사이에 입력받은 숫자의 배수가 몇 개인지 출력하는 프로그램을 만들어 보자.
 18. 사용자에게 열의 데이터 개수을 입력받아 열에 맞춰서 1부터 100까지 순서대로 출력하는 프로그램을 구현해 보자.
