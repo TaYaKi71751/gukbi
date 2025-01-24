@@ -208,12 +208,62 @@ if(a > b){
 System.out.println(leastcommonMultiple);
 ```
 14. 3개의 수를 입력 받아 가장 작은 수와 가장 큰수를 출력하는 프로그램을 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+int b = Integer.parseInt(sc.nextLine());
+int c = Integer.parseInt(sc.nextLine());
+int tmp;
+if(a > b) {
+    tmp = a;
+    a = b;
+    b = tmp;
+}
+if(a > c) {
+    tmp = a;
+    a = c;
+    c = tmp;
+}
+if(b > c) {
+    tmp = b;
+    b = c;
+    c = tmp;
+}
+System.out.println(a);
+System.out.println(c);
+```
 15. 100이하의 수학과목 점수를 5번 입력받아 60이하 점수가 몇 개인지 출력하는 프로그램을 구현해 보자.
+```
+int success = 0;
+int under60 = 0;
+int input = 0;
+while(success != 5){
+    input = Integer.parseInt(sc.nextLine());
+    if(input <= 100){
+        success++;
+    }
+    if(input <= 60){
+        under60++;
+    }
+}
+System.out.println(under60);
+```
 16. 소수는 1과 자기 자신만으로 나눠지는 수이다. 
 ```
 2,3,5같은 경우 1과 본인 자신만으로 나눠지므로 소수이다. 
 수를 하나 입력받아 소수인지 아닌지 판별하는 프로그램을 구현하시오.
 ex) 2부터 본인 보다 하나 작은 숫자를 차례대로 나눠서 나누어 떨어지는 수가 없으며 1과 자기 자신만 나눠지는 수이므로 소수에 해당한다.
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+java.util.ArrayList<Integer> aFactors = new ArrayList<Integer>();
+for(int j = 1;j <= a;j++){
+    if(a % j == 0){
+        aFactors.add(j);
+    }
+}
+System.out.println("소수" + (aFactors.length == 2 ? "입니다." : "가 아닙니다."));
 ```
 17. 숫자를 하나 입력받아 1~1000사이에 입력받은 숫자의 배수가 몇 개인지 출력하는 프로그램을 만들어 보자.
 18. 사용자에게 열의 데이터 개수을 입력받아 열에 맞춰서 1부터 100까지 순서대로 출력하는 프로그램을 구현해 보자.
