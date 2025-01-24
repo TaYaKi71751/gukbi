@@ -307,7 +307,7 @@ while(success != 3){
     switch(sc.nextLine()){
         case "앞면": input = 0; break;
         case "뒷면": input = 1; break;
-        default: continue;
+        default: fail++; continue;
     }
     if(coinSide == input){
         success++;
