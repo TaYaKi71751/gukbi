@@ -326,6 +326,7 @@ int fail = 0;
 int success = 0;
 int diceSide = 
 int count = 0;
+int input = 0;
 while(count != 10){
     diceSide = random.nextInt(6) + 1;
     input = Integer.parseInt(sc.nextLine());
