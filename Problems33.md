@@ -321,3 +321,19 @@ System.out.println("맞춘 횟수:" + success + ", 틀린 횟수:" + fail);
 ```
 10회 입력받아 맞춘 회수와 틀린 회수를 기록해서 보여 주자.
 ```
+```
+int fail = 0;
+int success = 0;
+int diceSide = 
+int count = 0;
+while(count != 10){
+    diceSide = random.nextInt(6) + 1;
+    input = Integer.parseInt(sc.nextLine());
+    if(diceSide == input){
+        success++;
+    } else {
+        fail++;
+    }
+}
+System.out.println("맞춘 횟수:" + success + ", 틀린 횟수:" + fail);
+```
