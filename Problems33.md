@@ -173,13 +173,39 @@ while(success != 3){
 ```
 ex) 어떤수에 0,1,2,3,4.. 를 곱해서 나온 수를 어떤수의 배수라 한다.
 ```
+```
+int target = 4;
+for(int i = 0;i < 10;i++){
+    System.out.println((target * i) + ",");
+}
+```
 13. 두수를 입력 받아 최소 공배수를 출력하는 프로그램을 만들어 보자.
 ```
 ex)2의 배수도 되고 3의 배수도 되는 공배수는 6,12,18,24 등이 있다. 
 이중에서 가장 작은 수 6를 최소 공배수 라고 한다. 
-2에 어떤수를 곱해서 나온 결과가 2의 배수 이므로 어떤 수를 2로 나누어 0이 되면 2의 배수이다.
-1 부터 하나씩 증가시켜 입력 받은 두 수가 모두 0으로 나누어 떨어지는 수들은 공배수 이고 이중 가장 먼저 찾은 수가 가장 작은 수이므로 처음 찾은수가 최소 공배수이다. 
+2에 어떤수를 곱해서 나온 결과가 2의 배수 이므로 어떤 수를 2로 나누어 나머지가 0이 되면 2의 배수이다.
+1 부터 하나씩 증가시켜 입력 받은 두 수가 모두 나누어 떨어지는 수들은 공배수 이고 이중 가장 먼저 찾은 수가 가장 작은 수이므로 처음 찾은수가 최소 공배수이다. 
 2와 3의 최소 공배수는 6이다.
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+int b = Integer.parseInt(sc.nextLine());
+int leastcommonMultiple = 0;
+if(a > b){
+    if(a % b == 0){
+        leastcommonMultiple = a;
+    } else {
+        leastcommonMultiple = a * b;
+    }
+} else {
+    if(b % a == 0){
+        leastcommonMultiple = b;
+    } else {
+        leastcommonMultiple = a * b;
+    }
+}
+System.out.println(leastcommonMultiple);
 ```
 14. 3개의 수를 입력 받아 가장 작은 수와 가장 큰수를 출력하는 프로그램을 만들어 보자.
 15. 100이하의 수학과목 점수를 5번 입력받아 60이하 점수가 몇 개인지 출력하는 프로그램을 구현해 보자.
