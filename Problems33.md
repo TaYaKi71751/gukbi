@@ -191,21 +191,21 @@ ex)2의 배수도 되고 3의 배수도 되는 공배수는 6,12,18,24 등이 �
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
-int leastcommonMultiple = 0;
+int leastCommonMultiple = 0;
 if(a > b){
     if(a % b == 0){
-        leastcommonMultiple = a;
+        leastCommonMultiple = a;
     } else {
-        leastcommonMultiple = a * b;
+        leastCommonMultiple = a * b;
     }
 } else {
     if(b % a == 0){
-        leastcommonMultiple = b;
+        leastCommonMultiple = b;
     } else {
-        leastcommonMultiple = a * b;
+        leastCommonMultiple = a * b;
     }
 }
-System.out.println(leastcommonMultiple);
+System.out.println(leastCommonMultiple);
 ```
 14. 3개의 수를 입력 받아 가장 작은 수와 가장 큰수를 출력하는 프로그램을 만들어 보자.
 ```
