@@ -4,13 +4,56 @@
 1:1 2:3 3:6 4:10 5:15 6:21 … 100이전의 총합들을 다음과 같이 출력되면 된다. 
 힌트 : 조건식에 복잡한 수식이 들어 갈수 도 있다.
 ```
-2. 문자열과 숫자를 입력받아 입력받은 문자열을 숫자만큼 출력하는 프로그램을 만들어 보자.
+```
+int sum = 0;
+for(int i = 1;i < 101;i++){
+    sum += i;
+    System.out.print(i+":" +sum + " ");
+}
+```
+2. 문자열과 숫자를 입력받아 입력받은 문자열을 입력받은 숫자만큼 출력하는 프로그램을 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+String str = sc.nextLine();
+int repeat = Integer.parseInt(sc.nextLine());
+for(int i = 0;i < repeat;i++){
+    System.out.println(str);
+}
+```
 3. 입력 받은 두수 사이의 숫자들의 합을 구하는 프로그램을 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+int b = Integer.parseInt(sc.nextLine());
+int sum = 0;
+for(int i = a;i <= b;i++){
+    sum += i;
+}
+System.out.println(sum);
+```
 4. 두 수를 입력 받아 첫 번째수 부터 시작하여 하나씩 카운트하여 두번째수 만큼 화면에 출력 하는 프로그램을 만든다. 
 ```
 5 6를 입력 받으면 5부터 6개 5 6 7 8 9 10 이 화면에 출력 된다.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+int b = Integer.parseInt(sc.nextLine());
+for(int i = a;i < (a + b);i++){
+    System.out.print(i + " ");
+}
+```
 5. 사용자가 “종료”를 입력할때 까지 무한 반복하는 프로그램을 3가지 방법으로 구현하시오.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+String input = "";
+while(true){
+    intput = sc.nextLine();
+    if(input.equals("종료")){
+        break;
+    }
+}
+```
 6. 100의 모든 약수를 구하시오. 
 ```
 힌트) 0으로 나눌수 없듯이 0의 나머지는 구할수 없다.
