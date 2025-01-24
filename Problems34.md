@@ -121,25 +121,43 @@ ex)배열에 7,9,21,15,23 이 들어 있으면 23,15,21,9,7,7,9,21,15,23 이 들
 ```
 ```
 int a[] = {1,2,3};
-java.util.ArrayList<Integer> sort = new ArrayList<Integer>(java.util.Arrays.asList(a));
-java.util.ArrayList<Integer> reverse = new ArrayList<Integer>(java.util.Arrays.asList(a));
-java.util.ArrayList<Integer> result = new ArrayList<Integer>(java.util.Arrays.asList(a));
-Collections.sort(sort);
-Collections.sort(reverse);
+java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> result = new java.util.ArrayList<Integer>();
+for(int i = 0;i < a.length;i++){
+    origin.add(a[i]);
+    reverse.add(a[i]);
+}
 Collections.reverse(reverse);
-result.addAll(sort);
-result.addAll(reverse)
+result.addAll(origin);
+result.addAll(reverse);
+a = new int[result.size()];
+for(int i = 0;i < result.size();i++){
+    a[i] = (int) result.toArray()[i];
+}
+for(int i = 0;i < a.length;i++){
+    System.out.println(a[i]);
+}
 ```
 ```
 int a[] = {7,9,21,15,23};
-java.util.ArrayList<Integer> sort = new ArrayList<Integer>(java.util.Arrays.asList(a));
-java.util.ArrayList<Integer> reverse = new ArrayList<Integer>(java.util.Arrays.asList(a));
-java.util.ArrayList<Integer> result = new ArrayList<Integer>(java.util.Arrays.asList(a));
-Collections.sort(sort);
-Collections.sort(reverse);
+java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> result = new java.util.ArrayList<Integer>();
+for(int i = 0;i < a.length;i++){
+    origin.add(a[i]);
+    reverse.add(a[i]);
+}
 Collections.reverse(reverse);
-result.addAll(reverse)
-result.addAll(sort);
+result.addAll(reverse);
+result.addAll(origin);
+a = new int[result.size()];
+for(int i = 0;i < result.size();i++){
+    a[i] = (int) result.toArray()[i];
+}
+for(int i = 0;i < a.length;i++){
+    System.out.println(a[i]);
+}
 ```
 11. 컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(횟수)를 구하는 프로그램을 작성해 보자.
 ```
