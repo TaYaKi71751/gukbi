@@ -141,4 +141,17 @@ Collections.reverse(reverse);
 result.addAll(reverse)
 result.addAll(sort);
 ```
-11.컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(횟수)를 구하는 프로그램을 작성해 보자.
+11. 컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(횟수)를 구하는 프로그램을 작성해 보자.
+```
+int diceSide = 0;
+int frequency[] = new int[6];
+Random random = new Random();
+for(int i = 0;i < frequency.length;i++){
+    diceSide = random.nextInt(6);
+    frequency[diceSide]++;
+    System.out.println(diceSide + 1 + "이 나왔습니다.");
+}
+for(int i = 0;i < frequency.length;i++){
+    System.out.println(i + "는 " + frequency[i] + "번 나왔습니다.");
+}
+```
