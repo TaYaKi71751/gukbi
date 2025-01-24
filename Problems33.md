@@ -64,17 +64,110 @@ ex) 어떤 수에 대해서 나누어 떨어지는 수를 약수라고 한다.
 100의 모든 약수를 구하려면 100보다 크면 더 이상 나눌 수 없으므로 1~100사이의 수들로 하나씩 100을 나눠서 나누어 떨어 지는지 판별하여 나누어 떨어지는 수들이 100의 약수가 된다. 
 1,2,4,5,..100 이 100의 약수에 해당한다.
 ```
+```
+int target = 100;
+for(int i = 1;i < target;i++){
+    if(target % i == 0){
+        System.out.print(i + " ");
+    }
+}
+```
 8. 두 수를 입력받아 두수의 공통된 약수를 모두 출력해 보자. 
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+int b = Integer.parseInt(sc.nextLine());
+java.util.ArrayList<Integer> aFactors = new ArrayList<Integer>();
+java.util.ArrayList<Integer> bFactors = new ArrayList<Integer>();
+java.util.ArrayList<Integer> commonFactors = new ArrayList<Integer>();
+for(int i = 1;i <= a;i++){
+    if(a % i == 0){
+        aFactors.add(i);
+    }
+}
+for(int i = 1;i <= b;i++){
+    if(b % i == 0){
+        bFactors.add(i);
+    }
+}
+for(int i = 0;i < aFactors.toArray().length;i++){
+    for(int j = 0;j < bFactors.toArray().length;j++){
+        if(aFactors.toArray()[i] == bFactors.toArray()[j]){
+            commonFactors.add(aFactors.toArray()[i]);
+        }
+    }
+}
+for(int i = 0;i < commonFactors.toArray().length;i++){
+    System.out.println(commonFactors.toArray()[i] + " ");
+}
+```
 9. 두수를 입력받아 두수의 최대 공약수를 구하는 프로그램을 만들어 보자.
 ```
 0부터 하나씩 증가시키며 두수 모두 나눠지는 수를 출력하면 된다. 
 출력된 수중에서 가장 큰수를 입력받은 두수의 최대공약수라고 한다.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int a = Integer.parseInt(sc.nextLine());
+int b = Integer.parseInt(sc.nextLine());
+java.util.ArrayList<Integer> aFactors = new ArrayList<Integer>();
+java.util.ArrayList<Integer> bFactors = new ArrayList<Integer>();
+int commonFactor = 0;
+for(int i = 1;i <= a;i++){
+    if(a % i == 0){
+        aFactors.add(i);
+    }
+}
+for(int i = 1;i <= b;i++){
+    if(b % i == 0){
+        bFactors.add(i);
+    }
+}
+for(int i = 0;i < aFactors.toArray().length;i++){
+    for(int j = 0;j < bFactors.toArray().length;j++){
+        if(aFactors.toArray()[i] == bFactors.toArray()[j]){
+            commonFactor = aFactors.toArray()[i];
+        }
+    }
+}
+System.out.println(commonFactor);
+```
 10. 사용자에게 숫자를 하나 입력받아 입력한 숫자들의 합이 100이 될때까지 계속입력을 받다가 100이 넘으면 최종 합산한 값을 출력하는 프로그램을 구현해 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int sum = 0;
+int a = 0;
+while(sum <= 100){
+    a = Integer.parseInt(sc.nextLine());
+    sum += a;
+}
+System.out.println(sum);
+```
 11. 사용자에게 계속해서 숫자를 입력받아 1~10사이의 숫자를 3번 입력 할 때 까지 반복한다. 
 ```
 입력이 끝나면 잘못 입력한 횟수와 제대로 입력한 횟수를 출력하고 
 사용자가 제대로 입력한 총합을 출력하는 프로그램을 만들어 보자.
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int fail = 0;
+int success = 0;
+int input = 0;
+int sum = 0;
+while(success != 3){
+    try {
+        input = Integer.parseInt(sc.nextLine());
+    } catch(Exception e){
+        fail++;
+        continue;
+    }
+    if(input > 0 && input < 11){
+        sum += input;
+        success++;
+    } else {
+        fail++;
+    }
+}
 ```
 12. 0부터 시작하는 4의 배수 10개를 출력하시오.
 ```
