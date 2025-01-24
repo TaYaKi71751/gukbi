@@ -324,7 +324,7 @@ System.out.println("맞춘 횟수:" + success + ", 틀린 횟수:" + fail);
 ```
 int fail = 0;
 int success = 0;
-int diceSide = 
+int diceSide = 0;
 int count = 0;
 int input = 0;
 while(count != 10){
