@@ -89,6 +89,20 @@ for(int i = 0;i < arr.length;i++){
 }
 ```
 8.배열에 5개의 문자열을 입력받아 넣은 다음 문자열 하나를 입력받아 해당 문자가 몇번째 인덱스에 들어 있는지 출력하는 프로그램을 만들어 보자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+String arr[] = new String[5];
+String input = "";
+for(int i = 0;i < arr.length;i++){
+    arr[i] = sc.nextLine();
+}
+input = sc.nextLine();
+for(int i = 0;i < arr.length;i++){
+    if(arr[i].equals(input)){
+        System.out.println(i);
+    }
+}
+```
 9.배열 크기를 입력 받아 배열 크기 만큼 1,2,3,1,2,3,1,2,3 … 숫자를 순서대로 배열안에 넣은 다음 배열의 내용을 출력해 보자.
 10.배열에 들어있는 내용을 정순과 역순으로 저장하는 새로운 배열을 만들어 출력해 보자.
 ```
