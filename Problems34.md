@@ -104,9 +104,41 @@ for(int i = 0;i < arr.length;i++){
 }
 ```
 9.배열 크기를 입력 받아 배열 크기 만큼 1,2,3,1,2,3,1,2,3 … 숫자를 순서대로 배열안에 넣은 다음 배열의 내용을 출력해 보자.
+```
+int size = Integer.parseInt(sc.nextLine());
+int arr[] = new int[size];
+for(int i = 0;i < size;i++){
+    arr[i] = (i + 1) % 3;
+}
+for(int i = 0;i < size;i++){
+    System.out.println(arr[i]);
+}
+```
 10.배열에 들어있는 내용을 정순과 역순으로 저장하는 새로운 배열을 만들어 출력해 보자.
 ```
 ex)배열에 1,2,3이 들어 있으면 1,2,3,3,2,1 이 들어 있는 배열
 ex)배열에 7,9,21,15,23 이 들어 있으면 23,15,21,9,7,7,9,21,15,23 이 들어 있는 배열
 ```
-11.컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(회수)를 구하는 프로그램을 작성해 보자.
+```
+int a[] = {1,2,3};
+java.util.ArrayList<Integer> sort = new ArrayList<Integer>(java.util.Arrays.asList(a));
+java.util.ArrayList<Integer> reverse = new ArrayList<Integer>(java.util.Arrays.asList(a));
+java.util.ArrayList<Integer> result = new ArrayList<Integer>(java.util.Arrays.asList(a));
+Collections.sort(sort);
+Collections.sort(reverse);
+Collections.reverse(reverse);
+result.addAll(sort);
+result.addAll(reverse)
+```
+```
+int a[] = {7,9,21,15,23};
+java.util.ArrayList<Integer> sort = new ArrayList<Integer>(java.util.Arrays.asList(a));
+java.util.ArrayList<Integer> reverse = new ArrayList<Integer>(java.util.Arrays.asList(a));
+java.util.ArrayList<Integer> result = new ArrayList<Integer>(java.util.Arrays.asList(a));
+Collections.sort(sort);
+Collections.sort(reverse);
+Collections.reverse(reverse);
+result.addAll(reverse)
+result.addAll(sort);
+```
+11.컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(횟수)를 구하는 프로그램을 작성해 보자.
