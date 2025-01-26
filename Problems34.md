@@ -126,9 +126,8 @@ java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> result = new java.util.ArrayList<Integer>();
 for(int i = 0;i < a.length;i++){
     origin.add(a[i]);
-    reverse.add(a[i]);
+    reverse.add(0, a[i]);
 }
-Collections.reverse(reverse);
 result.addAll(origin);
 result.addAll(reverse);
 a = new int[result.size()];
@@ -160,9 +159,8 @@ java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> result = new java.util.ArrayList<Integer>();
 for(int i = 0;i < a.length;i++){
     origin.add(a[i]);
-    reverse.add(a[i]);
+    reverse.add(0, a[i]);
 }
-Collections.reverse(reverse);
 result.addAll(reverse);
 result.addAll(origin);
 a = new int[result.size()];
