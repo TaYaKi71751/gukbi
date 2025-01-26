@@ -140,6 +140,20 @@ for(int i = 0;i < a.length;i++){
 }
 ```
 ```
+int a[] = {1,2,3};
+int b[] = new int[a.length * 2];
+for(int i = 0;i < b.length;i++){
+    if(i > a.length){
+        b[i] = a[a.length * 2 - (i % a.length)];
+    } else {
+        b[i] = a[i];
+    }
+}
+for(int i = 0;i < b.length;i++){
+    System.out.println(b[i]);
+}
+```
+```
 int a[] = {7,9,21,15,23};
 java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
@@ -157,6 +171,20 @@ for(int i = 0;i < result.size();i++){
 }
 for(int i = 0;i < a.length;i++){
     System.out.println(a[i]);
+}
+```
+```
+int a[] = {7,9,21,15,23};
+int b[] = new int[a.length * 2];
+for(int i = 0;i < b.length;i++){
+    if(i > a.length){
+        b[i] = a[a.length * 2 - (i % a.length)];
+    } else {
+        b[i] = a[i];
+    }
+}
+for(int i = 0;i < b.length;i++){
+    System.out.println(b[i]);
 }
 ```
 11. 컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(횟수)를 구하는 프로그램을 작성해 보자.
