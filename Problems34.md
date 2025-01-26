@@ -140,6 +140,26 @@ for(int i = 0;i < a.length;i++){
 ```
 ```
 int a[] = {1,2,3};
+java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> result = new java.util.ArrayList<Integer>();
+for(int i = 0;i < a.length;i++){
+    origin.add(a[i]);
+    reverse.add(a[i]);
+}
+Collections.reverse(reverse);
+result.addAll(origin);
+result.addAll(reverse);
+a = new int[result.size()];
+for(int i = 0;i < result.size();i++){
+    a[i] = (int) result.toArray()[i];
+}
+for(int i = 0;i < a.length;i++){
+    System.out.println(a[i]);
+}
+```
+```
+int a[] = {1,2,3};
 int b[] = new int[a.length * 2];
 for(int i = 0;i < b.length;i++){
     if(i > a.length){
@@ -161,6 +181,26 @@ for(int i = 0;i < a.length;i++){
     origin.add(a[i]);
     reverse.add(0, a[i]);
 }
+result.addAll(reverse);
+result.addAll(origin);
+a = new int[result.size()];
+for(int i = 0;i < result.size();i++){
+    a[i] = (int) result.toArray()[i];
+}
+for(int i = 0;i < a.length;i++){
+    System.out.println(a[i]);
+}
+```
+```
+int a[] = {7,9,21,15,23};
+java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
+java.util.ArrayList<Integer> result = new java.util.ArrayList<Integer>();
+for(int i = 0;i < a.length;i++){
+    origin.add(a[i]);
+    reverse.add(a[i]);
+}
+Collections.reverse(reverse);
 result.addAll(reverse);
 result.addAll(origin);
 a = new int[result.size()];
