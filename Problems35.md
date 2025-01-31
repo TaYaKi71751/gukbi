@@ -216,7 +216,7 @@ int money = 0;
 int input = 0;
 String drinks = "";
 
-while(true){
+while(input != 7){
     System.out.println("남은돈" + money + "원");
     System.out.println("1.사이다 700");
     System.out.println("2.콜라 500");
@@ -224,6 +224,7 @@ while(true){
     System.out.println("4.100투입");
     System.out.println("5.500투입");
     System.out.println("6.반환");
+    System.out.println("7.종료");
     try {
         input = Integer.parseInt(sc.nextLine());
     } catch(Exception e){
@@ -278,6 +279,8 @@ while(true){
             System.out.print("오십원짜리" + change50 + "개,");
             System.out.println("십원짜리" + change10 + "개");
             break;
+        case 7:
+            System.out.println("자판기를 종료합니다.");
         default:
             System.out.println("잘못 입력 하였습니다.");
             break;
