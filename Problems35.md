@@ -347,10 +347,95 @@ while(true){
 ```
 “1.대인 2.청소년 3.소인/경로 4.종료” 와 같은 메인 메뉴에서 구매하는 형태로 만들어 보자.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int input = 0;
+while(input != 4){
+    System.out.println("1.대인 2.청소년 3.소인/경로 4.종료");
+    input = Integer.parseInt(sc.nextLine());
+    switch(input){
+        case 1:
+            System.out.println("이용권을 선택하여 주십시오.");
+            System.out.println("1.주간권(1일권) 2.오후권(오후3시~) 3.윈터야간권 4.2일권 5.뒤로가기");
+            input = Integer.parseInt(sc.nextLine());
+            switch(input){
+                case 1:
+                    System.out.println("46000원");
+                    break;
+                case 2:
+                    System.out.println("38000원");
+                    break
+                case 3:
+                    System.out.println("20000원");
+                    break;
+                case 4:
+                    System.out.println("74000원");
+                    break;
+            }
+            break;
+        case 2:
+            System.out.println("이용권을 선택하여 주십시오.");
+            System.out.println("1.주간권(1일권) 2.오후권(오후3시~) 3.윈터야간권 4.2일권 5.뒤로가기");
+            input = Integer.parseInt(sc.nextLine());
+            switch(input){
+                case 1:
+                    System.out.println("39000원");
+                    break;
+                case 2:
+                    System.out.println("32000원");
+                    break
+                case 3:
+                    System.out.println("17000원");
+                    break;
+                case 4:
+                    System.out.println("62000원");
+                    break;
+            }
+            break;
+        case 3:
+            System.out.println("이용권을 선택하여 주십시오.");
+            System.out.println("1.주간권(1일권) 2.오후권(오후3시~) 3.윈터야간권 4.2일권 5.뒤로가기");
+            input = Integer.parseInt(sc.nextLine());
+            switch(input){
+                case 1:
+                    System.out.println("36000원");
+                    break;
+                case 2:
+                    System.out.println("29000원");
+                    break
+                case 3:
+                    System.out.println("16000원");
+                    break;
+                case 4:
+                    System.out.println("58000원");
+                    break;
+            }
+            break;
+    }
+}
+```
 8. 컴퓨터가 임의로 정한 하나의 숫자를 맞추는 프로그램을 만들어 보자. 
 ```
 사용자가 입력한 숫자가 임의의 숫자랑 같지 않다면 사용자가 숫자를 맞출 수 있도록 큰지 작은지 힌트를 줘서 사용자가 맞출수 있도록 해준다. 
-정답을 맞추면 정답을 맞췄다는 메시지와 함께 총 몇회에 도전끝에 맞췄는지 출력해 보자.
+정답을 맞추면 정답을 맞췄다는 메시지와 함께 총 몇회 도전끝에 맞췄는지 출력해 보자.
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int answer = Math.random(100);
+int count = 0;
+int input = -1;
+while(answer != input){
+    input = Integer.parseInt(sc.nextLine());
+    if(input == answer){
+        System.out.println(count + 1 + "번 도전 하여 맞췄습니다.");
+    }
+    if(input > answer){
+        System.out.println(input + "보다 작습니다.");
+    }
+    if(input > answer){
+        System.out.println(input + "보다 큽니다.");
+    }
+}
 ```
 9. 문제1에서 구현한 은행 프로그램을 배열을 이용해서 100명의 사용자 계정을 관리하는 프로그램으로 업그레이드 해보자.
 ```
