@@ -207,6 +207,7 @@ String 변수 str를 출력하면 사이다콜라가 출력된다.
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int money = 0;
 int input = 0;
+String drinks = "";
 
 while(true){
     System.out.println("남은돈" + money + "원");
@@ -221,7 +222,7 @@ while(true){
         case 1:
             if(money >= 700){
                 money -= 700;
-                System.out.println("음료반환구에 사이다가 있음");
+                drinks += "사이다 ";
             } else {
                 System.out.println("투입한 금액이 부족합니다.");
             }
@@ -229,7 +230,7 @@ while(true){
         case 2:
             if(money >= 500){
                 money -= 500;
-                System.out.println("음료반환구에 콣라가 있음");
+                drinks += "콜라 ";
             } else {
                 System.out.println("투입한 금액이 부족합니다.");
             }
@@ -237,7 +238,7 @@ while(true){
         case 3:
             if(money >= 350){
                 money -= 350;
-                System.out.println("음료반환구에 환타가 있음");
+                drinks += "환타 ";
             } else {
                 System.out.println("투입한 금액이 부족합니다.");
             }
@@ -249,6 +250,7 @@ while(true){
             money += 500;
             break;
         case 6:
+            System.out.print(drinks);
             int change500 = money / 500;
             int change100 = (money % 500) / 100;
             int change50 = ((money % 500) % 100) / 50;
