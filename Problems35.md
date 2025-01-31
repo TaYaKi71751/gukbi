@@ -92,6 +92,48 @@ account 변수에 처음에 0으로 세팅하고 입금 출금을 통에 원하�
 0
 종료합니다.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int account = 0;
+int input = -1;
+while(input != 0){
+    System.out.println("메뉴: 1.입금 2.출금 3.조회 0.종료");
+    try {
+        input = Integer.parseInt(sc.nextLine());
+    } catch(Exception e){
+        System.out.println("잘못 입력 하였습니다.");
+        continue;
+    }
+    switch(input){
+        case 1:
+            System.out.println("입금액을 입력하세요.");
+            input = Integer.parseInt(sc.nextLine());
+            if(input < 0){
+                account += input;
+            } else {
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
+            break;
+        case 2:
+            System.out.println("출금액을 입력하세요.");
+            input = Integer.parseInt(sc.nextLine());
+            if(input < 0){
+                account -= input;
+            } else {
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
+            break;
+        case 0:
+            System.out.println("프로그램 종료");
+            break;
+        default:
+            System.out.println("잘못 입력 하였습니다.");
+    }
+}
+
+```
 3. 금액을 입력받아 천원, 오백원, 백원, 오십원, 십원 짜리 잔돈으로 거슬러주는 프로그램과 순서도을 구현해 보자. 
 ```
 예제 금액을 1000으로 나눈 몫은 돈을 거슬러 주었을때
