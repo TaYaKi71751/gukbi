@@ -22,6 +22,45 @@ boolean student[]=new boolean[50]; 배열을 사용해서 아래와 같은 메�
 4.프로그램 종료
 진행중인 프로그램을 종료시키면 된다.
 ```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+boolean student[] = new boolean[50];
+int input = 0;
+for(int i = 0;i < student.length;i++){
+    student[i] = false;
+}
+while(input != 6){
+    System.out.println("1.전체 출석사항 2.결석자 추가 3.출석자 추가 6.프로그램 종료");
+    try {
+        input = Integer.parseInt(sc.nextLine());
+    } catch(Exception e){
+        System.out.println("잘못 입력 하였습니다.");
+        continue;
+    }
+    switch(input){
+        case 1:
+            for(int i = 0;i < student.length;i++){
+                System.out.println(i + 1 + " " + (student[i] ? "출석" : "결석"));
+            }
+            break;
+        case 2:
+            input = Integer.parseInt(sc.nextLine());
+            student[i - 1] = false;
+            input = 0;
+            break;
+        case 3:
+            input = Integer.parseInt(sc.nextLine());
+            student[i - 1] = true;
+            input = 0;
+            break;
+        case 6:
+            System.out.println("프로그램 종료");
+            return;
+        default:
+            System.out.println("잘못 입력 하였습니다.");
+    }
+}
+```
 2. 은행 프로그램을 순서도와 프로그래밍 언어로 만들어 보자.
 ```
 은행 프로그램의 메뉴는 다음과 같다. ‘전체메뉴: 1.입금 2.출금 3.조회 0.종료’
