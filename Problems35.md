@@ -31,7 +31,10 @@ for(int i = 0;i < student.length;i++){
     student[i] = false;
 }
 while(input != 6){
-    System.out.println("1.전체 출석사항 2.결석자 추가 3.출석자 추가 6.프로그램 종료");
+    System.out.println("1.전체 출석사항");
+    System.out.println("2.결석자 추가");
+    System.out.println("3.출석자 추가");
+    System.out.println("6.프로그램 종료");
     try {
         input = Integer.parseInt(sc.nextLine());
     } catch(Exception e){
@@ -108,7 +111,11 @@ java.util.Scanner sc = new java.util.Scanner(System.in);
 int account = 0;
 int input = -1;
 while(input != 0){
-    System.out.println("메뉴: 1.입금 2.출금 3.조회 0.종료");
+    System.out.println("메뉴: ");
+    System.out.println("1.입금");
+    System.out.println("2.출금");
+    System.out.println("3.조회");
+    System.out.println("0.종료");
     try {
         input = Integer.parseInt(sc.nextLine());
     } catch(Exception e){
@@ -211,7 +218,12 @@ String drinks = "";
 
 while(true){
     System.out.println("남은돈" + money + "원");
-    System.out.println("1.사이다 700 2.콜라 500 3.환타 350 4.100투입 5.500투입 6.반환");
+    System.out.println("1.사이다 700");
+    System.out.println("2.콜라 500");
+    System.out.println("3.환타 350");
+    System.out.println("4.100투입");
+    System.out.println("5.500투입");
+    System.out.println("6.반환");
     try {
         input = Integer.parseInt(sc.nextLine());
     } catch(Exception e){
