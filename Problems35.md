@@ -44,12 +44,22 @@ while(input != 6){
             }
             break;
         case 2:
-            input = Integer.parseInt(sc.nextLine());
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch(Exception e){
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
             student[i - 1] = false;
             input = 0;
             break;
         case 3:
-            input = Integer.parseInt(sc.nextLine());
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch(Exception e){
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
             student[i - 1] = true;
             input = 0;
             break;
@@ -107,7 +117,12 @@ while(input != 0){
     switch(input){
         case 1:
             System.out.println("입금액을 입력하세요.");
-            input = Integer.parseInt(sc.nextLine());
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch(Exception e){
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
             if(input < 0){
                 account += input;
             } else {
@@ -117,7 +132,12 @@ while(input != 0){
             break;
         case 2:
             System.out.println("출금액을 입력하세요.");
-            input = Integer.parseInt(sc.nextLine());
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch(Exception e){
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
             if(input < 0){
                 account -= input;
             } else {
@@ -177,6 +197,67 @@ String 변수 str를 출력하면 사이다콜라가 출력된다.
 천원짜리 세장 넣고 사이다1개 콜라2개 환타1개 를 구매한다.
 최종 출력값:
 사이다 콜라 콜라 환타 천원짜리 0개 오백원짜리 1개 백원짜리 4개 오십원 1개
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int money = 0;
+int input = 0;
+
+while(true){
+    System.out.println("남은돈" + money + "원");
+    System.out.println("1.사이다 700 2.콜라 500 3.환타 350 4.100투입 5.500투입 6.반환");
+    try {
+        input = Integer.parseInt(sc.nextLine());
+    } catch(Exception e){
+        System.out.println("잘못 입력 하였습니다.");
+        continue;
+    }
+    switch(input){
+        case 1:
+            if(money >= 700){
+                money -= 700;
+                System.out.println("음료반환구에 사이다가 있음");
+            } else {
+                System.out.println("투입한 금액이 부족합니다.");
+            }
+            break;
+        case 2:
+            if(money >= 500){
+                money -= 500;
+                System.out.println("음료반환구에 콣라가 있음");
+            } else {
+                System.out.println("투입한 금액이 부족합니다.");
+            }
+            break;
+        case 3:
+            if(money >= 350){
+                money -= 350;
+                System.out.println("음료반환구에 환타가 있음");
+            } else {
+                System.out.println("투입한 금액이 부족합니다.");
+            }
+            break;
+        case 4:
+            money += 100;
+            break;
+        case 5:
+            money += 500;
+            break;
+        case 6:
+            int change500 = money / 500;
+            int change100 = (money % 500) / 100;
+            int change50 = ((money % 500) % 100) / 50;
+            int change10 = (((money % 500) % 100) % 50) / 10;
+            money = 0;
+            System.out.print("오백원짜리" + change500 + "개,");
+            System.out.print("백원짜리" + change100 + "개,");
+            System.out.print("오십원짜리" + change50 + "개,");
+            System.out.println("십원짜리" + change10 + "개");
+            break;
+        default:
+            System.out.println("잘못 입력 하였습니다.");
+    }
+}
 ```
 5. 369게임 해답지를 만들어 보자.
 ```
