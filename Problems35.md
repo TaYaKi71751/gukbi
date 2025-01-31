@@ -248,9 +248,11 @@ while(true){
             break;
         case 4:
             money += 100;
+            System.out.println("100원 투입");
             break;
         case 5:
             money += 500;
+            System.out.println("500원 투입");
             break;
         case 6:
             System.out.print(drinks);
