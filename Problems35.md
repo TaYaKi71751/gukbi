@@ -269,8 +269,8 @@ while(true){
 ```
 ```
 for(int i = 1;i <= 1000;i++){
-    boolean hundred = (i / 100) % 3 == 0 && i / 1000 > 0;
-    boolean ten = (i / 10) % 3 == 0 && i / 100 > 0;
+    boolean hundred = (i / 100) % 3 == 0 && (i % 1000) / 100 > 0;
+    boolean ten = ((i % 100) / 10) % 3 == 0 && (i % 100) / 10 > 0;
     boolean one = (i % 10) % 3 == 0 && i % 10 > 0;
     if(hundred){
         System.out.print("짝");
