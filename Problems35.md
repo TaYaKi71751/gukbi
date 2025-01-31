@@ -296,6 +296,52 @@ for(int i = 1;i <= 1000;i++){
 6. 랜덤하게 덧셈, 뺄셈, 곱셈, 나눗셈 문제를 내서 사용자가 맞추는 프로그램을 구현해 보자. 
 레벨이 4단계로 되어 있어 처음에는 더하기 문제만 나오다가 레벨이 업되면 뺄셈,곱셈,나눗셈을 차례대로 추가하여 문제가 나오도록 해보자. 
 2자리 이하 정수 계산만 하자.
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+while(true){
+    Random r = new Random();
+    int sign_a = r.nextInt(2);
+    int sign_b = r.nextInt(2);
+    int input = 0;
+    int a = r.nextInt(100);
+    int b = r.nextInt(100);
+    int result = 0;
+    int op = r.nextInt(4);
+    int level = 0;
+    String ops = "";
+    switch(op){
+        case 2:
+            ops = "*";
+            result = ((sign_a == 0 ? -1 : 1) * a) * ((sign_b == 0 ? -1 : 1) * b);
+            if(level > 100){
+                break;
+            }
+        case 0:
+            ops = "+";
+            result = ((sign_a == 0 ? -1 : 1) * a) + ((sign_b == 0 ? -1 : 1) * b);
+            break;
+        case 3:
+            ops = "/";
+            result = ((sign_a == 0 ? -1 : 1) * a) / ((sign_b == 0 ? -1 : 1) * b);
+            if(level > 100){
+                break;
+            }
+        case 1:
+            ops = "-";
+            result = ((sign_a == 0 ? -1 : 1) * a) - ((sign_b == 0 ? -1 : 1) * b);
+            break;
+    }
+    System.out.println(a + ops + b);
+    input = Integer.parseInt(sc.nextLine());
+    if(input == result){
+        System.out.println("맞았습니다.");
+        level++;
+    } else {
+        System.out.println("틀렸습니다.");
+        level--;
+    }
+}
+```
 ![image](./images/image33.png)
 7. 상위 표를 이용해서 요금 계산하는 프로그램을 구현해보자. 
 ```
