@@ -145,11 +145,15 @@ while(input != 0){
                 continue;
             }
             break;
+        case 3:
+            System.out.println("현재 잔액은 " + account + "원 입니다.");
+            break;
         case 0:
             System.out.println("프로그램 종료");
             break;
         default:
             System.out.println("잘못 입력 하였습니다.");
+            break;
     }
 }
 ```
@@ -256,6 +260,7 @@ while(true){
             break;
         default:
             System.out.println("잘못 입력 하였습니다.");
+            break;
     }
 }
 ```
@@ -310,4 +315,89 @@ for(int i = 1;i <= 1000;i++){
 double account[] = new double[100];
 현재 작업중인 계정 인덱스 저장을 위해서 int nowUserIndex=0; 를 선언한다. 
 작업할 사용자 인덱스로 사용된다.
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int account[] = new int[100];
+int currentIndex = -1;
+for(int i = 0;i < 100;i++){
+    account[i] = 0;
+}
+int input = -1;
+while(input != 0){
+    System.out.println("메뉴: 1.입금 2.출금 3.조회 4.(0~99)작업계정 선택 5. 전체 계정 출력 0.종료");
+    try {
+        input = Integer.parseInt(sc.nextLine());
+    } catch(Exception e){
+        System.out.println("잘못 입력 하였습니다.");
+        continue;
+    }
+    switch(input){
+        case 1:
+            if(currentIndex < 0 || currentIndex > 99){
+                System.out.println("잘못된 작업계정");
+                continue;
+            }
+            System.out.println("입금액을 입력하세요.");
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch(Exception e){
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
+            if(input < 0){
+                account += input;
+            } else {
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
+            input = -1;
+            break;
+        case 2:
+            if(currentIndex < 0 || currentIndex > 99){
+                System.out.println("잘못된 작업계정");
+                continue;
+            }
+            System.out.println("출금액을 입력하세요.");
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch(Exception e){
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
+            if(input < 0){
+                account -= input;
+            } else {
+                System.out.println("잘못 입력 하였습니다.");
+                continue;
+            }
+            input = -1;
+            break;
+        case 3:
+            if(currentIndex < 0 || currentIndex > 99){
+                System.out.println("잘못된 작업계정");
+                continue;
+            }
+            System.out.println("현재 잔액은 " + account[currentIndex] + "원 입니다.");
+            break;
+        case 4:
+            System.out.println("작업 계정을 입력해주세요");
+            currentIndex = Integer.parseInt(sc.nextLine());
+            if(currentIndex < 0 || currentIndex > 99){
+                System.out.println("잘못된 작업계정");
+                continue;
+            }
+            break;
+        case 5:
+            for(int i = 0;i < account.length;i++){
+                System.out.println(i + "번 계정: " + account[i] + "원");
+            }
+        case 0:
+            System.out.println("프로그램 종료");
+            break;
+        default:
+            System.out.println("잘못 입력 하였습니다.");
+            break;
+    }
+}
 ```
