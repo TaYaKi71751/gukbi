@@ -223,6 +223,7 @@ while(true){
             if(money >= 700){
                 money -= 700;
                 drinks += "사이다 ";
+                System.out.println("사이다를 구매했습니다.");
             } else {
                 System.out.println("투입한 금액이 부족합니다.");
             }
@@ -231,6 +232,7 @@ while(true){
             if(money >= 500){
                 money -= 500;
                 drinks += "콜라 ";
+                System.out.println("콜라를 구매했습니다.");
             } else {
                 System.out.println("투입한 금액이 부족합니다.");
             }
@@ -239,6 +241,7 @@ while(true){
             if(money >= 350){
                 money -= 350;
                 drinks += "환타 ";
+                System.out.println("환타를 구매했습니다.");
             } else {
                 System.out.println("투입한 금액이 부족합니다.");
             }
