@@ -132,7 +132,6 @@ while(input != 0){
             System.out.println("잘못 입력 하였습니다.");
     }
 }
-
 ```
 3. 금액을 입력받아 천원, 오백원, 백원, 오십원, 십원 짜리 잔돈으로 거슬러주는 프로그램과 순서도을 구현해 보자. 
 ```
@@ -143,6 +142,21 @@ while(input != 0){
 선언할 변수:change1000,change500,change100,change50,change10,moneyInput
 출력값:p(“천원짜리 “+change1000+”개, 오백원짜리 “+change500+”개, 백원짜리”+
 change100+”개, 오십원짜리 “+change50+”개, 십원짜리 “+change10개)
+```
+```
+java.util.Scanner sc = new java.util.Scanner(System.in);
+int moneyInput = Integer.parseInt(sc.nextLine());
+int change1000 = moneyInput / 1000;
+int change500 = (moneyInput % 1000) / 500;
+int change100 = ((moneyInput % 1000) % 500) / 100;
+int change50 = (((moneyInput % 1000) % 500) % 100) / 50;
+int change10 = ((((moneyInput % 1000) % 500) % 100) % 50) / 100;
+
+System.out.print("천원짜리" + change1000 + "개,");
+System.out.print("오백원짜리" + change500 + "개,");
+System.out.print("백원짜리" + change100 + "개,");
+System.out.print("오십원짜리" + change50 + "개,");
+System.out.println("십원짜리" + change10 + "개");
 ```
 4. 실존하는 자판기와 동일하게 만들어 보자. 
 ```
