@@ -275,10 +275,10 @@ while(input != 7){
             int change50 = (((money % 1000) % 500) % 100) / 50;
             int change10 = ((((money % 1000) % 500) % 100) % 50) / 10;
             money = 0;
-            System.out.println("천원짜리" + change1000 + "개,");
-            System.out.print("오백원짜리" + change500 + "개,");
-            System.out.print("백원짜리" + change100 + "개,");
-            System.out.print("오십원짜리" + change50 + "개,");
+            System.out.println("천원짜리" + change1000 + "개");
+            System.out.println("오백원짜리" + change500 + "개");
+            System.out.println("백원짜리" + change100 + "개");
+            System.out.println("오십원짜리" + change50 + "개");
             System.out.println("십원짜리" + change10 + "개");
             break;
         case 7:
