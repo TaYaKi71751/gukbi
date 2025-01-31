@@ -267,6 +267,27 @@ while(true){
 27,28,짝(29),짝(30),짝(31),짝(32),짝짝(33)
 1000이하의 정답지를 출력하는 프로그램을 만들어 보자.
 ```
+```
+for(int i = 1;i <= 1000;i++){
+    boolean hundred = (i / 100) % 3 == 0 && i / 1000 > 0;
+    boolean ten = (i / 10) % 3 == 0 && i / 100 > 0;
+    boolean one = (i % 10) % 3 == 0 && i % 10 > 0;
+    if(hundred){
+        System.out.print("짝");
+    }
+    if(ten){
+        System.out.print("짝");
+    }
+    if(one){
+        System.out.print("짝");
+    }
+    if(hundred || ten || one){
+        System.out.print("(" + i + "),");
+    } else {
+        System.out.print(i + ",");
+    }
+}
+```
 6. 랜덤하게 덧셈, 뺄셈, 곱셈, 나눗셈 문제를 내서 사용자가 맞추는 프로그램을 구현해 보자. 
 레벨이 4단계로 되어 있어 처음에는 더하기 문제만 나오다가 레벨이 업되면 뺄셈,곱셈,나눗셈을 차례대로 추가하여 문제가 나오도록 해보자. 
 2자리 이하 정수 계산만 하자.
