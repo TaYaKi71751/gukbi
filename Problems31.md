@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple254.pdf)
+[pdf](./pdf/JAVA240812simple254.pdf)
 # 연습문제
 1. 다음 else if문은 switch문으로 switch문은 elseif문으로 변경해보자.
 ![image](./images/image24.png)

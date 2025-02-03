@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple254.pdf)
+[pdf](./pdf/JAVA240812simple254.pdf)
 # 다음 문제를 풀어보자. 
 ```
 문자열의 비교는 .equals를 사용해야 한다. 

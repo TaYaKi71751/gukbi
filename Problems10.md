@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 # 다음 예제를 `변수` , `클래스`, `상수` 명을 만들어 보자.
 > 강아지산책시키기 해석: Walk the dog
 ```

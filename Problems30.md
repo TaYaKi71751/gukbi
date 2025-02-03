@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple254.pdf)
+[pdf](./pdf/JAVA240812simple254.pdf)
 # 다음 예제를 실행해 보자.
 1.입력 
 ```

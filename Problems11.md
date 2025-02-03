@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 # 연습문제
 
 1. 변수이름 지을때 유의사항 6가지를 이야기해 보자.

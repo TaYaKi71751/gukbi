@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple254.pdf)
+[pdf](./pdf/JAVA240812simple254.pdf)
 # 다음 연습문제를 풀어 보자.
 ![image](./images/image6.png)
 문제1) 다음 페이지의 순서도는 집에서 회사까지 가는

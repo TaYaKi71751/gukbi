@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 # 다음 문제를 풀어 보자.
 ![image](./images/image3.png)
 문제1. 다음 코드를 보고 1~6번까지 각각 어떤 문제가 있는지 확인하여 설명해 보고 문제가 발생하지 않도록 변경해 보자.

@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 # 연습문제
 1. `함수`란? 
 ```

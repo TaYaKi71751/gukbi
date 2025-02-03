@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 #  문제풀이 
 
 1. 작성한 자바코드의 확장자는 무엇인가? 

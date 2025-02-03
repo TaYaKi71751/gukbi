@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 # 연습문제
 1. 클래스, 인스턴스에 대해서 설명하시오.
 ```

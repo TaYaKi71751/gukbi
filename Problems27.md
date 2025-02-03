@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple254.pdf)
+[pdf](./pdf/JAVA240812simple254.pdf)
 if문 문제풀이가 어렵다면 책이나 웹에 있는 if문 예제를 여러개 실행해보고 문제를 천천히 풀어 보고 해결이 안되면 답안을 보고 풀어 보거나 gpt를 이용해 보자.
 
 ![image](./images/image19.png)

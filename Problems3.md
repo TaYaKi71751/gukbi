@@ -1,4 +1,4 @@
-[pdf](./JAVA240812simple148.pdf)
+[pdf](./pdf/JAVA240812simple148.pdf)
 # 연습문제
 1. 주석이란? 주석의 종류와 사용방법은? 
 ```
