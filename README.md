@@ -5,3 +5,7 @@
 [./pdf/oracle230101GoogleDocs.pdf](https://cafe.naver.com/thetjoeun99/1661)
 
 [./ppt/enumPPT.pptx](https://cafe.naver.com/thetjoeun99/1968)
+
+[./ppt/clang_\*.pptx](https://cafe.naver.com/thetjoeun99/1971)
+
+[./pdf/clang_6.pdf](https://cafe.naver.com/thetjoeun99/1971)
