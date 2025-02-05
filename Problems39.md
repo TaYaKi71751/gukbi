@@ -20,7 +20,10 @@ for(int i = 1;i < 10;i++){
 ```
 for(int i = 1;(i + 2) < 10;i+=3){
     for(int j = 1;j < 10;j++){
-        System.out.println(i + "*" + j + "=" + (i * j) + "\t" + (i + 1) + "*" + j + "=" + ((i + 1) * j) + "\t" + (i + 2) + "*" + j + "=" + ((i + 2) * j) + "\t");
+        for(int l = i;l < (i + 3);l++){
+            System.out.print(l + "*" + j + "=" + (l * j) + "\t");
+        }
+        System.out.println();
     }
     System.out.println();
 }
