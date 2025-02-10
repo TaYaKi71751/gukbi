@@ -21,6 +21,10 @@ public class Main{
         a1.eat(); // 불가능 The method eat() is undefined for the type Animal
         ((Cat)a1).eat(); // 가능
 		System.out.println(a1.getClass()); // class com.the.ex.Cat
+        System.out.println(a1 instanceof Animal); // true
+        System.out.println(a1 instanceof Cat); // true
+        System.out.println(a1.getClass() == Animal.class); // false
+        System.out.println(a1.getClass() == Cat.class); // true
     }
 }
 ```
