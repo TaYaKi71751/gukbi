@@ -17,6 +17,7 @@ public class Main{
         Cat a2 = new Animal(); // 불가능 Type mismatch: cannot convert from Animal to Cat
         a1.makeSound(); // 가능
         a1.eat(); // 불가능 The method eat() is undefined for the type Animal
+        ((Cat)a1).eat(); // 가능
     }
 }
 ```
