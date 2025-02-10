@@ -1,6 +1,8 @@
 - 부모 클래스 에 자식 클래스를 넣을 수 있다.
 - 자식 클래스 에 부모 클래스를 넣을 수 없다.
 ```
+package com.the.ex;
+
 class Animal {
     public void makeSound(){
         System.out.println("동물이 소리를 냅니다.");
@@ -18,6 +20,7 @@ public class Main{
         a1.makeSound(); // 가능
         a1.eat(); // 불가능 The method eat() is undefined for the type Animal
         ((Cat)a1).eat(); // 가능
+		System.out.println(a1.getClass()); // class com.the.ex.Cat
     }
 }
 ```
