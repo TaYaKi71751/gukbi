@@ -122,3 +122,63 @@ interface Animal {
 ### 요약:
 - **추상 클래스**: 기본 구현을 제공하며 일부는 서브클래스에서 구현하도록 강제합니다.
 - **인터페이스**: 구현 없이 메서드 서명만 정의하고, 클래스를 다중 상속할 수 있도록 합니다. (Java 8 이후 `default` 메서드를 사용할 수 있습니다.)
+
+# Lambda
+```
+// Use without lambda
+interface Calculator {
+    int calculate(int a, int b);
+}
+class Addition implements Calculator {
+    public int calculate(int a, int b) {
+        return a + b;
+    }
+}
+class Subtraction implements Calculator {
+    public int calculate(int a, int b) {
+        return a - b;
+    }
+}
+class Multiplication implements Calculator {
+    public int calculate(int a, int b) {
+        return a * b;
+    }
+}
+class Division implements Calculator {
+    public int calculate(int a, int b) {
+        return a / b;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Calculator addition = new Addition();
+        Calculator subtraction = new Subtraction();
+        Calculator multiplication = new Multiplication();
+        Calculator division = new Division();
+        System.out.println(addition.calculate(10, 5));
+        System.out.println(subtraction.calculate(10, 5));
+        System.out.println(multiplication.calculate(10, 5));
+        System.out.println(division.calculate(10, 5));
+    }
+}
+```
+```
+// Use of lambda
+interface Calculator {
+    int calculate(int a, int b);
+}
+public class LambdaExample {
+    public static void main(String[] args) {
+        Calculator addition = (a, b) -> a + b;
+        Calculator subtraction = (a, b) -> a - b;
+        Calculator multiplication = (a, b) -> a * b;
+        Calculator division = (a, b) -> a / b;
+        int num1 = 10;
+        int num2 = 5;
+        System.out.println(num1+"+"+num2+"="+addition.calculate(num1, num2));
+        System.out.println(num1+"-"+num2+"="+subtraction.calculate(num1, num2));
+        System.out.println(num1+"*"+num2+"="+multiplication.calculate(num1,num2));
+        System.out.println(num1+"/"+num2+"="+division.calculate(num1, num2));
+    }
+}
+```
