@@ -1,3 +1,4 @@
+# Object class
 - `Object` class는 기본적으로 모든 클래스의 최상위 클래스이다.
 - `@Override` 는 상속된 메소드를 재정의 할 때 사용된다.
 - `toString` 메소드는 문자열로 변환할 때 사용된다.
@@ -19,6 +20,7 @@ System.out.println(str1.equals(str3));  //true
 System.out.println(str3.equals(str4));  //true
 ```
 
+# ArrayList
 - `java.util.ArrayList<Integer> arrList = new java.util.ArrayList<Integer>();` Integer를 저장할 ArrayList를 생성 할 수 있다.
 - `arrList.add(2,9);` 2번 인덱스에 9를 삽입
 - `arrList.set(3,10);` 3번 인덱스의 데이터를 10으로 변경
@@ -30,6 +32,7 @@ System.out.println(str3.equals(str4));  //true
 - `arrList.lastIndexOf(9);` 데이터 9가 있는 `arrList.size() - 1`번째 인덱스에 가까운 인덱스를 찾음
 - `arrList.isEmpty();` arrList가 비어있는지 확인
 
+# Iterator
 - `java.util.Iterator<Integer> itr = arrList.iterator();` Iterator는 순회 할 수 있는 형태
 ```
 while(itr.hasNext()){
