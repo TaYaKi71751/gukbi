@@ -182,3 +182,49 @@ public class LambdaExample {
     }
 }
 ```
+```
+interface Calculate {
+    int calculate(int a, int b);
+}
+class Add implements Calculate {
+    @Override
+    public calculate(int a, int b){
+        int sum = a + b;
+        return sum;
+    }
+}
+public class MyClass2 {
+    public static viod main(String[] args){
+        Add add = new Add();
+        System.out.println(add.calculate(10,20));
+
+// 익명 클래스
+        Calculate minus = new Calculate() {
+            public int calculate(int a, int b){
+                int sum = a - b;
+                return sum;
+            }
+        }
+// 인터페이스에 추상메소드가 1개일 경우
+// 1. 상속받아 재정의 한다음 자식객체를 생성해서 사용한다.
+// 2. 익명클래스로 재정의 한다음 자식객체를 생성해서 사용한다.
+// 3. 람다식을 사용해서 객체생성후 사용한다.
+
+// Lambda
+// 기본모양 (매개변수) -> {실행문}
+        Calculate multi = (a,b) -> a * b;
+        System.out.println(multi.calculate(10, 20));
+// 매개변수관련
+//() -> {} 매개변수가 없으면 빈 소괄호를 사용한다.
+//a -> {} 매개변수가 1개이면 소괄호를 생략 할 수 있다.
+//(a,b) -> {} 매개변수가 여러개일때는 반드시 소괄호를 한다.
+
+//실행문관련
+// 실행코드가 한줄일 경우 {}괄호를 생략 할 수 있다.
+// 중괄호를 생략하면 return 값을 생략할 수 있다.
+// (a,b) -> {
+//   return a + b;
+// }
+    }
+}
+```
