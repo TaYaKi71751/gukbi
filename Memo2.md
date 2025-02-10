@@ -29,3 +29,4 @@ public class Main{
 }
 ```
 - 추상(abstract) 클래스는 new 로 오브젝트 생성이 불가 하다.
+- 추상(abstract) 메소드는 선언 구현부가 없다.
