@@ -75,7 +75,7 @@ insert into book_borrow_list values ('산삼','박완서',to_date('2023-07-10','
 |2023004|이지훈|2023-03-20|마우스|1|30,000|30,000|
 |2023005|김민지|2023-03-25|키보드|1|50,000|50,000|
 ```
-create table order_list (
+create table order_list(
 order_id number(7),
 name nchar(10),
 order_date date,
@@ -93,7 +93,7 @@ insert into order_list values (2023005,'김민지',to_date('2023-03-25','YYYY-MM
 문제6) 다음 이미지를 보고 데이터 베이스를 만들어 보자. 힌트는 새로운 데이터로 이미지의 내용을 변경하였을때 바뀌어야 하는 부분과 바뀌지 않는 부분을 확인하여 바뀌는 부분을 데이터 베이스로 만들면된다.
 ![image](./images/image41.png)
 ```
-create table game (
+create table game(
 game_status nvarchar2(100),
 team_a nvarchar2(100),
 team_b nvarchar2(100),
@@ -108,5 +108,21 @@ insert into game values (
 3,
 4,
 to_date('2023-07-26 18:30','YYYY-MM-DD HH24:MI')
+);
+```
+문제7)다음 이미지를 보고 데이터 베이스를 만들어 보자.
+![image](./images/image42.png)
+```
+create table album_info(
+title nvarchar2(100),
+artist nvarchar2(100),
+release_date date,
+genre nvarchar2(100)
+);
+insert into album_info values (
+'NewJeans 2nd EP ''Get Up''',
+'NewJeans',
+to_date('2023.07.21','YYYY.MM.DD'),
+'댄스'
 );
 ```
