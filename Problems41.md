@@ -25,10 +25,10 @@ rollback은 insert update delete 같은 데이터를 조작할때 사용 가능�
 |염산|600|200|2023-07-08|
 ```
 create table chemical_quantity_status(
-    name nvarchar2(100),
-    quantity number(100),
-    max_quantity number(100),
-    income_date date
+name nvarchar2(100),
+quantity number(38),
+max_quantity number(38),
+income_date date
 );
 insert into chemical_quantity_status values ('아세트산',500,100,to_date('2023-03-15','YYYY-MM-DD'));
 insert into chemical_quantity_status values ('수산화나트륨',300,50,to_date('2023-04-20','YYYY-MM-DD'));
@@ -36,4 +36,29 @@ insert into chemical_quantity_status values ('황산',200,80,to_date('2023-05-10
 insert into chemical_quantity_status values ('아세트산',400,120,to_date('2023-06-05','YYYY-MM-DD'));
 insert into chemical_quantity_status values ('아세트산',600,200,to_date('2023-07-08','YYYY-MM-DD'));
 ```
-
+문제4) 다음 데이터를 저장할 수 있는 테이블을 만들고 CRUDE 작업 가능한 sql를 만들어 보자.
+```
+테이블명: 도서 대출 기록
+```
+|도서명|저자|대출일|반납예정일|실제반납일|연체료(원)|
+|---|---|---|---|---|---|
+|죄와 벌|톨스토이|2023-03-01|2023-03-15|2023-03-20|500|
+|해리포터와 마법사의 돌|J.K.롤링|2023-04-10|2023-04-24|2023-04-23|0|
+|반지의 제왕|J.R.R.톨킨|2023-05-15|2023-05-29|2023-05-29|0|
+|빨간 머리 앤|L.M.몽고메리|2023-06-20|2023-07-04|-|-|
+|산삼|박완서|2023-07-10|2023-07-24|-|-|
+```
+create table book_borrow_list(
+title nvarchar2(100),
+author nvarchar2(100),
+borrow_date date,
+expire_date date,
+return_date date,
+fee number(38)
+);
+insert into book_borrow_list values ('죄와 벌','톨스토이',to_date('2023-03-01','YYYY-MM-DD'),to_date('2023-03-15','YYYY-MM-DD'),to_date('2023-03-20','YYYY-MM-DD'),500);
+insert into book_borrow_list values ('해리포터와 마법사의 돌','J.K.롤링',to_date('2023-04-10','YYYY-MM-DD'),to_date('2023-04-24','YYYY-MM-DD'),to_date('2023-04-23','YYYY-MM-DD'),0);
+insert into book_borrow_list values ('반지의 제왕','J.R.R.톨킨',to_date('2023-05-15','YYYY-MM-DD'),to_date('2023-05-29','YYYY-MM-DD'),to_date('2023-05-29','YYYY-MM-DD'),0);
+insert into book_borrow_list values ('빨간 머리 앤','L.M.몽고메리',to_date('2023-06-20','YYYY-MM-DD'),to_date('2023-07-04','YYYY-MM-DD'),NULL,NULL);
+insert into book_borrow_list values ('산삼','박완서',to_date('2023-07-10','YYYY-MM-DD'),to_date('2023-07-24','YYYY-MM-DD'),NULL,NULL);
+```
