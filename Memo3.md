@@ -119,4 +119,4 @@ drop table human; -- human 테이블을 삭제한다.
 ```
 insert into human values ('', null,0,NULL);
 ```
-- '\'' 문자를 insert 할 때는 '\'' 문자를 두번 입력한다.
+- '\\'' 문자를 insert 할 때는 '\\'' 문자를 두번 입력한다.
