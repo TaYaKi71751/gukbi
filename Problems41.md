@@ -90,3 +90,23 @@ insert into order_list values (2023003,'박철수',to_date('2023-03-15','YYYY-MM
 insert into order_list values (2023004,'이지훈',to_date('2023-03-20','YYYY-MM-DD'),1,30000,30000);
 insert into order_list values (2023005,'김민지',to_date('2023-03-25','YYYY-MM-DD'),1,50000,50000);
 ```
+문제6) 다음 이미지를 보고 데이터 베이스를 만들어 보자. 힌트는 새로운 데이터로 이미지의 내용을 변경하였을때 바뀌어야 하는 부분과 바뀌지 않는 부분을 확인하여 바뀌는 부분을 데이터 베이스로 만들면된다.
+![image](./images/image41.png)
+```
+create table game (
+game_status nvarchar2(100),
+team_a nvarchar2(100),
+team_b nvarchar2(100),
+team_a_score number(38),
+team_b_score number(38),
+data_at date
+);
+insert into game values (
+'경기 종료',
+'LG트윈스',
+'kt wiz',
+3,
+4,
+to_date('2023-07-26 18:30','YYYY-MM-DD HH24:MI')
+);
+```
