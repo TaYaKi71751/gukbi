@@ -3,6 +3,10 @@ https://stackoverflow.com/questions/67395995/how-to-install-oracle-database-expr
 https://boisv.medium.com/oracle-database-express-edition-how-to-install-on-macos-538f6404fefb
 
 ```
+brew uninstall --cask docker
+brew install colima
+brew install docker
+brew install qemu
 docker volume rm oracle-volume
 docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
 ```
