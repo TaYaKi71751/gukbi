@@ -115,3 +115,7 @@ delete from human where name='홍길동'; -- name이 홍길동 인 row를 삭제
 ```
 drop table human; -- human 테이블을 삭제한다.
 ```
+- null
+```
+insert into human values ('', null,0,NULL);
+```
