@@ -9,4 +9,5 @@ brew install docker
 brew install qemu
 docker volume rm oracle-volume
 docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
+sqlplus system/oracle@//localhost:1521
 ```
