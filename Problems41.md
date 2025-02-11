@@ -62,3 +62,31 @@ insert into book_borrow_list values ('반지의 제왕','J.R.R.톨킨',to_date('
 insert into book_borrow_list values ('빨간 머리 앤','L.M.몽고메리',to_date('2023-06-20','YYYY-MM-DD'),to_date('2023-07-04','YYYY-MM-DD'),NULL,NULL);
 insert into book_borrow_list values ('산삼','박완서',to_date('2023-07-10','YYYY-MM-DD'),to_date('2023-07-24','YYYY-MM-DD'),NULL,NULL);
 ```
+문제5) 다음을 테이블로 만들어 보자.
+```
+테이블명: 고객 주문 기록
+```
+
+|주문번호|고객명|주문일|상품명|수량|상품가격(원)|주문금액(원)|
+|-|-|-|-|-|-|-|
+|2023001|홍길동|2023-03-05|노트북|1|1,200,000|1,200,000|
+|2023002|김영희|2023-03-08|스마트폰|2|800,000|1,600,000|
+|2023003|박철수|2023-03-15|헤드폰|3|150,000|450,000|
+|2023004|이지훈|2023-03-20|마우스|1|30,000|30,000|
+|2023005|김민지|2023-03-25|키보드|1|50,000|50,000|
+```
+create table order_list (
+order_id number(7),
+name nchar(10),
+order_date date,
+product_name nvarchar2(100),
+qty number(38),
+product_price number(38),
+total_price number(38)
+);
+insert into order_list values (2023001,'홍길동',to_date('2023-03-05','YYYY-MM-DD'),'노트북',1,1200000,1200000);
+insert into order_list values (2023002,'김영희',to_date('2023-03-08','YYYY-MM-DD'),2,800000,1600000);
+insert into order_list values (2023003,'박철수',to_date('2023-03-15','YYYY-MM-DD'),3,150000,450000);
+insert into order_list values (2023004,'이지훈',to_date('2023-03-20','YYYY-MM-DD'),1,30000,30000);
+insert into order_list values (2023005,'김민지',to_date('2023-03-25','YYYY-MM-DD'),1,50000,50000);
+```
