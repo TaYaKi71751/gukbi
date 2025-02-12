@@ -82,6 +82,8 @@ DROP USER c##scoot CASCADE; -- c##scoot 유저를 지운다.
 # HR DB
 [NAVER CAFE](https://cafe.naver.com/thetjoeun99/2103)
 ```
+docker run -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
+sqlplus system/oracle@//localhost:1521
 alter session set "_ORACLE_SCRIPT"=true; -- c##을 붙이지 않고도 유저를 만들 수 있게 된다.
-@/path/to/sql.sql -- sql파일을 실행한다.
+@/Users/user/human_resources/hr_main.sql -- sql파일을 실행한다.
 ```
