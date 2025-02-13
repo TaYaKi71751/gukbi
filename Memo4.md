@@ -86,4 +86,23 @@ docker run -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/o
 sqlplus system/oracle@//localhost:1521
 alter session set "_ORACLE_SCRIPT"=true; -- c##을 붙이지 않고도 유저를 만들 수 있게 된다.
 @/Users/user/human_resources/hr_main.sql -- sql파일을 실행한다.
+
+specify password for HR as parameter 1:
+Enter value for 1: human
+
+specify default tablespeace for HR as parameter 2:
+Enter value for 2: users
+
+specify temporary tablespace for HR as parameter 3:
+Enter value for 3: temp
+
+specify password for SYS as parameter 4:
+Enter value for 4: oracle
+
+specify log path as parameter 5:
+Enter value for 5: /Users/tayaki71751/log
+
+specify connect string as parameter 6:
+Enter value for 6: localhost:1521/
+
 ```
