@@ -80,7 +80,7 @@ DROP USER c##scoot CASCADE; -- c##scoot 유저를 지운다.
 ```
 
 # HR DB
-[NAVER CAFE](https://cafe.naver.com/thetjoeun99/2103)
+[NAVER CAFE](https://cafe.naver.com/thetjoeun99/714)
 ```
 docker run -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
 sqlplus system/oracle@//localhost:1521
