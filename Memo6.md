@@ -73,3 +73,8 @@ public class JdbcTest {
     }
 }
 ```
+![image](./images/image44.png)
+```
+st.executeQuery() // 리턴값이 있다.
+st.executeUpdate() // 리턴값이 없다.
+```
