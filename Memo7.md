@@ -1,5 +1,4 @@
-# JDBC
-- select
+# JDBCTest.java
 ```
 package com.the.ex;
 
@@ -352,6 +351,250 @@ public class TimeDifferenceCalculator {
 		System.out.println("총 시간 차이: " + totalHours + "시간");
 		System.out.println("총 분 차이: " + totalMinutes + "분");
 		System.out.println("총 초 차이: " + totalSeconds + "초");
+	}
+}
+```
+# DBConn.java
+```
+package com.the.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DBConn {
+	private DBConn() {}
+	private static Connection dbConn=null;
+	private static Statement st=null;
+	private static ResultSet rs=null;
+	public static Connection getInstance() {
+		if(dbConn==null) {
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				String url="jdbc:oracle:thin:@localhost:1521:";
+				String id="c##human";
+				String pw="human";
+				dbConn=DriverManager.getConnection(url,id,pw);
+				System.out.println("DBConnection....");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return dbConn;
+	}
+	public static void dbClose() {
+		try {
+			if(rs!=null)rs.close();
+			if(st!=null)st.close();
+			if(dbConn!=null)dbConn.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			rs=null;st=null;dbConn=null;
+		}
+		
+	}
+	public static int statementUpdate(String sql) {
+        System.out.println(sql);
+		int rValue=-1;
+		if(dbConn!=null) {
+			try {
+				if(st==null) {
+					st=dbConn.createStatement();
+				}
+				//insert,delete,update
+				rValue=st.executeUpdate(sql);
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println("not connected...");
+		}
+		return rValue;
+	}
+	public static ResultSet statementQuery(String sql) {
+        System.out.println(sql);
+		if(dbConn!=null) {
+			try {
+				if(st==null) {
+					st=dbConn.createStatement();
+				}
+				//insert,delete,update
+				rs=st.executeQuery(sql);
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}else {
+			System.out.println("not connected...");
+		}
+		return rs;
+	}
+}
+```
+# UserInput.java
+```
+package com.the.util;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+public class UserInput {
+    private static Scanner sc = new Scanner(System.in);
+
+    public static int inputInt(String st) {
+        System.out.println(st + " 정수입력>>");
+        return Integer.parseInt(sc.nextLine());        
+    }
+
+    public static double inputDouble(String st) {
+        System.out.println(st + " 실수입력>>");
+        return Double.parseDouble(sc.nextLine());        
+    }
+
+    public static String inputString(String st) {
+        System.out.println(st + " 문자입력>>");
+        return sc.nextLine();        
+    }
+
+    public static LocalDateTime inputDate(String st) {
+        LocalDateTime rValue = null; // LocalDateTime 객체로 입력을 받음
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        System.out.println(st + " 날짜입력(yyyy/MM/dd HH:mm:ss)>>");
+        String dtString = sc.nextLine();
+        if(dtString.trim().equals("")){
+            rValue = LocalDateTime.now();
+        } else {
+            rValue = LocalDateTime.parse(dtString.trim(), formatter);
+        }
+        return rValue;        
+    }
+
+    public static String dateToString(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return date.format(formatter);        
+    }
+}
+```
+# HumanDto.java
+```
+package com.the.dto;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class HumanDto {
+	private String name;
+	private Integer age;
+	private Double height;
+	private LocalDateTime birthday;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public Double getHeight() {
+		return height;
+	}
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+	public LocalDateTime getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(LocalDateTime birthday) {
+		this.birthday = birthday;
+	}
+	public HumanDto() {}
+	public HumanDto(String name, Integer age, Double height, LocalDateTime birthday) {
+		this.name = name;
+		this.age = age;
+		this.height = height;
+		this.birthday = birthday;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HumanDto other = (HumanDto) obj;
+		return Objects.equals(age, other.age) && Objects.equals(birthday, other.birthday)
+				&& Objects.equals(height, other.height) && Objects.equals(name, other.name);
+	}
+	@Override
+	public String toString() {
+		return "HumanDto [name=" + name + ", age=" + age + ", height=" + height + ", birthday=" + birthday + "]";
+	}
+}
+```
+# JBDCEx.java
+```
+package com.the.ex;
+
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import com.the.util.*;
+import com.the.dto.*;
+
+public class JDBCEx {
+	public static void main(String[] args) {
+		ArrayList<HumanDto> resultDtos = new ArrayList<HumanDto>();
+		ResultSet rs;
+        String sql;
+        DBConn.getInstance();
+        // insert
+        System.out.println("Human데이터 입력");
+        String name = UserInput.inputString("이름");
+        int age = UserInput.inputInt("나이");
+        double height = UserInput.inputDouble("키");
+        LocalDateTime birthday = UserInput.inputDate("생일");
+        HumanDto dto = new HumanDto(name, age, height, birthday);
+        sql = String.format(
+            "insert into human values('%s',%d,%f,to_date('%s','YYYY/MM/DD HH24:MI:SS'))",
+            name,
+            age,
+            height,
+            birthday.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"))
+        );
+        DBConn.statementUpdate(sql);
+        // select
+        sql = "select * from human";
+        rs = DBConn.statementQuery(sql);
+		try {
+			while (rs.next()) {
+				resultDtos.add(
+					new HumanDto(
+						rs.getString("name"), 
+						rs.getInt("age"), 
+						rs.getDouble("height"),
+						rs.getTimestamp("birthday").toLocalDateTime()
+					)
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.dbClose();
+		}
+		for(HumanDto item:resultDtos) {
+			System.out.println(item);
+		}
 	}
 }
 ```
