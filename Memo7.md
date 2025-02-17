@@ -573,6 +573,22 @@ public class JDBCEx {
             birthday.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"))
         );
         DBConn.statementUpdate(sql);
+        
+        // update 이름을 이용해서 나이를 변경
+        System.out.println("수정할 이름, 나이를 입력하세요.");
+        name = UserInput.inputString("이름");
+        age = UserInput.inputInt("나이");
+        
+        sql = String.format("update human set age=%d where name='%s'",age,name);
+        DBConn.statementUpdate(sql);
+        
+        // delete
+        System.out.println("삭제할 이름을 입력하세요.");
+        name = UserInput.inputString("이름");
+        
+        sql = String.format("delete human where name='%s'",name);
+        DBConn.statementUpdate(sql);
+        
         // select
         sql = "select * from human";
         rs = DBConn.statementQuery(sql);
