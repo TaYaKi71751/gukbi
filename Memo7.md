@@ -599,45 +599,62 @@ public class HumanDao {
 ```
 package com.the.ex;
 
-import java.sql.ResultSet;
+import com.the.util.*;
+import com.the.dto.*;
+import com.the.dao.*;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import com.the.util.*;
-import com.the.dao.HumanDao;
-import com.the.dto.*;
-
 public class JDBCEx {
-	public static void main(String[] args) {
+	public static void menu() {
+		boolean isPlay = true;
 		HumanDao hDao = new HumanDao();
-		ArrayList<HumanDto> resultDtos = new ArrayList<HumanDto>();
-        // insert
-        System.out.println("Human데이터 입력");
-        String name = UserInput.inputString("이름");
-        int age = UserInput.inputInt("나이");
-        double height = UserInput.inputDouble("키");
-        LocalDateTime birthday = UserInput.inputDate("생일");
-        HumanDto dto = new HumanDto(name, age, height, birthday);
-		hDao.insert(dto);
-        
-        // update 이름을 이용해서 나이를 변경
-        System.out.println("수정할 이름, 나이를 입력하세요.");
-        name = UserInput.inputString("이름");
-        age = UserInput.inputInt("나이");
-        hDao.update(age, name);
-        
-        // delete
-        System.out.println("삭제할 이름을 입력하세요.");
-        name = UserInput.inputString("이름");
-        hDao.delete(name);
-        
-        
-        // select
-        resultDtos = hDao.select();
-		for(HumanDto item:resultDtos) {
-			System.out.println(item);
+		while(isPlay) {
+			System.out.println("\n===== Human 관리 시스템 =====");
+			System.out.println("1. 데이터 입력");
+			System.out.println("2. 나이 수정 (이름 기준)");
+			System.out.println("3. 데이터 삭제");
+			System.out.println("4. 전체 조회");
+			System.out.println("5. 종료");
+			switch(UserInput.inputInt("메뉴")) {
+			case 1:
+		        System.out.println("Human데이터 입력");
+		        String name = UserInput.inputString("이름");
+		        int age = UserInput.inputInt("나이");
+		        double height = UserInput.inputDouble("키");
+		        LocalDateTime birthday = UserInput.inputDate("생일");
+		        HumanDto dto = new HumanDto(name, age, height, birthday);
+				hDao.insert(dto);
+				break;
+			case 2:	
+		        System.out.println("수정할 이름, 나이를 입력하세요.");
+		        name = UserInput.inputString("이름");
+		        age = UserInput.inputInt("나이");
+		        hDao.update(age, name);
+				break;
+			case 3:
+		        System.out.println("삭제할 이름을 입력하세요.");
+		        name = UserInput.inputString("이름");
+		        hDao.delete(name);
+				break;
+			case 4:
+		        ArrayList<HumanDto> resultDtos = hDao.select();
+				for(HumanDto item:resultDtos) {
+					System.out.println(item);
+				}
+				break;
+			case 5:
+				isPlay = false;
+				System.out.println("프로그램 종료");
+				break;
+			default:
+				System.out.println("잘못된 입력");
+			}
 		}
+	}
+	public static void main(String[] args) {
+		menu();
 	}
 }
 ```
