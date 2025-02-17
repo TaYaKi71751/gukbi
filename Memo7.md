@@ -555,7 +555,7 @@ public class HumanDao {
 
 	public void insert(HumanDto dto) {
 		DBConn.getInstance();
-		String sql = String.format("insert into human values('%s',%d,%f,to_date('%s','YYYY/MM/DD HH24:MI:ss')",
+		String sql = String.format("insert into human values('%s',%d,%f,to_date('%s','YYYY/MM/DD HH24:MI:ss'))",
 				dto.getName(), dto.getAge(), dto.getHeight(),
 				dto.getBirthday().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 		DBConn.statementUpdate(sql);
