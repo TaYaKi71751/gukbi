@@ -540,6 +540,61 @@ public class HumanDto {
 	}
 }
 ```
+# HumanDao.java
+```
+package com.the.dao;
+
+import java.sql.ResultSet;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import com.the.dto.HumanDto;
+import com.the.util.DBConn;
+
+public class HumanDao {
+
+	public void insert(HumanDto dto) {
+		DBConn.getInstance();
+		String sql = String.format("insert into human values('%s',%d,%f,to_date('%s','YYYY/MM/DD HH24:MI:ss')",
+				dto.getName(), dto.getAge(), dto.getHeight(),
+				dto.getBirthday().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+		DBConn.statementUpdate(sql);
+		DBConn.dbClose();
+	}
+
+	public void update(int age, String name) {
+		DBConn.getInstance();
+		String sql = String.format("update human set age=%d where name='%s'", age, name);
+		DBConn.statementUpdate(sql);
+		DBConn.dbClose();
+	}
+
+	public void delete(String name) {
+		DBConn.getInstance();
+		String sql = String.format("delete human where name='%s'", name);
+		DBConn.statementUpdate(sql);
+		DBConn.dbClose();
+	}
+
+	public ArrayList<HumanDto> select() {
+		DBConn.getInstance();
+		ArrayList<HumanDto> result = new ArrayList<HumanDto>();
+		String sql = "select * from human";
+		ResultSet rs = DBConn.statementQuery(sql);
+		try {
+			while (rs.next()) {
+				result.add(new HumanDto(rs.getString("name"), rs.getInt("age"), rs.getDouble("height"),
+						rs.getTimestamp("birthday").toLocalDateTime()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.dbClose();
+		}
+		return result;
+	}
+}
+```
 # JBDCEx.java
 ```
 package com.the.ex;
@@ -550,14 +605,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.the.util.*;
+import com.the.dao.HumanDao;
 import com.the.dto.*;
 
 public class JDBCEx {
 	public static void main(String[] args) {
+		HumanDao hDao = new HumanDao();
 		ArrayList<HumanDto> resultDtos = new ArrayList<HumanDto>();
-		ResultSet rs;
-        String sql;
-        DBConn.getInstance();
         // insert
         System.out.println("Human데이터 입력");
         String name = UserInput.inputString("이름");
@@ -565,49 +619,22 @@ public class JDBCEx {
         double height = UserInput.inputDouble("키");
         LocalDateTime birthday = UserInput.inputDate("생일");
         HumanDto dto = new HumanDto(name, age, height, birthday);
-        sql = String.format(
-            "insert into human values('%s',%d,%f,to_date('%s','YYYY/MM/DD HH24:MI:SS'))",
-            name,
-            age,
-            height,
-            birthday.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"))
-        );
-        DBConn.statementUpdate(sql);
+		hDao.insert(dto);
         
         // update 이름을 이용해서 나이를 변경
         System.out.println("수정할 이름, 나이를 입력하세요.");
         name = UserInput.inputString("이름");
         age = UserInput.inputInt("나이");
-        
-        sql = String.format("update human set age=%d where name='%s'",age,name);
-        DBConn.statementUpdate(sql);
+        hDao.update(age, name);
         
         // delete
         System.out.println("삭제할 이름을 입력하세요.");
         name = UserInput.inputString("이름");
+        hDao.delete(name);
         
-        sql = String.format("delete human where name='%s'",name);
-        DBConn.statementUpdate(sql);
         
         // select
-        sql = "select * from human";
-        rs = DBConn.statementQuery(sql);
-		try {
-			while (rs.next()) {
-				resultDtos.add(
-					new HumanDto(
-						rs.getString("name"), 
-						rs.getInt("age"), 
-						rs.getDouble("height"),
-						rs.getTimestamp("birthday").toLocalDateTime()
-					)
-				);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.dbClose();
-		}
+        resultDtos = hDao.select();
 		for(HumanDto item:resultDtos) {
 			System.out.println(item);
 		}
