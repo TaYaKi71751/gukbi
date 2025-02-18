@@ -202,3 +202,123 @@ select * from BTable,GTable; -- 과 같이 크로스 조인하여 만들수 있�
 where BTable.GNo = GTable.Gno; -- 과 같이 두 테이블에서 특정 컬럼이 같은 데이터만 뽑아서 출력하면 된다. 
 select * from BTable,GTable where BTable.GNo = GTable.Gno;
 ```
+# JoinDto.java
+```
+package com.the.dto;
+
+import java.util.Objects;
+
+public class JoinDto {
+	private int bno;
+	private String bkind;
+	private String bname;
+	private String barea;
+	private int gno;
+	private int gprice;
+	@Override
+	public String toString() {
+		return "JoinDto [bno=" + bno + ", bkind=" + bkind + ", bname=" + bname + ", barea=" + barea + ", gno=" + gno
+				+ ", gprice=" + gprice + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(barea, bkind, bname, bno, gno, gprice);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		JoinDto other = (JoinDto) obj;
+		return Objects.equals(barea, other.barea) && Objects.equals(bkind, other.bkind)
+				&& Objects.equals(bname, other.bname) && bno == other.bno && gno == other.gno && gprice == other.gprice;
+	}
+	public int getBno() {
+		return bno;
+	}
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+	public String getBkind() {
+		return bkind;
+	}
+	public void setBkind(String bkind) {
+		this.bkind = bkind;
+	}
+	public String getBname() {
+		return bname;
+	}
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
+	public String getBarea() {
+		return barea;
+	}
+	public void setBarea(String barea) {
+		this.barea = barea;
+	}
+	public int getGno() {
+		return gno;
+	}
+	public void setGno(int gno) {
+		this.gno = gno;
+	}
+	public int getGprice() {
+		return gprice;
+	}
+	public void setGprice(int gprice) {
+		this.gprice = gprice;
+	}
+	public JoinDto(int bno, String bkind, String bname, String barea, int gno, int gprice) {
+		super();
+		this.bno = bno;
+		this.bkind = bkind;
+		this.bname = bname;
+		this.barea = barea;
+		this.gno = gno;
+		this.gprice = gprice;
+	}
+}
+```
+# JoinDao.java
+```
+package com.the.dao;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import com.the.dto.JoinDto;
+import com.the.util.DBConn;
+
+public class JoinDao {
+	public ArrayList<JoinDto> select() {
+		DBConn.getInstance();
+		ArrayList<JoinDto> result = new ArrayList<JoinDto>();
+		String sql = "select * from btable,gtable where btable.gno = gtable.gno";
+		ResultSet rs = DBConn.statementQuery(sql);
+		try {
+			while (rs.next()) {
+				result.add(
+					new JoinDto(
+						rs.getInt("bno"), 
+						rs.getString("bkind"), 
+						rs.getString("bname"),
+						rs.getString("barea"),
+						rs.getInt("gno"),
+						rs.getInt("gprice")
+					)
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.dbClose();
+		}
+		return result;
+	}
+}
+```
+![image](./images/image52.png)
