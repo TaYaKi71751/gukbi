@@ -41,7 +41,122 @@ select sum(salary),salary from employees; –- 동작하지 않음
 select count(*),count(commission_pct) from employees; 
 -- 위 쿼리를 실행시켜 보면 다른 결과 107 35가 나오는데 null를 카운팅하지 않아서 그렇다.
 select count(*),count(nvl(commission_pct,0)) from employees;
--- nvl(commission_pct,0)은 commission_pct컬럼의 값이 null일때 값이 0으로 바뀌어서 null도 셀 수 있게 되어 결과가 107 107이 된다.
+-- nvl(commission_pct,0)은 commission_pct컬럼의 값이 null일때 값이 0으로 바뀌어서 셀 수 있게 되어 결과가 107 107이 된다.
 select avg(commission_pct),avg(nvl(commission_pct,0)) from employees;
 -- null 때문에 다른 결과가 나온다.
+```
+
+# group by 절
+```
+select department_id,sum(salary),count(*) from employees group by department_id;
+```
+```
+DEPARTMENT_ID SUM(SALARY)   COUNT(*)
+------------- ----------- ----------
+           90       58000          3
+           60       28800          5
+          100       51608          6
+           30       24900          6
+           50      156400         45
+           80      304500         34
+                     7000          1
+           10        4400          1
+           20       19000          2
+           40        6500          1
+           70       10000          1
+          110       20308          2
+
+12 rows selected.
+```
+
+# having 절
+```
+SELECT department_id, AVG(salary) 
+FROM employees 
+GROUP BY department_id 
+HAVING AVG(salary) >= 50000;
+```
+# sql 실행 순서
+```
+where절은 group by 이전에 필터 된다.
+having절은 group by 이후에 필터 된다.
+```
+```
+select 그룹 결과를 가지는 컬럼 --5
+from 테이블명 --1
+where 조건 --2
+group by 컬럼 --3 where절에 위해서 걸러진 데이터만 그룹진다.
+having 조건 --4
+order by 컬럼 --6
+```
+```
+select department_id,avg(salary),count(*) from employees group by department_id order by avg(salary);
+```
+```
+DEPARTMENT_ID AVG(SALARY)   COUNT(*)
+------------- ----------- ----------
+	   50  3475.55556	  45
+	   30	     4150	   6
+	   10	     4400	   1
+	   60	     5760	   5
+	   40	     6500	   1
+		        7000	   1
+	  100  8601.33333	   6
+	   80  8955.88235	  34
+	   20	     9500	   2
+	   70	    10000	   1
+	  110	    10154	   2
+
+DEPARTMENT_ID AVG(SALARY)   COUNT(*)
+------------- ----------- ----------
+	   90  19333.3333	   3
+```
+# join
+- 두개의 테이블을 합치는 작업
+![image](./images/image45.png)
+![image](./images/image46.png)
+![image](./images/image47.png)
+![image](./images/image48.png)
+![image](./images/image49.png)
+```
+drop table BTable;
+create table BTable(
+BNO number(10),
+BKind nvarchar2(30),
+BName nvarchar2(30),
+BArea nvarchar2(30),
+GNo number(10)
+);
+drop table GTable;
+create table GTable(
+GNo number(10),
+GPrice number(10)
+);
+insert into BTable values (1,'왕포도','김명천','번동',1);
+insert into BTable values (2,'청포도','김진우','홍일동',3);
+insert into BTable values (3,'청포도','김태수','쌍문동',2);
+insert into BTable values (4,'왕포도','박지민','상계동',2);
+insert into BTable values (5,'청포도','김명천','평창동',1);
+insert into BTable values (6,'왕포도','김진우','오류동',3);
+insert into BTable values (7,'왕포도','김태수','대림동',1);
+insert into BTable values (8,'청포도','김태수','청담동',2);
+insert into GTable values (1,'30000');
+insert into GTable values (2,'25000');
+insert into GTable values (3,'20000');
+commit;
+select * from BTable;
+select * from GTable;
+```
+```
+-- PK(Primary Key) 테이블에 들어 있는 데이터를 식별하기 위한 컬럼 위의 컬럼 중 BNo 등을 가리킴
+-- FK(Falling Key) 다른 테이블의 PK컬럼에 들어있는 값중 하나의 값을 가지는 컬럼
+```
+```
+-- 두 테이블에 관계가 있을때 테이블 만들고 데이터 넣고 삭제하는 순서
+-- 1. FK가 없는 테이블을 먼저 만들어야 한다.
+-- 2. FK가 있는 테이블을 만든다.
+-- 3. FK가 없는 테이블에 먼저 데이터를 넣는다.
+-- 4. FK가 있는 테이블에 데이터를 넣는다.
+-- 5. FK가 있는 테이블의 데이터를 지운다.
+-- 6. FK가 없는 테이블의 데이터를 지운다.
 ```
