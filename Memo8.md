@@ -159,4 +159,46 @@ select * from GTable;
 -- 4. FK가 있는 테이블에 데이터를 넣는다.
 -- 5. FK가 있는 테이블의 데이터를 지운다.
 -- 6. FK가 없는 테이블의 데이터를 지운다.
+select * from btable;
+select * from gtable;
+
+select * from btable,gtable;
+select * from btable,gtable where btable.gno = gtable.gno;
+select btable.*,gtable.gprice from btable,gtable where btable.gno = gtable.gno;
+```
+1. 크로스 조인
+```
+cross Join( 크로스 조인)은 두 테이블이 가지고 있는 모든 데이터를 합쳐서 만들 수 있는 모든 데이터를 만들어 보여주는 작업이다. 
+다음은 2개의 테이블을 크로스 조인하는 예제이다.
+select * from BTable,Gtable;
+```
+![image](./images/image50.png)
+```
+왼쪽 테이블을 BTable 오른쪽 테이블을 GTable이라고 할때 합치는 방법은 상위 처럼
+BTable 각각의 모든 데이터를 GTable 각각의 모든 데이터와 일일이 하나씩 합친 모든 결과를 얻는 방법이다. 
+크로스 조인이라 한다. 
+상위 이미지를 확인해 보자.
+select * from BTable,Gtable; 이렇게 하면 두 테이블에서 데이터를 가지고 합칠 수 있는 모든 데이터와 컬럼이 출력 된다.
+두 테이블을 합친 결과 데이터는 두 테이블에 있는 모든 컬럼을 하나의 데이터로 표현할 수 있어야 하기 때문에 왼쪽 테이블의 컬럼수가 5개 이고, 
+오른쪽 테이블의 컬럼수가 2개라면 양쪽 테이블의 컬럼수를 더한 7이 되어야 한다.
+두 테이블의 모든 데이터를 합쳐 나올 수 있는 모든 데이터는 
+왼쪽 테이블에 데이터가 4개 
+오른쪽 테이블 3개가 있다면 
+실행 결과 총 데이터 수는 12개가 된다. 
+```
+2. 동등조인
+```
+equi Join(이퀴 조인) 특정 컬럼 값이 일치되는 데이터(row)만 합쳐서 출력하는 방법이다. 
+동등조인 이라고도 한다.
+```
+```
+크로스 조인은 두 테이블을 가지고 만들수 있는 모든 데이터를 만들어 보여주지만 이퀴조인은 크로스 조인으로 만들어진 모든 데이터중 특정 컬럼이 같은 데이터만 보여준다.
+다음 이미지에서 크로스 조인결과 데이터중에서 GNO컬럼 2개를 확인해 값이 같은 데이터만 출력 하였다. 
+두 테이블을 gno 컬럼으로 equi join한 결과이다.
+```
+![image](./images/image51.png)
+```
+select * from BTable,GTable; -- 과 같이 크로스 조인하여 만들수 있는 모든 데이터를 만든 다음 
+where BTable.GNo = GTable.Gno; -- 과 같이 두 테이블에서 특정 컬럼이 같은 데이터만 뽑아서 출력하면 된다. 
+select * from BTable,GTable where BTable.GNo = GTable.Gno;
 ```
