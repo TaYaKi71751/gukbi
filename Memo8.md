@@ -322,3 +322,13 @@ public class JoinDao {
 }
 ```
 ![image](./images/image52.png)
+3. 셀프 조인
+```
+select e1.* from employees e1; -- 사원
+select e2.* from employees e2; -- 관리자
+
+select e1.employee_id,e1.first_name,e1.manager_id from employees e1; -- 사원 관리자의 이름은?
+select e2.* from employees e2; -- 관리자
+
+select e1.employee_id,e1.first_name,e1.manager_id,e2.first_name from employees e1,employees e2 where e1.manager_id = e2.employee_id;
+```
