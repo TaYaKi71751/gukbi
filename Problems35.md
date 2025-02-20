@@ -23,7 +23,7 @@ boolean student[]=new boolean[50]; 배열을 사용해서 아래와 같은 메�
 4.프로그램 종료
 진행중인 프로그램을 종료시키면 된다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 boolean student[] = new boolean[50];
 int input = 0;
@@ -106,7 +106,7 @@ account 변수에 처음에 0으로 세팅하고 입금 출금을 통에 원하�
 0
 종료합니다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int account = 0;
 int input = -1;
@@ -175,7 +175,7 @@ while(input != 0){
 출력값:p(“천원짜리 “+change1000+”개, 오백원짜리 “+change500+”개, 백원짜리”+
 change100+”개, 오십원짜리 “+change50+”개, 십원짜리 “+change10개)
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int moneyInput = Integer.parseInt(sc.nextLine());
 int change1000 = moneyInput / 1000;
@@ -210,7 +210,7 @@ String 변수 str를 출력하면 사이다콜라가 출력된다.
 최종 출력값:
 사이다 콜라 콜라 환타 천원짜리 0개 오백원짜리 1개 백원짜리 4개 오십원 1개
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int money = 0;
 int input = 0;
@@ -297,7 +297,7 @@ while(input != 7){
 27,28,짝(29),짝(30),짝(31),짝(32),짝짝(33)
 1000이하의 정답지를 출력하는 프로그램을 만들어 보자.
 ```
-```
+```java
 for(int i = 1;i <= 1000;i++){
     boolean hundred = (i / 100) % 3 == 0 && (i % 1000) / 100 > 0;
     boolean ten = ((i % 100) / 10) % 3 == 0 && (i % 100) / 10 > 0;
@@ -321,7 +321,7 @@ for(int i = 1;i <= 1000;i++){
 6. 랜덤하게 덧셈, 뺄셈, 곱셈, 나눗셈 문제를 내서 사용자가 맞추는 프로그램을 구현해 보자. 
 레벨이 4단계로 되어 있어 처음에는 더하기 문제만 나오다가 레벨이 업되면 뺄셈,곱셈,나눗셈을 차례대로 추가하여 문제가 나오도록 해보자. 
 2자리 이하 정수 계산만 하자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 while(true){
     Random r = new Random();
@@ -372,7 +372,7 @@ while(true){
 ```
 “1.대인 2.청소년 3.소인/경로 4.종료” 와 같은 메인 메뉴에서 구매하는 형태로 만들어 보자.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = 0;
 while(input != 4){
@@ -444,7 +444,7 @@ while(input != 4){
 사용자가 입력한 숫자가 임의의 숫자랑 같지 않다면 사용자가 숫자를 맞출 수 있도록 큰지 작은지 힌트를 줘서 사용자가 맞출수 있도록 해준다. 
 정답을 맞추면 정답을 맞췄다는 메시지와 함께 총 몇회 도전끝에 맞췄는지 출력해 보자.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int answer = Math.random(100);
 int count = 0;
@@ -472,7 +472,7 @@ double account[] = new double[100];
 현재 작업중인 계정 인덱스 저장을 위해서 int nowUserIndex=0; 를 선언한다. 
 작업할 사용자 인덱스로 사용된다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int account[] = new int[100];
 int currentIndex = -1;

@@ -18,7 +18,7 @@ IP로 상대방 컴퓨터까지 찾아오면 컴퓨터 안에 네트워크를 �
 ```
 
 # c##scott/tiger 계정 및 테이블 만들기
-```
+```sql
 sqlplus system/oracle@//localhost:1521
 create user c##scott identified by tiger;
 grant connect,resource,dba to c##scott;
@@ -75,13 +75,13 @@ INSERT INTO SALGRADE VALUES (5,3001,9999);
 ```
 
 > 데이터베이스 유저 지우기
-```
+```sql
 DROP USER c##scoot CASCADE; -- c##scoot 유저를 지운다.
 ```
 
 # HR DB
 [NAVER CAFE](https://cafe.naver.com/thetjoeun99/714)
-```
+```shell
 docker run -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
 sqlplus system/oracle@//localhost:1521 << EOF
 alter session set "_ORACLE_SCRIPT"=true;

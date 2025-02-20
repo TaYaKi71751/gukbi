@@ -1,10 +1,10 @@
-```
+```sql
 -- department_id,location_id,department_name,city 를 출력 해보자
 select departments.department_id,departments.location_id,departments.department_name,locations.city 
 from departments,locations 
 where departments.location_id = locations.location_id;
 ```
-```
+```sql
 -- group by
 select * from employees;
 select * from employees where salary is null;
@@ -17,7 +17,7 @@ select department_id,round(avg(salary)) from employees group by department_id or
 -- 매니저가 같은 사원들의 총 급여, 매니저가 관리하는 사원 수
 select manager_id,sum(salary),count(employee_id) from employees group by manager_id;
 ```
-```
+```sql
 -- 급여가 3000 이상의 사원 중에서 job_id가 같은 사원의 급여 총합이 20000 이상인
 -- job_id와 급여의 총합을 job_id 알파벳 순으로 출력
 select job_id,sum(salary),count(salary) 
@@ -27,7 +27,7 @@ group by job_id
 having sum(salary) >= 20000
 order by job_id asc;
 ```
-```
+```sql
 -- self join
 select * from employees;
 select employee_id,first_name,manager_id from employees 사원 order by employee_id;
@@ -45,7 +45,7 @@ outer join(외부 조인)
 만약 한쪽 테이블에만 있는 데이터를 사라지지 않고 출력을 원한다면 없는쪽 테이블 컬럼의 데이터에 null를 넣어 출력해야 하는데 이렇게 이퀴조인시 일치하는 데이터가 없을때 
 한쪽 컬럼에 null를 넣어 출력하는 방법을 외부 조인이라고 한다
 ```
-```
+```sql
 select count(*) from employees;
 -- 107
 
@@ -53,7 +53,7 @@ select count(*) from employees,departments
 where employees.department_id = departments.department_id;
 -- 106
 ```
-```
+```sql
 -- outer join
 
 -- left outer join
@@ -74,7 +74,7 @@ select count(*) from employees,departments
 where employees.department_id(+) = departments.department_id; -- 122 (27-11=16개 부서가 사원이 없음)
 -- 122 = 106 + 16
 ```
-```
+```sql
 -- outer join
 
 -- ansi 표준
@@ -92,16 +92,16 @@ on employees.department_id = departments.department_id;
 ```
 
 - sub쿼리
-```
-sub 쿼리는 다음 sql처럼 sql안에 sql문이 중복되어 존재 하는 것을 의미한다.
-안쪽 소괄호로 묶인 sql이 실행된 결과를 가지고 바깥쪽 sql를 실행한다.
-대륙아이디가 2인 지역도시 정보를 출력해 보자.
+```sql
+-- sub 쿼리는 다음 sql처럼 sql안에 sql문이 중복되어 존재 하는 것을 의미한다.
+-- 안쪽 소괄호로 묶인 sql이 실행된 결과를 가지고 바깥쪽 sql를 실행한다.
+-- 대륙아이디가 2인 지역도시 정보를 출력해 보자.
 select * from locations where country_id in (
 select country_id from countries where region_id=2
 );
-2번 대륙에 존재하는 도시를 알고 싶어서 안쪽 sql에서는 2번 대륙에 존재하는 나라 정보를 바깥쪽 sql에서는 안쪽에서 검색된 나라에 존재하는 도시정보를 출력하였다.
+-- 2번 대륙에 존재하는 도시를 알고 싶어서 안쪽 sql에서는 2번 대륙에 존재하는 나라 정보를 바깥쪽 sql에서는 안쪽에서 검색된 나라에 존재하는 도시정보를 출력하였다.
 ```
-```
+```sql
 select country_id from countries where region_id=2;
 -- AR
 -- BR
@@ -124,25 +124,25 @@ select region_id from regions where region_name='Asia'
 )
 );
 ```
-```
-- 지역 아이디가 1700인 부서들에서 일하지 않는 사원 정보를 출력해 보자.
+```sql
+-- 지역 아이디가 1700인 부서들에서 일하지 않는 사원 정보를 출력해 보자.
 SELECT * FROM employees
 WHERE department_id NOT IN (
 SELECT department_id FROM departments WHERE location_id = 1700
 )
 ORDER BY employee_id;
-이렇게 sql안에 sql를 정의 해서 원하는 결과를 얻는 것을 서브 쿼리라고 한다.
-- 최대급여를 받는 사원의 정보를 출력해 보자.
+-- 이렇게 sql안에 sql를 정의 해서 원하는 결과를 얻는 것을 서브 쿼리라고 한다.
+-- 최대급여를 받는 사원의 정보를 출력해 보자.
 select * from employees where salary = (
 select max(salary) from employees
 );
-- 평균보다 급여를 많이 받는 사원의 정보를 출력해 보자.
+-- 평균보다 급여를 많이 받는 사원의 정보를 출력해 보자.
 select * from employees where salary > (
 select avg(salary) from employees
 );
 ```
 # exists 함수
-```
+```sql
 select * from employees where exists(
 select * from departments where department_id=10
 )
@@ -164,7 +164,7 @@ any,some은 여러 비교 대상중 하나 이상이 일치하면 결과를 출�
 any와 some은 같아서 둘중 하나를 사용하면 된다.
 all은 여러 비교 대상중 모두가 일치하면 결과를 출력한다.
 ```
-```
+```sql
 select salary from employees where salary<= any(
 30,90,170
 );
@@ -174,11 +174,11 @@ select salary from employees where salary<= any(
 Non-equi join`(범위 조인)는 where절에 범위를 사용하여 테이블을 조인하는 방법이다.
 ```
 ![image](./images/image53.png)
-```
+```sql
 select G.grade,R.name from R,G
 where G.grade>=R.min and G.grade<=R.max;
 ```
-```
+```sql
 select * from jobs;
 select * from jobs where job_id in('AD_PRES','SA_MAN','IT_PROG') order by min_salary;
 -- 봉급이 4000 이상인 사원중 사원의 급여가 'AD_PRES','SA_MAN','IT_PROG' 직종중 어떤 직종 범위인지 출력해보자.
@@ -188,5 +188,4 @@ select * from jobs where job_id in('AD_PRES','SA_MAN','IT_PROG') order by min_sa
 ) j 
 where j.min_salary <= employees.salary and j.max_salary > employees.salary
 order by employees.employee_id;
-
 ```

@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812simple254.pdf)
 # 다음 입력 부분의 코드를 메인에 넣고 실행 시켰을때 출력 부분이 출력되는지 확인해 보자.
 1.입력
-```
+```java
 if(5>3){
     System.out.println(true);
 }
@@ -11,14 +11,14 @@ if(5>3){
 true
 ```
 2.입력
-```
+```java
 if(5<3){
     System.out.println(true);
 }
 ```
 출력 : 출력 없음
 3.입력
-```
+```java
 System.out.println(1);
 if(5<3){
     System.out.println(true);
@@ -31,7 +31,7 @@ System.out.println(2);
 2
 ```
 4.입력
-```
+```java
 if(5>3){
     System.out.println(true);
 }else{
@@ -43,7 +43,7 @@ if(5>3){
 true
 ```
 5.입력
-```
+```java
 if(5==3){
     System.out.println(true);
 }else{
@@ -55,7 +55,7 @@ if(5==3){
 false
 ```
 6.입력
-```
+```java
 System.out.println(1);
 if(5>3){
     System.out.println(true);
@@ -69,7 +69,7 @@ System.out.println(2);
 true
 ```
 7.입력
-```
+```java
 int a=10;
 int b=5;
 if(a<b){
@@ -78,7 +78,7 @@ if(a<b){
 ```
 출력 : 출력 없음
 8.입력
-```
+```java
 int a=10;
 int b=5;
 if(a>b){
@@ -92,7 +92,7 @@ if(a>b){
 true
 ```
 9.입력
-```
+```java
 Scanner scanner = new Scanner(System.in);
 System.out.print("문자열을 입력하세요: ");
 String string = scanner.nextLine();

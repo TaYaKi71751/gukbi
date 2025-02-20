@@ -4,7 +4,7 @@
 ```
 1**********************1
 ```
-```
+```java
 System.out.print(1);
 for(int i = 0;i < 22;i++){
     System.out.print("*");
@@ -15,7 +15,7 @@ System.out.print(1);
 ```
 *****1*****1*****1*****1
 ```
-```
+```java
 for(int i = 0;i < 4;i++){
     for(int j = 0;j < 5;j++){
         System.out.print("*");
@@ -27,7 +27,7 @@ for(int i = 0;i < 4;i++){
 ```
 2*****2*****2*****2*****
 ```
-```
+```java
 for(int i = 0;i < 4;i++){
     System.out.print(2);
     for(int j = 0;j < 5;j++){
@@ -39,7 +39,7 @@ for(int i = 0;i < 4;i++){
 ```
 21**********************1
 ```
-```
+```java
 System.out.print(2);
 System.out.print(1);
 for(int i = 0;i < 22;i++){
@@ -51,7 +51,7 @@ System.out.print(1);
 ```
 1****21****21****21****2
 ```
-```
+```java
 for(int i = 0;i < 4;i++){
     for(int j = 0;j < 2;j++){
         System.out.print(j + 1);
@@ -67,7 +67,7 @@ for(int i = 0;i < 4;i++){
 ```
 1111****21111****21111****21111****2
 ```
-```
+```java
 char arr[] = {'1','*'};
 for(int i = 0;i < 4;i++){
     for(int l = 0;l < arr.length;l++){
@@ -82,7 +82,7 @@ for(int i = 0;i < 4;i++){
 ```
 1111****22221111****22221111****2222
 ```
-```
+```java
 char arr[] = {'1','*','2'};
 for(int i = 0;i < arr.length;i++){
     for(int j = 0;j < 4;j++){
@@ -94,7 +94,7 @@ for(int i = 0;i < arr.length;i++){
 ```
 111122223333444411112222333344441111222233334444
 ```
-```
+```java
 for(int i = 0;i < 3;i++){
     for(int j = 0;j < 4;j++){
         for(int l = 0;l < 4;l++){
@@ -112,7 +112,7 @@ for(int i = 0;i < 3;i++){
 ```
 (1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (3,1), (3,2), (3,3), 
 ```
-```
+```java
 for(int i = 0;i < 3;i++){
     for(int j = 0;j < 3;j++){
         System.out.print("(" + (i + 1) + "," + (j + 1) + "), ");
@@ -122,7 +122,7 @@ for(int i = 0;i < 3;i++){
 
 
 for 문을 이용한 버블정렬
-```
+```java
 int arr[] = {6,5,1,8,7,4,2,3};
 for(int i = 0;i < arr.length - 1;i++){
     for(int j = 0;j < arr.length - 1 - i;j++){

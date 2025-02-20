@@ -6,7 +6,7 @@ Tree클래스에 추가해 보고 메인 메소드가 포함되어 있는 TreeEx
 힌트) Car,Tire클래스와 Tree,Owner클래스의 관계가 같으니 참고해서 만들어 보자. 
 Owner클래스 필드 - 이름, 나이, 연락처
 ```
-```
+```java
 class Owner {
     String name = "홍길동";
     int age = 23;

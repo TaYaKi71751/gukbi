@@ -3,24 +3,24 @@ https://stackoverflow.com/questions/67395995/how-to-install-oracle-database-expr
 https://boisv.medium.com/oracle-database-express-edition-how-to-install-on-macos-538f6404fefb
 
 - 인코딩
-```
+```shell
 export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
 ```
 - 설치
-```
+```shell
 brew uninstall --cask docker
 brew install colima
 brew install docker
 brew install qemu
 ```
 - 실행
-```
+```shell
 docker volume rm oracle-volume
 docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
 sqlplus system/oracle@//localhost:1521
 ```
 
-```
+```sql
 conn sys as sysdba;
 create user c##human identified by human;
 grant connect,resource,dba to c##human;
@@ -48,30 +48,30 @@ conn c##human/human@//localhost:1521
 to_date('1977:05:06 14:05:06', 'YYYY:MM:DD HH24:MI:SS');
 ```
 - 현재시간을 출력
-```
+```sql
 select sysdate from dual;
 ```
 - 현재시간을 형식에 맞게 문자열로 출력
-```
+```sql
 select to_char(sysdate, 'YYYY:MM:DD HH24:MI:SS') from dual;
 ```
 
 - 모든 테이블 출력
-```
+```sql
 select * from tab;
 ```
 - 한줄 당 출력 할 글자 수
-```
+```sql
 set linesize 100
 ```
 - column 설정
-```
+```sql
 column tname format A30;
 column tabtype format a10;
 column clusterid format a10;
 ```
 - 테이블 만들기
-```
+```sql
 create table human(
     name nvarchar2(30),
     age number(3),
@@ -80,43 +80,43 @@ create table human(
 );
 ```
 - insert 하기
-```
+```sql
 insert into human(name,age,height,birthday) values ('홍길동', 30, 152.1, to_date('2000:02:03 00:00:00', 'YYYY:MM:DD HH24:MI:SS'));
 ```
 - 일부 column 만 선택하기
-```
+```sql
 select age,height from human;
 ```
 - 변경사항 적용하기
-```
+```sql
 commit; -- 변경된 사항을 적용하고 저장한다.
 ```
 - update
-```
+```sql
 update human set age=100; -- human 테이블의 모든 데이터가 100으로 변경됨
 update human set age=11,height=156.2; -- 처럼 콤마로 넣을 데이터를 기술 할 수 있다.
 ```
 - rollback
-```
+```sql
 rollback; -- 마지막 commit; 상태로 복원한다.
 -- commit 한 후에는 commit 된 이전 상태로 복원 할 수 없다고 볼 수 있다.
 ```
 - where
-```
+```sql
 update human set age=10 where age>=30; -- age가 30보다 크거나 같은 곳을 update 한다.
 ```
 - delete
-```
+```sql
 delete from human;
 delete human;
 delete from human where name='홍길동'; -- name이 홍길동 인 row를 삭제한다.
 ```
 - drop
-```
+```sql
 drop table human; -- human 테이블을 삭제한다.
 ```
 - null
-```
+```sql
 insert into human values ('', null,0,NULL);
 ```
 - `'` 문자를 insert 할 때는 `'` 문자를 두번 입력한다.

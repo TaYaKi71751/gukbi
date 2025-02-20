@@ -1,5 +1,5 @@
 # JDBCTest.java
-```
+```java
 package com.the.ex;
 
 import java.sql.Connection;
@@ -59,7 +59,7 @@ public class JDBCTest {
 3. LocalDateTime: 날짜와 시간을 함께 표현 (예: 2025-01-19T14:30:00).
 4. ZonedDateTime: 날짜와 시간을 포함하고 시간대 정보를 추가로 포함 (예: 2025-01-19T14:30:00+09:00[Asia/Seoul]).
 ```
-```
+```java
 package com.the.ex;
 
 import java.time.*;
@@ -82,7 +82,7 @@ public class JDBCDate {
 }
 ```
 - 특정 날짜와 시간 생성
-```
+```java
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -102,7 +102,7 @@ public class Main {
 }
 ```
 - 문자열로부터 시간 데이터 생성
-```
+```java
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -125,7 +125,7 @@ public class Main {
 Java에서 LocalDateTime 데이터를 원하는 형식으로 출력하려면 DateTimeFormatter 클래스를 사용하면 됩니다.
 ```
 - 기본적인 날짜 및 시간 포맷팅
-```
+```java
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -158,7 +158,7 @@ public class Main {
 |HH:mm:ss|시:분:초 (24시간제)|14:30:45|
 |hh:mm a|시:분 AM/PM (12시간제)|02:30 PM|
 - 커스텀 포맷으로 변환
-```
+```java
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -178,7 +178,7 @@ public class Main {
 }
 ```
 - 시간대(TimeZone) 포함 변환
-```
+```java
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -196,7 +196,7 @@ public class Main {
 }
 ```
 - 날짜와 시간 정보 추출
-```
+```java
 import java.time.LocalDateTime;
 
 public class Main {
@@ -218,7 +218,7 @@ public class Main {
 }
 ```
 - 날짜와 시간 연산
-```
+```java
 import java.time.LocalDateTime;
 
 public class Main {
@@ -238,7 +238,7 @@ public class Main {
 }
 ```
 - 비교 및 검사
-```
+```java
 import java.time.LocalDateTime;
 
 public class JDBCDate {
@@ -257,7 +257,7 @@ public class JDBCDate {
 ```
 # LocalDateTime과 다른 클래스 간 변환
 - LocalDateTime → LocalDate / LocalTime
-```
+```java
 import java.time.*;
 
 public class Main {
@@ -271,7 +271,7 @@ public class Main {
 }
 ```
 - LocalDateTime → ZonedDateTime
-```
+```java
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -285,7 +285,7 @@ public class Main {
 }
 ```
 - 년월일 시분초 차이구하는 프로그램
-```
+```java
 import java.time.*;
 
 public class TimeDifferenceCalculator {
@@ -318,7 +318,7 @@ public class TimeDifferenceCalculator {
 }
 ```
 - 년월일 시분초 차이구하는 프로그램
-```
+```java
 import java.time.*;
 
 public class TimeDifferenceCalculator {
@@ -355,7 +355,7 @@ public class TimeDifferenceCalculator {
 }
 ```
 # DBConn.java
-```
+```java
 package com.the.util;
 
 import java.sql.Connection;
@@ -435,7 +435,7 @@ public class DBConn {
 }
 ```
 # UserInput.java
-```
+```java
 package com.the.util;
 
 import java.time.LocalDateTime;
@@ -480,7 +480,7 @@ public class UserInput {
 }
 ```
 # HumanDto.java
-```
+```java
 package com.the.dto;
 
 import java.time.LocalDateTime;
@@ -541,7 +541,7 @@ public class HumanDto {
 }
 ```
 # HumanDao.java
-```
+```java
 package com.the.dao;
 
 import java.sql.ResultSet;
@@ -596,7 +596,7 @@ public class HumanDao {
 }
 ```
 # JBDCEx.java
-```
+```java
 package com.the.ex;
 
 import com.the.util.*;

@@ -1,8 +1,8 @@
 문제1) 다음중 잘못된 부분을 찾아서 올바르게 변경해보자.
-```
+```sql
 insert into human values ('홍길남,31,156.4,to-date(2001:02:03 00:00:00','YYYY:MM:DD HH24:MI:SS'));
 ```
-```
+```sql
 insert into human values ('홍길남',31,156.4,to_date('2001:02:03 00:00:00','YYYY:MM:DD HH24:MI:SS'));
 ```
 문제2) drop table human; 와 같은 sql 작업후 rollback; 가능한가?
@@ -23,7 +23,7 @@ rollback은 insert update delete 같은 데이터를 조작할때 사용 가능�
 |황산|200|80|2023-05-10|
 |염화칼슘|400|120|2023-06-05|
 |염산|600|200|2023-07-08|
-```
+```sql
 create table chemical_quantity_status(
 name nvarchar2(100),
 quantity number(38),
@@ -47,7 +47,7 @@ insert into chemical_quantity_status values ('아세트산',600,200,to_date('202
 |반지의 제왕|J.R.R.톨킨|2023-05-15|2023-05-29|2023-05-29|0|
 |빨간 머리 앤|L.M.몽고메리|2023-06-20|2023-07-04|-|-|
 |산삼|박완서|2023-07-10|2023-07-24|-|-|
-```
+```sql
 create table book_borrow_list(
 title nvarchar2(100),
 author nvarchar2(100),
@@ -74,7 +74,7 @@ insert into book_borrow_list values ('산삼','박완서',to_date('2023-07-10','
 |2023003|박철수|2023-03-15|헤드폰|3|150,000|450,000|
 |2023004|이지훈|2023-03-20|마우스|1|30,000|30,000|
 |2023005|김민지|2023-03-25|키보드|1|50,000|50,000|
-```
+```sql
 create table order_list(
 order_id number(7),
 name nchar(10),
@@ -92,7 +92,7 @@ insert into order_list values (2023005,'김민지',to_date('2023-03-25','YYYY-MM
 ```
 문제6) 다음 이미지를 보고 데이터 베이스를 만들어 보자. 힌트는 새로운 데이터로 이미지의 내용을 변경하였을때 바뀌어야 하는 부분과 바뀌지 않는 부분을 확인하여 바뀌는 부분을 데이터 베이스로 만들면된다.
 ![image](./images/image41.png)
-```
+```sql
 create table game(
 game_status nvarchar2(100),
 team_a nvarchar2(100),
@@ -112,7 +112,7 @@ to_date('2023-07-26 18:30','YYYY-MM-DD HH24:MI')
 ```
 문제7)다음 이미지를 보고 데이터 베이스를 만들어 보자.
 ![image](./images/image42.png)
-```
+```sql
 create table album_info(
 title nvarchar2(100),
 artist nvarchar2(100),

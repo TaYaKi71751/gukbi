@@ -1,14 +1,11 @@
 # jdbc 사용 해보기
-```
-export NLS_LANG=KOREAN_KOREA.AL32UTF8
-colima start --arch x86_64 --memory 4
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe
+```sql
 sqlplus system/oracle@//localhost:1521
 create user c##human identified by human;
 grant connect,resource,dba to c##human;
 conn c##human/human@//localhost:1521
 ```
-```
+```sql
 -- 1. 다음 human table sql를 c##human/human 계정에 만들어 보자.
 drop table human;
 create table human(
@@ -26,7 +23,7 @@ values('박수호',27,188.6,to_date('1995:12:04 13:45:14','YYYY:MM:DD HH24:MI:SS
 commit; -- 반드시 커밋을 해야 한다.
 select * from human;
 ```
-```
+```java
 package com.human.ex;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,7 +70,7 @@ public class JdbcTest {
     }
 }
 ```
-```
+```java
 package com.human.ex;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -144,7 +141,7 @@ public class JdbcSelect {
 }
 ```
 ![image](./images/image44.png)
-```
-st.executeQuery() // 리턴값이 있다.
-st.executeUpdate() // 리턴값이 없다.
+```java
+st.executeQuery(); // 리턴값이 있다.
+st.executeUpdate(); // 리턴값이 없다.
 ```

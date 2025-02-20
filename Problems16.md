@@ -13,7 +13,7 @@
 %f => 실수를 대입
 ```
 3. `int age=156, String name = “hong”, double height=175.3` 다음 데이터와 `String.format`를 이용해서 문자열로 만들어 출력해 보자.
-```
+```java
 int age = 156;
 String name "hong";
 double height = 175.3;
@@ -23,7 +23,7 @@ System.out.println(String.format("이름 : %s \n나이: %d \n키: %f",name,age,h
 ```
 ex)실행결과: 몫은 2 이고, 나머지는 1이다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -37,13 +37,13 @@ System.out.println("몫은 " + (a / b) + " 이고, 나머지는 " + (a % b) + " 
 ```
 ex)423를 입력하였다면 백의 자리:4 십의 자리:2 일의 자리:3 이 출력 되도록 만들어 보자.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
 System.out.println(a + "를" + b +" 으로 나누면 몫은 " + (a / b) + " 이고, 나머지는 " + (a % b) + " 이다.");
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 String a = sc.nextLine();
 System.out.println("백의 자리:" + a.charAt(a.length() - 3) + "십의 자리:" + a.charAt(a.length() - 2) + "일의 자리:" + a.charAt(a.length() - 1));
@@ -53,7 +53,7 @@ System.out.println("백의 자리:" + a.charAt(a.length() - 3) + "십의 자리:
 ```
 힌트) Math.sqrt(25)=5 이다. x제곱은 x*x 이다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 String point1 = sc.nextLine();
 int x1 = Integer.parseInt(point1.split(",")[0]);

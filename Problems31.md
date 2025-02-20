@@ -2,7 +2,7 @@
 # 연습문제
 1. 다음 else if문은 switch문으로 switch문은 elseif문으로 변경해보자.
 ![image](./images/image24.png)
-```
+```java
 int i = 0;
 switch(i){
     case 0: i++; break;
@@ -11,7 +11,7 @@ switch(i){
 }
 System.out.println(i);
 ```
-```
+```java
 int i = 0;
 if(i == 2){
     i++;
@@ -23,7 +23,7 @@ if(i == 2){
 System.out.println(i);
 ```
 2. 1~5사이의 숫자를 변수 c에 저장하여 한글로 출력하는 switch문을 만들어 보자.
-```
+```java
 int c = (int)(Math.random * 100) % 5 + 1;
 String result = "";
 switch(c){
@@ -37,7 +37,7 @@ System.out.println(result);
 ```
 3. 다음 순서도와 동일하게 실행되도록 else if문과 switch문으로 기술하시오.
 ![image](./images/image25.png)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 int a = 5;
@@ -59,7 +59,7 @@ System.out.println(b);
 74/10==7이 된다. 
 이를 이용하면 충분히 switch문으로 구현할 수 있다. 
 수우미양가를 출력하는 프로그램을 switch문으로 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int score = Integer.parseInt(sc.nextLine());
 String result = "";
@@ -75,7 +75,7 @@ switch(score / 10){
 System.out.println(result);
 ```
 5. 1~5사이의 숫자를 입력받아 해당 숫자를 한글로 출력하는 프로그램을 작성해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 while(input > 5 || input < 1){
@@ -90,7 +90,7 @@ switch(input){
 }
 ```
 6. 달을 입력받아 해당달이 28일인지 30일인지 31일인지 출력하는 프로그램을 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int month = Integer.parseInt(sc.nextLine());
 while(month > 12 || month < 1){
@@ -103,7 +103,7 @@ System.out.println(year + "년 " + month + "월은 " + daysInMonth + "일 까지
 
 ```
 7. 나이를 입력 받아 해당 나이의 때의 학력이 초,중,고 중 어디에 해당하는지 출력해보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int age = Integer.parseInt(sc.nextLine());
 String result = "";

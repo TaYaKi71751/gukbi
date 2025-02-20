@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812simple254.pdf)
 # 다음 문제를 반복문으로 구현해 보자.
 문제 1) 배열 a에 1,2,3 을 넣은 후 배열 내의 모든 값에 2를 더한 값인 3,4,5로 변경한 다음에 배열의 내용을 화면에 출력하는 코드를 구현하여 보자.
-```
+```java
 int a[] = new int[3];
 a[0] = 1;
 a[1] = 2;
@@ -12,7 +12,7 @@ for(int i = 0;i < a.length;i++){
 }
 ```
 문제 2) 길이가 10인 배열 a에 3의 배수를 넣은 다음에 배열의 내용을 출력하는 코드를 만들어 보자.
-```
+```java
 int a[] = new int[10];
 for(int i = 0;i < a.length;i++){
     a[i] = i * 3;
@@ -20,7 +20,7 @@ for(int i = 0;i < a.length;i++){
 }
 ```
 문제 3) 길이가 100인 배열 a에 1부터 100까지의 숫자를 순서대로 넣은 다음 배열의 인덱스가 짝수인 배열에 들어 있는 값만 출력하는 코드를 만들어 보자.
-```
+```java
 int a[] = new int[100];
 for(int i = 0;i < 100;i++){
     a[i] = i + 1;
@@ -30,7 +30,7 @@ for(int i = 0;i < 100;i++){
 }
 ```
 문제 4) 배열 a[]={12,1,5,3,6,8,5,3}를 만든 다음에 배열의 모든 내용을 더한 값을 sum에 저장하여 출력하는 코드를 만들어 보자.
-```
+```java
 int a[] = {12,1,5,3,6,8,5,3};
 int sum = 0;
 for(int i = 0;i < a.length;i++){
@@ -39,7 +39,7 @@ for(int i = 0;i < a.length;i++){
 System.out.println(sum);
 ```
 문제 5) a[]={12,1,5,3,6,8,5,3}의 a배열에서 배열 안의 숫자가 짝수인 12,6,8 의 값을 더한 결과 값을 출력하는 프로그램을 작성해 보자.
-```
+```java
 int a[] = {12,1,5,3,6,8,5,3};
 int sum = 0;
 for(int i = 0;i < a.length;i++){
@@ -67,7 +67,7 @@ max에 12를 넣은 이유는 비교 대상 수중 하나를 사용하기 위해
 배열의 가장 큰 값을 변수 max에 찾아서 넣는 방법은 max를 선언한 다음 배열 안의 임의의 수를 배열에 넣고(max=a[0]) 배열을 인덱스 0부터 끝까지 순회 하면서 해당 인덱스의 배열 안의 수와 max를 비교해서 (a[i]>max) 배열[인덱스]의 값이 max보다 크면(a[i]>max 이 true이면) 배열[인덱스] 값이 max 값 보다 더 크다는 이야기 이므로 max에 더 큰수 a[i]를 넣어(max=a[i]) 기존 max 값보다 더 큰 수를 max에 넣는다. 
 배열 안의 모든 수를 max값 보다 큰수가 나올 때마다 max에 넣으면 모든 배열의 데이터를 순회 하고 나면 max에는 배열안의 수중 가장 큰 수가 남게 된다.
 ```
-```
+```java
 int a[] = {12,1,51,3,6,8,5};
 java.util.ArrayList arr = new java.util.ArrayList<Integer>(java.util.Arrays.asList(a));
 Collections.sort(arr);
@@ -75,7 +75,7 @@ System.out.println(arr.toArray()[0] + arr.toArray()[arr.toArray().length - 1]);
 
 ```
 7.배열에 5개의 숫자를 입력받아 넣은 다음 숫자 하나를 입력받아 해당 숫자가 몇번째 인덱스에 들어 있는지 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int arr[] = new int[5];
 int input = 0;
@@ -90,7 +90,7 @@ for(int i = 0;i < arr.length;i++){
 }
 ```
 8.배열에 5개의 문자열을 입력받아 넣은 다음 문자열 하나를 입력받아 해당 문자가 몇번째 인덱스에 들어 있는지 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 String arr[] = new String[5];
 String input = "";
@@ -105,7 +105,7 @@ for(int i = 0;i < arr.length;i++){
 }
 ```
 9.배열 크기를 입력 받아 배열 크기 만큼 1,2,3,1,2,3,1,2,3 … 숫자를 순서대로 배열안에 넣은 다음 배열의 내용을 출력해 보자.
-```
+```java
 int size = Integer.parseInt(sc.nextLine());
 int arr[] = new int[size];
 for(int i = 0;i < size;i++){
@@ -120,7 +120,7 @@ for(int i = 0;i < size;i++){
 ex)배열에 1,2,3이 들어 있으면 1,2,3,3,2,1 이 들어 있는 배열
 ex)배열에 7,9,21,15,23 이 들어 있으면 23,15,21,9,7,7,9,21,15,23 이 들어 있는 배열
 ```
-```
+```java
 int a[] = {1,2,3};
 java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
@@ -139,7 +139,7 @@ for(int i = 0;i < a.length;i++){
     System.out.println(a[i]);
 }
 ```
-```
+```java
 int a[] = {1,2,3};
 java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
@@ -159,7 +159,7 @@ for(int i = 0;i < a.length;i++){
     System.out.println(a[i]);
 }
 ```
-```
+```java
 int a[] = {1,2,3};
 int b[] = new int[a.length * 2];
 for(int i = 0;i < b.length;i++){
@@ -173,7 +173,7 @@ for(int i = 0;i < b.length;i++){
     System.out.println(b[i]);
 }
 ```
-```
+```java
 int a[] = {7,9,21,15,23};
 java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
@@ -192,7 +192,7 @@ for(int i = 0;i < a.length;i++){
     System.out.println(a[i]);
 }
 ```
-```
+```java
 int a[] = {7,9,21,15,23};
 java.util.ArrayList<Integer> origin = new java.util.ArrayList<Integer>();
 java.util.ArrayList<Integer> reverse = new java.util.ArrayList<Integer>();
@@ -212,7 +212,7 @@ for(int i = 0;i < a.length;i++){
     System.out.println(a[i]);
 }
 ```
-```
+```java
 int a[] = {7,9,21,15,23};
 int b[] = new int[a.length * 2];
 for(int i = 0;i < b.length;i++){
@@ -227,7 +227,7 @@ for(int i = 0;i < b.length;i++){
 }
 ```
 11. 컴퓨터에서 주사위 던지는 프로그램을 구현하였을때 던져서 나온수의 빈도(횟수)를 구하는 프로그램을 작성해 보자.
-```
+```java
 int diceSide = 0;
 int frequency[] = new int[6];
 Random random = new Random();

@@ -1,7 +1,7 @@
 다음을 이용해서 관리형 프로그램을 작성해 보자.
 
 //관리클래스
-```
+```java
 class Human {
     private long id;
     private int age;
@@ -11,7 +11,7 @@ class Human {
 ```
 
 //메뉴   
-```
+```java
     System.out.println("\n=== Human 관리 시스템 ===");
     System.out.println("1. 추가");
     System.out.println("2. 목록 조회");
@@ -43,7 +43,7 @@ Human 추가 완료: Human{id=1, age=30, name='홍길동', height=175.5}
 Human{id=1, age=30, name='홍길동', height=175.5}
 ```
 
-```
+```java
 class Human {
     private long id;
     private int age;
@@ -59,7 +59,7 @@ class Human {
     }
 
     public String toString(){
-        return "Human{id=" + id + ", age=" + age + ", name=" + name + ", height=" + height + "}");
+        return "Human{id=" + id + ", age=" + age + ", name=" + name + ", height=" + height + "}";
     }
 
     public static void printMenu(){

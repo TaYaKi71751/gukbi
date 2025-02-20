@@ -3,7 +3,7 @@
 ![image](./images/image21.png)
 1. 왼쪽 순서도는 a, b 의 수를 입력 받아 두 수를 교환후 두 수를 출력하는 순서도이다. 
 참고 해서 코드를 작성해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -16,7 +16,7 @@ System.out.println(b);
 ```
 ![image](./images/image22.png)
 2. 입력한 숫자가 10보다 큰 수인지 아닌지 출력하는 순서도를 보고 프로그램으로 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 if(input > 10) {
@@ -27,7 +27,7 @@ if(input > 10) {
 ```
 ![image](./images/image23.png)
 3. 입력 받은 숫자가 양수인지 0인지 음수인지 판단하는 순서도와 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 if(input > 0) {
@@ -43,7 +43,7 @@ if(input > 0) {
 가장 작은 변수를 찾아 a값과 교환한다.
 남은 변수를 비교해서 c가 더작으면 b와 교환, 그렇지 않으면 교환하지 않는다.
 a,b,c를 순서대로 출력한다.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());

@@ -12,7 +12,7 @@
     해당 중괄호 블럭 안에서만 사용할 수 있다.
 ```
 2) 다음 코드가 잘못된 이유를 설명하시오.
-```
+```java
 package com.human.ex;
 public class JavaStart10 {
     public static int a=22;
@@ -29,7 +29,7 @@ public class JavaStart10 {
 main 함수 안에서 a 가 두번 선언 되었다
 ```
 3) 다음 코드가 정상적인 코드 인지 아닌지 설명하고 정상적으로 고쳐보자.
-```
+```java
 package com.human.ex;
 public class JavaStart10 {
     public static void main(String[] args) {
@@ -48,7 +48,7 @@ public class JavaStart10 {
 ```
 정상적이지 않은 코드이다.
 ```
-```
+```java
 package com.human.ex;
 public class JavaStart10 {
     public static void main(String[] args) {
@@ -64,7 +64,7 @@ public class JavaStart10 {
 }
 ```
 4) 다음 코드가 정상적인 코드 인지 아닌지 설명하고 정상적으로 고쳐보자.
-```
+```java
 package com.human.ex;
 public class JavaStart10 {
     public static int a=22; // 전역변수는 모든 지역에서 사용할 수 있다.

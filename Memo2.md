@@ -1,7 +1,7 @@
 # extends
 - 부모 클래스 에 자식 클래스를 넣을 수 있다.
 - 자식 클래스 에 부모 클래스를 넣을 수 없다.
-```
+```java
 package com.the.ex;
 
 class Animal {
@@ -39,7 +39,7 @@ public class Main{
 - 부모 클래스를 생성하고 싶으면 자식을 통해서 추상 메소드를 재정의 한 다음 실행한다.
 
 # Interface
-```
+```java
 interface Product {
     public void getPrice();
 }
@@ -124,7 +124,7 @@ interface Animal {
 - **인터페이스**: 구현 없이 메서드 서명만 정의하고, 클래스를 다중 상속할 수 있도록 합니다. (Java 8 이후 `default` 메서드를 사용할 수 있습니다.)
 
 # Lambda
-```
+```java
 // Use without lambda
 interface Calculator {
     int calculate(int a, int b);
@@ -162,7 +162,7 @@ public class Main {
     }
 }
 ```
-```
+```java
 // Use of lambda
 interface Calculator {
     int calculate(int a, int b);
@@ -182,7 +182,7 @@ public class LambdaExample {
     }
 }
 ```
-```
+```java
 interface Calculate {
     int calculate(int a, int b);
 }

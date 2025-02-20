@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812simple148.pdf)
 # 변수 - 기본문법 3
 1.입력
-```
+```java
 int a=10; 
 System.out.println(a); 
 ```
@@ -10,7 +10,7 @@ System.out.println(a);
 10 
 ```
 2.입력 
-```
+```java
 int b=30; 
 System.out.println(b); 
 ```
@@ -19,7 +19,7 @@ System.out.println(b);
 30
 ```
 3.입력 
-```
+```java
 int b=30; 
 System.out.println(b+10); 
 ```
@@ -28,7 +28,7 @@ System.out.println(b+10);
 40
 ```
 4.입력
-```
+```java
 int c=30; 
 System.out.println(c+c); 
 ```
@@ -37,7 +37,7 @@ System.out.println(c+c);
 60
 ```
 5.입력 
-```
+```java
 // 변수명hello에 50를 넣고 변수를 이용해서 80이 찍히도록 해보자
 int hello = 50;
 System.out.println(hello + 30);
@@ -47,7 +47,7 @@ System.out.println(hello + 30);
 80
 ``` 
 6.입력 
-```
+```java
 int d=30; 
 System.out.println(d); 
 d=60; 
@@ -61,7 +61,7 @@ System.out.println(d);
 60
 ```
 7.입력 
-```
+```java
 int d=30; 
 int c=60; 
 System.out.println(c); 
@@ -74,7 +74,7 @@ System.out.println(d);
 ```
 
 8.입력 
-```
+```java
 int i1=22; 
 int i2=11; 
 int i3=33; 
@@ -86,7 +86,7 @@ System.out.println(i1+i2+i3);
 ```
 
 9.입력 
-```
+```java
 int world = 5;
 System.out.println(world); 
 int a = 6;
@@ -99,7 +99,7 @@ System.out.println(world+a);
 ```
 
 10.입력 
-```
+```java
 int world=5; 
 System.out.println(world+5); 
 ```
@@ -109,7 +109,7 @@ System.out.println(world+5);
 ```
 
 11.입력 
-```
+```java
 int world=5; 
 System.out.println(“world”+5); 
 ```
@@ -119,7 +119,7 @@ world5
 ```
 
 12.입력 
-```
+```java
 int world=5; 
 System.out.println(“world”+world); 
 ```
@@ -129,7 +129,7 @@ world5
 ```
 
 13.입력 
-```
+```java
 int a=5; 
 int b=6; 
 System.out.println(“a+b=”+a+b); 
@@ -140,7 +140,7 @@ a+b=56
 ```
 
 14.입력 
-```
+```java
 int a=5; 
 int b=6; 
 System.out.println(“a+b=”+(a+b));
@@ -151,7 +151,7 @@ a+b=11
 ```
 
 15.입력 
-```
+```java
 int a=5; 
 System.out.println(a); 
 a=3; 
@@ -164,7 +164,7 @@ System.out.println(a);
 ```
 
 16.입력 
-```
+```java
 int a=5;//처음 a를 선언할때는 자료형을 붙인다. 
 System.out.println(a); 
 a=6;//기존 a를 사용할때는 자료형을 붙이지 않는다. 
@@ -180,7 +180,7 @@ System.out.println(a+b);
 ```
 
 17.입력 
-```
+```java
 int a=5; 
 a=6; 
 a=7; 
@@ -194,7 +194,7 @@ System.out.println(a);
 
 // 소수점이 있는 실수는 double사용 문자열은 String사용 
 18. 입력 
-```
+```java
 int a=5; 
 double b=5.1; 
 String st= “hello”; 
@@ -210,7 +210,7 @@ a+b=10.1hello
 ```
 
 19.입력 
-```
+```java
 int a=5; 
 a=a+2; 
 System.out.println(a); 
@@ -221,7 +221,7 @@ System.out.println(a);
 ```
 
 20.입력 
-```
+```java
 int sum=0; 
 sum=sum+1; 
 System.out.println(sum); 

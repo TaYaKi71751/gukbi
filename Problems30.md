@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812simple254.pdf)
 # 다음 예제를 실행해 보자.
 1.입력 
-```
+```java
 // else 생략가능
 if(5<3){
 System.out.println(1);
@@ -14,7 +14,7 @@ System.out.println(2);
 // 출력없음
 ```
 2.입력
-```
+```java
 // else if 여러개중 1개 만 출력
 if(5>3){
     System.out.println("조건에 맞음");
@@ -29,7 +29,7 @@ if(5>3){
 조건에 맞음
 ```
 3.입력
-```
+```java
 int hi1=4;
 if(hi1>3){
     System.out.println(1);
@@ -44,7 +44,7 @@ if(hi1>3){
 1
 ```
 4.입력
-```
+```java
 int j1=0;
 int j2=1;
 int j3=2;
@@ -61,7 +61,7 @@ if(j1>3){
 3
 ```
 5.입력
-```
+```java
 Scanner scanner = new Scanner(System.in);
 System.out.print("점수를 입력하세요: ");
 String input = scanner.nextLine();
@@ -92,7 +92,7 @@ D학점입니다.
 F학점입니다.
 ```
 6.입력
-```
+```java
 // else if문은 여러개의 조건중 하나의 조건만 실행한다.
 Scanner scanner = new Scanner(System.in);
 System.out.print("Enter a number between 1 and 3: ");
@@ -109,7 +109,7 @@ if (num == 1) {
 }
 ```
 7.입력
-```
+```java
 // 사용자 입력값에 따라 다른 동작을 수행하는 예제
 Scanner scanner = new Scanner(System.in);
 System.out.print("Enter a command (start, stop, pause): ");

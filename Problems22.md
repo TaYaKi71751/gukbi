@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812simple148.pdf)
 # 다음 문제를 풀어보자.
 1. `배열`에 `53`,`6`,`85`,`3`,`5`를 넣은 다음 배열의 내용을 화면에 출력해 보자.
-```
+```java
 int a[] = {53,6,85,3,5};
 for(int i = 0;i < a.length;i++){
     System.out.println(a[i]);
@@ -10,7 +10,7 @@ for(int i = 0;i < a.length;i++){
 2. `배열 a`에 `1`,`2`,`3` 을 넣은 후 
 배열 내의 모든 값에 `2`를 더한 값인 `3`,`4`,`5`로 변경한 다음에 
 배열의 내용을 화면에 인덱스 순서대로 출력해 보고 인덱스 역순으로 출력해 보자.
-```
+```java
 int a[] = {1,2,3};
 for(int i = 0;i < a.length;i++){
     a[i] += 2;
@@ -25,7 +25,7 @@ for(int i = a.length - 1;i > -1;i--){
 ```
 3. `배열` `a[]={12,1,53,6,85,3}`를 만든 다음에 배열의 모든 내용을 더한 값을 
 `sum`에 저장하여 출력하는 코드를 만들어 보자.
-```
+```java
 int a[] = {12,1,53,6,85,3};
 int sum = 0;
 for(int i = 0;i < a.length;i++){
@@ -34,7 +34,7 @@ for(int i = 0;i < a.length;i++){
 System.out.println(sum);
 ```
 4. `a[]={12,1,53,6,85,3}`에서 `a`배열에 들어있는 값중 짝수만 화면에 출력하시오.
-```
+```java
 int a[] = {12,1,53,6,85,3};
 for(int i = 0;i < a.length;i++){
     if(a[i] % 2 == 0){
@@ -43,7 +43,7 @@ for(int i = 0;i < a.length;i++){
 }
 ```
 5. `a[]={12,1,53,6,85,3}`에서 인덱스가 홀수인 배열의 값을 출력하시오.
-```
+```java
 int a[] = {12,1,53,6,85,3};
 ArrayList<Integer> results = new ArrayList<Integer>();
 for(int i = 0;i < a.length;i++){
@@ -54,7 +54,7 @@ for(int i = 0;i < a.length;i++){
 System.out.println(Arrays.toString(results.toArray()));
 ```
 6. `Tree`클래스를 배열로 선언하여 여러개의 데이터를 넣은후 출력해 보자.
-```
+```java
 package com.the.ex;
 
 class Owner {

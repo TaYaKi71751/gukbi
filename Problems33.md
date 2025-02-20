@@ -5,7 +5,7 @@
 1:1 2:3 3:6 4:10 5:15 6:21 … 100이전의 총합들을 다음과 같이 출력되면 된다. 
 힌트 : 조건식에 복잡한 수식이 들어 갈수 도 있다.
 ```
-```
+```java
 int sum = 0;
 for(int i = 1;i < 101;i++){
     sum += i;
@@ -13,7 +13,7 @@ for(int i = 1;i < 101;i++){
 }
 ```
 2. 문자열과 숫자를 입력받아 입력받은 문자열을 입력받은 숫자만큼 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 String str = sc.nextLine();
 int repeat = Integer.parseInt(sc.nextLine());
@@ -22,7 +22,7 @@ for(int i = 0;i < repeat;i++){
 }
 ```
 3. 입력 받은 두수 사이의 숫자들의 합을 구하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -36,7 +36,7 @@ System.out.println(sum);
 ```
 5 6를 입력 받으면 5부터 6개 5 6 7 8 9 10 이 화면에 출력 된다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -45,7 +45,7 @@ for(int i = a;i < (a + b);i++){
 }
 ```
 5. 사용자가 “종료”를 입력할때 까지 무한 반복하는 프로그램을 3가지 방법으로 구현하시오.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 String input = "";
 while(true){
@@ -65,7 +65,7 @@ ex) 어떤 수에 대해서 나누어 떨어지는 수를 약수라고 한다.
 100의 모든 약수를 구하려면 100보다 크면 더 이상 나눌 수 없으므로 1~100사이의 수들로 하나씩 100을 나눠서 나누어 떨어 지는지 판별하여 나누어 떨어지는 수들이 100의 약수가 된다. 
 1,2,4,5,..100 이 100의 약수에 해당한다.
 ```
-```
+```java
 int target = 100;
 for(int i = 1;i < target;i++){
     if(target % i == 0){
@@ -74,7 +74,7 @@ for(int i = 1;i < target;i++){
 }
 ```
 8. 두 수를 입력받아 두수의 공통된 약수를 모두 출력해 보자. 
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -107,7 +107,7 @@ for(int i = 0;i < commonFactors.toArray().length;i++){
 0부터 하나씩 증가시키며 두수 모두 나눠지는 수를 출력하면 된다. 
 출력된 수중에서 가장 큰수를 입력받은 두수의 최대공약수라고 한다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -134,7 +134,7 @@ for(int i = 0;i < aFactors.toArray().length;i++){
 System.out.println(commonFactor);
 ```
 10. 사용자에게 숫자를 하나 입력받아 입력한 숫자들의 합이 100이 될때까지 계속입력을 받다가 100이 넘으면 최종 합산한 값을 출력하는 프로그램을 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int sum = 0;
 int a = 0;
@@ -149,7 +149,7 @@ System.out.println(sum);
 입력이 끝나면 잘못 입력한 횟수와 제대로 입력한 횟수를 출력하고 
 사용자가 제대로 입력한 총합을 출력하는 프로그램을 만들어 보자.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int fail = 0;
 int success = 0;
@@ -174,7 +174,7 @@ while(success != 3){
 ```
 ex) 어떤수에 0,1,2,3,4.. 를 곱해서 나온 수를 어떤수의 배수라 한다.
 ```
-```
+```java
 int target = 4;
 for(int i = 0;i < 10;i++){
     System.out.println((target * i) + ",");
@@ -188,7 +188,7 @@ ex)2의 배수도 되고 3의 배수도 되는 공배수는 6,12,18,24 등이 �
 1 부터 하나씩 증가시켜 입력 받은 두 수가 모두 나누어 떨어지는 수들은 공배수 이고 이중 가장 먼저 찾은 수가 가장 작은 수이므로 처음 찾은수가 최소 공배수이다. 
 2와 3의 최소 공배수는 6이다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -209,7 +209,7 @@ if(a > b){
 System.out.println(leastCommonMultiple);
 ```
 14. 3개의 수를 입력 받아 가장 작은 수와 가장 큰수를 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -234,7 +234,7 @@ System.out.println(a);
 System.out.println(c);
 ```
 15. 100이하의 수학과목 점수를 5번 입력받아 60이하 점수가 몇 개인지 출력하는 프로그램을 구현해 보자.
-```
+```java
 int success = 0;
 int under60 = 0;
 int input = 0;
@@ -255,7 +255,7 @@ System.out.println(under60);
 수를 하나 입력받아 소수인지 아닌지 판별하는 프로그램을 구현하시오.
 ex) 2부터 본인 보다 하나 작은 숫자를 차례대로 나눠서 나누어 떨어지는 수가 없으며 1과 자기 자신만 나눠지는 수이므로 소수에 해당한다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 java.util.ArrayList<Integer> aFactors = new java.util.ArrayList<Integer>();
@@ -267,7 +267,7 @@ for(int j = 1;j <= a;j++){
 System.out.println("소수" + (aFactors.size() == 2 ? "입니다." : "가 아닙니다."));
 ```
 17. 숫자를 하나 입력받아 1~1000사이에 입력받은 숫자의 배수가 몇 개인지 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 int count = 0;
@@ -286,7 +286,7 @@ System.out.println(count);
 ```
 ex) 3을 입력하면 한줄에 3개씩 출력 하면 된다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 for(int i = 1;i < (1 + input);i++){
@@ -297,7 +297,7 @@ for(int i = 1;i < (1 + input);i++){
 ```
 맞춘 횟수와 틀린 횟수를 기록해서 보여주고 3번 맞추면 프로그램이 종료되게 만들자.
 ```
-```
+```java
 String coinSide = "";
 int input = 0;
 int success = 0;
@@ -322,7 +322,7 @@ System.out.println("맞춘 횟수:" + success + ", 틀린 횟수:" + fail);
 ```
 10회 입력받아 맞춘 회수와 틀린 회수를 기록해서 보여 주자.
 ```
-```
+```java
 int fail = 0;
 int success = 0;
 int diceSide = 0;

@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812simple148.pdf)
 # 연습문제
 1. 주석이란? 주석의 종류와 사용방법은? 
-```
+```java
 // 한줄주석 
 /*
 여러줄
@@ -57,7 +57,7 @@ main 메소드의 시작
     \t \n \" \' 등 \를 사용함 
 ```
 10. 다음은 파일 이름은 `helloWorld.java` 이다. 잘못된 부분을 찾아 보자. 
-```
+```java
 public class MyHelloWorld { 
     pubIic static void main(string[] args) { 
         system.Out.print1n( 
@@ -86,7 +86,7 @@ World~'에서 줄바꿈이 필요한 경우 'Hello\nWorld~' 의 형태로 이스
 ```
 12. 화면에 `안녕자바`를 출력해보자. 
 
-```
+```java
 public class PrintExample {
     public static void main(String[] args) {
         System.out.print("안녕자바");
@@ -97,7 +97,7 @@ public class PrintExample {
 
 13. 본인의 정보를 출력하는 프로그램을 만들어 보자. 이름 이메일 전화번호등 명암으로 만들어 출력해 보자. 
 
-```
+```java
 public class PrintExample {
     public static void main(String[] args) {
         System.out.println("홍길동\nexample@example.org\n010-1234-5678");

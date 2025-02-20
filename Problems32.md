@@ -5,7 +5,7 @@
 복잡한 내용이 있는데 일단은 참조 데이터는 .equals로 비교한다고 생각하면된다. 
 scanner를 이용해서 사용자 입력으로 얻어온 데이터는 모두 문자열이므로 .equal 를 사용해야 한다.
 ```
-```
+```java
 String str1 = "Hello"; 
 String str2 = "Hello";
 if (str1.equals(str2) == true) {
@@ -17,21 +17,21 @@ if (str1.equals(str2) == true) {
 ![image](./images/image26.png)
 1. 왼쪽 이미지에서 색칠한 부분의 값들이 들어 왔을때 true가출력 되는 조건식을 가진 if문을 각각 3개 만들어 
 색칠한 부분인지 아닌지 출력하는 프로그램 형태로 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a > 14){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a <= 12 && a > 22){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a > 5 && a <= 9){
@@ -40,42 +40,42 @@ if(a > 5 && a <= 9){
 ```
 2. 왼쪽 이미지에서 색칠 안한 부분의 값들이 들어 왔을때 true가되는 조건식을 만들어 보자.
 not연산자를 사용하는 방법과 not연산자를 사용하지 않는 방법 각각 2개씩 총 6개 if문 수식에 넣어서 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(!(a > 14)){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a <= 14){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(!(a <= 12 && a > 22)){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a > 12 && a <= 22){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(!(a > 5 && a <= 9)){
     System.out.println(true);
 }
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a <= 5 && a > 9){
@@ -85,7 +85,7 @@ if(a <= 5 && a > 9){
 3. 입력받은 수가 3의 배수 이거나 7의 배수이면 ‘3또는 7의 배수’가 출력되고, 
 2의 배수도 되고 5의 배수도 되면 ‘2와 5의 배수’를 출력하고 
 두가지 경우 다 만족하면 2가지 다 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int n = Integer.parseInt(sc.nextLine());
 if(n % 3 == 0 || n % 7 == 0){
@@ -103,7 +103,7 @@ x,y가 모두 양수이면 2번 위치에 점이 존재하게 될것이고
 해당 점의 좌표를 입력받아 해당 점이 어느 위치에 있는지 출력해 보자. 
 x,y축 위에 있을 때는 x,y축 위에 있다고 출력하면 된다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 String input = sc.nextLine();
 String side = "";
@@ -137,7 +137,7 @@ Boolean a= Boolean.parseBoolean("true");
 입력: 16엔터 true엔터
 출력: 버스요금은 1500원 입니다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int age = Integer.parseInt(sc.nextLine());
 boolean isCard = Boolean.parseBoolean(sc.nextLine());
@@ -163,7 +163,7 @@ c. 밥을 먹었으면 ‘밥을 먹었음’, 빵을 먹었으면 ‘빵을 먹
 d. 식사로 ‘밥’과 ‘빵’이 있고 후식으로 국,우유, 아이스크림, 커피가 있는데 밥을 먹으면
 국과 아이스크림중 하나를 빵을 먹으면 우유 커피 중 하나를 후식으로 먹을수 있도록 구현해 보자.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 boolean ateRice = false, ateBread = false;
 boolean milk = false;
@@ -220,7 +220,7 @@ System.out.println("선택한 후식 : " + input);
 i가 7일 경우 일요일이고 월화수목금토일은 1234567과 같다. 
 i값을 가지고 오늘의 요일을 출력하는 프로그램을 만들어 보자.
 ```
-```
+```java
 //빨간줄에 마우스를 올리면 임포트 할 패키지가 뜬다.
 //잘확인해서 해당 클래스를 클릭해서 자동으로 임포트하자.
 LocalDateTime now = LocalDateTime.now();
@@ -230,7 +230,7 @@ DayOfWeek dayOfWeek = now.getDayOfWeek();
 int i = dayOfWeek.getValue();
 System.out.println(i);
 ```
-```
+```java
 LocalDateTime now = LocalDateTime.now();
 System.out.println(now);//현재시간 출력
 DayOfWeek dayOfWeek = now.getDayOfWeek();
@@ -250,7 +250,7 @@ System.out.println(w + "요일");
 ```
 8. 한국사이즈를 입력받아 미국사이즈로 출력하시오.
 ![image](./images/image28.png)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int kor_size = Integer.parseInt(sc.nextLine());
 String us_size = "";
@@ -282,7 +282,7 @@ db 20과락
 또는 과락 없이 평균 60이상 합격이 
 출력된다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int java = Integer.parseInt(sc.nextLine());
 int html = Integer.parseInt(sc.nextLine());
@@ -306,7 +306,7 @@ if(((java + html + db) / 3) >= 60){
 사용자 입력을 받아 결과가 아래 표와 같은 분류가 나오도록 프로그램을 구현하여라.
 ![image](./images/image29.png)
 ![image](./images/image30.png)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 System.out.println("나이를 입력하세요.");
 int age = Integer.parseInt(sc.nextLine());
@@ -360,7 +360,7 @@ System.out.println("")
 겹치는 부분은 본인이 원하는 쪽으로 해석 해서 출력하자. 
 명확하지 않은 경계는 본인이 적절히 결정하자.
 ![image](./images/image31.png)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 boolean s = false;
 boolean m = false;
@@ -572,7 +572,7 @@ do {
 출력
 5*12=60 입니다.
 ```
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int first = 0,second = 0,result = 0,select = 0;
 String _select = "";
@@ -623,7 +623,7 @@ System.out.println(first + " " + _select + " " + second + " = " + result + " 입
 ```
 13. 가위,바위,보 문자열중 하나를 랜덤하게 화면에 출력하는 프로그램을 구현해보자.
 하나를 내는 것 처럼 구현 하려면 0,1,2 3개의 수를 랜덤하게 리턴하게 만든 다음 가위,바위,보 3개에 1:1 매핑하면 된다.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 java.util.Random random = new java.util.Random();
 int a = random.nextInt(3);
@@ -637,7 +637,7 @@ switch(a){
 System.out.println(me);
 ```
 14. 가위 바위 보 게임을 만들어서 이겼는지 졌는지 출력하는 프로그램을 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 java.util.Random random = new java.util.Random();
 int a = random.nextInt(3);
@@ -689,13 +689,13 @@ System.out.println(result);
 총 수에 범위는 6,7,8,9,10 5개 이므로 랜덤 함수에 5를 곱하고 시작을 6부터 하니 더하기 6를 하면 될 것이다. 
 제대로 동작하는지 확인해 보자.
 ```
-```
+```java
 //answer
 java.util.Random random = new java.util.Random();
 int a = random.nextInt(4) + 6;
 System.out.println(a);
 ```
-```
+```java
 Random random = new Random();
 int number = random.nextInt(10); // 0부터 9까지의 정수를 반환
 ```
@@ -706,7 +706,7 @@ int number = random.nextInt(10); // 0부터 9까지의 정수를 반환
 ● int randomNum = random.nextInt(3) + 5; //5,6,7를 얻을 수 있다.
 ```
 15. 1~45까지의 수를 랜덤하게 만들어 3개의 수를 뽑은 다음 본인이 입력한 3개의 수와 몇개 같은지 확인하는 프로그램을 배열로 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 java.util.Random random = new java.util.Random();
 int count = 0;
@@ -730,7 +730,7 @@ System.out.println(count + "개 같습니다.");
 ![image](./images/image32.png)
 16. 왼쪽표를 기본으로 본인이 낼 새금이 얼마인지 출력하는 프로그램을 구현해 보자. 
 만약에 본인이 번돈이 1600만원 이라면 1200만원은 세율이 6%이고 나머지 400만원은 세율이 15%이다.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 long earn = Long.parseLong(sc.nextLine());
 long under1200 = 0,under4600 = 0,under8800 = 0,under15000 = 0,under30000 = 0, under50000 = 0,over50000 = 0;

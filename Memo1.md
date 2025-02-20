@@ -5,7 +5,7 @@
 - `equals` 메소드는 같은지 확인할 때 사용된다.
 - `Object` 에서 `equals` 메소드는 주소를 비교한다.
 - `String` 에서 `equals` 메소드는 문자열 값을 비교한다.
-```
+```java
 String str1 = "홍길동";
 String str2 = "홍길동";
 String str3 = new String("홍길동");
@@ -34,7 +34,7 @@ System.out.println(str3.equals(str4));  //true
 
 # Iterator
 - `java.util.Iterator<Integer> itr = arrList.iterator();` Iterator는 순회 할 수 있는 형태
-```
+```java
 while(itr.hasNext()){
     System.out.println(itr.next() + " ");`
 }

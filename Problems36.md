@@ -1,7 +1,7 @@
 [pdf](./pdf/JAVA240812_323_LOOP.pdf)
 # 다음 문제를 메소드로 만들어 보자.
 1. 1달러는 1,161원이다. 6달러가 우리나라 돈으로 얼마인지 구하는 함수를 만들어보자.
-```
+```java
 public class Money {
     public static double exchange(double dollar,double exchangeRate) {
         double won=dollar*exchangeRate;
@@ -17,7 +17,7 @@ public class Money {
 }
 ```
 2. 구입할 컵의 개수와 가격을 통해 비용을 계산하는 함수를 만들어 보자.
-```
+```java
 public class Cup {
     public static int expense(int cupCount, int cupPrice) {
         int expense = cupCount * cupPrice;
@@ -33,7 +33,7 @@ public class Cup {
 }
 ```
 3. 온도를 표시하는데에는 섭씨와 화씨 2가지가 있다
-```
+```java
 public class Degree {
     public static double toFahrenheit(double celsius) {
         double fahrenheit = (celsius) * 4 / 9 + 32;
@@ -49,7 +49,7 @@ public class Degree {
 ```
 4. 4칙 연산 가능한 메소드를 min mul div 메소드를 사용하여 프로그램으로 만들어 보자.
 새로운 메소드는 상위 코드의 8-9라인 사이에 메소드를 추가 해야 한다.
-```
+```java
 public class Calculate {
     int sum(int a, int b){
         return a + b;
@@ -80,7 +80,7 @@ public class Calculate {
 ![image](./images/image34.png)
 ![image](./images/image35.png)
 7. 입력받은 숫자가 7의 배수인지 아닌지 true, false값을 리턴하는 메소드를 구현해 보자.
-```
+```java
 class Multiple {
     boolean of7(){
         java.util.Scanner sc = new java.util.Scanner(System.in);
@@ -90,7 +90,7 @@ class Multiple {
 }
 ```
 8. 문자열과 숫자를 입력 받아 해당문자열을 숫자만큼 반복 출력하는 메소드를 만들어 보자.
-```
+```java
 class Repeat {
     void repeat(){
         java.util.Scanner sc = new java.util.Scanner(System.in);
@@ -114,7 +114,7 @@ ex)다음과 같은 입력에도 5,2 2,5 결과가 14가 나오게 만들어 보
 메소드가 호출되면 메소드 선언부로 이동해 위에서 아래로 순서대로 실행을 이어 나가다
 메소드가 종료되면 이전에 호출한 코드 부분으로 복귀 한다.
 ```
-```
+```java
 public class MethodExampleOutput {
     public static void main(String[] args) {
         System.out.println(“main start");

@@ -5,7 +5,7 @@
 sql 문법은 대소문자를 구분하지 않지만 테이블에 들어 있는 데이터는 데소문자를 구분한다.
 a >= ‘a’ and a <= ‘b’ 'b' 를 제외한 'b'로 시작하는 문자열 banana는 검색되지 않는다.
 ```
-```
+```sql
 select country_name from countries where country_name <= 'I';
 
 COUNTRY_NAME
@@ -21,7 +21,7 @@ Denmark
 Egypt
 France
 ```
-```
+```sql
 select country_name from countries where country_name <= 'India';
 
 COUNTRY_NAME
@@ -50,14 +50,14 @@ India
 null이 아닌 데이터를 찾고 싶다면 'where 컬럼명 is not null'를 사용하면 된다.
 ```
 
-```
+```sql
 --관리자가 없는 사원의 정보를 출력해보자.
 select * from employees where manager_id=null; --동작하지 않음
 select * from employees where manager_id is null; -- null인경우 선택
 select * from employees where manager_id is not null; -- null이 아닌경우 선택
 ```
 # and로 검색하기
-```
+```sql
 select * from employees where commission_pct is not null and salary >= 10000;
 select * from employees whee commission_pct is not null and salary >= 10000 and manager_id is not null;
 ```
@@ -68,7 +68,7 @@ select * from employees whee commission_pct is not null and salary >= 10000 and 
 컬럼+숫자,
 숫자+숫자
 ```
-```
+```sql
 --사원의 봉급을 50증가한 형태로 출력해 보자.
 select salary,salary+50 from employees;
 --사원의 현봉급보다 10%증가한 형태로 출력해 보자.
@@ -77,7 +77,7 @@ select salary,salary*1.1 from employees;
 select salary, salary+salary, salary*2 from employees;
 ```
 # 컬럼 별명 as
-```
+```sql
 --사원의 봉급을 50증가한 형태로 컬럼명을 upgradeSalary로 출력해 보자.
 select salary,salary+50 as upgradeSalary from employees;
     SALARY UPGRADESALARY
@@ -96,14 +96,14 @@ select salary,salary+50 as upgradeSalary from employees;
 Concatenation(||)를 사용하여 컬럼에 결과물을 결합하여 하나의 컬럼을 만들 수 있다.
 `select 컬럼명 || ‘과’|| 컬럼명 as 합친칼럼명 from 테이블`
 ```
-```
+```sql
 -- 사원의 성과 이름을 합쳐서 fullname이라는 컬럼명으로 출력해보자.
 select first_name||last_Name as fullname from employees;
 select first_name||' '||last_Name as fullname from employees;
 ```
 
 # and or not 논리 연산자
-```
+```sql
 where a > 0 and b > 0 and c > 0  -- 과 같이 기술 한다면 3가지 조건이 모두 참일 때만 해당 데이터가 출력이 된다. 나이가 50이면서 남자인 데이터 두 조건다 만족해야 데이터를 출력하고 싶을때 and를 사용 한다. 
 age=50 and gender= ‘man’
 where a > 0 or b > 0 or c > 0 -- 와 같이 기술 한다면 3가지 조건중 하나라도 참이 있으면 해당 데이터가 출력이 된다.
@@ -113,22 +113,22 @@ where a!=0, where not a=0
 -- a컬럼의 값이 0이 아닌 경우에 데이터가 출력 된다.
 ```
 # between 연산자
-```
+```sql
 --연봉이 8000보다 같거나 많고 10000보다 같거나 작은 사원 정보를 출력해 보자.
 select * from employees where salary between 8000 and 10000;
 select * from employees where salary >= 8000 and salary<=10000;
 ```
-```
+```sql
 --연봉이 7000 미만 이거나 10000초과인 사원 정보를 출력해 보자.
 select * from emp where sal not between 7000 and 10000;
 select * from employees where salary < 7000 or salary>10000;
 ```
-```
+```sql
 --사원의 이름이 E~G로 시작하는 사원정보를 출력해 보자.
 select * from employees where first_name between 'E' and 'H' and first_name != 'H';
 select * from employees where first_name >= 'E' and first_name < 'H' ;
 ```
-```
+```sql
 -- 사원의 입사일이 2004년 5월 20일 ~ 2007년 10월 9일 이전 까지의 사원 정보를 출력해 보자.
 select * from employees where hiredate between '2004-05-20' and '2007-10-10';
 ```
@@ -141,7 +141,7 @@ nvl(컬럼명,0) 컬럼명이 null일때 0를 출력 한다.
 nvl2(컬럼명, ‘notNull’, ‘null’) 컬럼이 null이 아니면 ‘notNull’이 null이면 ‘null’이 출력 된다.
 decode(컬럼명,null,0,컬럼명) 컬럼명이 가지고 있는 값이 null이면 0 아니면 컬럼명이 가지고 있는 값이 출력된다.
 ```
-```
+```sql
 select commission_pct + 1 from employees;
 select nvl(commission_pct,0) + 1 from employees;
 select nvl2(commission_pct,'notNull','null') from employees;
@@ -150,8 +150,8 @@ select nvl2(commission_pct,commission_pct,0) as up_commission from employees;
 select decode(commission_pct,null,0,commission_pct) + 1 from employees;
 ```
 # decode와 case 문법
-```
-decode(컬럼명, 값1,변경값1, 값2,변경값2…, ‘나머지경우변경값’);
+```sql
+-- decode(컬럼명, 값1,변경값1, 값2,변경값2…, ‘나머지경우변경값’);
 -- decode 다음에 오는 컬럼의 값이 값1이면 해당 컬럼의 값은 값1으로 변경되고 값2이면 값2로 변경되고 매핑되는 값이 없을 때에는 나머지 겨우 변경값이 출력 된다.
 -- 다음 예제는 job_id 컬럼의 값이 'IT_PROG'이면 'Developer'로, 'SA_REP'이면 'Sales Representative'로, 그 외의 값이면 'Other Job'으로 변환됩니다.
 SELECT employee_id, job_id, DECODE(
@@ -161,7 +161,7 @@ job_id,
 'Other Job'
 ) AS job_title FROM employees;
 ```
-```
+```sql
 -- 사원의 커미션이 0.1이하면 하 0.2이하면 중 0.2초과면 상,null이면 'null이다' 그 밖의 경우에는 '선택받지 못한데이터' 을 출력해보자.
 -- case에서 end 까지가 하나의 컬럼이 되고, 컬럼명이 길어서 as로 별명을 사용하였다.
 select first_name,commission_pct,
@@ -175,14 +175,14 @@ end as PCT
 from employees;
 ```
 # in 연산자
-```
+```sql
 -- 다음은 employees 테이블에서 job_id가 'IT_PROG', 'SA_REP', 'HR_REP' 중 하나인 행을 선택하는 쿼리입니다:
 SELECT *
 FROM employees
 WHERE job_id IN ('IT_PROG', 'SA_REP', 'HR_REP');
 ```
 # like 연산자
-```
+```sql
 -- "employees" 테이블에서 이름이 "John"으로 시작하는 모든 직원을 검색하려면 다음과 같이 작성할 수 있습니다:
 SELECT * FROM employees WHERE employee_name LIKE 'John%';
 -- "employees" 테이블에서 성이 "Smith"이고 이름이 5글자인 모든 직원을 찾으려면 다음과 같이 작성할 수 있습니다:
@@ -206,7 +206,7 @@ SELECT * FROM employees WHERE employee_name LIKE 'Smith____';
 _: 정확히 한 개의 문자를 나타냅니다.
 ```
 # order by
-```
+```sql
 -- first_name 순서대로 출력
 select * from employees order by first_name;
 -- job_id 순서대로 출력

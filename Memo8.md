@@ -34,7 +34,7 @@
 |count|검색된 총 개수를 반환<br>select count(salary) from employees;<br>급여를 받는 전체 사원의 수|
 |max|검색 결과중 가장 큰수 반환<br>select max(salary) from employees;<br>전체 사원중 급여를 가장 많이 받는 사원의 급여|
 |min|검색 결과중 가장 작은수 반환<br>select min(salary) from employees;<br>전체 사원중 급여를 가장 적게 받는 사원의 급여|
-```
+```sql
 -- 일반 컬럼과 함께 사용하면 출력할 데이터 개수가 달라져서 출력에 문제가 발생하여 사용할 수 없다.
 select sum(salary),salary from employees; –- 동작하지 않음
 -- 그룹함수는 null 때문에 문제가 발생 할 수 있으니 항상 머리속에 null을 생각하며 사용하자.
@@ -47,10 +47,10 @@ select avg(commission_pct),avg(nvl(commission_pct,0)) from employees;
 ```
 
 # group by 절
-```
+```sql
 select department_id,sum(salary),count(*) from employees group by department_id;
 ```
-```
+```sql
 DEPARTMENT_ID SUM(SALARY)   COUNT(*)
 ------------- ----------- ----------
            90       58000          3
@@ -70,7 +70,7 @@ DEPARTMENT_ID SUM(SALARY)   COUNT(*)
 ```
 
 # having 절
-```
+```sql
 SELECT department_id, AVG(salary) 
 FROM employees 
 GROUP BY department_id 
@@ -89,10 +89,10 @@ group by 컬럼 --3 where절에 위해서 걸러진 데이터만 그룹진다.
 having 조건 --4
 order by 컬럼 --6
 ```
-```
+```sql
 select department_id,avg(salary),count(*) from employees group by department_id order by avg(salary);
 ```
-```
+```sql
 DEPARTMENT_ID AVG(SALARY)   COUNT(*)
 ------------- ----------- ----------
 	   50  3475.55556	  45
@@ -118,7 +118,7 @@ DEPARTMENT_ID AVG(SALARY)   COUNT(*)
 ![image](./images/image47.png)
 ![image](./images/image48.png)
 ![image](./images/image49.png)
-```
+```sql
 drop table BTable;
 create table BTable(
 BNO number(10),
@@ -147,11 +147,11 @@ commit;
 select * from BTable;
 select * from GTable;
 ```
-```
+```sql
 -- PK(Primary Key) 테이블에 들어 있는 데이터를 식별하기 위한 컬럼 위의 컬럼 중 BNo 등을 가리킴
 -- FK(Foreign Key) 다른 테이블의 PK컬럼에 들어있는 값중 하나의 값을 가지는 컬럼
 ```
-```
+```sql
 -- 두 테이블에 관계가 있을때 테이블 만들고 데이터 넣고 삭제하는 순서
 -- 1. FK가 없는 테이블을 먼저 만들어야 한다.
 -- 2. FK가 있는 테이블을 만든다.
@@ -167,24 +167,24 @@ select * from btable,gtable where btable.gno = gtable.gno;
 select btable.*,gtable.gprice from btable,gtable where btable.gno = gtable.gno;
 ```
 1. 크로스 조인
-```
-cross Join( 크로스 조인)은 두 테이블이 가지고 있는 모든 데이터를 합쳐서 만들 수 있는 모든 데이터를 만들어 보여주는 작업이다. 
-다음은 2개의 테이블을 크로스 조인하는 예제이다.
+```sql
+-- cross Join( 크로스 조인)은 두 테이블이 가지고 있는 모든 데이터를 합쳐서 만들 수 있는 모든 데이터를 만들어 보여주는 작업이다. 
+-- 다음은 2개의 테이블을 크로스 조인하는 예제이다.
 select * from BTable,Gtable;
 ```
 ![image](./images/image50.png)
-```
-왼쪽 테이블을 BTable 오른쪽 테이블을 GTable이라고 할때 합치는 방법은 상위 처럼
-BTable 각각의 모든 데이터를 GTable 각각의 모든 데이터와 일일이 하나씩 합친 모든 결과를 얻는 방법이다. 
-크로스 조인이라 한다. 
-상위 이미지를 확인해 보자.
-select * from BTable,Gtable; 이렇게 하면 두 테이블에서 데이터를 가지고 합칠 수 있는 모든 데이터와 컬럼이 출력 된다.
-두 테이블을 합친 결과 데이터는 두 테이블에 있는 모든 컬럼을 하나의 데이터로 표현할 수 있어야 하기 때문에 왼쪽 테이블의 컬럼수가 5개 이고, 
-오른쪽 테이블의 컬럼수가 2개라면 양쪽 테이블의 컬럼수를 더한 7이 되어야 한다.
-두 테이블의 모든 데이터를 합쳐 나올 수 있는 모든 데이터는 
-왼쪽 테이블에 데이터가 4개 
-오른쪽 테이블 3개가 있다면 
-실행 결과 총 데이터 수는 12개가 된다. 
+```sql
+-- 왼쪽 테이블을 BTable 오른쪽 테이블을 GTable이라고 할때 합치는 방법은 상위 처럼
+-- BTable 각각의 모든 데이터를 GTable 각각의 모든 데이터와 일일이 하나씩 합친 모든 결과를 얻는 방법이다. 
+-- 크로스 조인이라 한다. 
+-- 상위 이미지를 확인해 보자.
+select * from BTable,Gtable; -- 이렇게 하면 두 테이블에서 데이터를 가지고 합칠 수 있는 모든 데이터와 컬럼이 출력 된다.
+-- 두 테이블을 합친 결과 데이터는 두 테이블에 있는 모든 컬럼을 하나의 데이터로 표현할 수 있어야 하기 때문에 왼쪽 테이블의 컬럼수가 5개 이고, 
+-- 오른쪽 테이블의 컬럼수가 2개라면 양쪽 테이블의 컬럼수를 더한 7이 되어야 한다.
+-- 두 테이블의 모든 데이터를 합쳐 나올 수 있는 모든 데이터는 
+-- 왼쪽 테이블에 데이터가 4개 
+-- 오른쪽 테이블 3개가 있다면 
+-- 실행 결과 총 데이터 수는 12개가 된다. 
 ```
 2. 동등조인
 ```
@@ -197,13 +197,13 @@ equi Join(이퀴 조인) 특정 컬럼 값이 일치되는 데이터(row)만 합
 두 테이블을 gno 컬럼으로 equi join한 결과이다.
 ```
 ![image](./images/image51.png)
-```
+```sql
 select * from BTable,GTable; -- 과 같이 크로스 조인하여 만들수 있는 모든 데이터를 만든 다음 
 where BTable.GNo = GTable.Gno; -- 과 같이 두 테이블에서 특정 컬럼이 같은 데이터만 뽑아서 출력하면 된다. 
 select * from BTable,GTable where BTable.GNo = GTable.Gno;
 ```
 # JoinDto.java
-```
+```java
 package com.the.dto;
 
 import java.util.Objects;
@@ -284,7 +284,7 @@ public class JoinDto {
 }
 ```
 # JoinDao.java
-```
+```java
 package com.the.dao;
 
 import java.sql.ResultSet;
@@ -323,7 +323,7 @@ public class JoinDao {
 ```
 ![image](./images/image52.png)
 3. 셀프 조인
-```
+```sql
 select e1.* from employees e1; -- 사원
 select e2.* from employees e2; -- 관리자
 

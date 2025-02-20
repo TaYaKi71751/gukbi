@@ -3,7 +3,7 @@ if문 문제풀이가 어렵다면 책이나 웹에 있는 if문 예제를 여�
 
 ![image](./images/image19.png)
 1. 왼쪽 순서도를 프로그램으로 구현해서 출력 결과를 확인해보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int input = Integer.parseInt(sc.nextLine());
 int a = Integer.parseInt(sc.nextLine());
@@ -27,7 +27,7 @@ System.out.println(b);
 ```
 2. 입력 받은 숫자의 절대값을 출력하는 프로그램을 만들어 보자. 
 (힌트: 0보다 작으면 -1를 곱하면 양수가 된다.)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 if(a < 0){
@@ -40,13 +40,13 @@ System.out.println(a);
 따라서, 2는 100의 약수이다. 
 사용자에게 숫자를 하나 입력받아 126의 약수인지 아닌지 출력해 보자. 
 (힌트: 126을 사용자가 입력한 수로 나눈 나머지가 0이면 약수이다. 126%x==0 이 true이면 x는 126의 약수이다.)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 System.out.println((126 % a) == 0 ? "약수임" : "약수가 아님");
 ```
 4. 두수를 입력받아 첫번째수가 두번째수의 약수인지 아닌지 확인하는 프로그램을 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -54,7 +54,7 @@ System.out.println((b % a) == 0 ? "약수임" : "약수가 아님");
 ```
 5. 국영수과목의 점수를 입력받아 평균이 80이상이면 합격 이하면 불합격을 출력해 보자.
 (힌트: 과목수만큼 과목점수를사용자 입력을 받아 평균을 구한후 80보다 작으면 불합격 크면 합격)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int kor = Integer.parseInt(sc.nextLine());
 int eng = Integer.parseInt(sc.nextLine());
@@ -67,7 +67,7 @@ System.out.println(((kor + eng + math) / 3) > 80 ? "합격" : "불합격");
 중괄호 안에 선언한 변수는 해당 중괄호 안에서만 사용 할 수 있다. 
 되도록 메인 메소드 시작 부분에 변수를 선언해서 사용하자. 
 if문 안의 블럭에 x를 선언하면 if문 밖에서 접근할 수 없다.)
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int x = Integer.parseInt(sc.nextLine());
 if(x <= 5){
@@ -87,7 +87,7 @@ if(x <= 5){
 
 8. 변수 a에 20, b에 0를 넣은 다음 만약에 a가 10보다 크면 a에 b를 넣고 
 아니면 b에 a를 넣어서 a,b값을 출력하는 프로그램을 만들어 보자.
-```
+```java
 int a = 20;
 int b = 0;
 if(a > 10){
@@ -99,14 +99,14 @@ System.out.println(a);
 System.out.println(b);
 ```
 9. 입력한 숫자가 10보다 큰 수인지 아닌지 출력하는 코드를 만들어 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 System.out.println("입력한 수는 10보다 " + (a > 10 ? "큽니다." : "크지 않습니다."))
 ```
 10. result라는 변수를 선언하고 사용자에게 수를 입력 받아 0이 면 0을
 0이 아니면 1을 넣어서 출력하는 프로그램을 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int result = Integer.parseInt(sc.nextLine());
 if(result == 0){
@@ -117,7 +117,7 @@ if(result == 0){
 System.out.println(result);
 ```
 11. 두수를 입력해서 큰수에서 작은수를 뺀 차이를 출력하는 프로그램을 구현해 보자.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int a = Integer.parseInt(sc.nextLine());
 int b = Integer.parseInt(sc.nextLine());
@@ -131,7 +131,7 @@ System.out.println(result);
 ```
 12. 입력받은 3개의 숫자 중 가장 큰 수를 출력하는 코드를 구현하시오. 
 3개중에서 2개를선택해서 큰수를 구한후 나머지 하나를 비교해 보면된다.
-```
+```java
 java.util.Scanner sc = new java.util.Scanner(System.in);
 int big  = 0;
 int a = Integer.parseInt(sc.nextLine());
@@ -149,7 +149,7 @@ System.out.println(big);
 ```
 
 답안 3번
-```
+```java
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -167,7 +167,7 @@ public class Main {
 }
 ```
 답안 10번.
-```
+```java
 Scanner scanner = new Scanner(System.in);
 System.out.print("숫자를 입력하세요: ");
 String input = scanner.nextLine();

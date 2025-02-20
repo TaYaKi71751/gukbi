@@ -45,7 +45,7 @@ return의 용도는 값을 반환하기 위함
 ```
 매개변수의 개수가 다르거나 종류가 달라 식별이 가능할 때 메소드 이름 중복을 허용 한다는 의미
 ```
-```
+```java
 int sum(int a, int b){
     return a + b;
 }
@@ -66,7 +66,7 @@ int sum(int a, int b, int c){
 ```
 ![image](./images/image37.png)
 12. 왼쪽 이미지 처럼 동작하는 함수들을 만들어 보자.
-```
+```java
 public class Main{
     void function1(){
         function5();

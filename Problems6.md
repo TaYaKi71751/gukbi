@@ -49,7 +49,7 @@ MAX_STUDENTS라는 심볼릭 상수를 정의하고, 값을 30으로 설정합�
 SCHOOL_NAME이라는 심볼릭 상수를 정의하고, 값을 "우리학교"로 설정합니다.
 main 메소드에서 두 상수를 출력하세요. 
 ```
-```
+```java
 public class School { 
     // 여기에 심볼릭 상수를 정의하세요. 
     public static final int MAX_STUDENTS = 30;
@@ -68,7 +68,7 @@ FAVORITE_COLOR라는 심볼릭 상수를 정의하고, 값을 "파란색"으로 
 FAVORITE_FOOD라는 심볼릭 상수를 정의하고, 값을 "피자"로 설정합니다. 
 main 메소드에서 두 상수를 출력하세요. 
 ```
-```
+```java
 public class Favorites { 
     // 여기에 심볼릭 상수를 정의하세요. 
     public static final String FAVORITE_COLOR = "파란색";
