@@ -2,8 +2,10 @@
 
 [JavaProjects](./java/customhobby)
 ```sql
+drop table customer;
+drop table hobby;
 CREATE TABLE CUSTOMER (
-    id NUMBER PRIMARY KEY,
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR2(100),
     age NUMBER(3),  -- 나이 추가
     height NUMBER(5,2),
@@ -11,74 +13,38 @@ CREATE TABLE CUSTOMER (
 );
 
 CREATE TABLE HOBBY (
-    id NUMBER PRIMARY KEY,  -- 하비 ID (기본키)
-    custom_id NUMBER ,  --(FK) 별도의 고유 식별자 추가
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,  -- 하비 ID (기본키)
+    customer_id NUMBER ,  --(FK) 별도의 고유 식별자 추가
     hobby VARCHAR2(255)
 );
+-- CUSTOMER 테이블에 샘플 데이터 삽입 (id 제외)
+INSERT INTO CUSTOMER (name, age, height, birthday) VALUES ('김철수', 30, 175.5, TO_DATE('1994-05-12', 'YYYY-MM-DD'));
+INSERT INTO CUSTOMER (name, age, height, birthday) VALUES ('이영희', 25, 162.3, TO_DATE('1999-08-24', 'YYYY-MM-DD'));
+INSERT INTO CUSTOMER (name, age, height, birthday) VALUES ('박민수', 40, 180.0, TO_DATE('1984-12-01', 'YYYY-MM-DD'));
+INSERT INTO CUSTOMER (name, age, height, birthday) VALUES ('최지현', 35, 168.7, TO_DATE('1989-07-15', 'YYYY-MM-DD'));
+INSERT INTO CUSTOMER (name, age, height, birthday) VALUES ('정하나', 28, 155.2, TO_DATE('1996-03-21', 'YYYY-MM-DD'));
+
+-- HOBBY 테이블에 샘플 데이터 삽입 (id 제외)
+INSERT INTO HOBBY (customer_id, hobby) VALUES (1, '축구');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (1, '독서');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (2, '요가');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (3, '등산');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (3, '바둑');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (4, '수영');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (5, '영화 감상');
+INSERT INTO HOBBY (customer_id, hobby) VALUES (5, '베이킹');
+
 ```
 
-3개의 테이블
 ```sql
--- 고객 테이블
-
-CREATE TABLE CUSTOMER (
-    id NUMBER PRIMARY KEY,
-    name VARCHAR2(100),
-    age NUMBER(3),
-    height NUMBER(5,2),
-    birthday DATE
-);
-
--- 취미 테이블
-
-CREATE TABLE HOBBY (
-    id NUMBER PRIMARY KEY,
-    hobby VARCHAR2(255) UNIQUE
-);
-
--- 고객과 취미의 관계를 저장하는 테이블 (N:M 관계)
-
-CREATE TABLE CUSTOMER_HOBBY (
-    customer_id NUMBER,
-    hobby_id NUMBER,
-    PRIMARY KEY (customer_id, hobby_id),
-    CONSTRAINT fk_customer FOREIGN KEY (customer_id) REFERENCES CUSTOMER(id) ON DELETE CASCADE,
-    CONSTRAINT fk_hobby FOREIGN KEY (hobby_id) REFERENCES HOBBY(id) ON DELETE CASCADE
-);
+select customer.*,hobby.hobby from customer,hobby where customer.id = hobby.customer_id(+);
 ```
-소스 db
-```sql
--- 취미 테이블 (HobbyDto)
-drop table hobby;
-CREATE TABLE Hobby (
-id number,
-hobby VARCHAR(255)
-);
--- 고객 테이블 (CustomerDto)
-drop table customer;
-CREATE TABLE Customer (
-id number,
-name VARCHAR(255),
-height number,
-birthday DATE
-);
-```
-```sql
--- Hobby 테이블 데이터 삽입
-INSERT INTO Hobby (id, hobby) VALUES (1, 'Reading');
-INSERT INTO Hobby (id, hobby) VALUES (2, 'Swimming');
-INSERT INTO Hobby (id, hobby) VALUES (3, 'Cycling');
-INSERT INTO Hobby (id, hobby) VALUES (4, 'Gaming');
-INSERT INTO Hobby (id, hobby) VALUES (5, 'Traveling');
 
--- Customer 테이블 데이터 삽입
-INSERT INTO Customer (id, name, height, birthday) VALUES (1, 'Alice', 165.5, TO_DATE('1995-06-15', 'YYYY-MM-DD'));
-INSERT INTO Customer (id, name, height, birthday) VALUES (2, 'Bob', 178.2, TO_DATE('1988-09-23', 'YYYY-MM-DD'));
-INSERT INTO Customer (id, name, height, birthday) VALUES (3, 'Charlie', 172.0, TO_DATE('1992-11-11', 'YYYY-MM-DD'));
-INSERT INTO Customer (id, name, height, birthday) VALUES (4, 'David', 180.7, TO_DATE('2000-03-05', 'YYYY-MM-DD'));
-INSERT INTO Customer (id, name, height, birthday) VALUES (5, 'Emma', 158.3, TO_DATE('1998-07-20', 'YYYY-MM-DD'));
-commit;
+```java
+// DBConn 쉽게 데이터베이스를 사용할 수 있는 클래스
+// DBConn.statementQuery(String sql)    select                 resultSet
+// DBConn.statementUpdate(String sql)   insert,update,delete   변경된 개수
 ```
-```
-select customer.*,hobby.hobby from customer,hobby where customer.id = hobby.id(+);
+```java
+// HobbyDao Hobby 테이블 CRUD작업 하는 클래스
 ```
