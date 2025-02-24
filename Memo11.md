@@ -48,3 +48,7 @@ select customer.*,hobby.hobby from customer,hobby where customer.id = hobby.cust
 ```java
 // HobbyDao Hobby 테이블 CRUD작업 하는 클래스
 ```
+```sql
+-- 마지막 customer의 id
+select max(id) as max_id from customer;
+```
