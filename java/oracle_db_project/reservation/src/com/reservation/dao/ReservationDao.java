@@ -88,7 +88,7 @@ public class ReservationDao {
 	}
 				
 	public void insert(ReservationDto dto) {
-		String sql_select = String.format("select max(customer_seats) from seats where table_id = %d", dto.getTableId());
+		String sql_select = String.format("select customer_seats from seats where table_id = %d", dto.getTableId());
 		Long customerSeats = null;
 		ResultSet rs = DBConn.statementQuery(sql_select);
 		try {
@@ -108,7 +108,6 @@ public class ReservationDao {
 		}
 		String sql=String.format("insert into reservations values(%d,%d,%d,to_date('%s','YYYY-MM-DD HH24:MI:SS'),%d)",
 				dto.getReservationId(),dto.getCustomerId(),dto.getTableId(),dto.getReservationTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),dto.getNumberOfGuests());
-		System.out.println(sql);
 		DBConn.statementUpdate(sql);
 		System.out.println("[입력 완료]");
 	}

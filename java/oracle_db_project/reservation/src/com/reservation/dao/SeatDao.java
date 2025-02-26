@@ -84,21 +84,18 @@ public class SeatDao {
 				
 	public void insert(SeatDto dto) {
 		Long numberOfGuests = null;
-		String sql_select = String.format("select max(number_of_guests) from reservations where table_id = %d", dto.getTableId());
+		String sql_select = String.format("select number_of_guests from reservations where table_id = %d", dto.getTableId());
 		ResultSet rs = DBConn.statementQuery(sql_select);
 		try {
 			while(rs.next()) {
 				numberOfGuests = rs.getLong("number_of_guests");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		if(numberOfGuests == null) {
-			System.out.println("number_of_guests는 null입니다.");
-			return;
+			System.out.println("WARNING: number_of_guests는 null입니다.");
 		}
-		if(dto.getCustomerSeats() < numberOfGuests) {
+		if(numberOfGuests != null && dto.getCustomerSeats() < numberOfGuests) {
 			System.out.println("customer_seats가 number_of_guest보다 작습니다.");
 		}
 		String sql=String.format("insert into seats values(%d,%d,'%s')",
