@@ -62,7 +62,7 @@ public class SeatDao {
 		}
 		return resultDtos;	
 	}
-	public SeatDto selectId(int id) {
+	public SeatDto selectId(Long id) {
 		SeatDto resultDtos = null;
 		ResultSet rs=DBConn.statementQuery(String.format("select * from seats where table_id=%d", id));
 		if(rs!=null) {
@@ -115,12 +115,12 @@ public class SeatDao {
 		System.out.println("[삭제 완료]");
 	}
 	
-	public ArrayList<Integer> getIds() {
-		ArrayList<Integer> ids=new ArrayList<Integer>();
+	public ArrayList<Long> getIds() {
+		ArrayList<Long> ids=new ArrayList<Long>();
 		ResultSet rs=DBConn.statementQuery(String.format("select * from seats"));
 		try {
 			while(rs.next()) {
-				ids.add(rs.getInt("table_id"));
+				ids.add(rs.getLong("table_id"));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

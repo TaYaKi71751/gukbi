@@ -65,7 +65,7 @@ public class ReservationDao {
 		}
 		return resultDtos;	
 	}
-	public ReservationDto selectId(int id) {
+	public ReservationDto selectId(Long id) {
 		ReservationDto resultDtos=new ReservationDto();
 		ResultSet rs=DBConn.statementQuery(String.format("select * from reservations where reservation_id=%d", id));
 		if(rs!=null) {
@@ -147,12 +147,12 @@ public class ReservationDao {
 		System.out.println("[삭제 완료]");
 	}
 	
-	public ArrayList<Integer> getIds() {
-		ArrayList<Integer> ids=new ArrayList<Integer>();
+	public ArrayList<Long> getIds() {
+		ArrayList<Long> ids=new ArrayList<Long>();
 		ResultSet rs=DBConn.statementQuery(String.format("select * from reservations"));
 		try {
 			while(rs.next()) {
-				ids.add(rs.getInt("customer_id"));
+				ids.add(rs.getLong("customer_id"));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

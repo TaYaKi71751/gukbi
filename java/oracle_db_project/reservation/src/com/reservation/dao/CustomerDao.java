@@ -69,7 +69,7 @@ public class CustomerDao {
 		}
 		return resultDtos;	
 	}
-	public CustomerDto selectId(int id) {
+	public CustomerDto selectId(Long id) {
 		CustomerDto resultDtos=new CustomerDto();
 		ResultSet rs=DBConn.statementQuery(String.format("select * from customers where customer_id=%d", id));
 		if(rs!=null) {
@@ -115,12 +115,12 @@ public class CustomerDao {
 		System.out.println("[삭제 완료]");
 	}
 	
-	public ArrayList<Integer> getIds() {
-		ArrayList<Integer> ids=new ArrayList<Integer>();
+	public ArrayList<Long> getIds() {
+		ArrayList<Long> ids=new ArrayList<Long>();
 		ResultSet rs=DBConn.statementQuery(String.format("select * from customers"));
 		try {
 			while(rs.next()) {
-				ids.add(rs.getInt("customer_id"));
+				ids.add(rs.getLong("customer_id"));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

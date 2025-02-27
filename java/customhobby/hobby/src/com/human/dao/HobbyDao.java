@@ -66,19 +66,19 @@ public class HobbyDao {
 //	return ids;
 //	}
 //
-//	public int getMaxId() {
-//		int maxIdValue=-1;
-//		ResultSet rs=DBConn.statementQuery(String.format("select max(id) as maxId from hobby"));
-//		if(rs!=null) {
-//			try {
-//				rs.next();
-//				maxIdValue=rs.getInt("maxId");	
-//			}catch (SQLException e) {
-//				e.printStackTrace();
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return maxIdValue;
-//	}
+	public int getMaxId() {
+		int maxIdValue=-1;
+		ResultSet rs=DBConn.statementQuery(String.format("select max(customer_id) as maxId from customers"));
+		if(rs!=null) {
+			try {
+				rs.next();
+				maxIdValue=rs.getInt("maxId");	
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return maxIdValue;
+	}
 }
