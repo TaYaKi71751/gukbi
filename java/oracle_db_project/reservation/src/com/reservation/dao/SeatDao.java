@@ -130,7 +130,9 @@ public class SeatDao {
 
 	public Long getMaxId() {
 		Long maxIdValue=-1l;
-		ResultSet rs=DBConn.statementQuery(String.format("select max(table_id) as maxId from seats"));
+		ResultSet rs=DBConn.statementQuery(
+				String.format("select max(table_id) as maxId from seats")
+		);
 		if(rs!=null) {
 			try {
 				rs.next();

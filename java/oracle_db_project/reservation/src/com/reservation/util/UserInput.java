@@ -29,7 +29,7 @@ public class UserInput {
 		}
 
 		public static LocalDateTime inputLocalDateTime(String str) {
-			System.out.println(str + " 생일을 입력하세요.(yyyy-MM-dd HH:mm:ss)>>");
+			System.out.println(str + " 시간을 입력하세요.(yyyy-MM-dd HH:mm:ss)>>");
 			return LocalDateTime.parse(sc.nextLine(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		}
 
