@@ -3,7 +3,6 @@ package com.reservation.ex;
 import java.util.ArrayList;
 
 import com.reservation.dao.CustomerDao;
-import com.reservation.dao.CustomerReservationSeatDao;
 import com.reservation.dao.ReservationDao;
 import com.reservation.dao.SeatDao;
 import com.reservation.util.UserInput;
@@ -12,7 +11,6 @@ public class DbConnEx {
 	CustomerDao customerDao = new CustomerDao();
 	SeatDao seatDao = new SeatDao();
 	ReservationDao reservationDao = new ReservationDao();
-	CustomerReservationSeatDao customerReservationSeatDao = new CustomerReservationSeatDao();
 	
 	public void menu() {
 		boolean isPlay = true;
