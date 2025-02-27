@@ -166,7 +166,7 @@ public class ReservationDao {
 		if(rs!=null) {
 			try {
 				rs.next();
-				maxIdValue=rs.getLong("maxId");	
+				maxIdValue=rs.getLong("maxId");
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}catch(Exception e) {
