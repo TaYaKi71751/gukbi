@@ -41,7 +41,7 @@ public class CustomerReservationSeatDao {
 		}
 	}
 	public ArrayList<CustomerReservationSeatDto> selectAll(){
-		ArrayList<CustomerReservationSeatDto> results = new ArrayList<>();
+		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
 		String sql = "select customers.*, "
 	           + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
 	           + "reservations.table_id as reservations_table_id, reservations.reservation_time, reservations.number_of_guests, "
@@ -132,7 +132,7 @@ public class CustomerReservationSeatDao {
 	}
 
 	public ArrayList<CustomerReservationSeatDto> selectReservationId(Long reservation_id){
-		ArrayList<CustomerReservationSeatDto> results = new ArrayList<>();
+		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
 		String sql = String.format(
 		    "select customers.*, "
 		  + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
@@ -177,7 +177,7 @@ public class CustomerReservationSeatDao {
 	}
 
 	public ArrayList<CustomerReservationSeatDto> selectTableId(Long table_id){
-		ArrayList<CustomerReservationSeatDto> results = new ArrayList<>();
+		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
 		String sql = String.format(
 		    "select customers.*, "
 		  + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
