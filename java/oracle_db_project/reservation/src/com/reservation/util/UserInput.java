@@ -24,7 +24,7 @@ public class UserInput {
 		}
 
 		public static String inputString(String st) {
-			System.out.println(st + " 이름을 입력하세요.>>");
+			System.out.println(st + " 문자열을 입력하세요.>>");
 			return sc.nextLine();
 		}
 
