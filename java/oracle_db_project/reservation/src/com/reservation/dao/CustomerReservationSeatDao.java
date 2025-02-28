@@ -41,150 +41,185 @@ public class CustomerReservationSeatDao {
 		}
 	}
 	public ArrayList<CustomerReservationSeatDto> selectAll(){
-		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
-		String sql = "select * from customers,seats,reservations where customers.customer_id = reservations.customer_id and seats.table_id = reservations.table_id";
-		ResultSet rs = DBConn.statementQuery(sql);
-		try {
-			while(rs.next()) {
-				results.add(
-					new CustomerReservationSeatDto(
-						new CustomerDto(
-							rs.getLong("customer_id"),
-							rs.getString("first_name"),
-							rs.getString("last_name"),
-							rs.getString("email"),
-							rs.getString("phone")
-						),
-						new ReservationDto(
-							rs.getLong("reservation_id"),
-							rs.getLong("customer_id"),
-							rs.getLong("table_id"),
-							rs.getTimestamp("reservation_time").toLocalDateTime(),
-							rs.getLong("number_of_guests")
-						),
-						new SeatDto(
-							rs.getLong("table_id"),
-							rs.getLong("customer_seats"),
-							rs.getString("status")
-						)
-					)
-				);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return results;
+		ArrayList<CustomerReservationSeatDto> results = new ArrayList<>();
+		String sql = "select customers.*, "
+	           + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
+	           + "reservations.table_id as reservations_table_id, reservations.reservation_time, reservations.number_of_guests, "
+	           + "seats.table_id as seats_table_id, seats.customer_seats, seats.status "
+	           + "from customers "
+	           + "full outer join reservations on customers.customer_id = reservations.customer_id "
+	           + "full outer join seats on seats.table_id = reservations.table_id";
+
+		try { 
+			ResultSet rs = DBConn.statementQuery(sql);
+	    while (rs.next()) {
+	        results.add(new CustomerReservationSeatDto(
+	            new CustomerDto(
+	                rs.getLong("customer_id"),
+	                rs.getString("first_name"),
+	                rs.getString("last_name"),
+	                rs.getString("email"),
+	                rs.getString("phone")
+	            ),
+	            new ReservationDto(
+	                rs.getLong("reservation_id"),
+	                rs.getLong("reservation_customer_id"),
+	                rs.getLong("reservations_table_id"),
+	                rs.getTimestamp("reservation_time") != null 
+	                    ? rs.getTimestamp("reservation_time").toLocalDateTime() 
+	                    : null,
+	                rs.getLong("number_of_guests")
+	            ),
+	            new SeatDto(
+	                rs.getLong("seats_table_id"),
+	                rs.getLong("customer_seats"),
+	                rs.getString("status")
+	            )
+	        ));
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace(); // Consider logging instead
+	}
+
+	return results;
 	}
 
 	public ArrayList<CustomerReservationSeatDto> selectCustomerId(Long customer_id){
 		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
-		String sql = String.format("select * from customers,seats,reservations where customers.customer_id = %d and customers.customer_id = reservations.customer_id and seats.table_id = reservations.table_id",customer_id);
+
+		String sql = "select customers.*, "
+		           + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
+		           + "reservations.table_id as reservations_table_id, reservations.reservation_time, reservations.number_of_guests, "
+		           + "seats.table_id as seat_table_id, seats.customer_seats, seats.status "
+		           + "from customers "
+		           + "full outer join reservations on customers.customer_id = reservations.customer_id "
+		           + "full outer join seats on seats.table_id = reservations.table_id "
+		           + "where customers.customer_id = " + customer_id;
+	
 		ResultSet rs = DBConn.statementQuery(sql);
+	
 		try {
-			while(rs.next()) {
-				results.add(
-					new CustomerReservationSeatDto(
-						new CustomerDto(
-							rs.getLong("customer_id"),
-							rs.getString("first_name"),
-							rs.getString("last_name"),
-							rs.getString("email"),
-							rs.getString("phone")
-						),
-						new ReservationDto(
-							rs.getLong("reservation_id"),
-							rs.getLong("customer_id"),
-							rs.getLong("table_id"),
-							rs.getTimestamp("reservation_time").toLocalDateTime(),
-							rs.getLong("number_of_guests")
-						),
-						new SeatDto(
-							rs.getLong("table_id"),
-							rs.getLong("customer_seats"),
-							rs.getString("status")
-						)
-					)
-				);
-			}
+		    while (rs.next()) {
+		        results.add(new CustomerReservationSeatDto(
+		            new CustomerDto(
+		                rs.getLong("customer_id"),
+		                rs.getString("first_name"),
+		                rs.getString("last_name"),
+		                rs.getString("email"),
+		                rs.getString("phone")
+		            ),
+		            new ReservationDto(
+		                rs.getLong("reservation_id"),
+		                rs.getLong("reservation_customer_id"),
+		                rs.getLong("reservations_table_id"),
+		                rs.getTimestamp("reservation_time") != null 
+		                    ? rs.getTimestamp("reservation_time").toLocalDateTime() 
+		                    : null,
+		                rs.getLong("number_of_guests")
+		            ),
+		            new SeatDto(
+		                rs.getLong("seat_table_id"),
+		                rs.getLong("customer_seats"),
+		                rs.getString("status")
+		            )
+		        ));
+		    }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    e.printStackTrace();
 		}
+	
 		return results;
 	}
 
 	public ArrayList<CustomerReservationSeatDto> selectReservationId(Long reservation_id){
-		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
-		String sql = String.format("select * from customers,seats,reservations where reservations.reservation_id = %d and customers.customer_id = reservations.customer_id and seats.table_id = reservations.table_id",reservation_id);
+		ArrayList<CustomerReservationSeatDto> results = new ArrayList<>();
+		String sql = String.format(
+		    "select customers.*, "
+		  + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
+		  + "reservations.table_id as reservations_table_id, reservations.reservation_time, reservations.number_of_guests, "
+		  + "seats.table_id as seat_table_id, seats.customer_seats, seats.status "
+		  + "from reservations "
+		  + "full outer join customers on customers.customer_id = reservations.customer_id "
+		  + "full outer join seats on seats.table_id = reservations.table_id "
+		  + "where reservations.reservation_id = %d", reservation_id);
 		ResultSet rs = DBConn.statementQuery(sql);
+	
 		try {
-			while(rs.next()) {
-				results.add(
-					new CustomerReservationSeatDto(
-						new CustomerDto(
-							rs.getLong("customer_id"),
-							rs.getString("first_name"),
-							rs.getString("last_name"),
-							rs.getString("email"),
-							rs.getString("phone")
-						),
-						new ReservationDto(
-							rs.getLong("reservation_id"),
-							rs.getLong("customer_id"),
-							rs.getLong("table_id"),
-							rs.getTimestamp("reservation_time").toLocalDateTime(),
-							rs.getLong("number_of_guests")
-						),
-						new SeatDto(
-							rs.getLong("table_id"),
-							rs.getLong("customer_seats"),
-							rs.getString("status")
-						)
-					)
-				);
-			}
+		    while (rs.next()) {
+		        results.add(new CustomerReservationSeatDto(
+		            new CustomerDto(
+		                rs.getLong("customer_id"),
+		                rs.getString("first_name"),
+		                rs.getString("last_name"),
+		                rs.getString("email"),
+		                rs.getString("phone")
+		            ),
+		            new ReservationDto(
+		                rs.getLong("reservation_id"),
+		                rs.getLong("reservation_customer_id"),
+		                rs.getLong("reservations_table_id"),
+		                rs.getTimestamp("reservation_time") != null 
+		                    ? rs.getTimestamp("reservation_time").toLocalDateTime() 
+		                    : null,
+		                rs.getLong("number_of_guests")
+		            ),
+		            new SeatDto(
+		                rs.getLong("seat_table_id"),
+		                rs.getLong("customer_seats"),
+		                rs.getString("status")
+		            )
+		        ));
+		    }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    e.printStackTrace();
 		}
 		return results;
 	}
 
 	public ArrayList<CustomerReservationSeatDto> selectTableId(Long table_id){
-		ArrayList<CustomerReservationSeatDto> results = new ArrayList<CustomerReservationSeatDto>();
-		String sql = String.format("select * from customers,seats,reservations where seats.table_id = %d and customers.customer_id = reservations.customer_id and seats.table_id = reservations.table_id",table_id);
+		ArrayList<CustomerReservationSeatDto> results = new ArrayList<>();
+		String sql = String.format(
+		    "select customers.*, "
+		  + "reservations.reservation_id, reservations.customer_id as reservation_customer_id, "
+		  + "reservations.table_id as reservations_table_id, reservations.reservation_time, reservations.number_of_guests, "
+		  + "seats.table_id as seat_table_id, seats.customer_seats, seats.status "
+		  + "from seats "
+		  + "full outer join reservations on seats.table_id = reservations.table_id "
+		  + "full outer join customers on customers.customer_id = reservations.customer_id "
+		  + "where seats.table_id = %d", table_id);
+	
 		ResultSet rs = DBConn.statementQuery(sql);
+	
 		try {
-			while(rs.next()) {
-				results.add(
-					new CustomerReservationSeatDto(
-						new CustomerDto(
-							rs.getLong("customer_id"),
-							rs.getString("first_name"),
-							rs.getString("last_name"),
-							rs.getString("email"),
-							rs.getString("phone")
-						),
-						new ReservationDto(
-							rs.getLong("reservation_id"),
-							rs.getLong("customer_id"),
-							rs.getLong("table_id"),
-							rs.getTimestamp("reservation_time").toLocalDateTime(),
-							rs.getLong("number_of_guests")
-						),
-						new SeatDto(
-							rs.getLong("table_id"),
-							rs.getLong("customer_seats"),
-							rs.getString("status")
-						)
-					)
-				);
-			}
+		    while (rs.next()) {
+		        results.add(new CustomerReservationSeatDto(
+		            new CustomerDto(
+		                rs.getLong("customer_id"),
+		                rs.getString("first_name"),
+		                rs.getString("last_name"),
+		                rs.getString("email"),
+		                rs.getString("phone")
+		            ),
+		            new ReservationDto(
+		                rs.getLong("reservation_id"),
+		                rs.getLong("reservation_customer_id"),
+		                rs.getLong("reservations_table_id"),
+		                rs.getTimestamp("reservation_time") != null 
+		                    ? rs.getTimestamp("reservation_time").toLocalDateTime() 
+		                    : null,
+		                rs.getLong("number_of_guests")
+		            ),
+		            new SeatDto(
+		                rs.getLong("seat_table_id"),
+		                rs.getLong("customer_seats"),
+		                rs.getString("status")
+		            )
+		        ));
+		    }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    e.printStackTrace();
 		}
+	
 		return results;
 	}
 }

@@ -18,7 +18,7 @@ public class DBConn {
 		if (dbConn ==null) {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				String url="jdbc:oracle:thin:@localhost:1522:xe";
+				String url="jdbc:oracle:thin:@localhost:1521:";
 				String id="c##reservation";
 				String pw="reservation";
 				dbConn=DriverManager.getConnection(url,id,pw);
