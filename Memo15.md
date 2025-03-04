@@ -40,3 +40,15 @@
 |GIF|.gif|움직이는 이미지나 투명한 이미지를 만들떄 사용<br>선명도가 떨어진다.|
 |JPG|.jpg|용량 대비 선명도가 높아 가장 많이 사용되나,<br>투명한 이미지를 만들 수 없다.|
 |PNG|.png|선명도가 높고 투명 이미지도 되지만 용량이 크다.|
+## A 태그
+```html
+<!-- 새 탭에서 열기 -->
+<a href="https://www.daum.net" target="_blank" title="다음blank이동" />
+<!-- 현재 탭에서 열기 -->
+<a href="https://www.daum.net" target="_self" title="다음self이동" />
+<!-- img 이동 -->
+<a href="https://www.daum.net">
+ <img src="img/flower.jpg" width="100" height="40">
+</a>
+```
+
