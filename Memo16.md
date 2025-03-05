@@ -204,7 +204,7 @@ cellspacing="숫자" (셀 사이의 간격을 지정)
 |-|-|
 |rowspan|테이블의 td를 세로로 합칠때 사용한다.|
 |colspan|테이블의 td를 가로로 합칠때 사용한다.|
-```
+```html
 <table border="1">
  <tr>
   <th>1</th>
