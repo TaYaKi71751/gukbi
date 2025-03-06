@@ -63,6 +63,7 @@ ex)?username=1234
     <br>
     <input type="reset" value="Reset">
     <input type="submit" value="Submit">
+</form>
 ```
 ```
 action속성은 사용자가 입력한 데이터를 처리할 주소를 넣으면 되는데,
