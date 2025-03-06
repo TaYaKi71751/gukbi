@@ -110,14 +110,17 @@ post방식은 쿼리스트링 처럼 전송상태를 눈으로 확인 하는 것
 다음은 라디오 버튼 사용 방법이다. form태그 안에 기술하면 된다.
 ```
 ```html
-<label>Gender</label>
-<!-- 알파벳 순 -->
-<input id="female" type="radio" name="gender" value="female">
-<label for="female">Female</label>
-<input id="male" type="radio" name="gender" value="male">
-<label for="male">Male</label>
-<input id="rather_not_say" type="radio" name="gender" value="rather_not_say" checked>
-<label for="rather_not_say">Rather not say</label>
+<form>
+    <label>Gender</label>
+    <!-- 알파벳 순 -->
+    <input id="female" type="radio" name="gender" value="female">
+    <label for="female">Female</label>
+    <input id="male" type="radio" name="gender" value="male">
+    <label for="male">Male</label>
+    <input id="rather_not_say" type="radio" name="gender" value="rather_not_say" checked>
+    <label for="rather_not_say">Rather not say</label>
+    <input type="submit">
+</form>
 ```
 ```
 라디오 버튼은 여러개의 값 중 하나를 선택 할 때 사용한다.
@@ -134,13 +137,16 @@ name속성이 gender로 같아 같은 그룹 인 것을 알 수 있다.
 다음 체크박스를 확인해 보자.
 ```
 ```html
-<label>Hobby</label>
-<input id="read" type="checkbox" name="hobby" value="read" checked>
-<label for="read">Reading</label>
-<input id="game" type="checkbox" name="hobby" value="game">
-<label for="game">Gaming</label>
-<input id="movie" type="checkbox" name="hobby" value="movie" checked>
-<label for="movie">Watch Movies</label>
+<form>
+    <label>Hobby</label>
+    <input id="read" type="checkbox" name="hobby" value="read" checked>
+    <label for="read">Reading</label>
+    <input id="game" type="checkbox" name="hobby" value="game">
+    <label for="game">Gaming</label>
+    <input id="movie" type="checkbox" name="hobby" value="movie" checked>
+    <label for="movie">Watch Movies</label>
+    <input type="submit">
+</form>
 ```
 ```
 체크박스는 하나의 그룹에서 여러개의 값을 선택하여 전송 할 때 사용 한다.
@@ -162,29 +168,35 @@ multiple속성은 여러개의 데이터를 선택하고자 할 때 사용한다
 ?phone=1&phone=3
 ```
 ```html
-<label>Phone Number</label>
-<select name="phone" size="3" multiple>
-    <option value="1" selected>SKT</option>
-    <option value="2">KT</option>
-    <option value="3" selected>LGU+</option>
-</select>
+<form>
+    <label>Phone Number</label>
+    <select name="phone" size="3" multiple>
+        <option value="1" selected>SKT</option>
+        <option value="2">KT</option>
+        <option value="3" selected>LGU+</option>
+    </select>
+    <input type="submit">
+</form>
 ```
 ```
 optgroup태그 label속성을 이용하여 원하는 그룹의 타이틀을 만들 수 있다.
 ```
 ```html
-<select name="phone" size="8" multiple>
-    <optgroup label="Carrier">
-        <option value="1" selected>SKT</option>
-        <option value="2">KT</option>
-        <option value="3" selected>LGU+</option>
-    </optgroup>
-    <optgroup label="Fruit">
-        <option value="4" selected>Peach</option>
-        <option value="5">Orange</option>
-        <option value="6">Apple</option>
-    </optgroup>
-</select>
+<form>
+    <select name="phone" size="8" multiple>
+        <optgroup label="Carrier">
+            <option value="1" selected>SKT</option>
+            <option value="2">KT</option>
+            <option value="3" selected>LGU+</option>
+        </optgroup>
+        <optgroup label="Fruit">
+            <option value="4" selected>Peach</option>
+            <option value="5">Orange</option>
+            <option value="6">Apple</option>
+        </optgroup>
+    </select>
+    <input type="submit">
+</form>
 ```
 ```
 상위 html의 쿼리스트링은 다음과 같다.
@@ -240,7 +252,10 @@ rows가 높이에 해당한다.
 해당 태그의 값은 value로 접근 할 수 없다.
 ```
 ```html
-<textarea name="textarea" rows="10" cols="50">Text</textarea>
+<form>
+    <textarea name="textarea" rows="10" cols="50">Text</textarea>
+    <input type="submit">
+</form>
 ```
 # MultimediaTag
 ## audio
@@ -380,7 +395,10 @@ span태그 내에서 블럭 태그를 사용하면 문제가 발생 한다는 �
 입력되는 문장의 오타를 실시간으로 점검
 ```
 ```html
-<input type="text" pattern="정규식" title="오류 시 표시 될 메시지">
+<form>
+    <input type="text" pattern="정규식" title="오류 시 표시 될 메시지">
+    <input type="submit">
+</form>
 ```
 ## pattern
 ```
@@ -401,8 +419,11 @@ HTML5 정규식을 입력합니다.
 email, url 같은 타입에서도 사용 할 수 있습니다.
 ```
 ```html
-<input type="text" pattern="\d+" title="숫자만 입력해 주세요" required />
-<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="올바른 이메일 형식을 입력해 주세요" required />
-<input type="text" pattern="[a-z0-9]+" title="영문 소문자와 숫자만 입력해 주세요" required />
-<input type="password" pattern="(?=.*[a-zA-Z])(?=.*\d).{8,}" title="8자 이상, 문자와 숫자를 포함해야 합니다" required />
+<form>
+    <input type="text" pattern="\d+" title="숫자만 입력해 주세요" required />
+    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="올바른 이메일 형식을 입력해 주세요" required />
+    <input type="text" pattern="[a-z0-9]+" title="영문 소문자와 숫자만 입력해 주세요" required />
+    <input type="password" pattern="(?=.*[a-zA-Z])(?=.*\d).{8,}" title="8자 이상, 문자와 숫자를 포함해야 합니다" required />
+    <input type="submit">
+</form>
 ```
