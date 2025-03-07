@@ -49,11 +49,12 @@
 ```
 |선택자|방법|설명|
 |-|-|-|
-|자손 선택자([자손 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Descendant_combinator))|선택자1 선택자2|선택자1보다 아래쪽에 있는 모든 선택자2를 선택|
-|자식 선택자([자식 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Child_combinator))|선택자1>선택자2|선택자1의 자식 중 선택자2를 선택|
-|그룹 선택자([선택자 목록](https://developer.mozilla.org/ko/docs/Web/CSS/Selector_list))|선택자1,선택자2|선택자1과 선택자2를 모두 선택|
-|단일 형제 선택자([인접 형제 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Next-sibling_combinator))|선택자1+선택자2|선택자1 바로 오른쪽에 있는 선택자2를 선택|
-|다중 형제 선택자([일반 형제 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Subsequent-sibling_combinator))|선택자1~선택자2|선택자1 오른쪽에 있는 선택자2 여러개를 선택|
+|[자손 선택자](#자손-선택자)([자손 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Descendant_combinator))|선택자1 선택자2|선택자1보다 아래쪽에 있는 모든 선택자2를 선택|
+|[자식 선택자](#자식-선택자)([자식 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Child_combinator))|선택자1>선택자2|선택자1의 자식 중 선택자2를 선택|
+|[그룹 선택자](#그룹-선택자)([선택자 목록](https://developer.mozilla.org/ko/docs/Web/CSS/Selector_list))|선택자1,선택자2|선택자1과 선택자2를 모두 선택|
+|[단일 형제 선택자](#단일-형제-선택자)([인접 형제 결합자](https://developer.mozilla.org/ko자docs/Web/CSS/Next-sibling_combinator))|선택자1+선택자2|선택자1 바로 오른쪽에 있는 선택자2를 선택|
+|[다중 형제 선택자](#다중-형제-선택자)([일반 형제 결합자](https://developer.mozilla.org/ko/docs/Web/CSS/Subsequent-sibling_combinator))|선택자1~선택자2|선택자1 오른쪽에 있는 선택자2 여러개를 선택|
+### 자손 선택자
 ```html
 <style>
 /*
@@ -75,7 +76,9 @@ div p {
 </div>
 <p>선택안됨</p>
 ```
-```css
+### 자식 선택자
+```html
+<style>
 /*
  * 자식 선택자 (자식 결합자)
  * https://developer.mozilla.org/ko/docs/Web/CSS/Child_combinator
@@ -83,7 +86,18 @@ div p {
 div > p {
     background-color: yellow;
 }
+</style>
+<div>
+    선택안됨
+    <h2>선택안됨</h2>
+    <p>선택됨</p>
+</div>
+<div>
+    <span><p>선택안됨</p></span>
+</div>
+<p>선택안됨</p>
 ```
+### 그룹 선택자
 ```html
 <style>
 /*
@@ -105,6 +119,7 @@ div, p {
 </div>
 <p>선택됨</p>
 ```
+### 단일 형제 선택자
 ```html
 <style>
 /*
@@ -132,6 +147,7 @@ div + p {
 </div>
 <p>선택됨</p>
 ```
+### 다중 형제 선택자
 ```html
 <style>
 /*
