@@ -22,7 +22,13 @@
 |[선택자:first-of-type](https://developer.mozilla.org/ko/docs/Web/CSS/:first-of-type)|선택자와 동일한 형제 노드들을 기준으로 첫번째로 선택자와 일치하는 element가 선택된다.|
 |[선택자:last-of-type](https://developer.mozilla.org/en-US/docs/Web/CSS/:last-of-type)|선택자와 동일한 형제 노드들을 기준으로 마지막으로 선택자와 일치하는 element가 선택된다.|
 |[선택자:empty](https://developer.mozilla.org/en-US/docs/Web/CSS/:empty)|텍스트 및 공백을 포함하여 자식요소가 없는 선택자가 선택된다.|
-
+### 기타 가상 선택자
+|선택자|설명|
+|-|-|
+|[:not(선택자1)](https://developer.mozilla.org/ko/docs/Web/CSS/:not)|선택자1에서 선택되지 않는 모든 태그를 선택한다.<br>`:not(p)` : p태그를 제외하고 다 선택|
+|[선택자1:not(선택자2)](https://developer.mozilla.org/ko/docs/Web/CSS/:not)|선택자1에서 선택된 태그중 선택자2에 해당되지 않는 모든 태그만 선택한다.<br>`.c1:not(p)` : 클래스이름이 c1인 태그중 p태그가 아닌 태그 선택|
+|[선택자::first-line](https://developer.mozilla.org/ko/docs/Web/CSS/::first-line)|찾은 태그에 있는 문자열 중 첫 줄을 선택한다.<br> `p::first-line` `<p>letter<br>?</p>`에서 ?를 제외한 letter에만 적용|
+|[선택자::first-letter](https://developer.mozilla.org/ko/docs/Web/CSS/::first-letter)|찾은 태그에 있는 문자열 중 첫 문자를 선택한다.<br>`p::first-letter` `<p>letter</p>` 에서 l문자에만 적용|
 ## 트리 선택자 
 ![image](./images/image57.png)
 ```
@@ -175,3 +181,16 @@ div ~ p {
 </div>
 <p>선택됨</p>
 ```
+## 개별성 규칙의 점수([우선순위](https://developer.mozilla.org/ko/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts#%EC%9A%B0%EC%84%A0_%EC%88%9C%EC%9C%84_specificity))
+```
+점수가 높을 수록 우선순위를 가진다.
+```
+|선택자|예시|점수|
+|-|-|-|
+|[전체 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Universal_selectors)|`*`|0|
+|[태그 선택자](developer.mozilla.org/ko/docs/Web/CSS/Type_selectors)|`div`,`p`,`h1`|1|
+|[클래스 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Class_selectors)|`.box`,`.title`|10|
+|[가상 요소 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-elements)|`::before`,`::after`|1|
+|[가상 클래스 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-classes)|`:hover`,`:visited`,`:link`|10|
+|[아이디 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/ID_selectors)|`#title`,`#main`|100|
+|[스타일 속성](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)|`style="color: red;"`|1000|
