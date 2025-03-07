@@ -2,13 +2,13 @@
 ## 기본 선택자 확인하기
 |선택자 이름|선택자 형태|설명|
 |-|-|-|
-|전체 선택자|*|모든 태그에 스타일을 적용한다.<br>`* {속성:값;}`|
-|태그 선택자|태그|기술한 태그에 스타일을 적용한다.<br>`h1 {속성:값;}`|
-|아이디선택자|#아이디|특정 아이디가 적용된 태그에 스타일을 적용한다.<br>`#id1 {속성:값;}`|
-|클래스선택자|.클래스|특정 클래스가 적용된 태그에 스타일을 적용한다.<br>`.class1 {속성:값;}`|
+|[전체 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Universal_selectors)|*|모든 태그에 스타일을 적용한다.<br>`* {속성:값;}`|
+|태그 선택자([유형 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Type_selectors))|태그|기술한 태그에 스타일을 적용한다.<br>`h1 {속성:값;}`|
+|[아이디선택자](https://developer.mozilla.org/ko/docs/Web/CSS/ID_selectors)|#아이디|특정 아이디가 적용된 태그에 스타일을 적용한다.<br>`#id1 {속성:값;}`|
+|[클래스선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Class_selectors)|.클래스|특정 클래스가 적용된 태그에 스타일을 적용한다.<br>`.class1 {속성:값;}`|
 |태그 중 클래스|태그.클래스|선택된 태그 중 클래스를 가지고 있는 태그만 선택<br>`div.class1 {속성:값;}`|
-|다중 태그|태그,태그|여러 다른 태그에 스타일을 적용하고 싶을 때 사용<br>`p,h1 {속성:값;}`|
-## 속성 선택자 확인하기
+|다중 태그([선택자 목록](https://developer.mozilla.org/ko/docs/Web/CSS/Selector_list))|태그,태그|여러 다른 태그에 스타일을 적용하고 싶을 때 사용<br>`p,h1 {속성:값;}`|
+## 속성 선택자([특성 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Attribute_selectors)) 확인하기
 |선택자 형태|설명|
 |-|-|
 |선택자[속성]|선택자에 의해서 선택된 태그중 해당 속성이 있는 태그만 선택 된다.<br>`a[href]`,`img[title]`,`*[class]`|
