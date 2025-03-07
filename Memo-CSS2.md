@@ -188,7 +188,7 @@ div ~ p {
 |선택자|예시|점수|
 |-|-|-|
 |[전체 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Universal_selectors)|`*`|0|
-|[태그 선택자](developer.mozilla.org/ko/docs/Web/CSS/Type_selectors)|`div`,`p`,`h1`|1|
+|[태그 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Type_selectors)|`div`,`p`,`h1`|1|
 |[클래스 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Class_selectors)|`.box`,`.title`|10|
 |[가상 요소 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-elements)|`::before`,`::after`|1|
 |[가상 클래스 선택자](https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-classes)|`:hover`,`:visited`,`:link`|10|
