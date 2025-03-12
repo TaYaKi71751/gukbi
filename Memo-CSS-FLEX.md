@@ -108,7 +108,7 @@ wrap과 비슷하지만, 아이템들이 반대 순서로 배치됩니다.
 ```
 기본값이며, stretch와 비슷하게 동작합니다.
 ```
-### [justify-content](https://developer.mozilla.org/ko/docs/Web/CSS/justify-content), [align-items](https://developer.mozilla.org/ko/docs/Web/CSS/align-items)
+### [place-content](https://developer.mozilla.org/ko/docs/Web/CSS/place-content)
 ```
 ● center: 아이템들을 중앙에 정렬합니다.
 ● stretch: 아이템들이 컨테이너의 크기에 맞춰 늘어납니다. (기본값)
