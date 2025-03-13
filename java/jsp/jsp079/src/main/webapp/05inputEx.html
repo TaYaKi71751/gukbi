@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- label for속성에 기술된 id는  해당 라벨을 클릭하면 for에 기술된 id컨트롤이 선택된다.
+     multiple 여러 파일을 선택할 수 있다.
+     textarea 여러줄 입력
+     
+     전송하는 데이터가 없을때  null체크
+     데이터가 몇 개올지 모를때 배열처리(getParameterValues)
+   null체크와 문자열 배열크기 확인해서 출력가능(.length 사용하여 크기확인가능)
+ -->
+<form action="FormEx3" method="get">
+  <div>
+    <label for="file">파일 여러개 선택</label>
+    <input type="file" id="file" name="myfile" multiple /><br>
+ 	생일선택:<input type="datetime-local" name="birthday"><br>
+ 	여러줄 입력:
+ 	 <textarea name="multiline" rows="4" cols="50">hi~textarea</textarea>
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+</body>
+</html>
