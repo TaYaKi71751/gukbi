@@ -28,31 +28,20 @@ public class StarServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String char1=request.getParameter("char1");
-		int num1=Integer.parseInt(request.getParameter("num1"));
-		
-		
+		String character = request.getParameter("character");
+		int size = Integer.parseInt(request.getParameter("size"));
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		for(int i=0;i<num1;i++) {
-			//공간 찍기
-			for(int j=i;j<num1;j++) {
-				out.println("&nbsp;");
-			}
-			//별찍는 for
-			for(int j=0;j<=i;j++) {
-				out.println("*");
-				
+		for(int i = 0;i < size;i++) {
+			for(int j = 0;j < i + 1;j++){
+				out.print(character);
 			}
 			out.println("<br>");
 		}
 		out.println("</body>");
 		out.println("</html>");
-		
-		
-		
 	}
 
 	/**
@@ -62,5 +51,4 @@ public class StarServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

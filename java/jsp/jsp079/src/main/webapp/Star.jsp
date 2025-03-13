@@ -8,28 +8,14 @@
 </head>
 <body>
 <%
-
-String char1=request.getParameter("char1");
-int num1=Integer.parseInt(request.getParameter("num1"));
-
-for(int i=0;i<num1;i++) {
-	//공간 찍기
-	for(int j=i;j<num1;j++) {
-%>		
-		&nbsp;
-<%
-	}
-	//별찍는 for
-	for(int j=0;j<=i;j++) {
-%>		
-		*
-<%
-	}
+    int size = Integer.parseInt(request.getParameter("size"));
+    String character = request.getParameter("character");
+    for(int i = 0;i < size;i++){
+        for(int j = 0;j < i + 1;j++){
+            out.print(character);
+        }
+        out.println("<br>");
+    }
 %>
-	<br>
-<%
-}
-%>
-
 </body>
 </html>
