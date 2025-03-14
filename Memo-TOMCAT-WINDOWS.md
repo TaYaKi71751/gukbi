@@ -56,9 +56,9 @@ mvn archetype:generate -DarchetypeGroupId="org.apache.maven.archetypes" -Darchet
 ### Select No to use local tomcat
 ![image](./images/image71.png)
 ### Scroll down, then click Finish button
+![image](./images/image72.png)
 ### Auto Build
 ```powershell
 watchexec -r -e java,xml,jsp,html,css,js -- mvn package
 ```
-![image](./images/image72.png)
 ### Right click on `<PROJECT_NAME>/target/<PROJECT_NAME>.war`, then click `Run on Server`
