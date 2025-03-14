@@ -50,7 +50,7 @@
     "Java Servlet Template": {
         "prefix": "eclipse-servlet",
         "body": [
-            "package ${1:com.example};",
+            "package ${TM_DIRECTORY/.*src.main.java.//};",
             "",
             "import java.io.IOException;",
             "import javax.servlet.ServletException;",
@@ -82,7 +82,6 @@
         "description": "Creates a Java Servlet class with filename as class name"
     }
 }
-
 ```
 ## Usage
 ### eclipse-jsp
