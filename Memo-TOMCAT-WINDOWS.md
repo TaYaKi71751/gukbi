@@ -38,10 +38,10 @@ https://marketplace.visualstudio.com/items?itemName=redhat.vscode-community-serv
 ```powershell
 mvn archetype:generate -DarchetypeGroupId="org.apache.maven.archetypes" -DarchetypeArtifactId="maven-archetype-webapp" -DarchetypeVersion="1.5"
 ```
-- `groupId`: Enter Project Name
-- `artifactId`: Enter Project Name
-- `version`: Enter
-- `package`: Enter Package Name
+- `groupId`: jsp080
+- `artifactId`: jsp080
+- `version`: 
+- `package`: com.the.ex
 ## Add servlet dependency to pom.xml
 ```xml
     <dependency>
