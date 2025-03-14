@@ -1,16 +1,18 @@
 # Tomcat
-## [mvn create project](https://maven.apache.org/archetypes/maven-archetype-webapp/)
-```shell
-mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeVersion=1.5
-```
+## [macOS](./Memo-TOMCAT-MACOS.md)
+## [Windows](./Memo-TOMCAT-WINDOWS.md)
 ## html
 ### [01start.html](./java/jsp/jsp079/src/main/webapp/01start.html)
+### [naver.html](./java/jsp/jsp079/src/main/webapp/naver.html)
+### [Calculator.html](./java/jsp/jsp079/src/main/webapp/Calculator.html)
 ## JSP
 ### GET,POST
 ```
 JSP에서 GET, POST 모두 동일하게 처리 된다.
 ```
 ### [GetServlet.jsp](./java/jsp/jsp079/src/main/webapp/GetServlet.jsp)
+### [SearchResult.jsp](./java/jsp/jsp079/src/main/webapp/SearchResult.jsp)
+### [Calculate.jsp](./java/jsp/jsp079/src/main/webapp/Calculate.jsp)
 ### JSP Tag
 #### 표현식 `<%= %>`
 ```
@@ -25,9 +27,12 @@ JSP에서 GET, POST 모두 동일하게 처리 된다.
 ```
 지역변수나 Java로직 사용
 ```
+#### 
 ## Servlet
 ### [GetServlet](./java/jsp/jsp079/src/main/java/com/the/ex/GetServlet.java)
 ### [StarServlet](./java/jsp/jsp079/src/main/java/com/the/ex/StarServlet.java)
+### [SearchResult](./java/jsp/jsp079/src/main/java/com/the/ex/SearchResult.java)
+### [Calculate](./java/jsp/jsp079/src/main/java/com/the/ex/Calculate.java)
 ## 별찍기
 ### JSP
 ```jsp
