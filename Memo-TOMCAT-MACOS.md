@@ -57,6 +57,6 @@ mvn archetype:generate -DarchetypeGroupId="org.apache.maven.archetypes" -Darchet
 ![image](./images/image72.png)
 ### Auto Build
 ```shell
-watchexec -r -e java,xml,jsp,html,css,js -- mvn package
+watchexec -r -e java,xml,jsp,html,css,js -i 'target/**/*.html' -i 'target/**/*.jsp' -i 'target/**/*.js' -i 'target/**/*.css' -i 'target/**/*.xml' -- mvn clean package
 ```
 ### Right click on `<PROJECT_NAME>/target/<PROJECT_NAME>.war`, then click `Run on Server`
