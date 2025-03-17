@@ -12,7 +12,7 @@
 	<%
 		if(request.getAttribute("id")==null){
 			//response.sendRedirect("/jsp06login/login.jsp?isLogin=false");
-			out.println("<script>location.href='/jsp06login/login.jsp?isLogin=false'</script>");
+			out.println("<script>location.href='./login.jsp?isLogin=false'</script>");
 		}
 	%>
 	<%=request.getAttribute("id") %>님이 로그인 하였습니다.
