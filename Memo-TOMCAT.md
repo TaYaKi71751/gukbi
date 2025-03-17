@@ -6,3 +6,5 @@
 ## [HTML](./Memo-TOMCAT-HTML.md)
 ## [JSP](./Memo-TOMCAT-JSP.md)
 ## [Servlet](./Memo-TOMCAT-SERVLET.md)
+### [Redirect](./Memo-TOMCAT-REDIRECT.md)
+### [Dispatcher](./Memo-TOMCAT-DISPATCHER.md)
