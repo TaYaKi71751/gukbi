@@ -11,7 +11,7 @@
 
 
 <form action="12jstlIfChoose.jsp">
-색생을 선택하세요<br>
+색상을 선택하세요<br>
 	<select id="color" name="color">
 		<option value="1" > 빨강</option>
 		<option value="2" > 노랑</option>
