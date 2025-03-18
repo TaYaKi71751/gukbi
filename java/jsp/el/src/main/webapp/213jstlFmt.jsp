@@ -14,8 +14,8 @@
 <c:set var="now" value="<%=java.time.LocalDateTime.now()%>"></c:set>
 \${now } : ${now }
 
-<fmt:parseDate value="<%=java.time.LocalDateTime.now().toString()%>"
- pattern="yyyy-MM-dd'T'HH:mm:ss.SSS"
+<fmt:parseDate value="<%=java.time.LocalDateTime.now().withNano(0).toString()%>"
+ pattern="yyyy-MM-dd'T'HH:mm:ss"
  var="now" type="both" />
 
 <fmt:formatDate value="${now }"></fmt:formatDate>
@@ -31,13 +31,13 @@ pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" :
 
 
 <%
-	java.time.LocalDateTime ld=java.time.LocalDateTime.now();
+	java.time.LocalDateTime ld=java.time.LocalDateTime.now().withNano(0);
 	request.setAttribute("ld", ld);
 %>
 <hr>
 -${requestScope.ld }-
 <fmt:parseDate value="${requestScope.ld }"
- pattern="yyyy-MM-dd'T'HH:mm:ss.SSS"
+ pattern="yyyy-MM-dd'T'HH:mm:ss"
  var="now" type="both" />
 <hr>
 <fmt:formatDate value="${now}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"></fmt:formatDate>
