@@ -36,11 +36,11 @@ public class LoginServlet extends HttpServlet {
 				(id.trim().equals("java2") && pw.trim().equals("2345"))) {			
 			request.setAttribute("id", id);
 			// 로그인 성공
-			RequestDispatcher dispatcher = request.getRequestDispatcher("success.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("loginsuccess.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			// 로그인 실패
-			response.sendRedirect("login.jsp?isSuccess=false");
+			response.sendRedirect("postlogin.jsp?isSuccess=false");
 		}
 	}
 
