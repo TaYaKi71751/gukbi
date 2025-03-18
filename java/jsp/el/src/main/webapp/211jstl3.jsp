@@ -58,6 +58,7 @@ ${status.index }:${status.count }:${cnt }<c:if test="${not status.last }">,</c:i
 </c:forEach>
 <br>
 <c:forEach var="cnt" begin="2" end="10" varStatus="status" step="2">
+<%-- step="2" 는 두개씩 증가 --%>
 ${status.index }:${status.count }:${cnt }<c:if test="${not status.last }">,</c:if>	
 </c:forEach>
 <br>
@@ -66,14 +67,13 @@ ${status.index }:${status.count }:${cnt }<c:if test="${not status.last }">,</c:i
 
 
 <c:forTokens var="city" items="서울.인천,대구.부산" delims=",">
+<%-- delims="," 콤마로 구분 --%>
 	${city }<br>
 </c:forTokens>
 <c:forTokens var="city" items="서울.인천,대구.부산" delims=",.">
+<%-- delims=",." 콤마 및 점으로 구분 --%>
 	${city }<br>
 </c:forTokens>
-<hr><hr><hr>
-
-<hr><hr><hr>
 	<c:url value="images/pic.jpg" var="data"/>
 	<h3>${data }</h3>
 	<img src="${data }" width="100%" height="100%">
