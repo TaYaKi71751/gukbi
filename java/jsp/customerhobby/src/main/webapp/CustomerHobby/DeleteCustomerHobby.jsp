@@ -15,9 +15,42 @@
 </head>
 <body>
 	<div id="menu"><a href="../main.jsp">main</a></div>
-	<form action="DeleteCustomerHobbyDB.jsp" method="post">
-		고객 ID : <input type="" name="customerId">
-		<input type="submit" value="Delete">
+	<form action="DeleteCustomerHobbyDB.jsp" method="get">
+		<%
+		CustomerHobbyDao customerHobbyDao = new CustomerHobbyDao();
+		ArrayList<CustomerHobbyDto> dtos = customerHobbyDao.selectCustomerHobbys();
+		request.setAttribute("customerHobbyList", dtos);
+		%>
+		<table>
+			<thead>
+				<th>선택</th>
+				<th>Customer.CustomerId</th>
+				<th>Customer.Name</th>
+				<th>Customer.Age</th>
+				<th>Customer.Height</th>
+				<th>Customer.BirthDay</th>
+				<th>Hobby.HobbyId</th>
+				<th>Hobby.CustomerId</th>
+				<th>Hobby.Hobby</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="dto" items="${customerHobbyList}">
+				<tr>
+					<td><input type="checkbox" name="id" value="${dto.getCustomer().getId()}"></td>
+					<td>${dto.getCustomer().getId()}</td>
+					<td>${dto.getCustomer().getName()}</td>
+					<td>${dto.getCustomer().getAge()}</td>
+					<td>${dto.getCustomer().getHeight()}</td>
+					<td>${dto.getCustomer().getBirthday()}</td>
+					<td>${dto.getHobby().getId()}</td>
+					<td>${dto.getHobby().getCustomerId()}</td>
+					<td>${dto.getHobby().getHobby()}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	<input type="submit" value=전송 >
 	</form>
 
 </body>

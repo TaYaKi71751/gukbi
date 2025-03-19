@@ -22,21 +22,23 @@
 	</div>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		CustomerDao customerDao = new CustomerDao();
-		String id = request.getParameter("id");
-		if(id == null){
+		CustomerHobbyDao customerHobbyDao = new CustomerHobbyDao();
+		String[] ids = request.getParameterValues("id");
+		if(ids == null || ids.length == 0){
 			out.println("값을 입력하세요.");
 			return;
 		}
-		Long customerId = null;
-		try {
-			customerId = Long.parseLong(id);
-		} catch(Exception e){
-			out.println("Invalid input");
-			return;
-		}
-		if(customerId != null) {
-			customerDao.delete(customerId);
+		for(String id:ids){
+			Long customerId = null;
+			try {
+				customerId = Long.parseLong(id);
+			} catch(Exception e){
+				out.println("Invalid input");
+				return;
+			}
+			if(customerId != null) {
+				customerHobbyDao.deleteCustomerHobbys(customerId);
+			}
 		}
 		out.println("고객 삭제 성공");
 	%>

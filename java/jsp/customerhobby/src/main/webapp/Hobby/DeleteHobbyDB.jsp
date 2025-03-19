@@ -18,20 +18,22 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		HobbyDao hobbyDao = new HobbyDao();
-		String id = request.getParameter("id");
-		if(id == null){
+		String[] ids = request.getParameterValues("id");
+		if(ids == null || ids.length == 0){
 			out.println("값을 입력하세요.");
 			return;
 		}
-		Long hobbyId = null;
-		try {
-			hobbyId = Long.parseLong(id);
-        } catch (Exception e) {
-			out.println("Invalid input");
-			return;
-		}
-		if(hobbyId != null) {
-			hobbyDao.delete(hobbyId);
+		for(String id:ids){
+		    Long hobbyId = null;
+						try {
+						    hobbyId = Long.parseLong(id);
+						} catch (Exception e) {
+						    out.println("Invalid input");
+										return;
+						}
+						if(hobbyId != null) {
+						    hobbyDao.delete(hobbyId);
+						}
 		}
 		out.println("취미 삭제 성공");
 	%>

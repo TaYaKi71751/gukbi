@@ -21,21 +21,6 @@
     <title>SelectHobby</title>
 </head>
 <body>
-	<style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-
 	<h2>Hobby List</h2>
 	<div id="menu"><a href="../main.jsp">main</a></div>
 	<table>
