@@ -10,17 +10,21 @@
 </head>
 <body>
 	<h1>메인 메뉴</h1>
-	<a href="Customer/SelectCustomer.jsp">SelectCustomer</a>
-	<a href="Customer/InsertCustomer.jsp">InsertCustomer</a>
-	<a href="Customer/UpdateCustomer.jsp">UpdateCustomer</a>
-	<a href="Customer/DeleteCustomer.jsp">DeleteCustomer</a>
-	<br>
-	<a href="Hobby/SelectHobby.jsp">SelectHobby</a>
-	<a href="Hobby/InsertHobby.jsp">InsertHobby</a>
-	<a href="Hobby/UpdateHobby.jsp">UpdateHobby</a>
-	<a href="Hobby/DeleteHobby.jsp">DeleteHobby</a>
-	<br>
-	<a href="CustomerHobby/SelectCustomerHobby.jsp">SelectCustomerHobby</a>
-	<a href="CustomerHobby/DeleteCustomerHobby.jsp">DeleteCustomerHobby</a>
+	<div id="customer">
+		<a href="Customer/SelectCustomer.jsp">SelectCustomer</a>
+		<a href="Customer/InsertCustomer.jsp">InsertCustomer</a>
+		<a href="Customer/UpdateCustomer.jsp">UpdateCustomer</a>
+		<a href="Customer/DeleteCustomer.jsp">DeleteCustomer</a>
+	</div>
+	<div id="hobby">
+		<a href="Hobby/SelectHobby.jsp">SelectHobby</a>
+		<a href="Hobby/InsertHobby.jsp">InsertHobby</a>
+		<a href="Hobby/UpdateHobby.jsp">UpdateHobby</a>
+		<a href="Hobby/DeleteHobby.jsp">DeleteHobby</a>
+	</div>
+	<div id="customerhobby">
+		<a href="CustomerHobby/SelectCustomerHobby.jsp">SelectCustomerHobby</a>
+		<a href="CustomerHobby/DeleteCustomerHobby.jsp">DeleteCustomerHobby</a>
+	</div>
 </body>
 </html>

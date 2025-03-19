@@ -44,20 +44,6 @@ public class HobbyDao {
 		DBConn.statementUpdate(sql);
 	}
 
-	public Long getMaxId(){
-		String sql = "SELECT MAX(id) FROM hobby";
-        ResultSet rs = DBConn.statementQuery(sql);
-        try {
-            if(rs.next()) {
-                return rs.getLong("MAX(id)");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-	}
-	
-
 }
 
 
