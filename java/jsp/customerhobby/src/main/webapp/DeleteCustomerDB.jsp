@@ -30,7 +30,7 @@
 			return;
 		}
 		if(customerId != null) {
-			customerDao.update(customerId);
+			customerDao.delete(customerId);
 		}
 	%>
 </body>
