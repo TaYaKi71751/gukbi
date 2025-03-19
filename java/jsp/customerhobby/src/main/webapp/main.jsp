@@ -6,23 +6,26 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="index.css">
     <title>Insert title here</title>
 </head>
 <body>
-	<h1>메인 메뉴</h1>
 	<div id="customer">
+		<h3>Customer Menu</h3>
 		<a href="Customer/SelectCustomer.jsp">SelectCustomer</a>
 		<a href="Customer/InsertCustomer.jsp">InsertCustomer</a>
 		<a href="Customer/UpdateCustomer.jsp">UpdateCustomer</a>
 		<a href="Customer/DeleteCustomer.jsp">DeleteCustomer</a>
 	</div>
 	<div id="hobby">
+		<h3>Hobby Menu</h3>
 		<a href="Hobby/SelectHobby.jsp">SelectHobby</a>
 		<a href="Hobby/InsertHobby.jsp">InsertHobby</a>
 		<a href="Hobby/UpdateHobby.jsp">UpdateHobby</a>
 		<a href="Hobby/DeleteHobby.jsp">DeleteHobby</a>
 	</div>
 	<div id="customerhobby">
+		<h3>CustomerHobby Menu</h3>
 		<a href="CustomerHobby/SelectCustomerHobby.jsp">SelectCustomerHobby</a>
 		<a href="CustomerHobby/DeleteCustomerHobby.jsp">DeleteCustomerHobby</a>
 	</div>

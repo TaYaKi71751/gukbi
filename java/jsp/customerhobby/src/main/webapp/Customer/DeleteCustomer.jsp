@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 <body>
-	<a href="../main.jsp">main</a><br>
+	<div id="menu">
+	<a href="../main.jsp">main</a>
+	</div>
 	<form action="DeleteCustomerDB.jsp" method="get">
 	ID :<input type=number name=id ><br>
 	<input type="submit" value=전송 >

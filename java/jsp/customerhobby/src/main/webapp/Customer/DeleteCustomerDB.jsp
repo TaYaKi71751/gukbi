@@ -11,9 +11,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="./index.css">
+<style>
+
+</style>
 </head>
 <body>
-	<a href="../main.jsp">main</a><br>
+	<div id="menu">
+	<a href="../main.jsp">main</a>
+	</div>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		CustomerDao customerDao = new CustomerDao();

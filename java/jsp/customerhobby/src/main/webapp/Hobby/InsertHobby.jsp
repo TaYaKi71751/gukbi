@@ -4,11 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="./index.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="../main.jsp">main</a><br>
+	<div id="menu"><a href="../main.jsp">main</a></div>
 	<form action="InsertHobbyDB.jsp" method="get">
 	고객 ID :<input type=number name=customerId ><br>
 	취미 :<input type=text name=hobby ><br>

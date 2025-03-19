@@ -16,11 +16,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="./index.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
 </head>
 <body>
 	<style>
+		body {
+			display: flex;
+		}
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -34,8 +39,8 @@
             background-color: #f2f2f2;
         }
     </style>
+	<div id="menu"><a href="../main.jsp">main</a></div>
 	<h2>Customer List</h2>
-	<a href="../main.jsp">main</a><br>
 	<table>
 		<thead>
 			<tr>

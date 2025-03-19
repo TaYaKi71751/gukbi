@@ -29,10 +29,12 @@
 %>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="./index.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
 </head>
 <body>
+	<div id="menu"><a href="../main.jsp">main</a></div>
 
 </body>
 </html>
