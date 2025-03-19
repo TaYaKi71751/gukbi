@@ -73,7 +73,8 @@ public class CustomHobbyEx {
         int age = UserInput.inputInt("새 나이");
         double height = UserInput.inputDouble("새 키");
         LocalDateTime birthday = UserInput.inputLocalDateTime("새 생년월일");
-        customerDao.update(id, name, age, height, UserInput.dateToString(birthday));
+        CustomerDto dto = new CustomerDto(id, name, age, height, birthday);
+        customerDao.update(dto);
         System.out.println("고객 정보가 수정되었습니다.");
     }
 

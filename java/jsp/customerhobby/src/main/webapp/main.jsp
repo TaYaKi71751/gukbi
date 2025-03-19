@@ -10,9 +10,9 @@
 </head>
 <body>
 	<h1>메인 메뉴</h1>
-	<a href="select.jsp">select</a>
-	<a href="insert.jsp">insert</a>
-	<a href="update.jsp">update</a>
-	<a href="delete.jsp">delete</a>
+	<a href="SelectCustomer.jsp">SelectCustomer</a>
+	<a href="InsertCustomer.jsp">InsertCustomer</a>
+	<a href="UpdateCustomer.jsp">UpdateCustomer</a>
+	<a href="DeleteCustomer.jsp">DeleteCustomer</a>
 </body>
 </html>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<a href="main.jsp">main</a><br>
-	<form action="insertDB.jsp" method="get">
+	<form action="InsertCustomerDB.jsp" method="get">
 	이름 :<input type=text name=name ><br>
 	나이 :<input type=text name=age ><br>
 	키 :<input type=text name=height ><br>

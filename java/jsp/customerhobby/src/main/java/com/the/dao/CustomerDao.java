@@ -38,10 +38,12 @@ public class CustomerDao {
 		DBConn.statementUpdate(sql);
 	}
 
-	public void update(Long id, String name, Integer age, Double height, String birthday) {
+	public void update(CustomerDto dto) {
 		String sql = String.format(
 				"UPDATE CUSTOMER SET name = '%s', age = %d, height = %.2f, birthday = TO_DATE('%s', 'YYYY-MM-DD HH24:MI:SS') WHERE id = %d",
-				name, age, height, birthday, id);
+				
+				dto.getName(), dto.getAge(), dto.getHeight(),
+                UserInput.dateToString(dto.getBirthday()), dto.getId());
 		DBConn.statementUpdate(sql);
 	}
 	public Long getMaxId() {
