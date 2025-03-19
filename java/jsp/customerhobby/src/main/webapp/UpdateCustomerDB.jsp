@@ -42,6 +42,7 @@
 		if(dto != null) {
 			customerDao.update(dto);
 		}
+		out.println("고객 수정 완료");
 	%>
 </body>
 </html>

@@ -6,11 +6,11 @@
 <%@ page import="com.the.dao.*"%>
 <%@ page import="com.the.dto.*"%>
 <%
-	CustomerDao customerDao = new CustomerDao();
-	ArrayList<CustomerDto> dtos = customerDao.selectAll();
-	request.setAttribute("customerList",dtos);
-	for(CustomerDto dto : dtos) {
-		System.out.println(dto);
+	HobbyDao hobbyDao = new HobbyDao();
+	ArrayList<HobbyDto> dtos = hobbyDao.selectAll();
+	request.setAttribute("hobbyList",dtos);
+	for(HobbyDto dto : dtos) {
+	 System.out.println(dto);
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,26 +34,23 @@
             background-color: #f2f2f2;
         }
     </style>
-	<h2>Customer List</h2>
+
+	<h2>Hobby List</h2>
 	<a href="main.jsp">main</a><br>
 	<table>
 		<thead>
 			<tr>
 				<th>id</th>
-				<th>name</th>
-				<th>age</th>
-				<th>height</th>
-				<th>birthday</th>
+				<th>customerId</th>
+				<th>hobby</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="dto" items="${customerList}">
-				<tr>
+			<c:forEach var="dto" items="${hobbyList}">
+			    <tr>
 					<td>${dto.id}</td>
-					<td>${dto.name}</td>
-					<td>${dto.age}</td>
-					<td>${dto.height}</td>
-					<td>${dto.birthday}</td>
+					<td>${dto.customerId}</td>
+					<td>${dto.hobby}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

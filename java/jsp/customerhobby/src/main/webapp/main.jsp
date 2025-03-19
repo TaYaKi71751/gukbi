@@ -14,5 +14,10 @@
 	<a href="InsertCustomer.jsp">InsertCustomer</a>
 	<a href="UpdateCustomer.jsp">UpdateCustomer</a>
 	<a href="DeleteCustomer.jsp">DeleteCustomer</a>
+	<br>
+	<a href="SelectHobby.jsp">SelectHobby</a>
+	<a href="InsertHobby.jsp">InsertHobby</a>
+	<a href="UpdateHobby.jsp">UpdateHobby</a>
+	<a href="DeleteHobby.jsp">DeleteHobby</a>
 </body>
 </html>

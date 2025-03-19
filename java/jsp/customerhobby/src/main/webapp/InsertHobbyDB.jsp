@@ -16,32 +16,29 @@
 	<a href="main.jsp">main</a><br>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		CustomerDao customerDao = new CustomerDao();
-		String name = request.getParameter("name");
-		String age = request.getParameter("age");
-		String height = request.getParameter("height");
-		String birthday = request.getParameter("birthday");
-		if(name == null || age == null || height == null || birthday == null){
+		HobbyDao hobbyDao = new HobbyDao();
+	    Long id = hobbyDao.getMaxId() + 1;
+		String hobby = request.getParameter("hobby");
+		String customerId = request.getParameter("customerId");
+		if(hobby == null || customerId == null){
 			out.println("값을 입력하세요.");
 			return;
 		}
-		CustomerDto dto = null;
+		HobbyDto dto = null;
 		try {
-			dto = new CustomerDto(
-			customerDao.getMaxId() + 1,
-			name, 
-			Integer.parseInt(age), 
-			Double.parseDouble(height),
-			LocalDateTime.parse(birthday)
-		);
+			dto = new HobbyDto(
+				id, 
+				Long.parseLong(customerId), 
+				hobby
+			);
 		} catch (Exception e) {
 			out.println("Invalid input");
 			return;
 		}
 		if(dto != null) {
-			customerDao.insert(dto);
+			hobbyDao.insert(dto);
 		}
-		out.println("고객 입력 완료");
+		out.println("취미 입력 완료");
 	%>
 </body>
 </html>

@@ -32,6 +32,7 @@
 		if(customerId != null) {
 			customerDao.delete(customerId);
 		}
+		out.println("고객 삭제 성공");
 	%>
 </body>
 </html>

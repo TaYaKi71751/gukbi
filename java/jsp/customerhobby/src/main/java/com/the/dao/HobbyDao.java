@@ -10,8 +10,8 @@ import com.the.util.DBConn;
 public class HobbyDao {
 	
 	public void insert(HobbyDto dto) {
-		String sql = String.format("INSERT INTO HOBBY (custom_id, hobby) VALUES (%d, '%s')"
-				, dto.getCustomerId(),dto.getHobby());
+		String sql = String.format("INSERT INTO HOBBY (id, customer_id, hobby) VALUES (%d, %d, '%s')"
+				,dto.getId() ,dto.getCustomerId(),dto.getHobby());
 		DBConn.statementUpdate(sql);
 	}
 	
@@ -23,7 +23,7 @@ public class HobbyDao {
 			while(rs.next()) {
 				dtos.add(new HobbyDto(
 						rs.getLong("id"),
-						rs.getLong("custom_id"),
+						rs.getLong("customer_id"),
 						rs.getString("hobby")
 						));
 			}
@@ -44,6 +44,20 @@ public class HobbyDao {
 		DBConn.statementUpdate(sql);
 	}
 	
+	public Long getMaxId(){
+		Long maxId=0L;
+        String sql ="SELECT MAX(id) as maxId FROM hobby";
+        ResultSet rs=DBConn.statementQuery(sql);
+        try {
+            if(rs.next()) {
+                maxId=rs.getLong("maxId");
+            }
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return maxId;
+	}
 
 }
 
