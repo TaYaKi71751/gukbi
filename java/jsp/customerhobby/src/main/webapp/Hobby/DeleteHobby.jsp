@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="./index.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DeleteHobby</title>
 </head>
 <body>
 	<div id="menu">

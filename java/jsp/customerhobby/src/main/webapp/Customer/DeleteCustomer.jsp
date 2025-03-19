@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DeleteCustomer</title>
 <link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 <body>
