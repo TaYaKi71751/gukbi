@@ -13,35 +13,27 @@
     <title>Insert title here</title>
 </head>
 <body>
-	<a href="main.jsp">main</a><br>
+	<a href="../main.jsp">main</a><br>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		CustomerDao customerDao = new CustomerDao();
-		String name = request.getParameter("name");
-		String age = request.getParameter("age");
-		String height = request.getParameter("height");
-		String birthday = request.getParameter("birthday");
-		if(name == null || age == null || height == null || birthday == null){
+		HobbyDao hobbyDao = new HobbyDao();
+		String id = request.getParameter("id");
+		String hobby = request.getParameter("hobby");
+		if(hobby == null || id == null){
 			out.println("값을 입력하세요.");
 			return;
 		}
-		CustomerDto dto = null;
+		Long hobbyId = null;
 		try {
-			dto = new CustomerDto(
-			customerDao.getMaxId() + 1,
-			name, 
-			Integer.parseInt(age), 
-			Double.parseDouble(height),
-			LocalDateTime.parse(birthday)
-		);
-		} catch (Exception e) {
+			hobbyId = Long.parseLong(id);
+        } catch (Exception e) {
 			out.println("Invalid input");
 			return;
 		}
-		if(dto != null) {
-			customerDao.insert(dto);
+		if(hobbyId != null) {
+			hobbyDao.update(hobbyId, hobby);
 		}
-		out.println("고객 입력 완료");
+		out.println("취미 수정 완료");
 	%>
 </body>
 </html>

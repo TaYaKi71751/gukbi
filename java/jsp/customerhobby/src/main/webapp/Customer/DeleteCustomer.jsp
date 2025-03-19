@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="main.jsp">main</a><br>
-	<form action="DeleteHobbyDB.jsp" method="get">
+	<a href="../main.jsp">main</a><br>
+	<form action="DeleteCustomerDB.jsp" method="get">
 	ID :<input type=number name=id ><br>
 	<input type="submit" value=전송 >
 	</form>

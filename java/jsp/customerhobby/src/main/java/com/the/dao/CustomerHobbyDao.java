@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.the.dto.CustomerDto;
 import com.the.dto.CustomerHobbyDto;
+import com.the.dto.HobbyDto;
 import com.the.util.DBConn;
 
 public class CustomerHobbyDao {
@@ -27,20 +29,27 @@ public class CustomerHobbyDao {
 
 	public ArrayList<CustomerHobbyDto> selectCustomerHobbys(){
 		ArrayList<CustomerHobbyDto> dtos=new ArrayList<CustomerHobbyDto>();
-		String sql ="select customer.*,hobby.id as hobby_id,hobby.hobby from customer,hobby "
-				+ "where customer.id=hobby.custom_id(+)";
+		String sql ="select customer.id as customer_id, customer.name, customer.age, customer.height, customer.birthday, hobby.id as hobby_id, hobby.hobby as hobby from customer, hobby where customer.id=hobby.customer_id";
 		ResultSet rs=DBConn.statementQuery(sql);
 		try {
 			while(rs.next()) {
 //(Long id, String name, Integer age, Double height, LocalDateTime birthday, Long hobby_id,String hobby) 
-				dtos.add(new CustomerHobbyDto(
-						rs.getLong("id"),
-						rs.getString("name"),
-						rs.getInt("age"),
-						rs.getDouble("height"),
-						rs.getTimestamp("birthday").toLocalDateTime(),
-						rs.getLong("hobby_id"),
-						rs.getString("hobby")));				
+				dtos.add(
+					new CustomerHobbyDto(
+						new CustomerDto(
+							rs.getLong("customer_id"),
+                            rs.getString("name"),
+                            rs.getInt("age"),
+                            rs.getDouble("height"),
+                            rs.getTimestamp("birthday").toLocalDateTime()
+						),
+						new HobbyDto(
+							rs.getLong("hobby_id"),
+							rs.getLong("customer_id"),
+                            rs.getString("hobby")
+						)
+					)
+				);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -52,7 +61,7 @@ public class CustomerHobbyDao {
 
 	public void deleteCustomerHobbys(Long customId) {
 		// TODO Auto-generated method stub
-		DBConn.statementUpdate("delete from hobby where custom_id="+customId);
+		DBConn.statementUpdate("delete from hobby where customer_id="+customId);
 		DBConn.statementUpdate("delete from customer where id="+customId);
 		
 	}

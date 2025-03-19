@@ -8,9 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="main.jsp">main</a><br>
-	<form action="DeleteCustomerDB.jsp" method="get">
-	ID :<input type=number name=id ><br>
+	<a href="../main.jsp">main</a><br>
+	<form action="InsertHobbyDB.jsp" method="get">
+	고객 ID :<input type=number name=customerId ><br>
+	취미 :<input type=text name=hobby ><br>
 	<input type="submit" value=전송 >
 	</form>
 

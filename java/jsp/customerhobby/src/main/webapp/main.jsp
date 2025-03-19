@@ -10,14 +10,17 @@
 </head>
 <body>
 	<h1>메인 메뉴</h1>
-	<a href="SelectCustomer.jsp">SelectCustomer</a>
-	<a href="InsertCustomer.jsp">InsertCustomer</a>
-	<a href="UpdateCustomer.jsp">UpdateCustomer</a>
-	<a href="DeleteCustomer.jsp">DeleteCustomer</a>
+	<a href="Customer/SelectCustomer.jsp">SelectCustomer</a>
+	<a href="Customer/InsertCustomer.jsp">InsertCustomer</a>
+	<a href="Customer/UpdateCustomer.jsp">UpdateCustomer</a>
+	<a href="Customer/DeleteCustomer.jsp">DeleteCustomer</a>
 	<br>
-	<a href="SelectHobby.jsp">SelectHobby</a>
-	<a href="InsertHobby.jsp">InsertHobby</a>
-	<a href="UpdateHobby.jsp">UpdateHobby</a>
-	<a href="DeleteHobby.jsp">DeleteHobby</a>
+	<a href="Hobby/SelectHobby.jsp">SelectHobby</a>
+	<a href="Hobby/InsertHobby.jsp">InsertHobby</a>
+	<a href="Hobby/UpdateHobby.jsp">UpdateHobby</a>
+	<a href="Hobby/DeleteHobby.jsp">DeleteHobby</a>
+	<br>
+	<a href="CustomerHobby/SelectCustomerHobby.jsp">SelectCustomerHobby</a>
+	<a href="CustomerHobby/DeleteCustomerHobby.jsp">DeleteCustomerHobby</a>
 </body>
 </html>

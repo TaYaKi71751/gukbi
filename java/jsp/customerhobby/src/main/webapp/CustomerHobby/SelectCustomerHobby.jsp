@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.time.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.the.dao.*"%>
 <%@ page import="com.the.dto.*"%>
 <%
-	CustomerDao customerDao = new CustomerDao();
-	ArrayList<CustomerDto> dtos = customerDao.selectAll();
-	request.setAttribute("customerList",dtos);
-	for(CustomerDto dto : dtos) {
+	CustomerHobbyDao customerHobbyDao = new CustomerHobbyDao();
+	ArrayList<CustomerHobbyDto> dtos = customerHobbyDao.selectCustomerHobbys();
+	request.setAttribute("customerHobbyList",dtos);
+	for(CustomerHobbyDto dto : dtos) {
 		System.out.println(dto);
 	}
 %>
@@ -34,26 +35,32 @@
             background-color: #f2f2f2;
         }
     </style>
-	<h2>Customer List</h2>
-	<a href="main.jsp">main</a><br>
+	<h2>Customer Hobby List</h2>
+	<a href="../main.jsp">main</a><br>
 	<table>
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>name</th>
-				<th>age</th>
-				<th>height</th>
-				<th>birthday</th>
+				<th>Customer.CustomerId</th>
+				<th>Customer.Name</th>
+				<th>Customer.Age</th>
+				<th>Customer.Height</th>
+				<th>Customer.BirthDay</th>
+				<th>Hobby.HobbyId</th>
+				<th>Hobby.CustomerId</th>
+				<th>Hobby.Hobby</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="dto" items="${customerList}">
+			<c:forEach var="dto" items="${customerHobbyList}">
 				<tr>
-					<td>${dto.id}</td>
-					<td>${dto.name}</td>
-					<td>${dto.age}</td>
-					<td>${dto.height}</td>
-					<td>${dto.birthday}</td>
+					<td>${dto.getCustomer().getId()}</td>
+					<td>${dto.getCustomer().getName()}</td>
+					<td>${dto.getCustomer().getAge()}</td>
+					<td>${dto.getCustomer().getHeight()}</td>
+					<td>${dto.getCustomer().getBirthday()}</td>
+					<td>${dto.getHobby().getId()}</td>
+					<td>${dto.getHobby().getCustomerId()}</td>
+					<td>${dto.getHobby().getHobby()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

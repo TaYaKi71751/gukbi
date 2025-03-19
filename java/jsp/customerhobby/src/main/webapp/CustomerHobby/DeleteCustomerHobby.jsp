@@ -13,26 +13,11 @@
     <title>Insert title here</title>
 </head>
 <body>
-	<a href="main.jsp">main</a><br>
-	<%
-		request.setCharacterEncoding("UTF-8");
-		HobbyDao hobbyDao = new HobbyDao();
-		String id = request.getParameter("id");
-		if(id == null){
-			out.println("값을 입력하세요.");
-			return;
-		}
-		Long hobbyId = null;
-		try {
-			hobbyId = Long.parseLong(id);
-        } catch (Exception e) {
-			out.println("Invalid input");
-			return;
-		}
-		if(hobbyId != null) {
-			hobbyDao.delete(hobbyId);
-		}
-		out.println("취미 삭제 성공");
-	%>
+	<a href="../main.jsp">main</a>
+	<form action="DeleteCustomerHobbyDB.jsp" method="post">
+		고객 ID : <input type="" name="customerId">
+		<input type="submit" value="Delete">
+	</form>
+
 </body>
 </html>
