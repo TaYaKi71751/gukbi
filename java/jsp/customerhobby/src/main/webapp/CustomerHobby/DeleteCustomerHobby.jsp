@@ -37,7 +37,7 @@
 			<tbody>
 			<c:forEach var="dto" items="${customerHobbyList}">
 				<tr>
-					<td><input type="checkbox" name="id" value="${dto.getCustomer().getId()}"></td>
+					<td><input type="checkbox" name="id" value="${dto.getHobby().getId()}"></td>
 					<td>${dto.getCustomer().getId()}</td>
 					<td>${dto.getCustomer().getName()}</td>
 					<td>${dto.getCustomer().getAge()}</td>

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.util.stream.*"%>
 <%@ page import="java.time.*"%>
 <%@ page import="com.the.dao.*"%>
 <%@ page import="com.the.dto.*"%>
@@ -13,17 +14,54 @@
 				    out.println("값을 입력하세요.");
 								return;
 				}
+				HobbyDao hobbyDao = new HobbyDao();
 				CustomerHobbyDao customerHobbyDao = new CustomerHobbyDao();
+				ArrayList<CustomerHobbyDto> dtos = customerHobbyDao.selectCustomerHobbys();
+				ArrayList<Long> customerIds = new ArrayList<>();
+				for(CustomerHobbyDto dto:dtos){
+				    for(String id:ids){
+								    Long hobbyId = null;
+												try {
+												    hobbyId = Long.parseLong(id);
+												} catch(Exception e){
+												    out.println("Invalid input");
+																return;
+												}
+												if(hobbyId == dto.getHobby().getId()){
+												    customerIds.add(dto.getCustomer().getId());
+												}
+								}
+				}
+				for(Long customerId:customerIds){
+				    ArrayList<CustomerHobbyDto> _dtos = dtos.stream().filter(dto -> dto.getCustomer().getId() == customerId).collect(Collectors.toCollection(ArrayList::new));
+								_dtos = _dtos.stream().filter(dto -> {
+								    for(String id:ids){
+								        Long hobbyId = null;
+												    try {
+												        hobbyId = Long.parseLong(id);
+												    } catch(Exception e){
+																				return false;
+												    }
+												    if(hobbyId == dto.getHobby().getId()){
+																    return false;
+												    }
+												}
+												return true;
+								}).collect(Collectors.toCollection(ArrayList::new));
+								if(_dtos.size() == 0){
+								    customerHobbyDao.deleteCustomerHobbys(customerId);
+								}
+				}
 				for(String id:ids){
-				    Long customerId = null;
+				    Long hobbyId = null;
 								try {
-								    customerId = Long.parseLong(id);
+								    hobbyId = Long.parseLong(id);
 								} catch(Exception e) {
 								    out.println("Invalid input");
 												return;
 								}
-								if(customerId != null){
-								    customerHobbyDao.deleteCustomerHobbys(customerId);
+								if(hobbyId != null){
+								    hobbyDao.delete(hobbyId);
 								}
 				}
 
