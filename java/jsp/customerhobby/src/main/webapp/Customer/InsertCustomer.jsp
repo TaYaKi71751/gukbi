@@ -11,10 +11,14 @@
 <body>
 	<div id="menu"><a href="../main.jsp">main</a></div>
 	<form action="InsertCustomerDB.jsp" method="get">
-	이름 :<input type=text name=name ><br>
-	나이 :<input type=text name=age ><br>
-	키 :<input type=text name=height ><br>
-	생일 :<input type="datetime-local" name=birthday ><br>
+	<label>이름</label>
+	<input type=text name=name ><br>
+	<label>나이</label>
+	<input type=text name=age ><br>
+	<label>키</label>
+	<input type=text name=height ><br>
+	<label>생일</label>
+	<input type="datetime-local" name=birthday ><br>
 	<input type="submit" value=전송 >
 	</form>
 

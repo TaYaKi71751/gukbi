@@ -3,6 +3,13 @@ body {
     display: flex;
 }
 
+input,label {
+    padding: 8px;
+    margin: 10px;
+    border-radius: 9999px;
+    border: 1px solid black;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

@@ -44,7 +44,8 @@
 					</c:forEach>
 			</tbody>
 		</table>
-	취미 :<input type=text name=hobby ><br>
+	<label>취미</label>
+	<input type=text name=hobby ><br>
 	<input type="submit" value=전송 >
 	</form>
 
