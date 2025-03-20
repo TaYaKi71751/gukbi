@@ -3,6 +3,11 @@ body {
     display: flex;
 }
 
+thead {
+    position: sticky;
+				top:0;
+}
+
 input,label {
     padding: 8px;
     margin: 10px;
