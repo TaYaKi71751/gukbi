@@ -1,4 +1,8 @@
-DROP TABLE hobby ;
+
+create user c##human identified by human;
+grant connect,resource,dba to c##human;
+
+DROP TABLE hobby;
 DROP TABLE customer ;
 
 -- CUSTOMER 테이블 생성 (ID 컬럼 자동 증가)
