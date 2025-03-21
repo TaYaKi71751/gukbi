@@ -51,6 +51,9 @@ CREATE TABLE PRODUCTS (
     color_id NUMBER,                       -- Foreign key referencing COLORS
     name VARCHAR2(100),                    -- Product name
     price NUMBER,                          -- Price of the product
+    thumbnail_image_path varchar(1000),
+    description_image_path varchar(1000),
+    description varchar(65534),
     FOREIGN KEY (team_id) REFERENCES TEAMS (team_id),   -- Foreign key to TEAMS
     FOREIGN KEY (color_id) REFERENCES COLORS (color_id) -- Foreign key to COLORS
 );
@@ -99,26 +102,54 @@ INSERT INTO COLORS (color_code)
 VALUES ('#003087');  -- New York Yankees Blue
 INSERT INTO COLORS (color_code) 
 VALUES ('#FF5733');  -- Example: a random color for another product
+INSERT INTO COLORS (color_code) 
+VALUES ('#FF4500');  -- Los Angeles Dodgers Orange
+INSERT INTO COLORS (color_code) 
+VALUES ('#008000');  -- Boston Red Sox Green
 
 INSERT INTO TEAMS (team_name) 
 VALUES ('New York Yankees');
 INSERT INTO TEAMS (team_name) 
 VALUES ('Los Angeles Dodgers');
+INSERT INTO TEAMS (team_name) 
+VALUES ('Boston Red Sox');
+INSERT INTO TEAMS (team_name) 
+VALUES ('Chicago Cubs');
 
-INSERT INTO PRODUCTS (team_id, color_id, name, price)
-VALUES (1, 1, 'New York Yankees Cap', 25.00);
-INSERT INTO PRODUCTS (team_id, color_id, name, price)
-VALUES (2, 2, 'Los Angeles Dodgers T-shirt', 20.00);
+-- Insert New York Yankees product
+INSERT INTO PRODUCTS (team_id, color_id, name, price, thumbnail_image_path, description_image_path, description)
+VALUES (1, 1, 'New York Yankees Cap', 25.00, '/images/yankees_cap.jpg', '/images/yankees_cap_desc.jpg', 'A stylish cap featuring the New York Yankees logo.');
+-- Insert Los Angeles Dodgers product
+INSERT INTO PRODUCTS (team_id, color_id, name, price, thumbnail_image_path, description_image_path, description)
+VALUES (2, 3, 'Los Angeles Dodgers T-shirt', 20.00, '/images/dodgers_tshirt.jpg', '/images/dodgers_tshirt_desc.jpg', 'A comfortable Dodgers T-shirt.');
+-- Insert Boston Red Sox product
+INSERT INTO PRODUCTS (team_id, color_id, name, price, thumbnail_image_path, description_image_path, description)
+VALUES (3, 4, 'Boston Red Sox Hoodie', 45.00, '/images/redsox_hoodie.jpg', '/images/redsox_hoodie_desc.jpg', 'A warm hoodie for Red Sox fans.');
+-- Insert Chicago Cubs product
+INSERT INTO PRODUCTS (team_id, color_id, name, price, thumbnail_image_path, description_image_path, description)
+VALUES (4, 2, 'Chicago Cubs Mug', 15.00, '/images/cubs_mug.jpg', '/images/cubs_mug_desc.jpg', 'A ceramic mug for Chicago Cubs fans.');
 
 INSERT INTO CUSTOMERS (name, email, password, address)
 VALUES ('Alice Johnson', 'alice.johnson@example.com', 'hashed_password_1', '123 Maple St, New York, NY');
 INSERT INTO CUSTOMERS (name, email, password, address)
 VALUES ('Bob Smith', 'bob.smith@example.com', 'hashed_password_2', '456 Oak St, Los Angeles, CA');
+INSERT INTO CUSTOMERS (name, email, password, address)
+VALUES ('Charlie Brown', 'charlie.brown@example.com', 'hashed_password_3', '789 Pine St, Boston, MA');
+INSERT INTO CUSTOMERS (name, email, password, address)
+VALUES ('David Lee', 'david.lee@example.com', 'hashed_password_4', '101 Birch St, Chicago, IL');
 
+-- Order for New York Yankees Cap
 INSERT INTO ORDERS (product_id, qty, order_date, end_date, team_id, color_id, address, status)
 VALUES (1, 2, TO_DATE('2025-03-21', 'YYYY-MM-DD'), TO_DATE('2025-03-23', 'YYYY-MM-DD'), 1, 1, '123 Maple St, New York, NY', 'shipped');
+-- Order for Los Angeles Dodgers T-shirt
 INSERT INTO ORDERS (product_id, qty, order_date, end_date, team_id, color_id, address, status)
-VALUES (2, 1, TO_DATE('2025-03-21', 'YYYY-MM-DD'), TO_DATE('2025-03-22', 'YYYY-MM-DD'), 2, 2, '456 Oak St, Los Angeles, CA', 'pending');
+VALUES (2, 1, TO_DATE('2025-03-21', 'YYYY-MM-DD'), TO_DATE('2025-03-22', 'YYYY-MM-DD'), 2, 3, '456 Oak St, Los Angeles, CA', 'pending');
+-- Order for Boston Red Sox Hoodie
+INSERT INTO ORDERS (product_id, qty, order_date, end_date, team_id, color_id, address, status)
+VALUES (3, 3, TO_DATE('2025-03-20', 'YYYY-MM-DD'), TO_DATE('2025-03-22', 'YYYY-MM-DD'), 3, 4, '789 Pine St, Boston, MA', 'shipped');
+-- Order for Chicago Cubs Mug
+INSERT INTO ORDERS (product_id, qty, order_date, end_date, team_id, color_id, address, status)
+VALUES (4, 5, TO_DATE('2025-03-19', 'YYYY-MM-DD'), TO_DATE('2025-03-21', 'YYYY-MM-DD'), 4, 2, '101 Birch St, Chicago, IL', 'shipped');
 
 INSERT INTO MANAGERS (name, email, password)
 VALUES ('David Lee', 'david.lee@company.com', 'hashed_password_1');
