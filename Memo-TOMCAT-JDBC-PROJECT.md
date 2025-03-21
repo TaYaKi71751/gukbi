@@ -58,6 +58,8 @@ CREATE TABLE ORDERS (
     order_id NUMBER PRIMARY KEY,          -- Primary key for the orders table
     product_id NUMBER,                    -- Foreign key for product
     qty NUMBER,
+    order_date TIMESTAMP,   -- Date and time when the order was placed
+    end_date TIMESTAMP      -- Date and time when the order was completed or ended
     team_id NUMBER,                       -- Foreign key for team
     color_id NUMBER,                      -- Foreign key for color
     address VARCHAR(3000),                -- Customer's address for the order
@@ -84,60 +86,4 @@ CREATE TABLE ADMINISTRATORS (
 ```
 ## Insert Datas
 ```sql
-INSERT INTO COLORS (color_id, color_code) 
-VALUES (1, '#FF5733');
-
-INSERT INTO COLORS (color_id, color_code) 
-VALUES (2, '#33FF57');
-
-INSERT INTO COLORS (color_id, color_code) 
-VALUES (3, '#5733FF');
-
-
-INSERT INTO TEAMS (team_id, team_name)
-VALUES (1, 'Team A');
-
-INSERT INTO TEAMS (team_id, team_name)
-VALUES (2, 'Team B');
-
-INSERT INTO TEAMS (team_id, team_name)
-VALUES (3, 'Team C');
-
-
-INSERT INTO PRODUCTS (product_id, team_id, color_id, name, price)
-VALUES (1, 1, 1, 'Product 1', 99.99);
-
-INSERT INTO PRODUCTS (product_id, team_id, color_id, name, price)
-VALUES (2, 2, 2, 'Product 2', 149.99);
-
-INSERT INTO PRODUCTS (product_id, team_id, color_id, name, price)
-VALUES (3, 3, 3, 'Product 3', 199.99);
-
-
-INSERT INTO CUSTOMERS (customer_id, email, password, name, address)
-VALUES (1, 'customer1@example.com', 'password123', 'John Doe', '1234 Elm Street, Springfield, IL');
-
-INSERT INTO CUSTOMERS (customer_id, email, password, name, address)
-VALUES (2, 'customer2@example.com', 'password456', 'Jane Smith', '5678 Oak Avenue, Madison, WI');
-
-
-INSERT INTO MANAGERS (manager_id, name, email, password)
-VALUES (1, 'Alice Brown', 'alice.brown@example.com', 'admin123');
-
-INSERT INTO MANAGERS (manager_id, name, email, password)
-VALUES (2, 'Bob White', 'bob.white@example.com', 'admin456');
-
-
-INSERT INTO ORDERS (order_id, product_id, team_id, color_id, address, status)
-VALUES (1, 1, 1, 1, '1234 Elm Street, Springfield, IL', 'pending');
-
-INSERT INTO ORDERS (order_id, product_id, team_id, color_id, address, status)
-VALUES (2, 2, 2, 2, '5678 Oak Avenue, Madison, WI', 'shipped');
-
-
-INSERT INTO ADMINISTRATOR (admin_id, name, email, password)
-VALUES (1, 'Charlie Green', 'charlie.green@example.com', 'admin123');
-
-INSERT INTO ADMINISTRATOR (admin_id, name, email, password)
-VALUES (2, 'Diana Blue', 'diana.blue@example.com', 'admin456');
 ```
