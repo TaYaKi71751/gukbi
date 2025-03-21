@@ -86,4 +86,44 @@ CREATE TABLE ADMINISTRATORS (
 ```
 ## Insert Datas
 ```sql
+INSERT INTO TEAMS (team_id, team_name)
+VALUES 
+    (1, 'New York Yankees'),
+    (2, 'Los Angeles Dodgers'),
+    (3, 'Chicago Cubs');
+
+INSERT INTO COLORS (color_id, color_code)
+VALUES 
+    (1, '#003087'), -- New York Yankees Blue
+    (2, '#005A8D'), -- Los Angeles Dodgers Blue
+    (3, '#0E3386'); -- Chicago Cubs Blue
+
+INSERT INTO PRODUCTS (product_id, team_id, color_id, name, price)
+VALUES 
+    (1, 1, 1, 'New York Yankees Cap', 25.00),  -- New York Yankees Cap (Blue)
+    (2, 2, 2, 'Los Angeles Dodgers Cap', 28.00), -- Los Angeles Dodgers Cap (Blue)
+    (3, 3, 3, 'Chicago Cubs Cap', 22.50);      -- Chicago Cubs Cap (Blue)
+
+INSERT INTO CUSTOMERS (customer_id, name, email, password, address)
+VALUES 
+    (1, 'Alice Johnson', 'alice.johnson@example.com', 'hashed_password_1', '123 Maple St, New York, NY'),
+    (2, 'Bob Smith', 'bob.smith@example.com', 'hashed_password_2', '456 Oak Ave, Los Angeles, CA'),
+    (3, 'Charlie Brown', 'charlie.brown@example.com', 'hashed_password_3', '789 Pine Ln, Chicago, IL');
+
+INSERT INTO ORDERS (order_id, product_id, qty, order_date, end_date, team_id, color_id, address, status)
+VALUES 
+    (1, 1, 2, TIMESTAMP '2025-03-21 10:00:00', TIMESTAMP '2025-03-23 12:00:00', 1, 1, '123 Maple St, New York, NY', 'shipped'),
+    (2, 2, 1, TIMESTAMP '2025-03-22 11:30:00', TIMESTAMP '2025-03-24 13:00:00', 2, 2, '456 Oak Ave, Los Angeles, CA', 'pending'),
+    (3, 3, 3, TIMESTAMP '2025-03-20 09:15:00', TIMESTAMP '2025-03-21 10:00:00', 3, 3, '789 Pine Ln, Chicago, IL', 'delivered');
+
+INSERT INTO MANAGERS (manager_id, name, email, password)
+VALUES 
+    (1, 'David Lee', 'david.lee@company.com', 'hashed_password_1'),
+    (2, 'Emma White', 'emma.white@company.com', 'hashed_password_2'),
+    (3, 'Frank Green', 'frank.green@company.com', 'hashed_password_3');
+
+INSERT INTO ADMINISTRATORS (admin_id, name, email, password)
+VALUES 
+    (1, 'George Black', 'george.black@admin.com', 'hashed_password_1'),
+    (2, 'Hannah Blue', 'hannah.blue@admin.com', 'hashed_password_2');
 ```
