@@ -21,6 +21,8 @@ GRANT UNLIMITED TABLESPACE TO JDBCPROJ;
 -- 접속확인
 conn JDBCPROJ/1234;
 ```
+## ERD
+![erd](./images/image73.png)
 ## Create Table
 ```sql
 -- Colors Table
