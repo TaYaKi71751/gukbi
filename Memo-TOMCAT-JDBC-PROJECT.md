@@ -27,19 +27,19 @@ conn JDBCPROJ/1234;
 ```sql
 -- Colors Table
 CREATE TABLE COLORS (
-    color_id NUMBER PRIMARY KEY,           -- Primary key
+    color_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,           -- Primary key
     color_code VARCHAR(10) UNIQUE          -- Color code (e.g., HEX, RGB)
 );
 
 -- Teams Table
 CREATE TABLE TEAMS (
-    team_id NUMBER PRIMARY KEY,            -- Primary key
+    team_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,            -- Primary key
     team_name VARCHAR(30) UNIQUE           -- Team name
 );
 
 -- Products Table
 CREATE TABLE PRODUCTS (
-    product_id NUMBER,                     -- Primary key (you can add it as primary key or unique constraint)
+    product_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,                     -- Primary key (you can add it as primary key or unique constraint)
     team_id NUMBER,                        -- Foreign key referencing TEAMS
     color_id NUMBER,                       -- Foreign key referencing COLORS
     name VARCHAR2(100),                    -- Product name
@@ -49,7 +49,7 @@ CREATE TABLE PRODUCTS (
 );
 -- Customers Table
 CREATE TABLE CUSTOMERS (
-    customer_id NUMBER PRIMARY KEY,
+    customer_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY ,
     name VARCHAR(50),
     email VARCHAR(100) UNIQUE,   -- Ensures email is unique across customers
     password VARCHAR(100) NOT NULL,  -- Ensures password is provided
@@ -57,11 +57,11 @@ CREATE TABLE CUSTOMERS (
 );
 -- Orders Table
 CREATE TABLE ORDERS (
-    order_id NUMBER PRIMARY KEY,          -- Primary key for the orders table
+    order_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,          -- Primary key for the orders table
     product_id NUMBER,                    -- Foreign key for product
     qty NUMBER,
-    order_date TIMESTAMP,   -- Date and time when the order was placed
-    end_date TIMESTAMP      -- Date and time when the order was completed or ended
+    order_date DATE,                      -- Date and time when the order was placed
+    end_date DATE,                        -- Date and time when the order was completed or ended
     team_id NUMBER,                       -- Foreign key for team
     color_id NUMBER,                      -- Foreign key for color
     address VARCHAR(3000),                -- Customer's address for the order
@@ -73,14 +73,14 @@ CREATE TABLE ORDERS (
 );
 -- Managers Table
 CREATE TABLE MANAGERS (
-    manager_id NUMBER PRIMARY KEY,      -- Primary key for manager_id
+    manager_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,      -- Primary key for manager_id
     name VARCHAR(50),                   -- Manager's name
     email VARCHAR(100) UNIQUE NOT NULL, -- Unique and NOT NULL constraint for email
     password VARCHAR(100) NOT NULL      -- NOT NULL constraint for password (use hashed passwords in a real application)
 );
 -- Administrators Table
 CREATE TABLE ADMINISTRATORS (
-    admin_id NUMBER PRIMARY KEY,
+    admin_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR(50),                  -- name length
     email VARCHAR(100) UNIQUE NOT NULL,-- email length
     password VARCHAR(100) NOT NULL     -- password length
@@ -88,44 +88,38 @@ CREATE TABLE ADMINISTRATORS (
 ```
 ## Insert Datas
 ```sql
-INSERT INTO TEAMS (team_id, team_name)
-VALUES 
-    (1, 'New York Yankees'),
-    (2, 'Los Angeles Dodgers'),
-    (3, 'Chicago Cubs');
+INSERT INTO COLORS (color_code) 
+VALUES ('#003087');  -- New York Yankees Blue
+INSERT INTO COLORS (color_code) 
+VALUES ('#FF5733');  -- Example: a random color for another product
 
-INSERT INTO COLORS (color_id, color_code)
-VALUES 
-    (1, '#003087'), -- New York Yankees Blue
-    (2, '#005A8D'), -- Los Angeles Dodgers Blue
-    (3, '#0E3386'); -- Chicago Cubs Blue
+INSERT INTO TEAMS (team_name) 
+VALUES ('New York Yankees');
+INSERT INTO TEAMS (team_name) 
+VALUES ('Los Angeles Dodgers');
 
-INSERT INTO PRODUCTS (product_id, team_id, color_id, name, price)
-VALUES 
-    (1, 1, 1, 'New York Yankees Cap', 25.00),  -- New York Yankees Cap (Blue)
-    (2, 2, 2, 'Los Angeles Dodgers Cap', 28.00), -- Los Angeles Dodgers Cap (Blue)
-    (3, 3, 3, 'Chicago Cubs Cap', 22.50);      -- Chicago Cubs Cap (Blue)
+INSERT INTO PRODUCTS (team_id, color_id, name, price)
+VALUES (1, 1, 'New York Yankees Cap', 25.00);
+INSERT INTO PRODUCTS (team_id, color_id, name, price)
+VALUES (2, 2, 'Los Angeles Dodgers T-shirt', 20.00);
 
-INSERT INTO CUSTOMERS (customer_id, name, email, password, address)
-VALUES 
-    (1, 'Alice Johnson', 'alice.johnson@example.com', 'hashed_password_1', '123 Maple St, New York, NY'),
-    (2, 'Bob Smith', 'bob.smith@example.com', 'hashed_password_2', '456 Oak Ave, Los Angeles, CA'),
-    (3, 'Charlie Brown', 'charlie.brown@example.com', 'hashed_password_3', '789 Pine Ln, Chicago, IL');
+INSERT INTO CUSTOMERS (name, email, password, address)
+VALUES ('Alice Johnson', 'alice.johnson@example.com', 'hashed_password_1', '123 Maple St, New York, NY');
+INSERT INTO CUSTOMERS (name, email, password, address)
+VALUES ('Bob Smith', 'bob.smith@example.com', 'hashed_password_2', '456 Oak St, Los Angeles, CA');
 
-INSERT INTO ORDERS (order_id, product_id, qty, order_date, end_date, team_id, color_id, address, status)
-VALUES 
-    (1, 1, 2, TIMESTAMP '2025-03-21 10:00:00', TIMESTAMP '2025-03-23 12:00:00', 1, 1, '123 Maple St, New York, NY', 'shipped'),
-    (2, 2, 1, TIMESTAMP '2025-03-22 11:30:00', TIMESTAMP '2025-03-24 13:00:00', 2, 2, '456 Oak Ave, Los Angeles, CA', 'pending'),
-    (3, 3, 3, TIMESTAMP '2025-03-20 09:15:00', TIMESTAMP '2025-03-21 10:00:00', 3, 3, '789 Pine Ln, Chicago, IL', 'delivered');
+INSERT INTO ORDERS (product_id, qty, order_date, end_date, team_id, color_id, address, status)
+VALUES (1, 2, TO_DATE('2025-03-21', 'YYYY-MM-DD'), TO_DATE('2025-03-23', 'YYYY-MM-DD'), 1, 1, '123 Maple St, New York, NY', 'shipped');
+INSERT INTO ORDERS (product_id, qty, order_date, end_date, team_id, color_id, address, status)
+VALUES (2, 1, TO_DATE('2025-03-21', 'YYYY-MM-DD'), TO_DATE('2025-03-22', 'YYYY-MM-DD'), 2, 2, '456 Oak St, Los Angeles, CA', 'pending');
 
-INSERT INTO MANAGERS (manager_id, name, email, password)
-VALUES 
-    (1, 'David Lee', 'david.lee@company.com', 'hashed_password_1'),
-    (2, 'Emma White', 'emma.white@company.com', 'hashed_password_2'),
-    (3, 'Frank Green', 'frank.green@company.com', 'hashed_password_3');
+INSERT INTO MANAGERS (name, email, password)
+VALUES ('David Lee', 'david.lee@company.com', 'hashed_password_1');
+INSERT INTO MANAGERS (name, email, password)
+VALUES ('Sarah Brown', 'sarah.brown@company.com', 'hashed_password_2');
 
-INSERT INTO ADMINISTRATORS (admin_id, name, email, password)
-VALUES 
-    (1, 'George Black', 'george.black@admin.com', 'hashed_password_1'),
-    (2, 'Hannah Blue', 'hannah.blue@admin.com', 'hashed_password_2');
+INSERT INTO ADMINISTRATORS (name, email, password)
+VALUES ('George Black', 'george.black@admin.com', 'hashed_password_1');
+INSERT INTO ADMINISTRATORS (name, email, password)
+VALUES ('Emily White', 'emily.white@admin.com', 'hashed_password_2');
 ```
