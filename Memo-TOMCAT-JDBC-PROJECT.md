@@ -12,6 +12,10 @@ sqlplus system/password@//localhost:1521
 ```sql
 --  c## 없이 접속하기 위한 설정
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+-- 권한제거
+REVOKE CONNECT, RESOURCE, DBA FROM JDBCPROJ;
+-- 기존계정 제거 
+DROP USER JDBCPROJ CASCADE;
 -- 신규계정 생성
 CREATE USER JDBCPROJ IDENTIFIED BY 1234;
 -- 권한부여
