@@ -58,7 +58,8 @@ CREATE TABLE SIZES (
 -- 색상 테이블 (제품의 색상 정보 저장)
 CREATE TABLE COLORS (
     cl_id VARCHAR(2000) PRIMARY KEY, -- 색상 ID (고유 식별자)
-    cl_name VARCHAR2(100) NOT NULL -- 색상 이름
+    cl_name VARCHAR2(2000) NOT NULL, -- 색상 이름
+    cl_hexcode VARCHAR(2000) NOT NULL
 );
 
 -- 제품 테이블 (제품의 기본 정보 저장)
