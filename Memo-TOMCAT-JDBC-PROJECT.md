@@ -42,50 +42,50 @@ DROP TABLE PAYMENTS;
 
 -- 카테고리 테이블
 CREATE TABLE CATEGORIES (
-    ca_id VARCHAR(2000) GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
-    ca_name VARCHAR2(100) NOT NULL -- 카테고리 이름
+    cg_id VARCHAR(2000) PRIMARY KEY, -- 자동 증가 ID
+    cg_name VARCHAR2(100) NOT NULL -- 카테고리 이름
 );
 
 -- 팀 테이블
 CREATE TABLE TEAMS (
-    te_id VARCHAR(2000) GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
-    te_name VARCHAR2(100) NOT NULL -- 팀 이름
+    tm_id VARCHAR(2000) PRIMARY KEY, -- 자동 증가 ID
+    tm_name VARCHAR2(100) NOT NULL -- 팀 이름
 );
 
 -- 사이즈 테이블
 CREATE TABLE SIZES (
-    si_id VARCHAR(2000) GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
-    si_name VARCHAR2(100) NOT NULL -- 사이즈 이름
+    sz_id VARCHAR(2000) PRIMARY KEY, -- 자동 증가 ID
+    sz_name VARCHAR2(100) NOT NULL -- 사이즈 이름
 );
 
 -- 색상 테이블
 CREATE TABLE COLORS (
-    co_id VARCHAR(2000) GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
-    co_name VARCHAR2(100) NOT NULL -- 색상 이름
+    cl_id VARCHAR(2000) PRIMARY KEY, -- 자동 증가 ID
+    cl_name VARCHAR2(100) NOT NULL -- 색상 이름
 );
 
 -- 제품 테이블
 CREATE TABLE PRODUCTS (
     pr_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
-    ca_id VARCHAR(2000) NOT NULL, -- 카테고리 ID (외래 키)
-    te_id VARCHAR(2000) NOT NULL, -- 팀 ID (외래 키)
-    pr_name VARCHAR2(1000), -- 제품 이름
-    pr_regdate DATE, -- 제품 등록 날짜
-    FOREIGN KEY (ca_id) REFERENCES CATEGORIES (ca_id),
-    FOREIGN KEY (te_id) REFERENCES TEAMS (te_id)
+    cg_id VARCHAR(2000) NOT NULL, -- 카테고리 ID (외래 키)
+    tm_id VARCHAR(2000) NOT NULL, -- 팀 ID (외래 키)
+    pr_name VARCHAR2(1000) NOT NULL, -- 제품 이름
+    pr_regdate DATE NOT NULL, -- 제품 등록 날짜
+    FOREIGN KEY (cg_id) REFERENCES CATEGORIES (cg_id),
+    FOREIGN KEY (tm_id) REFERENCES TEAMS (tm_id)
 );
 
 -- 제품 재고 테이블
 CREATE TABLE PRODUCT_STOCKS (
     pr_st_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
     pr_id NUMBER NOT NULL, -- 제품 ID (외래 키)
-    co_id VARCHAR(2000) NOT NULL, -- 색상 ID (외래 키)
-    si_id VARCHAR(2000) NOT NULL, -- 사이즈 ID (외래 키)
+    cl_id VARCHAR(2000) NOT NULL, -- 색상 ID (외래 키)
+    sz_id VARCHAR(2000) NOT NULL, -- 사이즈 ID (외래 키)
     quantity NUMBER NOT NULL, -- 재고 수량
     price NUMBER NOT NULL, -- 가격
     FOREIGN KEY (pr_id) REFERENCES PRODUCTS (pr_id),
-    FOREIGN KEY (co_id) REFERENCES COLORS (co_id),
-    FOREIGN KEY (si_id) REFERENCES SIZES (si_id)
+    FOREIGN KEY (cl_id) REFERENCES COLORS (cl_id),
+    FOREIGN KEY (sz_id) REFERENCES SIZES (sz_id)
 );
 
 -- 제품 상세 정보 테이블
@@ -99,11 +99,11 @@ CREATE TABLE PRODUCT_DETAILS (
 );
 
 CREATE TABLE USER_GRADES (
-    grade NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    grade VARCHAR(2000) PRIMARY KEY,
     name VARCHAR(2000) NOT NULL
 );
 CREATE TABLE PAYMENTS (
-    pay_id VARCHAR(2000) GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    pay_id VARCHAR(2000) PRIMARY KEY,
     pay_name VARCHAR(2000) NOT NULL
 );
 CREATE TABLE ORDERS (
@@ -116,7 +116,7 @@ CREATE TABLE ORDERS (
 );
 CREATE TABLE USERS (
     user_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    grade NUMBER NOT NULL,
+    grade VARCHAR(2000) NOT NULL,
     name VARCHAR(2000) NOT NULL,
     id VARCHAR(2000) NOT NULL,
     pw VARCHAR(2000) NOT NULL,
