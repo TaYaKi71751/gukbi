@@ -62,6 +62,19 @@ CREATE TABLE COLORS (
     cl_hexcode VARCHAR(2000) NOT NULL
 );
 
+-- 사용자 테이블 (회원 정보 저장)
+CREATE TABLE USERS (
+    user_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 사용자 ID
+    grade VARCHAR2(10) NOT NULL CHECK (grade IN ('admin', 'customer')), -- 사용자 등급 (관리자 또는 고객)
+    name VARCHAR(2000) NOT NULL, -- 사용자 이름
+    id VARCHAR(2000) NOT NULL, -- 로그인 ID
+    pw VARCHAR(2000) NOT NULL, -- 비밀번호
+    address VARCHAR(2000) NOT NULL, -- 주소
+    hp VARCHAR(2000) NOT NULL, -- 휴대폰 번호
+    email VARCHAR(2000) NOT NULL, -- 이메일
+    regdate DATE NOT NULL -- 가입 날짜
+);
+
 -- 제품 테이블 (제품의 기본 정보 저장)
 CREATE TABLE PRODUCTS (
     pr_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 제품 ID
@@ -84,19 +97,6 @@ CREATE TABLE PRODUCT_STOCKS (
     price NUMBER NOT NULL, -- 가격
     FOREIGN KEY (pr_id) REFERENCES PRODUCTS (pr_id), -- 제품 참조
     FOREIGN KEY (cl_id) REFERENCES COLORS (cl_id) -- 색상 참조
-);
-
--- 사용자 테이블 (회원 정보 저장)
-CREATE TABLE USERS (
-    user_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 사용자 ID
-    grade VARCHAR2(10) NOT NULL CHECK (grade IN ('admin', 'customer')), -- 사용자 등급 (관리자 또는 고객)
-    name VARCHAR(2000) NOT NULL, -- 사용자 이름
-    id VARCHAR(2000) NOT NULL, -- 로그인 ID
-    pw VARCHAR(2000) NOT NULL, -- 비밀번호
-    address VARCHAR(2000) NOT NULL, -- 주소
-    hp VARCHAR(2000) NOT NULL, -- 휴대폰 번호
-    email VARCHAR(2000) NOT NULL, -- 이메일
-    regdate DATE NOT NULL -- 가입 날짜
 );
 
 -- 주문 테이블 (사용자의 주문 정보 저장)
