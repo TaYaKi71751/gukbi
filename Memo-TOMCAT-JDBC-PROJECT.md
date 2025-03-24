@@ -23,6 +23,7 @@ conn JDBCPROJ/1234;
 ```
 ## ERD
 ![erd](./images/image73.png)
+![erd](./images/image74.png)
 ## Create Table
 ```sql
 DROP TABLE ORDER_DETAILS;
@@ -31,44 +32,104 @@ DROP TABLE USERS;
 DROP TABLE ORDERS;
 DROP TABLE PRODUCT_STOCKS;
 DROP TABLE USER_GRADES;
+DROP TABLE PRODUCT_DETAILS;
+DROP TABLE PRODUCTS;
+DROP TABLE CATEGORIES;
+DROP TABLE TEAMS;
+DROP TABLE SIZES;
+DROP TABLE COLORS;
 
-CREATE TABLE PRODUCT_STOCKS (
-    product_stock_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    product_id NUMBER NOT NULL,
-    color_id NUMBER NOT NULL,
-    size_id NUMBER NOT NULL,
-    quantity NUMBER NOT NULL,
-    price NUMBER NOT NULL
+-- 카테고리 테이블
+CREATE TABLE CATEGORIES (
+    ca_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    ca_name VARCHAR2(100) NOT NULL -- 카테고리 이름
 );
+
+-- 팀 테이블
+CREATE TABLE TEAMS (
+    te_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    te_name VARCHAR2(100) NOT NULL -- 팀 이름
+);
+
+-- 사이즈 테이블
+CREATE TABLE SIZES (
+    si_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    si_name VARCHAR2(100) NOT NULL -- 사이즈 이름
+);
+
+-- 색상 테이블
+CREATE TABLE COLORS (
+    co_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    co_name VARCHAR2(100) NOT NULL -- 색상 이름
+);
+
+-- 제품 테이블
+CREATE TABLE PRODUCTS (
+    pr_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    ca_id NUMBER NOT NULL, -- 카테고리 ID (외래 키)
+    te_id NUMBER NOT NULL, -- 팀 ID (외래 키)
+    pr_name VARCHAR2(1000), -- 제품 이름
+    pr_regdate DATE -- 제품 등록 날짜
+);
+
+-- 제품 재고 테이블
+CREATE TABLE PRODUCT_STOCKS (
+    pr_st_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    pr_id NUMBER NOT NULL, -- 제품 ID (외래 키)
+    co_id NUMBER NOT NULL, -- 색상 ID (외래 키)
+    si_id NUMBER NOT NULL, -- 사이즈 ID (외래 키)
+    quantity NUMBER NOT NULL, -- 재고 수량
+    price NUMBER NOT NULL -- 가격
+);
+
+-- 제품 상세 정보 테이블
+CREATE TABLE PRODUCT_DETAILS (
+    pr_de_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 ID
+    pr_id NUMBER NOT NULL, -- 제품 ID (외래 키)
+    subject VARCHAR2(2000) NOT NULL, -- 제품 설명
+    product_img VARCHAR2(2000) NOT NULL, -- 제품 이미지 URL
+    product_detail_img VARCHAR2(2000) NOT NULL -- 상세 이미지 URL
+);
+
 CREATE TABLE USER_GRADES (
     grade NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR(2000) NOT NULL
 );
+CREATE TABLE PATMENTS (
+    pay_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    pay_name VARCHAR(2000) NOT NULL
+);
 CREATE TABLE ORDERS (
     order_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    order_date DATE NOT NULL
+    order_date DATE NOT NULL,
+    total_price NUMBER NOT NULL,
+    pay_id NUMBER NOT NULL,
+    shipping_date DATE NOT NULL
 );
 CREATE TABLE SHOPPING_CARTS (
     cart_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id NUMBER NOT NULL,
-    product_stock_id NUMBER NOT NULL,
-    order_quantity NUMBER NOT NULL,
-    FOREIGN KEY (product_stock_id) REFERENCES PRODUCT_STOCKS (product_stock_id)
+    pr_st_id NUMBER NOT NULL,
+    order_quantity NUMBER NOT NULL
 );
 CREATE TABLE USERS (
     user_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    user_pw NUMBER NOT NULL,
     grade NUMBER NOT NULL,
+    name VARCHAR(2000) NOT NULL,
+    id VARCHAR(2000) NOT NULL,
+    pw VARCHAR(2000) NOT NULL,
     address VARCHAR(2000) NOT NULL,
-    phone NUMBER NOT NULL,
-    created_at DATE NOT NULL,
-    FOREIGN KEY (grade) REFERENCES USER_GRADES (grade)
+    email VARCHAR(2000) NOT NULL,
+    hp VARCHAR(2000) NOT NULL,
+    regdate DATE NOT NULL
 );
 CREATE TABLE ORDER_DETAILS (
     order_detail_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     order_id NUMBER NOT NULL,
+    user_id NUMBER NOT NULL,
     cart_id NUMBER NOT NULL,
-    FOREIGN KEY (cart_id) REFERENCES SHOPPING_CARTS (cart_id),
-    FOREIGN KEY (order_id) REFERENCES ORDERS (order_id)
+    pr_st_id NUMBER NOT NULL,
+    order_quantity NUMBER NOT NULL,
+    order_price NUMBER NOT NULL
 );
 ```
