@@ -22,4 +22,24 @@ INSERT INTO PRODUCTS (tm_id, ca_id, pr_name, pr_regdate, pr_thum_img, pr_detail_
 INSERT INTO PRODUCTS (tm_id, ca_id, pr_name, pr_regdate, pr_thum_img, pr_detail_img) VALUES ('NYKees', 'Beanie', '크로셰 미야옹 비니 뉴욕양키스', SYSDATE - 30, '/images/beanie/thumbnail/miyaong_ny.jpg', '/images/beanie/description/miyaong_ny.jpg');
 INSERT INTO PRODUCTS (tm_id, ca_id, pr_name, pr_regdate, pr_thum_img, pr_detail_img) VALUES ('Boston', 'Beanie', '크로셰 미야옹 비니 보스턴 레드삭스', SYSDATE - 30, '/images/beanie/thumbnail/miyaong_red_sox.jpg', '/images/beanie/description/miyaong_red_sox.jpg');
 
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '뉴 젤리 미드 비니 LA다저스'), 'Black', 'XS', 50, 43000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '뉴 젤리 미드 비니 뉴욕양키스'), 'Black', 'S', 60, 43000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '뉴 젤리 미드 비니 클리블랜드 가디언스'), 'Red', 'M', 70, 43000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '바시티 컬시브 미드 비니 뉴욕양키스'), 'White', 'L', 80, 43000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '바시티 컬시브 미드 비니 보스턴 레드삭스'), 'Green', 'M', 90, 43000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '캔디 미드 비니 뉴욕양키스'), 'Blue', 'S', 100, 39000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '캔디 미드 비니 보스턴 레드삭스'), 'Black', 'L', 110, 39000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '크로셰 미야옹 비니 LA다저스'), 'Brown', 'XL', 120, 39000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '크로셰 미야옹 비니 뉴욕양키스'), 'Green', 'XS', 130, 39000);
+
+INSERT INTO PRODUCT_STOCKS (pr_id, cl_id, sz_id, quantity, price) VALUES ((SELECT pr_id FROM PRODUCTS WHERE pr_name = '크로셰 미야옹 비니 보스턴 레드삭스'), 'White', 'S', 140, 39000);
 ```
