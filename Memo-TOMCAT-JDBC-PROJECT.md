@@ -37,26 +37,12 @@ DROP TABLE PRODUCT_STOCKS;
 DROP TABLE USERS;
 DROP TABLE PRODUCTS;
 DROP TABLE TEAMS;
-DROP TABLE SIZES;
 DROP TABLE COLORS;
-DROP TABLE PAYMENTS;
-
--- 결제 방식 테이블
-CREATE TABLE PAYMENTS (
-    pay_id VARCHAR(2000) PRIMARY KEY, -- 결제 방식 ID (예: 카드, 카카오페이 등)
-    pay_name VARCHAR(2000) NOT NULL -- 결제 방식 이름
-);
 
 -- 팀 테이블 (예: 스포츠 팀, 브랜드 등)
 CREATE TABLE TEAMS (
     tm_id VARCHAR(2000) PRIMARY KEY, -- 팀 ID (고유 식별자)
     tm_name VARCHAR2(2000) NOT NULL -- 팀 이름
-);
-
--- 사이즈 테이블 (의류 및 액세서리의 사이즈 정보)
-CREATE TABLE SIZES (
-    sz_id VARCHAR(2000) PRIMARY KEY, -- 사이즈 ID (예: S, M, L 등)
-    sz_name VARCHAR2(2000) NOT NULL -- 사이즈 이름
 );
 
 -- 색상 테이블 (제품의 색상 정보 저장)
