@@ -25,12 +25,12 @@ conn JDBCPROJ/1234;
 ![erd](./images/image73.png)
 ## Create Table
 ```sql
+
 -- 기존 테이블 삭제 (기존 데이터베이스 구조 초기화)
 DROP TABLE ORDER_DETAILS;
-DROP TABLE USERS;
 DROP TABLE ORDERS;
 DROP TABLE PRODUCT_STOCKS;
-DROP TABLE PRODUCT_DETAILS;
+DROP TABLE USERS;
 DROP TABLE PRODUCTS;
 DROP TABLE TEAMS;
 DROP TABLE SIZES;
@@ -85,18 +85,6 @@ CREATE TABLE PRODUCT_STOCKS (
     FOREIGN KEY (cl_id) REFERENCES COLORS (cl_id) -- 색상 참조
 );
 
--- 주문 테이블 (사용자의 주문 정보 저장)
-CREATE TABLE ORDERS (
-    order_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 주문 ID
-    user_id NUMBER NOT NULL, -- 사용자 ID (외래 키 참조)
-    order_date DATE NOT NULL, -- 주문 날짜
-    total_price NUMBER NOT NULL, -- 총 주문 금액
-    pay_id VARCHAR2(10) NOT NULL CHECK (pay_id IN ('card', 'kakao', 'naverpay')), -- 결제 방식 (제한된 값만 허용)
-    shipping_address VARCHAR(2000) NOT NULL, -- 배송 주소
-    shipping_date DATE NOT NULL, -- 배송 예정일
-    FOREIGN KEY (user_id) REFERENCES USERS (user_id) -- USERS 테이블의 user_id 참조
-);
-
 -- 사용자 테이블 (회원 정보 저장)
 CREATE TABLE USERS (
     user_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 사용자 ID
@@ -108,6 +96,18 @@ CREATE TABLE USERS (
     hp VARCHAR(2000) NOT NULL, -- 휴대폰 번호
     email VARCHAR(2000) NOT NULL, -- 이메일
     regdate DATE NOT NULL -- 가입 날짜
+);
+
+-- 주문 테이블 (사용자의 주문 정보 저장)
+CREATE TABLE ORDERS (
+    order_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 주문 ID
+    user_id NUMBER NOT NULL, -- 사용자 ID (외래 키 참조)
+    order_date DATE NOT NULL, -- 주문 날짜
+    total_price NUMBER NOT NULL, -- 총 주문 금액
+    pay_id VARCHAR2(10) NOT NULL CHECK (pay_id IN ('card', 'kakao', 'naverpay')), -- 결제 방식 (제한된 값만 허용)
+    shipping_address VARCHAR(2000) NOT NULL, -- 배송 주소
+    shipping_date DATE NOT NULL, -- 배송 예정일
+    FOREIGN KEY (user_id) REFERENCES USERS (user_id) -- USERS 테이블의 user_id 참조
 );
 
 -- 주문 상세 정보 테이블 (각 주문의 개별 품목 정보 저장)
