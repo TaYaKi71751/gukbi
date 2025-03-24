@@ -23,7 +23,6 @@ conn JDBCPROJ/1234;
 ```
 ## ERD
 ![erd](./images/image73.png)
-![erd](./images/image74.png)
 ## Create Table
 ```sql
 DROP TABLE ORDER_DETAILS;
@@ -111,6 +110,7 @@ CREATE TABLE ORDERS (
     order_date DATE NOT NULL,
     total_price NUMBER NOT NULL,
     pay_id VARCHAR(2000) NOT NULL,
+    shipping_address VARCHAR(2000) NOT NULL,
     shipping_date DATE NOT NULL,
     FOREIGN KEY (pay_id) REFERENCES PAYMENTS (pay_id)
 );
