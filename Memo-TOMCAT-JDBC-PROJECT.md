@@ -97,7 +97,7 @@ CREATE TABLE ORDERS (
     total_price NUMBER NOT NULL, -- 총 주문 금액
     pay_id VARCHAR2(10) NOT NULL CHECK (pay_id IN ('card', 'kakao', 'naverpay')), -- 결제 방식 (제한된 값만 허용)
     shipping_address VARCHAR(2000) NOT NULL, -- 배송 주소
-    shipping_date DATE NOT NULL, -- 배송 예정일
+    shipping_date DATE, -- 배송 예정일
     FOREIGN KEY (user_id) REFERENCES USERS (user_id) -- USERS 테이블의 user_id 참조
 );
 
