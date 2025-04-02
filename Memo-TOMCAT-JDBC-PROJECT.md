@@ -104,7 +104,7 @@ CREATE TABLE ORDERS (
 -- 주문 상세 정보 테이블 (각 주문의 개별 품목 정보 저장)
 CREATE TABLE ORDER_DETAILS (
     order_detail_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- 자동 증가 주문 상세 ID
-    order_id NUMBER NOT NULL, -- 주문 ID (외래 키 참조)
+    order_id NUMBER, -- 주문 ID (외래 키 참조)
     user_id NUMBER NOT NULL, -- 사용자 ID (외래 키 참조)
     pr_st_id NUMBER NOT NULL, -- 제품 재고 ID (외래 키 참조)
     order_quantity NUMBER NOT NULL, -- 주문 수량
