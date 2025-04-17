@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+			 <script>
+					function changeContent(content){
+						document.getElementById('content').innerHTML = content;
+					}
+					function useContent(id){
+						document.querySelectorAll('.content').forEach((element) => {
+						 element.setAttribute('style','display:none;');
+						})
+						document.querySelectorAll(`.${id}`).forEach((element) => {
+							element.setAttribute('style','');
+						})
+					}
+				</script>
+</head>
+<body>
+	<div class="buttons">
+		<button onclick="useContent('content1')">1</button>
+		<button onclick="useContent('content2')">2</button>
+		<button onclick="useContent('content3')">3</button>
+	</div>
+	<div id="contents">
+		<div class="content content1" style="display: none;">Content 1</div>
+		<div class="content content2" style="display: none;">Content 2</div>
+		<div class="content content3" style="display: none;">Content 3</div>
+	</div>
+
+
+</body>
+</html>
