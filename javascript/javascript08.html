@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Vending Machine</title>
+    <title>Pay Vending Machine</title>
 				<style>
      .won::after {
 						content: "원";
@@ -30,33 +30,85 @@
 						box-sizing: border-box;
 					}
 					</style>
+						<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 					<script>
+						var IMP = window.IMP;
+						IMP.init('imp45535874');
 						function cola(price){
-							var current = document.querySelector('.won').textContent;
-							current = parseInt(current);
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + Date.now(),
+								name: 'Cola',
+								amount: price,
+								buyer_email: '',
+								buyer_name: '자판기',
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									var msg = '결제가 완료되었습니다.';
+									console.log('결제성공 ');
+									document.querySelector('.out').innerHTML += '<img src="images/cola.png">';
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
 							if(current >= price){
-								document.querySelector('.won').textContent = current - price;
-								document.querySelector('.out').innerHTML += '<img src="images/cola.png">';
 							} else {
 								alert('금액이 부족합니다.');
 							}
 						}
 						function cider(price){
-							var current = document.querySelector('.won').textContent;
-							current = parseInt(current);
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + Date.now(),
+								name: 'Cider',
+								amount: price,
+								buyer_email: '',
+								buyer_name: '자판기',
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									var msg = '결제가 완료되었습니다.';
+									console.log('결제성공 ');
+									document.querySelector('.out').innerHTML += '<img src="images/cider.avif">';
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
 							if(current >= price){
-								document.querySelector('.won').textContent = current - price;
-								document.querySelector('.out').innerHTML += '<img src="images/cider.avif">';
 							} else {
 								alert('금액이 부족합니다.');
 							}
 						}
 						function fanta(price){
-							var current = document.querySelector('.won').textContent;
-							current = parseInt(current);
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + Date.now(),
+								name: 'Cider',
+								amount: price,
+								buyer_email: '',
+								buyer_name: '자판기',
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									var msg = '결제가 완료되었습니다.';
+									console.log('결제성공 ');
+									document.querySelector('.out').innerHTML += '<img src="images/fanta.jpg">';
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
 							if(current >= price){
-								document.querySelector('.won').textContent = current - price;
-								document.querySelector('.out').innerHTML += '<img src="images/fanta.jpg">';
 							} else {
 								alert('금액이 부족합니다.');
 							}
@@ -78,6 +130,7 @@
 							won100Element.textContent = Number(won100Element.innerText) + coin100;
 							document.querySelector('.won').textContent = 0;
 						}
+
 					</script>
 </head>
 <body>
@@ -106,28 +159,6 @@
 					1000원
 				</div>
 			</td>
-			<td>
-			<div>
-				<button onclick="insert(1000)">1000원</button>
-			</div>
-			<div>
-				<button onclick="insert(500)">500원</button>
-			</div>
-			<div>
-				<button onclick="insert(100)">100원</button>
-			</div>
-			<div class="won">
-			 0
-			</div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div><button onclick="returnCoin()">반환</button></div>
-			</td>
-			<td colspan="2">
-				<div>500원 <span class="won500">0</span>개</div>
-				<div>100원 <span class="won100">0</span>개</div>
 			</td>
 		</tr>
 		<tr>
