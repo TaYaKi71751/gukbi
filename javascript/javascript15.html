@@ -1,71 +1,3 @@
-# JavaScript
-## [classList](https://developer.mozilla.org/ko/docs/Web/API/Element/classList)
-### [Example](./javascript/javascript12.html)
-## scope
-```
-var, let, const, 변수명만으로 변수선언
-```
-|변수선언 방법|스코프|
-|-|-|
-|var|함수스코프 형태의 변수 선언|
-|let|블록스코프 형태의 변수 선언|
-|const|블록스코프 형태의 상수 선언|
-|변수명만으로선언|전역변수선언|
-## [Slider Example](./javascript/javascript13.html)
-## [Chart](https://developers.google.com/chart)
-### [Chart Example](./javascript/javascript14.html)
-## 정규식
-```
-// 정규식 표현 예시
-/문자열패턴기술/추가정보
-여기서 추가정보는 조합하여 사용할 수 있으며, 주로 다음과 같은 옵션이 사용됩니다:
-i (insensitive): 대소문자를 구분하지 않고 검색
-g (global) : 전체에서 여러 개의 일치하는 문자열 찾기
-m (match): 줄당 시작하는 문자열이 같을 경우
-```
-### Input Usage
-```html
-<form>
- <input type="text" placeholder="4~10자리 입력" pattern="[A-Za-z0-9]{4,10}" maxlength="10" required>
- <button type="submit">확인</button>
-</form>
-```
-### Replace Usage
-```javascript
-var str="visit Human ";
-var result = str.replace(/human/i,"Microsoft");//6
-console.log(str);//visit Human
-console.log(result);//visit Microsoft
-```
-### Email Pattern
-```javascript
-var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //2. 이메일 정규식
-```
-### Phone Number Pattern
-```javascript
-var regExp = /^\d{3}-\d{3,4}-\d{4}$/; //3. 핸드폰번호 정규식
-```
-### Test Usage
-```javascript
-regExp.test(str)
-```
-## Event
-### onsubmit Usage
-```javascript
-const forms = document.querySelectorAll('form');
-forms.forEach((form) => {
-    form.onsubmit = (event) => {
-        event.preventDefault(); // 기존 폼 전송 막기
-        form.action = 'submit_url';
-        form.method = 'POST';
-
-        form.submit();
-    }
-})
-```
-### [onkeypress](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event) Usage
-#### [Example](./javascript/javascript15.html)
-```html
 <html lang="en">
 
 <head>
@@ -232,4 +164,3 @@ forms.forEach((form) => {
 </body>
 
 </html>
-```
