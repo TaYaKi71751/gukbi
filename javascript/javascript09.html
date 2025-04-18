@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+				<script>
+					function onChange(target){
+						let selectedTimestamp = new Date(`${target.value}`).getTime();
+						let refundableTimestamp = selectedTimestamp + (1000 * 60 * 60 * 24 * 30);
+						if(Date.now() < refundableTimestamp){
+							document.querySelector('.result').innerHTML = `Refundable until: ${new Date(refundableTimestamp).toLocaleString()}`;
+						} else {
+							document.querySelector('.result').innerHTML = 'Refundable period expired.';
+						}
+						// You can use the selectedDate variable here to perform further actions. For example, updating a database or sending an email.
+					}
+				</script>
+</head>
+<body>
+	<input type="datetime-local" onchange="onChange(this)">
+	<div class="result">Enter datetime</div>
+
+</body>
+</html>

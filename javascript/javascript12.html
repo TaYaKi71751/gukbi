@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+button{/*button
+관련 active*/
+border: none;
+94
+padding:10px 20px;
+background-color: aqua;
+cursor: pointer;
+}
+.active, button:hover{
+background-color: black;
+color:aqua;
+}
+</style>
+<script>
+window.onload=function(){
+var buttons=document.getElementsByTagName("button");
+for(var i=0;i<buttons.length;i++){//모든 버튼에 이벤트 추가
+buttons[i].addEventListener("click",function(){
+// 모든 버튼에 active 속성을 삭제한다.
+for(var j=0;j<buttons.length;j++){
+buttons[j].classList.remove("active");
+}
+this.classList.add("active");
+});
+}
+}
+</script>
+</head>
+<body>
+<button>1</button><button class="active">2</button><button>3</button><button>4</button><button>6</button><button>7</button>
+</body>
+</html>
