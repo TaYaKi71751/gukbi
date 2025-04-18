@@ -1,6 +1,6 @@
 # JavaScript
 ## [classList](https://developer.mozilla.org/ko/docs/Web/API/Element/classList)
-### [Example](./javascript/javascript12.html)
+### [Example](https://tayaki71751.github.io/gukbi/javascript/javascript12.html)
 ## scope
 ```
 var, let, const, 변수명만으로 변수선언
@@ -11,9 +11,9 @@ var, let, const, 변수명만으로 변수선언
 |let|블록스코프 형태의 변수 선언|
 |const|블록스코프 형태의 상수 선언|
 |변수명만으로선언|전역변수선언|
-## [Slider Example](./javascript/javascript13.html)
+## [Slider Example](https://tayaki71751.github.io/gukbi/javascript/javascript13.html)
 ## [Chart](https://developers.google.com/chart)
-### [Chart Example](./javascript/javascript14.html)
+### [Chart Example](https://tayaki71751.github.io/gukbi/javascript/javascript14.html)
 ## 정규식
 ```
 // 정규식 표현 예시
@@ -64,7 +64,7 @@ forms.forEach((form) => {
 })
 ```
 ### [onkeypress](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event) Usage
-#### [Example](./javascript/javascript15.html)
+#### [Example](https://tayaki71751.github.io/gukbi/javascript/javascript15.html)
 ```html
 <html lang="en">
 
