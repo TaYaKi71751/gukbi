@@ -1,6 +1,6 @@
 # jQuery
 ## Toggle
-### [Toggle Example](./jquery/jquery01.html)
+### [Toggle Example](https://tayaki71751.github.io/gukbi/jquery/jquery01.html)
 ## Selector
 ### Selector Usage
 ```javascript
@@ -17,7 +17,7 @@ $("tr:odd") // : 홀수 번째 테이블 행(<tr>) 요소를 선택합니다.
 $("tr:nth-child(2n)") // : 짝수 번째 테이블 행(<tr>) 요소를 선택합니다. 
 $("tr:nth-child(2n+1)") // : 홀수 번째 테이블 행(<tr>) 요소를 선택합니다.
 ```
-### [Selector Example](./jquery/jquery02.html)
+### [Selector Example](https://tayaki71751.github.io/gukbi/jquery/jquery02.html)
 ## DOM function
 ```javascript
 var text = $('body').text(); // get innerText
@@ -147,3 +147,88 @@ $(document).ready(function(){
     });
 });
 ```
+## Animation
+```javascript
+$("#fadeInButton").click(function() {});
+/*
+이 코드는 "Fade In" 버튼을 클릭했을 때 
+콜백 함수에서는 $("#element").fadeIn(1000);으로 선택한 요소(#element)를 
+1초 동안 서서히 나타나게 하는 fadeIn 애니메이션을 실행합니다.
+*/
+$("#fadeOutButton").click(function() {});
+/*
+이 코드는 "Fade Out" 버튼을 클릭했을 때 
+콜백 함수에서는 $("#element").fadeOut(1000);으로 선택한 요소(#element)를 
+1초 동안 서서히 사라지게 하는 fadeOut 애니메이션을 실행합니다.
+*/
+$("#slideInButton").click(function() {});
+/*
+이 코드는 "Slide In" 버튼을 클릭했을 때 
+콜백 함수에서는 $("#element").slideDown(1000);으로 선택한 요소(#element)를 
+1초 동안 슬라이딩으로 나타나게 하는 slideDown 애니메이션을 실행합니다.
+*/
+$("#slideOutButton").click(function() {});
+/*
+이 코드는 "Slide Out" 버튼을 클릭했을 때 
+콜백 함수에서는 $("#element").slideUp(1000);으로 선택한 요소(#element)를 
+1초 동안 슬라이딩으로 사라지게 하는 slideUp 애니메이션을 실행합니다.
+*/
+$("#toggleButton").click(function() {});
+/*
+이 코드는 "Toggle" 버튼을 클릭했을 때 
+콜백 함수에서는 $("#element").fadeToggle(1000);으로 선택한 요소(#element)를 
+1초 동안 서서히 나타나거나 사라지게 하는 fadeToggle 애니메이션을 실행합니다. 
+이것은 토글 형태의 애니메이션이 된다.
+*/
+$("#customAnimateButton").click(function() {});
+/*
+이 코드는 "Custom Animate" 버튼을 클릭했을 때 
+콜백 함수에서는 $("#element").animate({}, 1000);으로 선택한 요소(#element)에 
+대한 사용자 지정 애니메이션을 실행합니다. 
+첫번째 매개변수는 변경정보를 json으로 넘겨주고, 
+두번째 매개변수로는 변경 시간을 설정 한다. 
+이 예제에서는 너비, 투명도, 좌우 여백을 변경하도록 설정되어 있으며, 1초 동안 실행됩니다.
+*/
+```
+## HTML 조작
+### [attr](https://api.jquery.com/attr/)
+```javascript
+$("#myLink").attr("href", (i, origValue) => {
+    return origValue + "/newpath";
+});
+```
+### remove
+```javascript
+// 선택한 요소와 하위 요소를 모두 제거 #myElement도 제거 된다.
+$("#myElement").remove();
+```
+### empty
+```javascript
+// 선택한 요소 내의 모든 자식 요소를 제거 #myElement은 제거 되지 않는다.
+$("#myElement").empty();
+```
+### append(), prepend()
+```javascript
+$("body").append(txt1, txt2, txt3); // 새로운 요소들을 문서에 추가
+$("#container").prepend(newElement); // 부모 요소에 자식 요소 상단에 추가
+var newElement = $("<p>New paragraph.</p>");
+$("#container p:first").after(newElement); // 선택한 요소 뒤에 형제 요소로 추가
+$("#container p:first").before(newElement); // 선택한 요소 앞에 형제 요소로 추가
+```
+### children(), find()
+```
+children() 메서드는 선택한 요소의 직계 자식 요소를 선택합니다. 이것은 요소의 바로 아래 단계의 자식들만 선택합니다.
+find() 메서드는 선택한 요소 내의 모든 하위 요소를 선택합니다. 이것은 직계 자식 뿐만 아니라 모든 자손 요소를 선택합니다.
+간단히 말하면, children()는 한 단계 아래의 자식을 선택하고, 
+find()는 모든 하위 요소를 선택합니다.
+```
+### siblings(), next(), nextAll(), nextUntil(), prev() prevAll(), prevUntil()
+```
+siblings(): 선택한 요소의 형제 요소를 모두 선택합니다. 선택한 요소와 동일한 부모를 공유하는 다른 형제 요소를 모두 선택합니다.
+next(): 선택한 요소의 다음 형제 요소를 선택합니다. 현재 요소의 다음에 위치한 형제 요소를 선택합니다.
+nextAll(): 선택한 요소의 다음에 있는 모든 형제 요소를 선택합니다. 현재 요소 다음에 위치한 모든 형제 요소를 선택합니다.
+nextUntil(): 선택한 요소의 다음에 있는 형제 요소 중에서 지정한 요소까지의 모든 형제 요소를 선택합니다. 현재 요소 다음에 위치한 형제 요소 중에서 특정 요소까지의 모든 형제 요소를 선택합니다.
+prev(): 선택한 요소의 이전 형제 요소를 선택합니다. 현재 요소의 바로 앞에 위치한 형제 요소를 선택합니다.
+prevAll(): 선택한 요소의 이전에 있는 모든 형제 요소를 선택합니다. 현재 요소 앞에 위치한 모든 형제 요소를 선택합니다.
+```
+#### [siblings(), next(), nextAll(), nextUntil(), prev() prevAll(), prevUntil() Usage](https://tayaki71751.github.io/gukbi/jquery/jquery05.html)
