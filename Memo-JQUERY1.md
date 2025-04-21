@@ -243,3 +243,4 @@ not(): 일치하는 요소 집합을 특정 조건이나 선택자와 일치하�
 #### [first(), last(), eq(), filter(), not() Usage](https://tayaki71751.github.io/gukbi/jqeury/jquery06.html)
 ## jQuery Project
 ### [Example 1](https://tayaki71751.github.io/gukbi/jquery/jquery07.html)
+### [Example 2](https://tayaki71751.github.io/gukbi/jquery/jquery08.html)

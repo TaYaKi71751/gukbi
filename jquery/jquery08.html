@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script>
+        $(function () { // $(document).ready(function(){
+            $("#allCheck").on("change", function () {
+                // this - javascript dom
+                // $(this) - jquery dom
+                // $(this).is(':checked');
+                if (this.checked) {
+                    // alert('checked');
+                    // checked
+                    // 속성이 값을 가지고 있지 않아서 attr
+                    // 를 사용하면 문제가
+                    // 발생해서 prop
+                    // 를 사용함
+                    // attr prop 차이 웹에서 확인
+                    $("div").children("input").prop("checked", true);
+                    // $("div").children("input").attr("checked", true);
+                } else {
+                    // alert('not checked');
+                    $("div").children("input").prop("checked", false);
+                    // $("div").children("input").attr("checked", true);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="checkbox" id="allCheck" />allCheck
+    <div>
+        <input type="checkbox" />A
+        <input type="checkbox" />B
+        <input type="checkbox" />C
+    </div>
+</body>
+
+</html>
