@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <style>
+        /* 텍스트 및 비밀번호 입력 필드 스타일 지정 */
+        input[type=text],
+        input[type=password] {
+            height: 24px;
+            line-height: 24px;
+            text-indent: 5px;
+            font-family: "맑은 고딕";
+        }
+
+        /* 제출 버튼 스타일 지정 */
+        input[type=submit] {
+            margin-top: 15px;
+            padding: 5px 15px;
+            font-family: "맑은 고딕";
+            background: #666;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            /* IE9 이상 */
+            -webkit-border-radius: 5px;
+            /* 사파리, 크롬 */
+        }
+    </style>
+
+    <!-- jQuery 라이브러리 로드 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // 폼 제출 이벤트 처리
+            $("#my_form").submit(function (e) {
+                e.preventDefault(); // 기본 이벤트(전송) 막기
+                // 입력값 가져오기
+                var name = $("#name").val();
+                var password = $("#password").val();
+                var str = name + " : " + password;
+
+                // 이름과 비밀번호가 모두 입력된 경우
+                if (name != "" && password != "") {
+                    alert(name + ":" + password); // 값 출력
+                } else {
+                    // 입력되지 않은 경우 경고창 출력
+                    alert("데이터 입력하세요");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- 사용자 입력 폼 -->
+    <form id="my_form">
+        <input type="text" name="name" id="name" /><br>
+        <input type="password" name="password" id="password" /><br>
+        <input type="submit" value="제출" /><br>
+    </form>
+</body>
+
+</html>

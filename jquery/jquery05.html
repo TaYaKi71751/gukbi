@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sibling 관련 메서드 예제</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Sibling 관련 메서드 예제</h1>
+    <ul>
+        <li>사과</li>
+        <li>바나나</li>
+        <li>체리</li>
+        <li>딸기</li>
+        <li>포도</li>
+    </ul>
+    <button id="siblingsButton">siblings()</button>
+    <button id="nextButton">next()</button>
+    <button id="nextAllButton">nextAll()</button>
+    <button id="nextUntilButton">nextUntil()</button>
+    <button id="prevButton">prev()</button>
+    <button id="prevAllButton">prevAll()</button>
+    <button id="prevUntilButton">prevUntil()</button>
+    <div id="result"></div>
+    <script>
+        $(document).ready(function () {
+            $("#siblingsButton").click(function () {
+                var siblings = $("li:nth-child(3)").siblings();
+                $("#result").text("siblings(): " + siblings.length + " 개의 형제 요소 선택");
+            });
+            $("#nextButton").click(function () {
+                var nextElement = $("li:nth-child(3)").next().text();
+                $("#result").text("next(): " + nextElement);
+            });
+            $("#nextAllButton").click(function () {
+                var nextAllElements = $("li:nth-child(3)").nextAll().text();
+                $("#result").text("nextAll(): " + nextAllElements);
+            });
+            $("#nextUntilButton").click(function () {
+                var nextUntilElements =
+                    $("li:nth-child(3)").nextUntil(":contains('딸기')").text();
+                $("#result").text("nextUntil(): " + nextUntilElements);
+            });
+            $("#prevButton").click(function () {
+                var prevElement = $("li:nth-child(3)").prev().text();
+                $("#result").text("prev(): " + prevElement);
+            });
+            $("#prevAllButton").click(function () {
+                var prevAllElements = $("li:nth-child(3)").prevAll().text();
+                $("#result").text("prevAll(): " + prevAllElements);
+            });
+            $("#prevUntilButton").click(function () {
+                var prevUntilElements =
+                    $("li:nth-child(3)").prevUntil(":contains('사과')").text();
+                $("#result").text("prevUntil(): " + prevUntilElements);
+            });
+        });
+    </script>
+</body>
+
+</html>

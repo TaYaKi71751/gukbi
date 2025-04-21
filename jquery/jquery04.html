@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>다양한 jQuery 선택자 예제</title>
+    <!-- jQuery
+라이브러리를 불러옵니다. -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 첫 번째 순서 목록(<ul>)안의 첫 번째 목록 항목(<li>)을 선택
+            $("ul:first li:first").css("color", "blue");
+            //모든 순서 목록(<ul>) 안의 첫 번째 목록 항목(<li>)을 선택
+            $("ul li:first-child").css("font-weight", "bold");
+            // href 속성을 가진 모든 요소를 선택하고 스타일을 변경합니다.
+            $("[href]").css("text-decoration", "underline");
+            // target 속성 값이 "_blank" 인 모든 <a> 요소를 선택
+            $("a[target='_blank']").css("color", "green");
+            // target 속성 값이 "_blank" 가 아닌 모든 <a> 요소를 선택
+            $("a[target!='_blank']").css("color", "red");
+        });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>첫 번째 목록 항목</li>
+        <li>두 번째 목록 항목</li>
+    </ul>
+    <ul>
+        <li>다른 목록 항목</li>
+        <li>또 다른 목록 항목</li>
+    </ul>
+    <!-- href
+속성을 가진 링크 요소 -->
+    <a href="#">링크 1</a>
+    <a href="#">링크 2</a>
+    <!-- target
+속성 값이 "_blank"
+인 링크 요소 -->
+    <a href="#" target="_blank">새 창 열림</a>
+    <a href="#" target="_blank">새 창 열림</a>
+    <!-- target
+속성 값이 "_blank"
+가 아닌 링크 요소 -->
+    <a href="#">현재 창 열림</a>
+    <a href="#">현재 창 열림</a>
+</body>
+
+</html>

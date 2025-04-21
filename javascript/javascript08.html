@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Vending Machine</title>
+				<style>
+     .won::after {
+						content: "원";
+					}
+					img {
+						width: 100px;
+					}
+					table,th,td {
+							border-collapse: collapse;
+							border: 1px solid black;
+						}
+					.out {
+						display: flex;
+						flex-wrap: wrap;
+						width: 500px;
+						justify-content: center;
+					}
+     div {
+						display:flex;
+						align-items:center;
+						justify-content: center;
+						margin: 0;
+						padding: 0;
+						box-sizing: border-box;
+					}
+					</style>
+						<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+					<script>
+						var IMP = window.IMP;
+						IMP.init('imp45535874');
+						function cola(price){
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + Date.now(),
+								name: 'Cola',
+								amount: price,
+								buyer_email: '',
+								buyer_name: '자판기',
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									var msg = '결제가 완료되었습니다.';
+									console.log('결제성공 ');
+									document.querySelector('.out').innerHTML += '<img src="images/cola.png">';
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
+							if(current >= price){
+							} else {
+								alert('금액이 부족합니다.');
+							}
+						}
+						function cider(price){
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + Date.now(),
+								name: 'Cider',
+								amount: price,
+								buyer_email: '',
+								buyer_name: '자판기',
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									var msg = '결제가 완료되었습니다.';
+									console.log('결제성공 ');
+									document.querySelector('.out').innerHTML += '<img src="images/cider.avif">';
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
+							if(current >= price){
+							} else {
+								alert('금액이 부족합니다.');
+							}
+						}
+						function fanta(price){
+							IMP.request_pay({
+								pg: 'html5_inicis',
+								pay_method: 'card',
+								merchant_uid: 'merchant_' + Date.now(),
+								name: 'Cider',
+								amount: price,
+								buyer_email: '',
+								buyer_name: '자판기',
+							}, function(rsp) {
+								console.log(rsp);
+								if (rsp.success) {
+									var msg = '결제가 완료되었습니다.';
+									console.log('결제성공 ');
+									document.querySelector('.out').innerHTML += '<img src="images/fanta.jpg">';
+								} else {
+									var msg = '결제에 실패하였습니다.';
+									msg += '에러내용 : ' + rsp.error_msg;
+								}
+								alert(msg);
+							});
+							if(current >= price){
+							} else {
+								alert('금액이 부족합니다.');
+							}
+						}
+						function insert(amount){
+							var current = document.querySelector('.won').textContent;
+							current = parseInt(current);
+							current += amount;
+							document.querySelector('.won').textContent = current;
+						}
+						function returnCoin(){
+							var current = document.querySelector('.won').textContent;
+							current = parseInt(current);
+							var coin500 = Math.floor(current / 500);
+							var coin100 = Math.floor((current % 500) / 100);
+							var won500Element = document.querySelector('.won500');
+							var won100Element = document.querySelector('.won100');
+							won500Element.textContent = Number(won500Element.innerText) + coin500;
+							won100Element.textContent = Number(won100Element.innerText) + coin100;
+							document.querySelector('.won').textContent = 0;
+						}
+
+					</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th colspan="4">
+				자판기
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<div onclick="cola(1200)">
+					<img src="images/cola.png">
+					1200원
+				</div>
+			</td>
+			<td>
+				<div onclick="cider(1100)">
+					<img src="images/cider.avif">
+					1100원
+				</div>
+			</td>
+			<td>
+				<div onclick="fanta(1000)">
+					<img src="images/fanta.jpg">
+					1000원
+				</div>
+			</td>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<div class="out">
+				</div>
+			</td>
+		</tr>
+</body>
+</html>
