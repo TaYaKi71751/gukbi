@@ -33,6 +33,7 @@
         $(function () {
             // 폼 제출 이벤트 처리
             $("#my_form").submit(function (e) {
+                e.preventDefault(); // 기본 이벤트(전송) 막기
                 // 입력값 가져오기
                 var name = $("#name").val();
                 var password = $("#password").val();
@@ -42,9 +43,8 @@
                 if (name != "" && password != "") {
                     alert(name + ":" + password); // 값 출력
                 } else {
-                    // 입력되지 않은 경우 경고창 출력 후 전송 막기
+                    // 입력되지 않은 경우 경고창 출력
                     alert("데이터 입력하세요");
-                    e.preventDefault(); // 기본 이벤트(전송) 막기
                 }
             });
         });
