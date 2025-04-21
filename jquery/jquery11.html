@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #menu>li>div {
+            margin-bottom: 2px;
+            height: 35px;
+            line-height: 35px;
+            background-color: green;
+            cursor: pointer;
+        }
+
+        #menu,
+        #menu ul {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        ul#menu {
+            width: 200px;
+            text-indent: 35px;
+        }
+
+        ul.sub li {
+            background: rgb(242, 10, 234);
+            line-height: 35px;
+            margin-bottom: 2px;
+        }
+
+        ul.sub li:hover {
+            background: rgba(4, 116, 118, 0.354);
+        }
+
+        ul.sub li a {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // title을 클릭하면 사용자가 메뉴를 사용하다가 메뉴를 빠져나가면 클릭한 메뉴를 3초 후에 보여주기.
+        var selectDiv = $("#menu>li>div").eq(0);
+        $(function () {
+            $(".sub").hide();
+
+            $("#menu>li>div").on("mouseenter", function () {
+                $(".sub").stop().slideUp(300);
+                $(this).next().stop().slideDown(300);
+            });
+
+            $("#menu>li>div").on("click", function () {
+                selectDiv = $(this);
+            });
+
+            $("#menu").on("mouseleave", function () {
+                setTimeout(function () {
+                    $(".sub").stop().slideUp(300);
+                    selectDiv.next().stop().slideDown(300);
+                }, 3000); // 3초 후에 보여주기
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <ul id="menu">
+        <li>
+            <div>title</div>
+            <ul class="sub">
+                <li><a href="#">sub1</a></li>
+                <li><a href="#">sub2</a></li>
+                <li><a href="#">sub3</a></li>
+            </ul>
+        </li>
+        <li>
+            <div>title</div>
+            <ul class="sub">
+                <li><a href="#">sub1</a></li>
+                <li><a href="#">sub2</a></li>
+            </ul>
+        </li>
+        <li>
+            <div>title</div>
+            <ul class="sub">
+                <li><a href="#">sub1</a></li>
+                <li><a href="#">sub2</a></li>
+                <li><a href="#">sub3</a></li>
+                <li><a href="#">sub4</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>

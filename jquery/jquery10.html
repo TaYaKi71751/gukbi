@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        li {
+            float: left;
+            list-style: none;
+            width: 120px;
+        }
+
+        li a {
+            display: block;
+            padding: 15px 0px;
+            width: 120px;
+            text-align: center;
+            text-decoration: none;
+            background-color: orange;
+            color: white;
+        }
+
+        li>div>div {
+            display: none;
+        }
+
+        ul {
+            display: inline-block;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("li").hover(
+                function () {
+                    $(this).find("div>div").stop().slideDown();
+                },
+                function () {
+                    $(this).find("div>div").stop().slideUp();
+                }
+            )
+            $("li a").hover(
+                function () {
+                    var overColor = $(this).attr("data-bg");
+                    $(this).stop().css("background-color", overColor);
+                },
+                function () {
+                    $(this).stop().css("background-color", "#ffa500");
+                }
+            )
+        })
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="position:relative;width:1000px;height:80px;z-index:2;">
+        <ul>
+            <li>
+                <div>
+                    <a href="#" data-bg="#00c8c3">Home</a>
+                    <div><a href="#" data-bg="#00c8c3">Home</a><a href="#" data-bg="#00c8c3">Home</a></div>
+                </div>
+            </li>
+            <li>
+                <div><a href="#" data-bg="#00c8ff">Home</a>
+                    <div><a href="#" data-bg="#00c8c3">Home</a><a href="#" data-bg="#00c8c3">Home</a><a href="#"
+                            data-bg="#00c8c3">Home</a><a href="#" data-bg="#00c8c3">Home</a></div>
+                </div>
+            </li>
+            <li>
+                <div><a href="#" data-bg="#ffc8c3">Home</a>
+                    <div><a href="#" data-bg="#00c8c3">Home</a><a href="#" data-bg="#00c8c3">Home</a></div>
+                </div>
+            </li>
+            <li>
+                <div><a href="#" data-bg="#00c8c3">Home</a>
+                    <div><a href="#" data-bg="#00c8c3">Home</a><a href="#" data-bg="#00c8c3">Home</a></div>
+                </div>
+            </li>
+            <li>
+                <div><a href="#" data-bg="#00ffc3">Home</a>
+                    <div><a href="#" data-bg="#00c8c3">Home</a><a href="#" data-bg="#00c8c3">Home</a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="position:relative;z-index:1;">
+        <img src="K.jpg" />
+    </div>
+</body>
+
+</html>

@@ -247,3 +247,5 @@ not(): 일치하는 요소 집합을 특정 조건이나 선택자와 일치하�
 #### [prop](https://api.jquery.com/prop/)
 ### [Example 3](https://tayaki71751.github.io/gukbi/jquery/jquery09.html)
 #### [hover](https://api.jquery.com/hover/)
+### [Example 4](https://tayaki71751.github.io/gukbi/jquery/jquery10.html)
+### [Example 5](https://tayaki71751.github.io/gukbi/jquery/jquery11.html)
