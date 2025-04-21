@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>jQuery 예제</title>
+    <style>
+        /*
+스타일링을 위한 간단한 CSS */
+        ul {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        li {
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+첫 번째 예제: $("ul li:first") -->
+    <h2>첫 번째 예제: $("ul li:first")</h2>
+    <ul>
+        <P></p>
+        <li>첫 번째 항목1</li>
+        <li>두 번째 항목1</li>
+        <li>
+            <ul>
+                <li>중첩된 첫 번째 항목1</li>
+                <li>중첩된 두 번째 항목1</li>
+            </ul>
+        </li>
+    </ul>
+    <!--
+두 번째 예제: $("ul li:first-child") -->
+    <h2>두 번째 예제: $("ul li:first-child")</h2>
+    <ul>
+        <li>첫 번째 항목2</li>
+        <li>두 번째 항목2</li>
+        <li>
+            <ul>
+                <li>중첩된 첫 번째 항목2</li>
+                <li>중첩된 두 번째 항목2</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // jQuery 를 사용하여 선택자를 적용하고 결과를 콘솔에 출력
+        console.log($("ul li:first")); // ul 밑의 첫 번째 li
+        console.log($("ul li:first-child")); // ul 밑의 첫 번째 자식들
+        // 첫 번째 항목1
+        // 중첩된 첫 번째 항목1첫 번째 항목2중첩된 첫 번째 항목2
+    </script>
+</body>
+
+</html>

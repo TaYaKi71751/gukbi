@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery 토글 예제</title>
+    <!-- jQuery
+라이브러리를 불러옵니다. -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* div 의 초기 상태는 보여진 상태입니다. */
+        #myDiv {
+            display: block;
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+				<script>
+					$(document).ready(() => {
+						$("#toggleButton").click(() => {
+							$("#myDiv").toggle();
+						})
+					})
+				</script>
+</head>
+
+<body>
+    <!--
+버튼을 추가하여 div
+요소를 토글합니다. -->
+    <button id="toggleButton">토글</button>
+    <!--
+토글할 div
+요소 -->
+    <div id="myDiv">이 div는 토글됩니다.</div>
+</body>
+
+</html>
