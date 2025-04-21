@@ -241,3 +241,5 @@ filter(): 일치하는 요소 집합을 특정 조건이나 선택자와 일치�
 not(): 일치하는 요소 집합을 특정 조건이나 선택자와 일치하지 않는 요소로 줄입니다. 지정된 필터 조건이나 선택자와 일치하지 않는 모든 요소를 선택하는 데 사용됩니다.
 ```
 #### [first(), last(), eq(), filter(), not() Usage](https://tayaki71751.github.io/gukbi/jqeury/jquery06.html)
+## jQuery Project
+### [Example 1](https://tayaki71751.github.io/gukbi/jquery/jquery07.html)
