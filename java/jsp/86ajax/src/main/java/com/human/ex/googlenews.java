@@ -1,7 +1,9 @@
-package com.human.ex;
+package ex;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -31,19 +33,39 @@ public class googlenews extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/xml;charset=UTF-8");
+		 response.setContentType("text/xml;charset=UTF-8");
 		 PrintWriter out=response.getWriter();
 		 //http://apis.data.go.kr/B552061/jaywalking/getRestJaywalking?serviceKey=M8K3w2mpvRglskN45c0h%2Fo7ug7pmma3I9F7g6fpa1vhWYZXX8yPRtVYS0zuPtQ2z%2FL8jDdcSaKzOVBpdKMrRPQ%3D%3D&searchYearCd=2015&siDo=11&guGun=320&type=xml&numOfRows=10&pageNo=1
 		 HttpURLConnection conn=null;
-		 String str="https://news.google.com/news/feeds?ned=kr";
+		 String str = "https://news.google.com/news/feeds?ned=kr";
 		 
 		 //사이트연결 객체 생성
 		 URL url=new URL(str);
 		 //사이트 연결해서 결과값리턴
 		 conn=(HttpURLConnection)url.openConnection();
 		 
-		 BufferedInputStream is
-		 =new BufferedInputStream(conn.getInputStream());
+		 //--- new Add Code start
+		 BufferedInputStream is = new BufferedInputStream(conn.getInputStream());
+         InputStreamReader isr  = new InputStreamReader(is, "UTF-8"); // 인코딩 지정
+         BufferedReader reader  = new BufferedReader(isr);
+         
+         StringBuffer buffer=new StringBuffer();
+         String line;
+         while ((line = reader.readLine()) != null) {
+             //System.out.println(line);
+        	 buffer.append(line); 
+         }
+         
+         String str2 = buffer.toString();
+	     out.println(str2);
+
+         reader.close(); // 연결 닫기
+         conn.disconnect(); // HTTP 연결 해제
+         //--- end
+         
+         /*
+         
+         BufferedInputStream is = new BufferedInputStream(conn.getInputStream());
 		 byte[] b =new byte[4096];//2 4 8 16 1024 2048 4096
 		 StringBuffer buffer=new StringBuffer();
 		  int i;
@@ -52,6 +74,8 @@ public class googlenews extends HttpServlet {
 		     }
 		      String str2 = buffer.toString();
 		      out.println(str2);
+		      
+		      */
 
 	}
 
