@@ -1,5 +1,5 @@
 # 📚 목차
-- [� 목차](#-목차)
+- [📚 목차](#-목차)
 - [📒 Memo](#-memo)
   - [jQuery](#jquery)
   - [Tomcat](#tomcat)
@@ -21,6 +21,7 @@
 
 ## jQuery
 - [Memo-JQUERY1.md](./Memo-JQUERY1.md)
+- [Memo-JQUERY2.md](./Memo-JQUERY2.md)
 
 ---
 
