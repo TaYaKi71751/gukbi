@@ -16,7 +16,7 @@ $(function(){
 			cache:false,
 			timeout:3000,
 			success:function(xml){
-				alert(xml);
+				alert(new XMLSerializer().serializeToString(xml));
 				// alert(xml.responseText)
 				//$("#result").append(xml);
 				// 반복되는 태그 단위를 찾아서 each() 함수 사용
