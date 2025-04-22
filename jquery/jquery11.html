@@ -48,20 +48,12 @@
         $(function () {
             $(".sub").hide();
 
-            $("#menu>li>div").on("mouseenter", function () {
+            $("#menu>li").on("mouseenter", function () {
                 $(".sub").stop().slideUp(300);
-                $(this).next().stop().slideDown(300);
+                $(this).children("ul").stop().slideDown(300);
             });
-
-            $("#menu>li>div").on("click", function () {
-                selectDiv = $(this);
-            });
-
-            $("#menu").on("mouseleave", function () {
-                setTimeout(function () {
-                    $(".sub").stop().slideUp(300);
-                    selectDiv.next().stop().slideDown(300);
-                }, 3000); // 3초 후에 보여주기
+            $("#menu>li").on("mouseleave", function () {
+                $(".sub").stop().slideUp(300);
             });
         });
     </script>
