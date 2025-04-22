@@ -25,6 +25,7 @@ data-target속성을 통해 사용자가 요청한 data-target속성을 이용�
 		// 드롭다운은 body상에 없으므로 이벤트를 "미리"정의해 놓아야 한다.
         // 1depth에 대한 change 이벤트 정의
 		$(document).on("change","#category1>select",function(){
+            $(".console").html("");
 			// 1dpeth가 변경되므로 2,3depth는 초기화.
 			$("#category2").empty().hide();
 			$("#category3").empty().hide();
@@ -42,6 +43,7 @@ data-target속성을 통해 사용자가 요청한 data-target속성을 이용�
 		
 		// 2depth에 대한 change 이벤트 정의
 		$(document).on("change","#category2>select",function(){
+            $(".console").html("");
 			// 2dpeth가 변경되므로 3depth는 초기화.
 			$("#category3").empty().hide();
 			// 선택된 항목이 지시하는 하위 카테고리 페이지의 URL얻기
@@ -63,7 +65,10 @@ data-target속성을 통해 사용자가 요청한 data-target속성을 이용�
             var data3 = $(this).find("option:selected").val();
             // class속성이 "console"인 요소에게 출력
             $(".console").html(data1 + " &gt; " + data2 + " &gt; " + data3);
-          }
+          } else {
+			// 선택된 항목이 없다면 콘솔을 비움
+			$(".console").html("");
+		  }
         });
 		
 	});
