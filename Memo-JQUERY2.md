@@ -9,5 +9,5 @@
 ### [Example 2 (Text)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/02Text2.html)
 ### [Example 3 (Text)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/03Text3.html)
 ### [Example 4 (Category)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/04category.html)
-### [Example 5 (XML)]([https://](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/05xml.html))
-### [Example 6 (ID Check)]([https://](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/06-idcheck4.html))
+### [Example 5 (XML)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/05xml.html)
+### [Example 6 (ID Check)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/06-idcheck4.html)
