@@ -11,3 +11,4 @@
 ### [Example 4 (Category)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/04category.html)
 ### [Example 5 (XML)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/05xml.html)
 ### [Example 6 (ID Check)](https://tayaki71751.github.io/gukbi/java/jsp/86ajax/src/main/webapp/06-idcheck4.html)
+### [Example 7 (Google News)](http://localhost:8080/86ajax/10-google-news.html)
