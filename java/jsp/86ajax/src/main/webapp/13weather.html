@@ -1,0 +1,129 @@
+
+<!--  getUltraSrtFcst: 초단기예보조회 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- jQuery Framework 참조하기 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+	/* //현재 날씨
+	 //https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=0tXbH6JvI1tTqh%2FIC4yGcvnQCWTTGWPvDTPz4qFSOQo7ICrF5dqRWBhFy5fscHKz%2FJmA67kl7lHX0%2FHYweDcYA%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20240726&base_time=0600&nx=55&ny=127
+	 //https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=59DlkKuPMMfiNa2kZi8dOfwyWyk6luQkC5Zim5MJJjGavqqvvO5a8WGJnSYdQq0Wj7FnW5a3tZCi96mEbnlohQ%3D%3D&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20240726&base_time=1700&nx=55&ny=127 */
+	$(function() {
+		$(".btn").click(function(event) {
+				event.preventDefault();
+				//alert($("#weatherTime").val());//2024-07-09T18:08
+				var now = new Date($("#weatherTime").val());
+
+				var year = now.getFullYear(); //2024
+				var month = '0' + (now.getMonth() + 1);//1월 0 
+				var month = month.substr(-2);//항상 뒤에서 부터 2자리로 만든다.
+				var day = '0' + now.getDate();
+				var day = day.substr(-2);
+
+				var time = $("#weatherTime").val().substr(-5, 2)
+										+ $("#weatherTime").val().substr(-2);
+				//1getUltraSrtNcst
+				var serviceKey = "jdghvj%2F8vJT41ZEY4hEbd0k7KeCPQnzY0SsL7OdHG0Sb5Rg2tXrrkxmAtcL8zIM6XtstiIq8%2FLtDSPVEsWFbpA%3D%3D";
+				var pageNo = "1";
+				var numOfRows = "100";
+				var dataType = "JSON";
+				var base_date = year + month + day;
+				var base_time = time;
+				var nx = "55";
+				var ny = "127";
+
+				var myUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?"
+						+ "serviceKey="+ serviceKey
+						+ "&pageNo="+ pageNo
+						+ "&numOfRows="+ numOfRows
+						+ "&dataType="+ dataType
+						+ "&base_date="+ base_date
+						+ "&base_time="+ base_time
+						+ "&nx=" + nx 
+						+ "&ny=" + ny;
+
+				alert(base_date + ":" + base_time);
+				console.log(myUrl); 
+//https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=59DlkKuPMMfiNa2kZi8dOfwyWyk6luQkC5Zim5MJJjGavqqvvO5a8WGJnSYdQq0Wj7FnW5a3tZCi96mEbnlohQ%3D%3D&pageNo=1&numOfRows=100&dataType=JSON&base_date=20240729&base_time=1502&nx=55&ny=127
+//var myUrl="https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=59DlkKuPMMfiNa2kZi8dOfwyWyk6luQkC5Zim5MJJjGavqqvvO5a8WGJnSYdQq0Wj7FnW5a3tZCi96mEbnlohQ%3D%3D&pageNo=1&numOfRows=100&dataType=JSON&base_date=20240729&base_time=1400&nx=55&ny=127";		
+
+				$.ajax({
+					url : myUrl,//"ajax/json/2getUltraSrtFcst.json",
+					type : "get",
+					dataType : "JSON",
+					cache : false,
+					success : function(json) {
+						alert("success");
+						var resultMsg=json.response.header.resultMsg;
+						if (resultMsg == "NO_DATA") {
+							$(".headerMsg").text(json.response.header.resultMsg);
+						}else if(resultMsg == "NORMAL_SERVICE"){
+							$(".headerMsg").text("NORMAL_SERVICE");
+							
+						  var item =json.response.body.items.item[24];
+						  var content="<br>";
+						  content+=" <br>baseDate :"+item.baseDate
+								  		+ "<br>baseTime :"+item.baseTime
+								  		+ "<br>category :"+item.category
+								  		+ "<br>fcstDate :"+item.fcstDate
+								  		+ "<br>fcstTime :"+item.fcstTime
+								  		+ "<br> 온도(fcstValue):"+item.fcstValue
+								  		+ "<br>nx :"+item.nx
+								  		+ "<br>ny :"+item.ny
+						
+						  $(".result").html(content); 
+								  		
+							var items =json.response.body.items;
+							var tableStr="<table border=1>"
+							tableStr+="<tr>"
+							tableStr+="<th>fcstDate</th>"
+							tableStr+="<th>fcstTime</th>"
+							tableStr+="<th>fcstValue</th>"
+							tableStr+="</tr>"
+							for(var i=0;i<6;i++){
+								tableStr+="<tr>"
+									tableStr+="<td>"+items.item[24+i].fcstDate+"</td>"
+									tableStr+="<td>"+items.item[24+i].fcstTime+"</td>"
+									tableStr+="<td>"+items.item[24+i].fcstValue+"</td>"							
+								
+								tableStr+="</tr>"
+							}							
+							
+							
+							tableStr+="</table>"
+							$(".table").html(tableStr);
+							
+						}
+					  console.log(json);
+					
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						alert("fail");
+						$(".error").html(
+								"<div>" + textStatus + " (HTTP-" + xhr.status + " / "
+										+ errorThrown + ")</div>");
+					}
+				});
+			});
+	});
+</script>
+
+</head>
+<body>
+	<form>
+		<input type="datetime-local" name="date" id="weatherTime">
+		<button type="submit" id="btn" class="btn">조회</button>
+	</form>
+	<hr>
+	json.response.header.resultMsg: <div class="headerMsg"></div>
+	<div class="result"></div>
+	<div class="error"></div>
+	<div class="table"></div>
+
+</body>
+</html>
