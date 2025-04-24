@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Human CRUD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .btn-create {
+            background: #4CAF50;
+        }
+
+        .btn-read {
+            background: #008CBA;
+        }
+
+        .btn-update {
+            background: #f39c12;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+        }
+
+        .record {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 5px solid #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h1>Human 테이블 CRUD</h1>
+        <input type="text" id="name" placeholder="이름 입력" />
+        <input type="number" id="age" placeholder="나이 입력" />
+        <input type="number" step="0.1" id="height" placeholder="키(cm) 입력" />
+        <input type="datetime-local" id="birthday" placeholder="생일 입력" />
+        <button class="btn-create" onclick="createRecord()">Create</button>
+        <button class="btn-read" onclick="readRecords()">Read</button>
+        <button class="btn-update" onclick="updateRecord()">Update</button>
+        <button class="btn-delete" onclick="deleteRecord()">Delete</button>
+        <div id="history"></div>
+    </div>
+
+    <script>
+        const supabaseUrl = "https://zqaizmjhhrkkldcekctj.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
+        const client = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function createRecord() {
+            const name = document.getElementById("name").value;
+            const age = parseInt(document.getElementById("age").value);
+            const height = parseFloat(document.getElementById("height").value);
+            const birthday = document.getElementById("birthday").value;
+
+            if (!name || !age || !height || !birthday) return alert("모든 필드를 입력하세요.");
+
+            const { data, error } = await client.from("human").insert([{ name, age, height, birthday }]).select();
+            if (error) return alert("Create Error: " + error.message);
+            console.log("Created:", data);
+            readRecords();
+        }
+
+        async function readRecords() {
+            const { data: records, error } = await client.from("human").select("*");
+            if (error) return alert("Read Error: " + error.message);
+
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            records.forEach(record => {
+                const div = document.createElement("div");
+                div.className = "record";
+                div.innerHTML = `
+      <strong>${record.name}</strong><br>
+      나이: ${record.age}세, 키: ${record.height}cm<br>
+      생일: ${new Date(record.birthday).toLocaleString()}<br>
+      ID: ${record.id}
+    `;
+                historyDiv.appendChild(div);
+            });
+        }
+
+        async function updateRecord() {
+            const id = prompt("수정할 ID를 입력하세요:");
+            if (!id) return;
+
+            const name = document.getElementById("name").value;
+            const age = parseInt(document.getElementById("age").value);
+            const height = parseFloat(document.getElementById("height").value);
+            const birthday = document.getElementById("birthday").value;
+            if (!name || !age || !height || !birthday) return alert("모든 필드를 입력하세요.");
+
+            const { error } = await client.from("human").update({ name, age, height, birthday }).eq("id", id);
+            if (error) return alert("Update Error: " + error.message);
+            console.log("Updated:", id);
+            readRecords();
+        }
+
+        async function deleteRecord() {
+            const id = prompt("삭제할 ID를 입력하세요:");
+            if (!id) return;
+
+            const { error } = await client.from("human").delete().eq("id", id);
+            if (error) return alert("Delete Error: " + error.message);
+            console.log("Deleted:", id);
+            readRecords();
+        }
+
+        readRecords();
+    </script>
+
+</body>
+
+</html>
