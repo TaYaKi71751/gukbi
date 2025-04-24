@@ -47,7 +47,18 @@
                 if (session && session.user) {
                     loginButton.style.display = "none";
                     logoutButton.style.display = "inline";
-                    statusText.textContent = JSON.stringify(session.user); // 사용자 정보 표시
+                    statusText.innerHTML = "로그인 상태"; // 로그인 상태 표시
+                    statusText.innerHTML += "<br>";
+                    statusText.innerHTML += "<br>";
+                    statusText.innerHTML += "<strong>사용자 정보:</strong><br>";
+                    statusText.innerHTML += "<br>";
+                    statusText.innerHTML += "<strong>이메일:</strong> " + session.user.email + "<br>";
+                    statusText.innerHTML += "<strong>ID:</strong> " + session.user.id + "<br>";
+                    statusText.innerHTML += "<strong>사용자 이름:</strong> " + session.user.user_metadata.user_name + "<br>";
+                    statusText.innerHTML += "<strong>이름:</strong> " + session.user.user_metadata.full_name + "<br>";
+                    statusText.innerHTML += "<strong>가입일:</strong> " + new Date(session.user.created_at).toLocaleString() + "<br>";
+                    statusText.innerHTML += "<strong>업데이트일:</strong> " + new Date(session.user.updated_at).toLocaleString() + "<br>";
+                    console.log(JSON.stringify(session.user, null, 1));
                 } else {
                     loginButton.style.display = "inline";
                     logoutButton.style.display = "none";
