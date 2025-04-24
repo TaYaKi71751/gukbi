@@ -35,6 +35,7 @@
         <button id="github-login">GitHub 로그인</button>
     </div>
     <button id="logout" style="display: none;">로그아웃</button>
+    <pre id="output"></pre>
     <!-- 로그인 상태 메시지 -->
     <p id="status">로그아웃</p>
     <script type="module">
@@ -79,6 +80,7 @@
             };
             document.querySelector('#login').style.display = 'none';
             console.log('🔐 access_token: ', token);
+            document.location.reload();
         });
         // ✅ 회원가입 기능
         signupBtn.addEventListener('click'
