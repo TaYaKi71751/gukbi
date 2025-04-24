@@ -27,7 +27,7 @@
             async function signInWithGithub() {
                 const { error } = await supabase.auth.signInWithOAuth({
                     provider: "github",
-                    options: { redirectTo: "https://tayaki71751.github.io/supabase/supabase02.html" }
+                    options: { redirectTo: "https://tayaki71751.github.io/gukbi/supabase/supabase02.html" }
                 });
                 if (error) console.error("로그인 실패:", error.message);
             }
