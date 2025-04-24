@@ -50,7 +50,19 @@
                 return;
             }
             const token = data.session.access_token;
-            output.textContent = `✅ 로그인 성공!\n\n🔐access_token:\n${token}`;
+
+            const originalFetch = window.fetch;
+
+            window.fetch = async (...args) => {
+                const [url, options = {}] = args;
+
+                options.headers = {
+                    ...options.headers,
+                    Authorization: `Bearer ${token}`,
+                };
+
+                return await originalFetch(url, options);
+            };
             console.log('🔐 access_token: ', token);
         });
         // ✅ 회원가입 기능
