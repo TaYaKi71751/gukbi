@@ -14,6 +14,10 @@
         }
 
         #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             max-width: 500px;
             margin: auto;
             padding: 20px;
@@ -56,12 +60,27 @@
             background: #e74c3c;
         }
 
-        .record {
+        .record-user {
             text-align: left;
             background: #f9f9f9;
             padding: 10px;
             margin: 10px 0;
             border-left: 5px solid #4CAF50;
+        }
+        .record-admin {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 5px solid yellow;
+        }
+
+        .record-supaadmin {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 5px solid orange;
         }
     </style>
 </head>
@@ -74,6 +93,18 @@
         <input type="number" id="age" placeholder="나이 입력" />
         <input type="number" step="0.1" id="height" placeholder="키(cm) 입력" />
         <input type="datetime-local" id="birthday" placeholder="생일 입력" />
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            <select name="role" id="role" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="user">사용자</option>
+                <option value="admin">관리자</option>
+                <option value="supaadmin">슈퍼 관리자</option>
+            </select>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            <input type="checkbox" id="is_married" style="width: fit-content;" />
+            <label for="is_married">결혼 여부</label>
+        </div>
+
         <button class="btn-create" onclick="createRecord()">Create</button>
         <button class="btn-read" onclick="readRecords()">Read</button>
         <button class="btn-update" onclick="updateRecord()">Update</button>
@@ -91,10 +122,13 @@
             const age = parseInt(document.getElementById("age").value);
             const height = parseFloat(document.getElementById("height").value);
             const birthday = document.getElementById("birthday").value;
+            const role = Array.from(document.querySelectorAll("select[name='role'] > option"))
+            .filter(e => e.selected)[0].value;
+            const is_married = document.getElementById("is_married").checked;
 
-            if (!name || !age || !height || !birthday) return alert("모든 필드를 입력하세요.");
+            if (!name || !age || !height || !birthday || !role || typeof is_married == 'undefined' ) return alert("모든 필드를 입력하세요.");
 
-            const { data, error } = await client.from("human").insert([{ name, age, height, birthday }]).select();
+            const { data, error } = await client.from("human").insert([{ name, age, height, birthday,role,is_married }]).select();
             if (error) return alert("Create Error: " + error.message);
             console.log("Created:", data);
             readRecords();
@@ -108,12 +142,16 @@
             historyDiv.innerHTML = "";
             records.forEach(record => {
                 const div = document.createElement("div");
-                div.className = "record";
+                if(record.role == "user") div.className = "record-user";
+                else if(record.role == "admin") div.className = "record-admin";
+                else if(record.role == "supaadmin") div.className = "record-supaadmin";
                 div.innerHTML = `
       <strong>${record.name}</strong><br>
       나이: ${record.age}세, 키: ${record.height}cm<br>
       생일: ${new Date(record.birthday).toLocaleString()}<br>
-      ID: ${record.id}
+      ID: ${record.id}<br>
+      역할: ${record.role}<br>
+      결혼 여부: ${record.is_married ? "예" : "아니요"}<br>
     `;
                 historyDiv.appendChild(div);
             });
@@ -127,9 +165,13 @@
             const age = parseInt(document.getElementById("age").value);
             const height = parseFloat(document.getElementById("height").value);
             const birthday = document.getElementById("birthday").value;
-            if (!name || !age || !height || !birthday) return alert("모든 필드를 입력하세요.");
+            const role = Array.from(document.querySelectorAll("select[name='role'] > option"))
+            .filter(e => e.selected)[0].value;
+            const is_married = document.getElementById("is_married").checked;
 
-            const { error } = await client.from("human").update({ name, age, height, birthday }).eq("id", id);
+            if (!name || !age || !height || !birthday || !role || typeof is_married == 'undefined' ) return alert("모든 필드를 입력하세요.");
+
+            const { error } = await client.from("human").update({ name, age, height, birthday, role, is_married }).eq("id", id);
             if (error) return alert("Update Error: " + error.message);
             console.log("Updated:", id);
             readRecords();
