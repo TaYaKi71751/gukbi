@@ -47,12 +47,12 @@
                 if (session && session.user) {
                     loginButton.style.display = "none";
                     logoutButton.style.display = "inline";
-                    statusText.textContent = session.user.email; // 이메일 표시
+                    statusText.textContent = JSON.stringify(session.user); // 사용자 정보 표시
                 } else {
                     loginButton.style.display = "inline";
                     logoutButton.style.display = "none";
                     statusText.textContent =
-                        "로그아웃"; // 로그아웃 상태 표시
+                        "로그인 되어 있지 않음"; // 로그아웃 상태 표시
                 }
             }
             // 이벤트 리스너 추가
