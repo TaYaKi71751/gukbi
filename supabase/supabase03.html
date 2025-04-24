@@ -2,26 +2,32 @@
 <html lang="ko">
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <meta charset="UTF-8">
-    <title>Supabase JWT 확인</title>
-</head>
+    <title>Supabase JWT 확인</title </head>
 
 <body>
     <h1>🔐 Supabase Access Token 확인기</h1>
-    <form id="auth-form">
-        <label>
-            이메일:
-            <input type="email" id="email" required>
-        </label>
-        <br><br>
-        <label>
-            비밀번호:
-            <input type="password" id="password" required>
-        </label>
-        <br><br>
-        <button type="submit" id="login-btn">로그인</button>
-        <button type="button" id="signup-btn">회원가입</button>
-    </form>
+    <div id="login">
+        <form id="auth-form" id="login">
+            <label>
+                이메일:
+                <input type="email" id="email" required>
+            </label>
+            <br><br>
+            <label>
+                비밀번호:
+                <input type="password" id="password" required>
+            </label>
+            <br><br>
+            <button type="submit" id="login-btn">로그인</button>
+            <button type="button" id="signup-btn">회원가입</button>
+        </form>
+
+    </div>
+    <div id="status">
+    </div>
+    <button id="logout" style="display: none;">로그아웃</button>
     <pre id="output"></pre>
     <script type="module">
         import { createClient } from 'https://esm.sh/@supabase/supabase-js';
@@ -64,6 +70,7 @@
                 return await originalFetch(url, options);
             };
             console.log('🔐 access_token: ', token);
+            document.location.reload();
         });
         // ✅ 회원가입 기능
         signupBtn.addEventListener('click'
@@ -84,6 +91,70 @@
                 console.log('🧾 회원가입 데이터:'
                     , data);
             });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Supabase 설정
+            const SUPABASE_URL = "https://zqaizmjhhrkkldcekctj.supabase.co";
+            const SUPABASE_KEY =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
+            const supabase = window.supabase.createClient(SUPABASE_URL,
+                SUPABASE_KEY);
+            (async () => {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    console.log("세션:", session);
+                    (new URL(document.location.href)).searchParams.forEach((value, key) => {
+                        if (key == 'redirectTo') {
+                            document.location.href = value;
+                        }
+                    });
+                } else {
+                    console.log("세션 없음");
+                }
+
+            })()
+            // 로그아웃
+            async function signOut() {
+                const { error } = await supabase.auth.signOut();
+                if (error) console.error("로그아웃 실패:", error.message);
+                updateUI();
+            }
+            // 현재 로그인 상태 확인 및 UI 업데이트
+            async function updateUI() {
+                const { data: { session } } = await supabase.auth.getSession();
+                const loginButton = document.getElementById("login");
+                const logoutButton = document.getElementById("logout");
+                const statusText = document.getElementById("status");
+                console.log(session)
+                if (session && session.user) {
+                    loginButton.style.display = "none";
+                    logoutButton.style.display = "inline";
+                    statusText.innerHTML = "로그인 상태"; // 로그인 상태 표시
+                    statusText.innerHTML += "<br>";
+                    statusText.innerHTML += "<br>";
+                    statusText.innerHTML += "<strong>사용자 정보:</strong><br>";
+                    statusText.innerHTML += "<img src='" + session.user.user_metadata.avatar_url + "' style='width: 50px; height: 50px; border-radius: 50%;' />";
+                    statusText.innerHTML += "<br>";
+                    statusText.innerHTML += "<strong>이메일:</strong> " + session.user.email + "<br>";
+                    statusText.innerHTML += "<strong>ID:</strong> " + session.user.id + "<br>";
+                    statusText.innerHTML += "<strong>사용자 이름:</strong> " + session.user.user_metadata.user_name + "<br>";
+                    statusText.innerHTML += "<strong>이름:</strong> " + session.user.user_metadata.full_name + "<br>";
+                    statusText.innerHTML += "<strong>가입일:</strong> " + new Date(session.user.created_at).toLocaleString() + "<br>";
+                    statusText.innerHTML += "<strong>업데이트일:</strong> " + new Date(session.user.updated_at).toLocaleString() + "<br>";
+                    console.log(JSON.stringify(session.user, null, 1));
+                } else {
+                    loginButton.style.display = "inline";
+                    logoutButton.style.display = "none";
+                    statusText.textContent =
+                        "로그인 되어 있지 않음"; // 로그아웃 상태 표시
+                }
+            }
+            // 이벤트 리스너 추가
+            document.getElementById("logout").addEventListener("click", signOut);
+            // 페이지 로드 시 UI 업데이트
+            updateUI();
+        });
     </script>
 </body>
 
