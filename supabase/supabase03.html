@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase JWT 확인</title>
+</head>
+
+<body>
+    <h1>🔐 Supabase Access Token 확인기</h1>
+    <form id="auth-form">
+        <label>
+            이메일:
+            <input type="email" id="email" required>
+        </label>
+        <br><br>
+        <label>
+            비밀번호:
+            <input type="password" id="password" required>
+        </label>
+        <br><br>
+        <button type="submit" id="login-btn">로그인</button>
+        <button type="button" id="signup-btn">회원가입</button>
+    </form>
+    <pre id="output"></pre>
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js';
+        // ✅ 본인의 Supabase 프로젝트 정보 입력
+        const supabaseUrl =
+            'https://zqaizmjhhrkkldcekctj.supabase.co';
+        const supabaseAnonKey =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+        const form = document.getElementById('auth-form');
+        const output = document.getElementById('output');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        // ✅ 로그인 기능
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            output.textContent = '🔄 로그인 중...';
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email, password,
+                options: { redirectTo: document.location }
+            });
+            if (error) {
+                output.textContent = `❌ 로그인 실패: ${error.message}`;
+                return;
+            }
+            const token = data.session.access_token;
+            output.textContent = `✅ 로그인 성공!\n\n🔐access_token:\n${token}`;
+            console.log('🔐 access_token: ', token);
+        });
+        // ✅ 회원가입 기능
+        signupBtn.addEventListener('click'
+            , async () => {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                output.textContent = '🔄 회원가입 중...';
+                const { data, error } = await supabase.auth.signUp({
+                    email, password,
+                    options: { redirectTo: document.location }
+                });
+                if (error) {
+                    output.textContent = `❌ 회원가입 실패: ${error.message}`;
+                    return;
+                }
+                output.textContent =
+                    `✅ 회원가입 성공! 이메일 인증을 완료해주세요.`;
+                console.log('🧾 회원가입 데이터:'
+                    , data);
+            });
+    </script>
+</body>
+
+</html>
