@@ -134,14 +134,14 @@
 
             if (!name || !age || !height || !birthday || !role || typeof is_married == 'undefined' ) return alert("모든 필드를 입력하세요.");
 
-            const { data, error } = await client.from("human").insert([{ name, age, height, birthday,role,is_married }]).select();
+            const { data, error } = await client.from("humans").insert([{ name, age, height, birthday,role,is_married }]).select();
             if (error) return alert("Create Error: " + error.message);
             console.log("Created:", data);
             readRecords();
         }
 
         async function readRecords() {
-            const { data: records, error } = await client.from("human").select("*");
+            const { data: records, error } = await client.from("humans").select("*");
             if (error) return alert("Read Error: " + error.message);
 
             const historyDiv = document.getElementById("history");
@@ -177,7 +177,7 @@
 
             if (!name || !age || !height || !birthday || !role || typeof is_married == 'undefined' ) return alert("모든 필드를 입력하세요.");
 
-            const { error } = await client.from("human").update({ name, age, height, birthday, role, is_married }).eq("id", id);
+            const { error } = await client.from("humans").update({ name, age, height, birthday, role, is_married }).eq("id", id);
             if (error) return alert("Update Error: " + error.message);
             console.log("Updated:", id);
             readRecords();
@@ -187,7 +187,7 @@
             const id = prompt("삭제할 ID를 입력하세요:");
             if (!id) return;
 
-            const { error } = await client.from("human").delete().eq("id", id);
+            const { error } = await client.from("humans").delete().eq("id", id);
             if (error) return alert("Delete Error: " + error.message);
             console.log("Deleted:", id);
             readRecords();
