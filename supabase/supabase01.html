@@ -121,7 +121,7 @@
     <script>
         const supabaseUrl = "https://zqaizmjhhrkkldcekctj.supabase.co";
         const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
-        const client = client.createClient(supabaseUrl, supabaseKey);
+        const client = supabase.createClient(supabaseUrl, supabaseKey);
 
         async function createRecord() {
             const { data: { session } } = await client.auth.getSession();
