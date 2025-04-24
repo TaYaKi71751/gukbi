@@ -121,9 +121,15 @@
     <script>
         const supabaseUrl = "https://zqaizmjhhrkkldcekctj.supabase.co";
         const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
-        const client = supabase.createClient(supabaseUrl, supabaseKey);
+        const client = client.createClient(supabaseUrl, supabaseKey);
 
         async function createRecord() {
+            const { data: { session } } = await client.auth.getSession();
+            if(!session) {
+                alert("로그인 후 사용하세요.");
+                document.location.href = "https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=" + encodeURIComponent(window.location.href);
+                return;
+            }
             const name = document.getElementById("name").value;
             const age = parseInt(document.getElementById("age").value);
             const height = parseFloat(document.getElementById("height").value);
@@ -141,6 +147,12 @@
         }
 
         async function readRecords() {
+            const { data: { session } } = await client.auth.getSession();
+            if(!session) {
+                alert("로그인 후 사용하세요.");
+                document.location.href = "https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=" + encodeURIComponent(window.location.href);
+                return;
+            }
             const { data: records, error } = await client.from("humans").select("*");
             if (error) return alert("Read Error: " + error.message);
 
@@ -164,6 +176,12 @@
         }
 
         async function updateRecord() {
+            const { data: { session } } = await client.auth.getSession();
+            if(!session) {
+                alert("로그인 후 사용하세요.");
+                document.location.href = "https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=" + encodeURIComponent(window.location.href);
+                return;
+            }
             const id = prompt("수정할 ID를 입력하세요:");
             if (!id) return;
 
@@ -184,6 +202,12 @@
         }
 
         async function deleteRecord() {
+            const { data: { session } } = await client.auth.getSession();
+            if(!session) {
+                alert("로그인 후 사용하세요.");
+                document.location.href = "https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=" + encodeURIComponent(window.location.href);
+                return;
+            }
             const id = prompt("삭제할 ID를 입력하세요:");
             if (!id) return;
 

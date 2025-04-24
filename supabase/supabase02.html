@@ -29,11 +29,25 @@
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
             const supabase = window.supabase.createClient(SUPABASE_URL,
                 SUPABASE_KEY);
+            (async () => {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    console.log("세션:", session);
+                    (new URL(document.location.href)).searchParams.forEach((value, key) => {
+                        if(key == 'redirectTo'){
+                            document.location.href = value;
+                        }
+                    });
+                } else {
+                    console.log("세션 없음");
+                }
+
+            })()
             // GitHub OAuth 로그인
             async function signInWithGithub() {
                 const { error } = await supabase.auth.signInWithOAuth({
                     provider: "github",
-                    options: { redirectTo: "https://tayaki71751.github.io/gukbi/supabase/supabase02.html" }
+                    options: { redirectTo: document.location }
                 });
                 if (error) console.error("로그인 실패:", error.message);
             }
