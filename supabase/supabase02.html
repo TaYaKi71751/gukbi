@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supabase Auth</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <h1>Supabase GitHub 로그인</h1>
+    <!-- 로그인 및 로그아웃 버튼 -->
+    <button id="login">GitHub 로그인</button>
+    <button id="logout" style="display: none;">로그아웃</button>
+    <!-- 로그인 상태 메시지 -->
+    <p id="status">로그아웃</p>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Supabase 설정
+            const SUPABASE_URL = "https://zqaizmjhhrkkldcekctj.supabase.co";
+            const SUPABASE_KEY =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
+            const supabase = window.supabase.createClient(SUPABASE_URL,
+                SUPABASE_KEY);
+            // GitHub OAuth 로그인
+            async function signInWithGithub() {
+                const { error } = await supabase.auth.signInWithOAuth({
+                    provider: "github",
+                    options: { redirectTo: "https://tayaki71751.github.io/supabase/supabase02.html" }
+                });
+                if (error) console.error("로그인 실패:", error.message);
+            }
+            // 로그아웃
+            async function signOut() {
+                const { error } = await supabase.auth.signOut();
+                if (error) console.error("로그아웃 실패:", error.message);
+                updateUI();
+            }
+            // 현재 로그인 상태 확인 및 UI 업데이트
+            async function updateUI() {
+                const { data: { session } } = await supabase.auth.getSession();
+                const loginButton = document.getElementById("login");
+                const logoutButton = document.getElementById("logout");
+                const statusText = document.getElementById("status");
+                console.log(session)
+                if (session && session.user) {
+                    loginButton.style.display = "none";
+                    logoutButton.style.display = "inline";
+                    statusText.textContent = session.user.email; // 이메일 표시
+                } else {
+                    loginButton.style.display = "inline";
+                    logoutButton.style.display = "none";
+                    statusText.textContent =
+                        "로그아웃"; // 로그아웃 상태 표시
+                }
+            }
+            // 이벤트 리스너 추가
+            document.getElementById("login").addEventListener("click",
+                signInWithGithub);
+            document.getElementById("logout").addEventListener("click", signOut);
+            // 페이지 로드 시 UI 업데이트
+            updateUI();
+        });
+    </script>
+</body>
+
+</html>
