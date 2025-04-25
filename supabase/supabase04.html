@@ -68,10 +68,11 @@
             try {
                 // API 키와 인증 토큰은 실제 사용 시 보안에 유의해야 합니다
                 // 실제 프로덕션 환경에서는 백엔드 서버를 통해 처리하는 것이 안전합니다
-                const response = await fetch(supabaseUrl + "rest/v1/humans", {
+                const response = await fetch(supabaseUrl + "/rest/v1/humans", {
                     method: "GET",
                     headers: {
                         "Accept": "*/*",
+                        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
                         "Content-Type": "application/json",
                         "apikey": supabaseAnonKey,
                         "Authorization": "Bearer " + token,
