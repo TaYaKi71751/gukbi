@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase JWT 확인</title>
+</head>
+
+<body>
+    <h1>🔐 Supabase Access Token 확인기</h1>
+    <form id="login-form">
+        <label>
+            이메일:
+            <input type="email" id="email" required value="shantian.tw+01@gmail.com">
+        </label>
+        <br><br>
+        <label>
+            비밀번호:
+            <input type="password" id="password" required>
+        </label>
+        <br><br>
+        <button type="submit">로그인</button>
+    </form>
+
+    <pre id="output"></pre>
+    <pre id="result"></pre>
+
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+
+        // 👇 여기에 본인의 Supabase 프로젝트 정보 입력
+        const supabaseUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
+
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+        async function fetchHumansData() {
+        }
+
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const output = document.getElementById('output');
+
+            output.textContent = '🔄 로그인 중...';
+
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password, options: {
+                    redirectTo: 'http://192.168.0.102:5500/ch01/index.html'
+                }
+
+            });
+
+            if (error) {
+                output.textContent = `❌ 로그인 실패: ${error.message}`;
+                return;
+            }
+
+            const token = data.session.access_token;
+            output.textContent = `✅ 로그인 성공!\n\n🔐 access_token:\n${token}`;
+            console.log('🔐 access_token:', token);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Loading data...</p>';
+
+            try {
+                // API 키와 인증 토큰은 실제 사용 시 보안에 유의해야 합니다
+                // 실제 프로덕션 환경에서는 백엔드 서버를 통해 처리하는 것이 안전합니다
+                const response = await fetch(supabaseUrl + "rest/v1/humans", {
+                    method: "GET",
+                    headers: {
+                        "Accept": "*/*",
+                        "Content-Type": "application/json",
+                        "apikey": supabaseAnonKey,
+                        "Authorization": "Bearer " + token,
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                console.log("Fetched data:", data);
+            } catch (error) {
+                console.error("Error:", error);
+                resultDiv.innerHTML = `<p style="color: red;">Error fetching data: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
