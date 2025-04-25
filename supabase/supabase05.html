@@ -22,7 +22,7 @@ se.min.js"></script>
                 output.textContent = '로그인 중...';
                 const { data, error } = await supabase.auth.signInWithPassword({
                     email, password, options: {
-                        redirectTo: 'http://192.168.0.102:5500/ch01/index.html'
+                        redirectTo: document.location.href
                     }
                 });
                 if (error) {
@@ -41,7 +41,7 @@ se.min.js"></script>
                 const { data, error } = await supabase.auth.signUp({
                     email, password
                     , options: {
-                        emailRedirectTo: 'http://192.168.0.102:5500/ch01/index.html'
+                        emailRedirectTo: document.location.href
                     }
                 });
                 if (error) {
