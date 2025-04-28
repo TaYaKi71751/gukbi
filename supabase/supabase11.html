@@ -150,22 +150,20 @@
     </script>
     <script>
         window.onload = async function () {
-        const supabaseUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co';
-        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
-        var supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session.access_token) {
-            console.log('사용자 세션:', session.access_token);
-        } else {
-            alert('로그인 후 사용하세요.');
-            document.location.href = 'https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=' + encodeURIComponent(window.location.href);
-            return;
-            console.log('사용자 세션이 없습니다.');
-        }
-        window.accessToken = session.access_token;
-        window.apiUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co/functions/v1/smart-function'; // Supabase Edge Function URL
-
-
+            const supabaseUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co';
+            const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
+            var supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session.access_token) {
+                console.log('사용자 세션:', session.access_token);
+            } else {
+                alert('로그인 후 사용하세요.');
+                document.location.href = 'https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=' + encodeURIComponent(window.location.href);
+                return;
+                console.log('사용자 세션이 없습니다.');
+            }
+            window.accessToken = session.access_token;
+            window.apiUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co/functions/v1/smart-function'; // Supabase Edge Function URL
         }
     </script>
 </head>
