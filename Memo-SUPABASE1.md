@@ -100,16 +100,19 @@ for (const file of data) {
 }
 ```
 ## Examples
-### [Example 1 (CRUD)](https://tayaki71751.github.io/gukbi/supabase/supabase01.html)
-### [Example 2 (GitHub Login, Email Login)](https://tayaki71751.github.io/gukbi/supabase/supabase02.html)
-### [Example 3 (Email Login)](https://tayaki71751.github.io/gukbi/supabase/supabase03.html)
-### [Example 4 (REST API)](https://tayaki71751.github.io/gukbi/supabase/supabase04.html)
-### [Example 5 (Realtime)](https://tayaki71751.github.io/gukbi/supabase/supabase05.html)
-### [Example 6 (Storage Upload)](https://tayaki71751.github.io/gukbi/supabase/supabase06.html)
-### [Example 7 (Storage Upload, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)
-### [Example 8 (Storage Upload with extension, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase08.html)
-### [Example 9 (Storage Upload with extension, Delete, Download)](https://tayaki71751.github.io/gukbi/supabase/supabase09.html)
-### [Example 10 (Edge Functions)](https://tayaki71751.github.io/gukbi/supabase/supabase10.html)
+### [Supabase](./pdf/supabase.pdf)
+#### [Example 1 (CRUD)](https://tayaki71751.github.io/gukbi/supabase/supabase01.html)
+#### [Example 2 (GitHub Login, Email Login)](https://tayaki71751.github.io/gukbi/supabase/supabase02.html)
+#### [Example 3 (Email Login)](https://tayaki71751.github.io/gukbi/supabase/supabase03.html)
+#### [Example 4 (REST API)](https://tayaki71751.github.io/gukbi/supabase/supabase04.html)
+#### [Example 5 (Realtime)](https://tayaki71751.github.io/gukbi/supabase/supabase05.html)
+### [Storage](./pdf/supabase-storage.pdf)
+#### [Example 6 (Storage Upload)](https://tayaki71751.github.io/gukbi/supabase/supabase06.html)
+#### [Example 7 (Storage Upload, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)
+#### [Example 8 (Storage Upload with extension, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase08.html)
+#### [Example 9 (Storage Upload with extension, Delete, Download)](https://tayaki71751.github.io/gukbi/supabase/supabase09.html)
+### [Edge Functions](./pdf/supabase-edge.pdf)
+#### [Example 10 (Edge Functions)](https://tayaki71751.github.io/gukbi/supabase/supabase10.html)
 ```javascript
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
