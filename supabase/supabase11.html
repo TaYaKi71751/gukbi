@@ -154,7 +154,7 @@
             const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
             var supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
             const { data: { session } } = await supabase.auth.getSession();
-            if (session.access_token) {
+            if (session?.access_token) {
                 console.log('사용자 세션:', session.access_token);
             } else {
                 alert('로그인 후 사용하세요.');
