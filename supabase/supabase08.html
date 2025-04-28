@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase File Upload App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #auth-form,
+        #user-area {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #008CBA;
+            color: white;
+        }
+
+        #logout-btn {
+            background-color: #e74c3c;
+        }
+
+        #status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .file-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .delete-btn {
+            background-color: #ff5252;
+            margin-top: 5px;
+            align-self: flex-end;
+        }
+
+        .file-info {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .file-preview {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="auth-form">
+            <h2>Login / Sign Up</h2>
+            <input type="email" id="email" placeholder="Email" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button id="login-btn">Login</button>
+            <button id="signup-btn">Sign Up</button>
+            <div id="status"></div>
+        </div>
+
+
+        <div id="user-area" style="display: none;">
+            <h2 id="welcome-msg"></h2>
+            <input type="file" id="file-input">
+            <div class="uploads" id="uploads"></div>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </div>
+
+
+    <script>
+        const supabaseUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+
+        // 이미지 파일 확장자 확인 함수
+        function isImageFile(filename) {
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+            const ext = filename.substring(filename.lastIndexOf('.')).toLowerCase();
+            return imageExtensions.includes(ext);
+        }
+
+
+        // 파일 아이콘 결정 함수
+        function getFileIcon(filename) {
+            const ext = filename.substring(filename.lastIndexOf('.')).toLowerCase();
+
+            const iconMap = {
+                '.pdf': 'file-pdf',
+                '.doc': 'file-word',
+                '.docx': 'file-word',
+                '.xls': 'file-excel',
+                '.xlsx': 'file-excel',
+                '.ppt': 'file-powerpoint',
+                '.pptx': 'file-powerpoint',
+                '.txt': 'file-alt',
+                '.zip': 'file-archive',
+                '.rar': 'file-archive',
+                '.mp3': 'file-audio',
+                '.wav': 'file-audio',
+                '.mp4': 'file-video',
+                '.mov': 'file-video'
+            };
+
+
+            return iconMap[ext] || 'file';
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentUser = null;
+            const statusDiv = document.getElementById('status');
+
+
+            function showStatus(message, isError = false) {
+                statusDiv.textContent = message;
+                statusDiv.className = isError ? 'error' : 'success';
+            }
+
+
+            async function getUser() {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                if (error) {
+                    showStatus('Session Error: ' + error.message, true);
+                    return;
+                }
+                currentUser = session?.user || null;
+                updateUI();
+                if (currentUser) {
+                    showStatus(`Logged in as ${currentUser.email}`);
+                    getMedia();
+                }
+            }
+
+
+            document.getElementById('login-btn').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!email || !password) {
+                    showStatus('Please enter both email and password', true);
+                    return;
+                }
+
+
+                showStatus('Logging in...');
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password,
+                    options: {
+                        redirectTo: window.location.href
+                    }
+                });
+
+
+                if (error) {
+                    showStatus('Login Error: ' + error.message, true);
+                } else {
+                    currentUser = data.user;
+                    updateUI();
+                    getMedia();
+                    showStatus('Login successful!');
+                }
+            });
+
+
+            document.getElementById('signup-btn').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!email || !password) {
+                    showStatus('Please enter both email and password', true);
+                    return;
+                }
+
+
+                showStatus('Signing up...');
+
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        emailRedirectTo: window.location.href
+                    }
+                });
+
+
+                if (error) {
+                    showStatus('Signup Error: ' + error.message, true);
+                } else {
+                    showStatus('Signup successful! Please check your email for confirmation.');
+                }
+            });
+
+
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                const { error } = await supabase.auth.signOut();
+                if (error) {
+                    showStatus('Logout Error: ' + error.message, true);
+                } else {
+                    currentUser = null;
+                    document.getElementById('uploads').innerHTML = '';
+                    updateUI();
+                    showStatus('Logged out successfully');
+                }
+            });
+
+
+            function updateUI() {
+                if (currentUser) {
+                    document.getElementById('auth-form').style.display = 'none';
+                    document.getElementById('user-area').style.display = 'block';
+                    document.getElementById('welcome-msg').innerText = `Welcome ${currentUser.email}`;
+                } else {
+                    document.getElementById('auth-form').style.display = 'block';
+                    document.getElementById('user-area').style.display = 'none';
+                }
+            }
+
+
+            async function uploadImage(e) {
+                const file = e.target.files[0];
+                if (!file || !currentUser) return;
+
+                showStatus('Uploading file...');
+
+                const filePath = `${currentUser.id}/${uuid.v4()}${file.name.substring(file.name.lastIndexOf('.'))}`;
+                const { error } = await supabase.storage.from('fileupload').upload(filePath, file);
+
+
+                if (error) {
+                    showStatus('Upload Error: ' + error.message, true);
+                } else {
+                    showStatus('File uploaded successfully!');
+                    getMedia();
+                }
+            }
+
+
+            async function getMedia() {
+                if (!currentUser) return;
+
+
+                showStatus('Loading files...');
+
+                const { data, error } = await supabase.storage
+                    .from('fileupload')
+                    .list(currentUser.id, {
+                        limit: 100,
+                        sortBy: { column: 'name', order: 'asc' }
+                    });
+
+
+                const uploadsDiv = document.getElementById('uploads');
+                uploadsDiv.innerHTML = '';
+
+
+                if (error) {
+                    showStatus('Load Error: ' + error.message, true);
+                    return;
+                }
+
+
+                if (data.length === 0) {
+                    showStatus('No files found. Upload some!');
+                    return;
+                }
+
+
+                showStatus(`Found ${data.length} files`);
+
+                for (const file of data) {
+                    const publicUrl = `${supabaseUrl}/storage/v1/object/public/fileupload/${currentUser.id}/${file.name}`;
+
+                    const container = document.createElement('div');
+                    container.className = 'image-container';
+
+                    const fileInfo = document.createElement('div');
+                    fileInfo.className = 'file-info';
+                    fileInfo.textContent = `File: ${file.name}`;
+
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'file-preview';
+
+                    if (isImageFile(file.name)) {
+                        const img = document.createElement('img');
+                        img.src = publicUrl;
+                        img.alt = file.name;
+                        previewDiv.appendChild(img);
+                    } else {
+                        const icon = document.createElement('i');
+                        icon.className = `fas fa-${getFileIcon(file.name)} file-icon`;
+                        previewDiv.appendChild(icon);
+                    }
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.textContent = '삭제';
+                    deleteBtn.onclick = () => deleteImage(file.name);
+
+                    container.appendChild(fileInfo);
+                    container.appendChild(previewDiv);
+                    container.appendChild(deleteBtn);
+
+                    uploadsDiv.appendChild(container);
+                }
+            }
+
+
+            async function deleteImage(fileName) {
+                if (!currentUser || !fileName) return;
+
+                const confirmDelete = confirm('정말 이 파일을 삭제하시겠습니까?');
+                if (!confirmDelete) return;
+
+                showStatus('Deleting file...');
+
+                const filePath = `${currentUser.id}/${fileName}`;
+                const { error } = await supabase.storage.from('fileupload').remove([filePath]);
+
+
+                if (error) {
+                    showStatus('Delete Error: ' + error.message, true);
+                } else {
+                    showStatus('File deleted successfully!');
+                    getMedia();
+                }
+            }
+
+
+            document.getElementById('file-input').addEventListener('change', uploadImage);
+            getUser();
+        });
+    </script>
+</body>
+
+</html>

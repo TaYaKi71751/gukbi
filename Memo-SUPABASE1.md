@@ -82,6 +82,23 @@ SELECT 1 FROM users WHERE id = auth.uid() AND role = 'supaadmin'
 )
 );
 ```
+## Storage
+```javascript
+const { data:{session} } = supabase.auth.getSession();
+const currentUser = session?.user;
+if(!currentUser) return;
+const { data, error } = await supabase.storage
+    .from('fileupload')
+    .list(supabase.auth.getSession().data.session?.user?.id ?? '', {
+        limit: 100,
+        sortBy: { column: 'name', order: 'asc' }
+    });
+
+for (const file of data) {
+    const publicUrl = `${supabaseUrl}/storage/v1/object/public/fileupload/${currentUser.id}/${file.name}`;
+    console.log(publicUrl);
+}
+```
 ## Examples
 ### [Example 1 (CRUD)](https://tayaki71751.github.io/gukbi/supabase/supabase01.html)
 ### [Example 2 (GitHub Login, Email Login)](https://tayaki71751.github.io/gukbi/supabase/supabase02.html)
@@ -90,3 +107,4 @@ SELECT 1 FROM users WHERE id = auth.uid() AND role = 'supaadmin'
 ### [Example 5 (Realtime)](https://tayaki71751.github.io/gukbi/supabase/supabase05.html)
 ### [Example 6 (Storage Upload)](https://tayaki71751.github.io/gukbi/supabase/supabase06.html)
 ### [Example 7 (Storage Upload, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)
+### [Example 8 (Storage Upload with extension, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)
