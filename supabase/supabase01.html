@@ -100,15 +100,15 @@
         <input type="number" step="0.1" id="height" placeholder="키(cm) 입력" />
         <input type="datetime-local" id="birthday" placeholder="생일 입력" />
         <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-            <select name="role" id="role" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                <option value="user">사용자</option>
-                <option value="admin">관리자</option>
-                <option value="supaadmin">슈퍼 관리자</option>
+            <select name="level" id="level" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="1">사용자</option>
+                <option value="2">관리자</option>
+                <option value="3">슈퍼 관리자</option>
             </select>
         </div>
         <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-            <input type="checkbox" id="is_married" style="width: fit-content;" />
-            <label for="is_married">결혼 여부</label>
+            <input type="checkbox" id="is_worked" style="width: fit-content;" />
+            <label for="is_worked">취업 여부</label>
         </div>
 
         <button class="btn-create" onclick="createRecord()">Create</button>
@@ -134,13 +134,13 @@
             const age = parseInt(document.getElementById("age").value);
             const height = parseFloat(document.getElementById("height").value);
             const birthday = document.getElementById("birthday").value;
-            const role = Array.from(document.querySelectorAll("select[name='role'] > option"))
-            .filter(e => e.selected)[0].value;
-            const is_married = document.getElementById("is_married").checked;
+            const level = Number(Array.from(document.querySelectorAll("select[name='level'] > option"))
+            .filter(e => e.selected)[0].value);
+            const is_worked = document.getElementById("is_worked").checked;
 
-            if (!name || !age || !height || !birthday || !role || typeof is_married == 'undefined' ) return alert("모든 필드를 입력하세요.");
+            if (!name || !age || !height || !birthday || !level || typeof is_worked == 'undefined' ) return alert("모든 필드를 입력하세요.");
 
-            const { data, error } = await client.from("humans").insert([{ name, age, height, birthday,role,is_married }]).select();
+            const { data, error } = await client.from("humans").insert([{ name, age, height, birthday,level,is_worked }]).select();
             if (error) return alert("Create Error: " + error.message);
             console.log("Created:", data);
             readRecords();
@@ -160,16 +160,16 @@
             historyDiv.innerHTML = "";
             records.forEach(record => {
                 const div = document.createElement("div");
-                if(record.role == "user") div.className = "record-user";
-                else if(record.role == "admin") div.className = "record-admin";
-                else if(record.role == "supaadmin") div.className = "record-supaadmin";
+                if(record.level == "user") div.className = "record-user";
+                else if(record.level == "admin") div.className = "record-admin";
+                else if(record.level == "supaadmin") div.className = "record-supaadmin";
                 div.innerHTML = `
       <strong>${record.name}</strong><br>
       나이: ${record.age}세, 키: ${record.height}cm<br>
       생일: ${new Date(record.birthday).toLocaleString()}<br>
       ID: ${record.id}<br>
-      역할: ${record.role}<br>
-      결혼 여부: ${record.is_married ? "예" : "아니요"}<br>
+      역할: ${record.level}<br>
+      결혼 여부: ${record.is_worked ? "예" : "아니요"}<br>
     `;
                 historyDiv.appendChild(div);
             });
@@ -189,13 +189,13 @@
             const age = parseInt(document.getElementById("age").value);
             const height = parseFloat(document.getElementById("height").value);
             const birthday = document.getElementById("birthday").value;
-            const role = Array.from(document.querySelectorAll("select[name='role'] > option"))
-            .filter(e => e.selected)[0].value;
-            const is_married = document.getElementById("is_married").checked;
+            const level = Number(Array.from(document.querySelectorAll("select[name='level'] > option"))
+            .filter(e => e.selected)[0].value);
+            const is_worked = document.getElementById("is_worked").checked;
 
-            if (!name || !age || !height || !birthday || !role || typeof is_married == 'undefined' ) return alert("모든 필드를 입력하세요.");
+            if (!name || !age || !height || !birthday || !level || typeof is_worked == 'undefined' ) return alert("모든 필드를 입력하세요.");
 
-            const { error } = await client.from("humans").update({ name, age, height, birthday, role, is_married }).eq("id", id);
+            const { error } = await client.from("humans").update({ name, age, height, birthday, level, is_worked }).eq("id", id);
             if (error) return alert("Update Error: " + error.message);
             console.log("Updated:", id);
             readRecords();
