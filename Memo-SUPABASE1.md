@@ -109,3 +109,34 @@ for (const file of data) {
 ### [Example 7 (Storage Upload, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)
 ### [Example 8 (Storage Upload with extension, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase08.html)
 ### [Example 9 (Storage Upload with extension, Delete, Download)](https://tayaki71751.github.io/gukbi/supabase/supabase09.html)
+### [Example 10 (Edge Functions)](https://tayaki71751.github.io/gukbi/supabase/supabase10.html)
+```javascript
+// Setup type definitions for built-in Supabase Runtime APIs
+import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+console.info('server started');
+Deno.serve(async (req)=>{
+  // CORS preflight 요청 처리
+  if (req.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Max-Age': '86400'
+      }
+    });
+  }
+  // 실제 POST 요청 처리
+  const { name } = await req.json();
+  const data = {
+    message: `Hello ${name}!`
+  };
+  return new Response(JSON.stringify(data), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Connection': 'keep-alive',
+      'Access-Control-Allow-Origin': '*'
+    }
+  });
+});
+```

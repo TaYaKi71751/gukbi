@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase Edge Function Test</title>
+</head>
+
+<body>
+    <h1>Call Supabase Edge Function</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="callFunction()">Send</button>
+
+    <p id="responseArea"></p>
+
+    <script>
+        async function callFunction() {
+            const name = document.getElementById("nameInput").value;
+            const response = await fetch("https://zqaizmjhhrkkldcekctj.supabase.co/functions/v1/hello-world", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw"
+                },
+                body: JSON.stringify({ name }),
+                mode: "cors"
+            });
+
+            const data = await response.json();
+            document.getElementById("responseArea").innerText = data.message;
+        }
+    </script>
+</body>
+
+</html>
