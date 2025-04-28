@@ -244,7 +244,7 @@
                 showStatus('Loading images...');
 
                 const { data, error } = await supabase.storage
-                    .from('test')
+                    .from('fileupload')
                     .list(currentUser.id, {
                         limit: 100,
                         sortBy: { column: 'name', order: 'asc' }
