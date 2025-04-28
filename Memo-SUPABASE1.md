@@ -88,3 +88,5 @@ SELECT 1 FROM users WHERE id = auth.uid() AND role = 'supaadmin'
 ### [Example 3 (Email Login)](https://tayaki71751.github.io/gukbi/supabase/supabase03.html)
 ### [Example 4 (REST API)](https://tayaki71751.github.io/gukbi/supabase/supabase04.html)
 ### [Example 5 (Realtime)](https://tayaki71751.github.io/gukbi/supabase/supabase05.html)
+### [Example 6 (Storage Upload)](https://tayaki71751.github.io/gukbi/supabase/supabase06.html)
+### [Example 7 (Storage Upload, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)

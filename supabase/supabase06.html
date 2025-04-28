@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Supabase File Upload App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- UUID 라이브러리 최신 버전으로 변경 -->
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #auth-form,
+        #user-area {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #008CBA;
+            color: white;
+        }
+
+        #logout-btn {
+            background-color: #e74c3c;
+        }
+
+        .uploads img {
+            width: 200px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="auth-form">
+            <h2>Login / Sign Up</h2>
+            <input type="email" id="email" placeholder="Email" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <button id="login-btn">Login</button>
+            <button id="signup-btn">Sign Up</button>
+            <div id="status"></div>
+        </div>
+
+
+        <div id="user-area" style="display: none;">
+            <h2 id="welcome-msg"></h2>
+            <input type="file" id="file-input" accept="image/*">
+            <div class="uploads" id="uploads"></div>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </div>
+
+
+    <script>
+        // Initialize Supabase client first (before DOMContentLoaded)
+        const supabaseUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentUser = null;
+            const statusDiv = document.getElementById('status');
+
+
+            function showStatus(message, isError = false) {
+                statusDiv.textContent = message;
+                statusDiv.className = isError ? 'error' : 'success';
+            }
+
+
+            async function getUser() {
+                const { data: { session }, error } = await supabase.auth.getSession();
+                if (error) {
+                    showStatus('Session Error: ' + error.message, true);
+                    return;
+                }
+                currentUser = session?.user || null;
+                updateUI();
+                if (currentUser) {
+                    showStatus(`Logged in as ${currentUser.email}`);
+                    getMedia();
+                }
+            }
+
+
+            // 로그인 폼 처리
+            document.getElementById('login-btn').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!email || !password) {
+                    showStatus('Please enter both email and password', true);
+                    return;
+                }
+
+
+                showStatus('Logging in...');
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password,
+                    options: {
+                        redirectTo: window.location.href
+                    }
+                });
+
+
+                if (error) {
+                    showStatus('Login Error: ' + error.message, true);
+                } else {
+                    currentUser = data.user;
+                    updateUI();
+                    getMedia();
+                    showStatus('Login successful!');
+                }
+            });
+
+
+            // 회원가입 처리
+            document.getElementById('signup-btn').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!email || !password) {
+                    showStatus('Please enter both email and password', true);
+                    return;
+                }
+
+
+                showStatus('Signing up...');
+
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        emailRedirectTo: window.location.href
+                    }
+                });
+
+
+                if (error) {
+                    showStatus('Signup Error: ' + error.message, true);
+                } else {
+                    showStatus('Signup successful! Please check your email for confirmation.');
+                }
+            });
+
+
+            // 로그아웃 처리
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                const { error } = await supabase.auth.signOut();
+                if (error) {
+                    showStatus('Logout Error: ' + error.message, true);
+                } else {
+                    currentUser = null;
+                    document.getElementById('uploads').innerHTML = '';
+                    updateUI();
+                    showStatus('Logged out successfully');
+                }
+            });
+
+
+            function updateUI() {
+                if (currentUser) {
+                    document.getElementById('auth-form').style.display = 'none';
+                    document.getElementById('user-area').style.display = 'block';
+                    document.getElementById('welcome-msg').innerText = `Welcome ${currentUser.email}`;
+                } else {
+                    document.getElementById('auth-form').style.display = 'block';
+                    document.getElementById('user-area').style.display = 'none';
+                }
+            }
+
+
+            async function uploadImage(e) {
+                const file = e.target.files[0];
+                if (!file || !currentUser) return;
+
+                showStatus('Uploading image...');
+
+                // uuidv4() 대신 uuid.v4() 사용
+                const filePath = `${currentUser.id}/${uuid.v4()}`;
+                const { error } = await supabase.storage.from('fileupload').upload(filePath, file);
+
+
+                if (error) {
+                    showStatus('Upload Error: ' + error.message, true);
+                } else {
+                    showStatus('Image uploaded successfully!');
+                    getMedia();
+                }
+            }
+
+
+            async function getMedia() {
+                if (!currentUser) return;
+
+
+                showStatus('Loading images...');
+
+                const { data, error } = await supabase.storage
+                    .from('test')
+                    .list(currentUser.id, {
+                        limit: 100,
+                        sortBy: { column: 'name', order: 'asc' }
+                    });
+
+
+                const uploadsDiv = document.getElementById('uploads');
+                uploadsDiv.innerHTML = '';
+
+
+                if (error) {
+                    showStatus('Load Error: ' + error.message, true);
+                    return;
+                }
+
+
+                if (data.length === 0) {
+                    showStatus('No images found. Upload some!');
+                    return;
+                }
+
+
+                showStatus(`Found ${data.length} images`);
+
+                for (const file of data) {
+                    const publicUrl = `${supabaseUrl}/storage/v1/object/public/fileupload/${currentUser.id}/${file.name}`;
+                    const img = document.createElement('img');
+                    img.src = publicUrl;
+                    img.alt = file.name;
+                    uploadsDiv.appendChild(img);
+                }
+            }
+
+
+            // 파일 입력 변경 이벤트 리스너
+            document.getElementById('file-input').addEventListener('change', uploadImage);
+
+
+            // 초기 사용자 상태 확인
+            getUser();
+        });
+    </script>
+</body>
+
+</html>
