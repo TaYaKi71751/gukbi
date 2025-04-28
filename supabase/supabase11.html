@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD 작업</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        async function createData() {
+            const name = document.getElementById('nameInput').value;
+            const age = document.getElementById('ageInput').value;
+
+
+            if (!name || !age) {
+                alert('이름과 나이를 모두 입력해주세요!');
+                return;
+            }
+
+
+            try {
+                const response = await fetch(window.apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${window.accessToken}`,  // 인증 헤더
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, age }),
+                });
+
+
+                const data = await response.json();
+                alert('데이터가 추가되었습니다.');
+                console.log(data);
+            } catch (error) {
+                console.error('데이터 추가 오류:', error);
+            }
+        }
+
+
+        async function fetchData() {
+            try {
+                const response = await fetch(window.apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${window.accessToken}`,  // 인증 헤더
+                    },
+                });
+
+
+                const data = await response.json();
+                document.getElementById('dataResponse').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error('데이터 조회 오류:', error);
+            }
+        }
+
+
+        async function updateData() {
+            const id = document.getElementById('updateId').value;
+            const name = document.getElementById('updateName').value;
+            const age = document.getElementById('updateAge').value;
+
+
+            if (!id || !name || !age) {
+                alert('ID, 이름, 나이를 모두 입력해주세요!');
+                return;
+            }
+
+
+            try {
+                const response = await fetch(window.apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${window.accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id, name, age }),
+                });
+
+
+                const data = await response.json();
+                alert('데이터가 업데이트되었습니다.');
+                console.log(data);
+            } catch (error) {
+                console.error('데이터 업데이트 오류:', error);
+            }
+        }
+
+
+        async function deleteData() {
+            const id = document.getElementById('deleteId').value;
+
+
+            if (!id) {
+                alert('삭제할 ID를 입력해주세요!');
+                return;
+            }
+
+
+            try {
+                const response = await fetch(window.apiUrl, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${window.accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id }),
+                });
+
+
+                const data = await response.json();
+                alert('데이터가 삭제되었습니다.');
+                console.log(data);
+            } catch (error) {
+                console.error('데이터 삭제 오류:', error);
+            }
+        }
+    </script>
+    <script>
+        window.onload = async function () {
+        const supabaseUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw';
+        var supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session.access_token) {
+            console.log('사용자 세션:', session.access_token);
+        } else {
+            alert('로그인 후 사용하세요.');
+            document.location.href = 'https://tayaki71751.github.io/gukbi/supabase/supabase02.html?redirectTo=' + encodeURIComponent(window.location.href);
+            return;
+            console.log('사용자 세션이 없습니다.');
+        }
+        window.accessToken = session.access_token;
+        window.apiUrl = 'https://zqaizmjhhrkkldcekctj.supabase.co/functions/v1/smart-function'; // Supabase Edge Function URL
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>CRUD 작업</h1>
+
+    <div>
+        <input type="text" id="nameInput" placeholder="이름을 입력하세요">
+        <input type="number" id="ageInput" placeholder="나이를 입력하세요">
+        <button onclick="createData()">추가</button>
+    </div>
+
+    <h2>데이터 조회</h2>
+    <button onclick="fetchData()">데이터 조회</button>
+    <pre id="dataResponse"></pre>
+
+
+    <h2>데이터 업데이트</h2>
+    <input type="text" id="updateId" placeholder="업데이트할 ID">
+    <input type="text" id="updateName" placeholder="새 이름">
+    <input type="number" id="updateAge" placeholder="새 나이">
+    <button onclick="updateData()">업데이트</button>
+
+
+    <h2>데이터 삭제</h2>
+    <input type="text" id="deleteId" placeholder="삭제할 ID">
+    <button onclick="deleteData()">삭제</button>
+
+</body>
+
+</html>

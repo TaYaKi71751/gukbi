@@ -143,3 +143,108 @@ Deno.serve(async (req)=>{
   });
 });
 ```
+#### [Example 11 (Edge Functions, CRUD)](https://tayaki71751.github.io/gukbi/supabase/supabase11.html)
+```javascript
+import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from 'jsr:@supabase/supabase-js@2';
+// ✅ 환경 변수에서 Supabase 설정 가져오기
+const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
+const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') ?? '';
+const TABLE_NAME = 'humans';
+// 공통 CORS 헤더
+const corsHeaders = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+};
+Deno.serve(async (req)=>{
+  try {
+    if (req.method === 'OPTIONS') {
+      return new Response(null, {
+        headers: corsHeaders,
+        status: 204
+      });
+    }
+    // ✅ 클라이언트에서 보낸 Authorization 헤더 받기
+    const authHeader = req.headers.get('Authorization');
+    // ✅ Supabase 클라이언트 생성 시 Authorization 헤더 설정
+    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      global: {
+        headers: {
+          Authorization: authHeader
+        }
+      }
+    });
+    const { method } = req;
+    if (method === 'GET') {
+      const { data, error } = await supabase.from(TABLE_NAME).select('*');
+      if (error) throw error;
+      return new Response(JSON.stringify({
+        data
+      }), {
+        headers: corsHeaders,
+        status: 200
+      });
+    }
+    if (method === 'POST') {
+      const { name, age } = await req.json();
+      const { data, error } = await supabase.from(TABLE_NAME).insert([
+        {
+          name,
+          age
+        }
+      ]);
+      if (error) throw error;
+      return new Response(JSON.stringify({
+        message: '데이터가 추가되었습니다.',
+        data
+      }), {
+        headers: corsHeaders,
+        status: 201
+      });
+    }
+    if (method === 'PUT') {
+      const { id, name, age } = await req.json();
+      const { data, error } = await supabase.from(TABLE_NAME).update({
+        name,
+        age
+      }).eq('id', id);
+      if (error) throw error;
+      return new Response(JSON.stringify({
+        message: '데이터가 업데이트되었습니다.',
+        data
+      }), {
+        headers: corsHeaders,
+        status: 200
+      });
+    }
+    if (method === 'DELETE') {
+      const { id } = await req.json();
+      const { data, error } = await supabase.from(TABLE_NAME).delete().eq('id', id);
+      if (error) throw error;
+      return new Response(JSON.stringify({
+        message: '데이터가 삭제되었습니다.',
+        data
+      }), {
+        headers: corsHeaders,
+        status: 200
+      });
+    }
+    return new Response(JSON.stringify({
+      message: '지원하지 않는 메소드입니다.'
+    }), {
+      headers: corsHeaders,
+      status: 405
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({
+      message: err?.message ?? String(err)
+    }), {
+      headers: corsHeaders,
+      status: 500
+    });
+  }
+});
+
+```
