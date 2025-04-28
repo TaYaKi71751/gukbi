@@ -25,6 +25,7 @@
 
 ## Supabase
 - [Memo-SUPABASE1.md](./Memo-SUPABASE1.md)
+- [Memo-SUPABASE-SELF-HOSTED-MACOS.md](./Memo-SUPABASE-SELF-HOSTED-MACOS.md)
 
 ## jQuery
 - [Memo-JQUERY1.md](./Memo-JQUERY1.md)
