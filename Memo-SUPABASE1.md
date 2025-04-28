@@ -108,3 +108,4 @@ for (const file of data) {
 ### [Example 6 (Storage Upload)](https://tayaki71751.github.io/gukbi/supabase/supabase06.html)
 ### [Example 7 (Storage Upload, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase07.html)
 ### [Example 8 (Storage Upload with extension, Delete)](https://tayaki71751.github.io/gukbi/supabase/supabase08.html)
+### [Example 9 (Storage Upload with extension, Delete, Download)](https://tayaki71751.github.io/gukbi/supabase/supabase09.html)
