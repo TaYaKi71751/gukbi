@@ -102,7 +102,7 @@ SMTP_HOST=smtp.resend.com
 SMTP_PORT=465
 SMTP_USER=resend
 SMTP_PASS=$smtpPass
-SMTP_SENDER_NAME=Supabase Confirmation
+SMTP_SENDER_NAME=Supabase
 "@ | Add-Content .env
 ```
 ## Run

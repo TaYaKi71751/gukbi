@@ -50,7 +50,7 @@ SMTP_HOST=smtp.resend.com
 SMTP_PORT=465
 SMTP_USER=resend
 SMTP_PASS=여기에_RESEND키를_붙여_넣으세요
-SMTP_SENDER_NAME=Supabase Confirmation
+SMTP_SENDER_NAME=Supabase
 EOF
 ```
 ## Run
