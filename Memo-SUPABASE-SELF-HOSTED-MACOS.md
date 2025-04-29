@@ -41,7 +41,7 @@ cp supabase/docker/.env.example supabase-project/.env
 cd $HOME/supabase-project
 docker-compose pull
 ```
-## [Email Sender (resend.com)](resend.com)
+## [Email Sender (resend.com)](https://resend.com)
 ### Config
 ```bash
 cat >> $HOME/supabase-proejct/.env << EOF
