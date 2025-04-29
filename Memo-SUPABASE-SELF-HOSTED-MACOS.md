@@ -2,6 +2,7 @@
 ## Install
 ```bash
 brew install docker
+brew install docker-compose
 brew install colima
 brew install qemu
 ```
