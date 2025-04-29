@@ -45,7 +45,7 @@ docker-compose pull
 ### Config
 ```bash
 cat >> $HOME/supabase-proejct/.env << EOF
-SMTP_ADMIN_EMAIL=onboarding@resend.dev
+SMTP_ADMIN_EMAIL=여기에_RESEND에_연동한_이메일을_입력하세요
 SMTP_HOST=smtp.resend.com
 SMTP_PORT=465
 SMTP_USER=resend
