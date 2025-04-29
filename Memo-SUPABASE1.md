@@ -250,6 +250,7 @@ Deno.serve(async (req)=>{
 ```
 
 #### [Example 12 (Edge Functions, Resend(Email))](https://tayaki71751.github.io/gukbi/supabase/supabase12.html)
+##### [Free Korean Domain(내도메인.한국)](https://%EB%82%B4%EB%8F%84%EB%A9%94%EC%9D%B8.%ED%95%9C%EA%B5%AD)
 ```javascript
 // File: send-email.ts
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
