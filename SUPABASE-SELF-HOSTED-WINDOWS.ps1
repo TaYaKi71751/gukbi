@@ -74,7 +74,6 @@ Set-Location "$BaseDir\supabase"
     | Set-Content docker\docker-compose.yml
 
 Add-Content docker\docker-compose.yml @"
-volumes:
   supabase_db_data:
   supabase_storage:
 "@
