@@ -81,6 +81,7 @@ Add-Content docker\docker-compose.yml @"
 ```
 ## Environment Config
 ```powershell
+$BaseDir = "C:\supabase-project"
 # 8. Copy project files and prepare environment
 Write-Host "📁 Setting up Supabase project directory..."
 Set-Location $BaseDir
@@ -106,6 +107,7 @@ SMTP_SENDER_NAME=Supabase Confirmation
 ```
 ## Run
 ```powershell
+$BaseDir = "C:\supabase-project"
 Set-Location $BaseDir
 # 11. Start Supabase
 Write-Host "🚀 Starting Supabase with Docker Compose..."
