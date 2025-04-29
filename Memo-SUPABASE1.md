@@ -248,3 +248,92 @@ Deno.serve(async (req)=>{
 });
 
 ```
+
+#### [Example 12 (Edge Functions, Resend(Email))](https://tayaki71751.github.io/gukbi/supabase/supabase12.html)
+```javascript
+// File: send-email.ts
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') || 'RESEND_API_KEY'; // 환경변수에서 API 키 가져오기
+serve(async (req)=>{
+  // CORS 설정
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+  };
+  // Preflight 요청 처리
+  if (req.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: corsHeaders,
+      status: 204
+    });
+  }
+  // 인증 헤더 확인
+  const authHeader = req.headers.get('Authorization');
+  if (!authHeader) {
+    return new Response(JSON.stringify({
+      code: 401,
+      message: 'Missing authorization header'
+    }), {
+      status: 401,
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+  // 요청 처리
+  try {
+    const { to, subject, html } = await req.json();
+    // 입력 검증
+    if (!to || !subject || !html) {
+      return new Response(JSON.stringify({
+        code: 400,
+        message: 'All fields are required'
+      }), {
+        status: 400,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+    // Resend API로 이메일 전송
+    const resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${RESEND_API_KEY}`
+      },
+      body: JSON.stringify({
+        from: 'onboarding@resend.dev',
+        to,
+        subject,
+        html
+      })
+    });
+    const data = await resendResponse.json();
+    if (!resendResponse.ok) {
+      throw new Error(data.message || 'Failed to send email');
+    }
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({
+      code: 500,
+      message: error.message || 'Internal server error'
+    }), {
+      status: 500,
+      headers: {
+        ...corsHeaders,
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+});
+```

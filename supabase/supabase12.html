@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이메일 전송 시스템</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #response {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+
+        .loading {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #90caf9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>이메일 전송</h1>
+    <form id="emailForm">
+        <div class="form-group">
+            <label for="to">수신자 이메일:</label>
+            <input type="email" id="to" required placeholder="example@domain.com">
+        </div>
+
+        <div class="form-group">
+            <label for="subject">제목:</label>
+            <input type="text" id="subject" required placeholder="이메일 제목">
+        </div>
+
+        <div class="form-group">
+            <label for="message">내용:</label>
+            <textarea id="message" required placeholder="이메일 내용을 입력하세요"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">이메일 전송</button>
+    </form>
+
+    <div id="response"></div>
+
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const responseEl = document.getElementById('response');
+            const submitBtn = document.getElementById('submitBtn');
+
+            responseEl.className = 'loading';
+            responseEl.textContent = '처리 중...';
+            submitBtn.disabled = true;
+
+
+            try {
+                const to = document.getElementById('to').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+
+                if (!to || !subject || !message) {
+                    throw new Error('모든 필드를 채워주세요');
+                }
+
+
+                const res = await fetch('https://zqaizmjhhrkkldcekctj.supabase.co/functions/v1/sample-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw' // 필요한 경우 API 키 추가
+                    },
+                    body: JSON.stringify({
+                        to: to,
+                        subject: subject,
+                        html: message
+                    }),
+                });
+
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.message || '서버에서 오류가 발생했습니다');
+                }
+
+
+                responseEl.className = 'success';
+                responseEl.textContent = '이메일이 성공적으로 전송 되었습니다!';
+                document.getElementById('emailForm').reset();
+            } catch (error) {
+                responseEl.className = 'error';
+                responseEl.textContent = `오류: ${error.message}`;
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
