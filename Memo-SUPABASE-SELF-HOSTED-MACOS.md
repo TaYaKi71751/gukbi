@@ -65,8 +65,19 @@ cd $HOME/supabase-project
 docker-compose up -d
 ```
 ## Etc
+- .env 파일을 수정하여 설정을 변경 할 수 있다.
+- 실제로 사용 해야 할 경우 POSTGRES_PASSWORD,JWT_SECRET,ANON_KEY,SERVICE_ROLE_KEY,DASHBOARD_USERNAME,DASHBOARD_PASSWORD,SECRET_KEY_BASE,VAULT_ENC_KEY 등을 수정 해야 한다
 ```
-.env 파일을 수정하여 설정을 변경 할 수 있다.
+만약 POSTGRES_PASSWORD를 바꾸고 싶다면
+```
+```bash
+docker exec -it supabase-db psql -U supabase_admin
+```
+```sql
+ALTER USER postgres WITH PASSWORD 'NEW_PASSWORD';
+```
+```
+를 실행 해주고 .env파일에서 POSTGRES_PASSWORD를 설정 해주면 된다.
 ```
 ```bash
 # 입력한 길이만큼의 크기의 랜덤한 base64를 만든다
