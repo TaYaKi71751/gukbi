@@ -338,3 +338,75 @@ serve(async (req)=>{
   }
 });
 ```
+#### [Example 13 (Edge Functions, Gmail (SMTP))](https://tayaki71751.github.io/gukbi/supabase/supabase13.html)
+- [Reference](https://github.com/supabase/supabase/issues/21977)
+- [Google App Password](https://myaccount.google.com/apppasswords?continue=https://myaccount.google.com/data-and-privacy)
+```javascript
+
+import { SMTPClient } from "https://deno.land/x/denomailer/mod.ts";
+
+// Setup SMTP client with Gmail configuration
+const client = new SMTPClient({
+  connection: {
+    hostname: "smtp.gmail.com",
+    port: 465,
+    tls: true,
+    auth: {
+      username: Deno.env.get("SMTP_USERNAME")!,
+      password: Deno.env.get("SMTP_PASSWORD")!,
+    },
+  },
+});
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
+// Start the HTTP server
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: corsHeaders,
+    });
+  }
+
+  try {
+    const { to, subject, html } = await req.json();
+
+    if (!to || !subject || !html) {
+      return new Response(
+        JSON.stringify({ message: "Missing to, subject, or html content." }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    await client.send({
+      from: Deno.env.get("SMTP_USERNAME")!,
+      to: Array.isArray(to) ? to : [to],
+      subject,
+      content: html,
+      html, // optional: if you want HTML format
+    });
+
+    return new Response(JSON.stringify({ message: "Email sent" }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Email send error:", error);
+    return new Response(
+      JSON.stringify({ message: error.message || "Internal error" }),
+      {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
+  }
+});
+```
