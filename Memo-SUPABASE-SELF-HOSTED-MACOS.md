@@ -22,19 +22,10 @@ EOF
 colima start
 git clone https://github.com/supabase/supabase.git
 cd supabase
-patch -p1 docker/docker-compose.yml <<EOF
-237c237
-<       - ./volumes/storage:/var/lib/storage:z
----
->       - supabase_storage:/var/lib/storage
-400c400
-<       - ./volumes/db/data:/var/lib/postgresql/data:Z
----
->       - supabase_db_data:/var/lib/postgresql/data
-528a529,530
->   supabase_db_data:
->   supabase_storage:
-EOF
+sed -i '' 's/\.\/volumes\/db\/data:/supabase_db_data:/g' docker/docker-compose.yml
+sed -i '' 's/\.\/volumes\/storage:/supabase_storage:/g' docker/docker-compose.yml
+echo "  supabase_db_data:" >> docker/docker-compose.yml
+echo "  supabase_storage:" >> docker/docker-compose.yml
 cd $HOME
 mkdir -p $HOME/supabase-project
 cp -rf supabase/docker/* supabase-project
