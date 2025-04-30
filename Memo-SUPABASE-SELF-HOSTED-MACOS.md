@@ -63,3 +63,7 @@ EOF
 cd $HOME/supabase-project
 docker-compose up -d
 ```
+## Etc
+```
+.env 파일을 수정하여 설정을 변경 할 수 있다.
+```

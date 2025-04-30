@@ -116,3 +116,7 @@ Write-Host "Visit http://localhost:8000 for dashboard"
 Write-Host "DASHBOARD_USERNAME=supabase"
 Write-Host "DASHBOARD_PASSWORD=this_password_is_insecure_and_should_be_updated"
 ```
+## Etc
+```
+.env 파일을 수정하여 설정을 변경 할 수 있다.
+```
