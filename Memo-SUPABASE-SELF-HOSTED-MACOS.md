@@ -9,6 +9,7 @@ source ~/.profile
 ```
 ## Install docker
 ```bash
+brew install openssl
 brew install docker
 brew install docker-compose
 brew install colima
@@ -66,4 +67,10 @@ docker-compose up -d
 ## Etc
 ```
 .env 파일을 수정하여 설정을 변경 할 수 있다.
+postgres 비밀번호는 변경 하려는 경우 .env와 psql을 통해 바꾸어 주어야 한다.
+```
+```bash
+# 입력한 길이만큼의 크기의 랜덤한 base64를 만든다
+# JWT_SECRET, ANON_KEY, SERVICE_ROLE_KEY, DASHBOARD_PASSWORD, SECRET_KEY_BASE, VAULT_ENC_KEY 등에 사용 가능
+openssl rand -base64 길이
 ```
