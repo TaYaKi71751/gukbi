@@ -64,6 +64,11 @@ EOF
 cd $HOME/supabase-project
 docker-compose up -d
 ```
+## Down
+```bash
+cd $HOME/supabase-project
+docker-compose down
+```
 ## Etc
 - .env 파일을 수정하여 설정을 변경 할 수 있다.
 - 실제로 사용 해야 할 경우 .env 파일에서 POSTGRES_PASSWORD,JWT_SECRET,ANON_KEY,SERVICE_ROLE_KEY,DASHBOARD_USERNAME,DASHBOARD_PASSWORD,SECRET_KEY_BASE,VAULT_ENC_KEY 등을 수정 해야 한다

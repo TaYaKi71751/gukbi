@@ -122,6 +122,12 @@ Write-Host "Visit http://localhost:8000 for dashboard"
 Write-Host "DASHBOARD_USERNAME=supabase"
 Write-Host "DASHBOARD_PASSWORD=this_password_is_insecure_and_should_be_updated"
 ```
+## Down
+```powershell
+$BaseDir = "C:\supabase-project"
+Set-Location $BaseDir
+docker-compose down
+```
 ## Etc
 - .env 파일을 수정하여 설정을 변경 할 수 있다.
 - 실제로 사용 해야 할 경우 .env 파일에서 POSTGRES_PASSWORD,JWT_SECRET,ANON_KEY,SERVICE_ROLE_KEY,DASHBOARD_USERNAME,DASHBOARD_PASSWORD,SECRET_KEY_BASE,VAULT_ENC_KEY 등을 수정 해야 한다
