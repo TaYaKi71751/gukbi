@@ -1,5 +1,5 @@
 # Supabase
-## Install
+## Install brew
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo 'export PATH="${PATH}:/opt/homebrew/bin"' >> ~/.zshrc
@@ -7,13 +7,14 @@ echo 'export PATH="${PATH}:/opt/homebrew/bin"' >> ~/.profile
 source ~/.zshrc
 source ~/.profile
 ```
+## Install docker
 ```bash
 brew install docker
 brew install docker-compose
 brew install colima
 brew install qemu
 ```
-## Config
+## Config colima
 ```bash
 cd $HOME
 cat >> $HOME/.zshrc << EOF
@@ -28,6 +29,9 @@ fi
 EOF
 source ~/.zshrc
 source ~/.profile
+```
+## Config Docker (Run once)
+```bash
 colima start
 git clone https://github.com/supabase/supabase.git
 cd supabase
