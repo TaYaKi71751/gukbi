@@ -1,6 +1,13 @@
 # Supabase
 ## Install
 ```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo 'export PATH="${PATH}:/opt/homebrew/bin"' >> ~/.zshrc
+echo 'export PATH="${PATH}:/opt/homebrew/bin"' >> ~/.profile
+source ~/.zshrc
+source ~/.profile
+```
+```bash
 brew install docker
 brew install docker-compose
 brew install colima
@@ -14,11 +21,13 @@ if ( which colima &> /dev/null );then
     colima start &> /dev/null &
 fi
 EOF
-cat >> $HOME/.bashrc << EOF
+cat >> $HOME/.profile << EOF
 if ( which colima &> /dev/null );then
     colima start &> /dev/null &
 fi
 EOF
+source ~/.zshrc
+source ~/.profile
 colima start
 git clone https://github.com/supabase/supabase.git
 cd supabase
