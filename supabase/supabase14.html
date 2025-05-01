@@ -24,7 +24,8 @@
 
         input[type="text"],
         input[type="number"],
-        input[type="datetime-local"] {
+        input[type="datetime-local"],
+        select {
             width: 100%;
             margin: 10px 0;
             padding: 8px;
@@ -32,15 +33,12 @@
             border-radius: 4px;
         }
 
-        lo
-
         /* 체크박스와 라디오 버튼 스타일 조정 */
         input[type="checkbox"],
         input[type="radio"] {
             width: auto;
             margin: 0 5px 0 0;
             transform: scale(0.8);
-            /* 버튼 크기 줄이기 */
         }
 
         button {
@@ -84,7 +82,9 @@
         .btn-update {
             background: #f39c12;
         }
-
+        .btn-update1{
+          background-color: skyblue;
+        }
         .btn-delete {
             background: #e74c3c;
         }
@@ -105,7 +105,6 @@
 </head>
 
 <body>
-
     <div id="container">
         <h1>Hobby 테이블 CRUD</h1>
         <input type="text" id="search" placeholder="취미 검색">
@@ -114,13 +113,14 @@
         <input type="text" id="count" placeholder="숫자를 입력하세요">
         <button class="btn-count" onclick="countRecord()">검색</button>
 
-        <input type="text" id="id_add" placeholder="아이디 입력" />
+        <select id="id_add">
+            <option value="">아이디 선택</option>
+        </select>
         <input type="text" id="add" placeholder="추가 또는 삭제 할 취미 입력" />
         <div style="display:flex;">
             <button class="btn-add" onclick="addRecord()">추가</button>
             <button class="btn-remove" onclick="removeRecord()">제거</button>
         </div>
-
 
         <input type="text" id="name" placeholder="이름 입력" />
         <input type="number" id="age" placeholder="나이 입력" />
@@ -136,6 +136,7 @@
         <button class="btn-read" onclick="readRecords()">Read</button>
         <button class="btn-read1" onclick="read1Record()">Read first record</button>
         <button class="btn-update" onclick="updateRecord()">Update</button>
+        <button class="btn-update1" onclick="update1Record()">Update first record</button>
         <button class="btn-delete" onclick="deleteRecord()">Delete</button>
         <div id="history"></div>
     </div>
@@ -144,121 +145,189 @@
         const supabaseUrl = "https://zqaizmjhhrkkldcekctj.supabase.co";
         const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-        const idElement = document.getElementById("id_add");
-        idElement.onchange = async function () {
-            const id = idElement.value;
-            if (!id) return;
-            const { data: row, error } = await supabase.from("hobby").select('*').eq("id", id).single();
-            if (!row) {
-                document.getElementById("name").value = "";
-                document.getElementById("age").value = "";
-                document.getElementById("hobby").value = "";
-                document.getElementById("job").checked = false;
+
+        // 드롭다운에 ID 로드하는 함수
+        async function loadIds() {
+            try {
+                console.log("ID 목록 로드 시작...");
+                const select = document.getElementById("id_add");
+                
+                // 드롭다운 비활성화 (로딩 중 표시)
+                select.disabled = true;
+                
+                // 기존 옵션 초기화 (기본 옵션 제외)
+                const options = Array.from(select.options);
+                options.forEach(option => {
+                    if (option.value !== "") option.remove();
+                });
+
+                // Supabase에서 데이터 가져오기
+                const { data: records, error } = await supabase
+                    .from("hobby")
+                    .select("id, name")
+                    .order("id", { ascending: true });
+
+                if (error) {
+                    console.error("Supabase 오류:", error);
+                    select.disabled = false;
+                    return;
+                }
+
+                console.log("가져온 레코드:", records);
+
+                if (records && records.length > 0) {
+                    records.forEach(record => {
+                        const option = document.createElement("option");
+                        option.value = record.id;
+                        option.textContent = `${record.id} - ${record.name || '이름 없음'}`;
+                        select.appendChild(option);
+                    });
+                    console.log("ID 드롭다운 업데이트 완료");
+                } else {
+                    console.log("가져올 데이터가 없습니다.");
+                    const option = document.createElement("option");
+                    option.value = "";
+                    option.textContent = "데이터가 없습니다";
+                    select.appendChild(option);
+                }
+                
+                select.disabled = false;
+            } catch (err) {
+                console.error("ID 로드 중 오류 발생:", err);
+                document.getElementById("id_add").disabled = false;
             }
-            document.getElementById("name").value = row.name;
-            document.getElementById("age").value = row.age;
-            document.getElementById("hobby").value = row.hobby.join(",");
-            document.getElementById("job").checked = row.job;
         }
-        const hobbysElement = document.getElementById("hobby");
-        hobbysElement.onchange = function () {
-            const hobbys = hobbysElement.value;
+
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM 로드 완료");
+            loadIds();
+            
+            // ID 선택 변경 이벤트
+            document.getElementById("id_add").addEventListener('change', async function() {
+                const id = this.value;
+                if (!id) return;
+                
+                console.log("선택된 ID:", id);
+                
+                try {
+                    const { data: row, error } = await supabase
+                        .from("hobby")
+                        .select('*')
+                        .eq("id", id)
+                        .single();
+
+                    if (error) throw error;
+                    
+                    if (!row) {
+                        document.getElementById("name").value = "";
+                        document.getElementById("age").value = "";
+                        document.getElementById("hobby").value = "";
+                        document.getElementById("job").checked = false;
+                        return;
+                    }
+                    
+                    document.getElementById("name").value = row.name || "";
+                    document.getElementById("age").value = row.age || "";
+                    document.getElementById("hobby").value = Array.isArray(row.hobby) ? row.hobby.join(",") : "";
+                    document.getElementById("job").checked = row.job || false;
+                    
+                } catch (error) {
+                    console.error("데이터 가져오기 오류:", error);
+                    alert("데이터를 불러오는 중 오류가 발생했습니다.");
+                }
+            });
+        });
+
+        // 취미 입력 필드 변경 이벤트
+        document.getElementById("hobby").addEventListener('change', function() {
+            const hobbys = this.value;
             if (!hobbys) return;
+            
             const hobbyArray = hobbys.split(",");
             const result = hobbyArray
-            .map((hobby) => hobby.trim())
-            .filter((hobby, index) => {
-                for(let i = index + 1; i < hobbyArray.length; i++) {
-                    if (hobbyArray[i] === hobby) {
-                        return false;
-                    }
-                }
-                return true;
-            });
-            hobbysElement.value = result.join(",");
-        }
+                .map((hobby) => hobby.trim())
+                .filter((hobby, index, self) => self.indexOf(hobby) === index);
+                
+            this.value = result.join(",");
+        });
 
+        /* ========== CRUD 함수들 ========== */
+        
         async function searchRecord() {
             const search = document.getElementById("search").value;
-
             if (!search) return alert("검색창에 입력하세요");
-            const { data: records, error } = await supabase.from('hobby').select('*').contains('hobby', [search]);
+            
+            try {
+                const { data: records, error } = await supabase
+                    .from('hobby')
+                    .select('*')
+                    .contains('hobby', [search]);
 
-            if (error) return alert("Read Error: " + error.message);
-            const historyDiv = document.getElementById("history");
-            historyDiv.innerHTML = "";
-            records.forEach(record => {
-                const div = document.createElement("div");
-                div.className = "record role-" + record.role;
-                div.innerHTML = `<strong>${record.name}</strong><br>
-    나이: ${record.age}세<br>
-    취미: ${record.hobby}<br>
-    직업 여부: ${record.job ? "있음" : "없음"}<br>
-    ID: ${record.id}`;
-                historyDiv.appendChild(div);
-            });
+                if (error) throw error;
+                
+                displayRecords(records);
+            } catch (error) {
+                console.error("검색 오류:", error);
+                alert("검색 중 오류 발생: " + error.message);
+            }
         }
 
         async function countRecord() {
             const count = parseInt(document.getElementById("count").value);
-            if (!count) return alert("검색창에 입력하세요");
+            if (isNaN(count)) return alert("숫자를 입력하세요");
 
-            const { data, error } = await supabase.from('hobby').select('*');
-
-            if (error) return alert("Read Error: " + error.message);
-            const filtered = data.filter(item => item.hobby.length === count);
-            const historyDiv = document.getElementById("history");
-            historyDiv.innerHTML = "";
-            filtered.forEach(record => {
-                const div = document.createElement("div");
-                div.className = "record role-" + record.role;
-                div.innerHTML = `<strong>${record.name}</strong><br>
-        나이: ${record.age}세<br>
-        취미: ${record.hobby}<br>
-        직업 여부: ${record.job ? "있음" : "없음"}<br>
-        ID: ${record.id}`;
-                historyDiv.appendChild(div);
-            });
+            try {
+                const { data, error } = await supabase.from('hobby').select('*');
+                if (error) throw error;
+                
+                const filtered = data.filter(item => item.hobby.length === count);
+                displayRecords(filtered);
+            } catch (error) {
+                console.error("개수 검색 오류:", error);
+                alert("검색 중 오류 발생: " + error.message);
+            }
         }
 
-        /* ========== Create ========== */
         async function createRecord() {
             const name = document.getElementById("name").value;
             const age = parseInt(document.getElementById("age").value);
             const hobbyInput = document.getElementById("hobby").value;
             const job = document.getElementById("job").checked;
 
-            if (!name || !age) return alert("모든 필드를 입력하세요.");
+            if (!name || isNaN(age)) return alert("이름과 나이를 올바르게 입력하세요.");
 
-            const hobby = hobbyInput.split(",");
+            const hobby = hobbyInput ? hobbyInput.split(",").map(h => h.trim()) : [];
 
-            const { data, error } = await supabase.from("hobby").insert([{
-                name,
-                age,
-                hobby,
-                job
-            }]).select();
-            if (error) return alert("Create Error: " + error.message);
-            readRecords();
+            try {
+                const { data, error } = await supabase
+                    .from("hobby")
+                    .insert([{ name, age, hobby, job }])
+                    .select();
+                    
+                if (error) throw error;
+                
+                alert("레코드가 성공적으로 생성되었습니다!");
+                await loadIds(); // ID 목록 갱신
+                readRecords();
+            } catch (error) {
+                console.error("생성 오류:", error);
+                alert("레코드 생성 중 오류: " + error.message);
+            }
         }
-        /* ========== Read ==========*/
+
         async function readRecords() {
-            const { data: records, error } = await supabase.from("hobby").select("*");
-            if (error) return alert("Read Error: " + error.message);
-            const historyDiv = document.getElementById("history");
-            historyDiv.innerHTML = "";
-            records.forEach(record => {
-                const div = document.createElement("div");
-                div.className = "record role-" + record.role;
-                div.innerHTML = `<strong>${record.name}</strong><br>
-        나이: ${record.age}세<br> 취미: ${record.hobby}<br>
-        직업 여부: ${record.job ? "있음" : "없음"}<br>
-        ID: ${record.id}`;
-                historyDiv.appendChild(div);
-            });
+            try {
+                const { data: records, error } = await supabase.from("hobby").select("*");
+                if (error) throw error;
+                
+                displayRecords(records);
+            } catch (error) {
+                console.error("읽기 오류:", error);
+                alert("데이터 읽기 중 오류: " + error.message);
+            }
         }
 
-        /* ========== 1번 인덱스만 Read ==========*/
         async function read1Record() {
             const { data: records, error } = await supabase.from("hobby").select("*");
             if (error) return alert("Read Error: " + error.message);
@@ -274,79 +343,201 @@
                 historyDiv.appendChild(div);
             });
         }
-        /* ========== Delete ========== */
         async function deleteRecord() {
             const id = prompt("삭제할 ID를 입력하세요:");
             if (!id) return;
-            const { error } = await supabase.from("hobby").delete().eq("id", id);
-            if (error) return alert("Delete Error: " + error.message);
-            readRecords();
-        }
+            
+            if (!confirm(`정말로 ID ${id}를 삭제하시겠습니까?`)) return;
 
+            try {
+                const { error } = await supabase.from("hobby").delete().eq("id", id);
+                if (error) throw error;
+                
+                alert("레코드가 성공적으로 삭제되었습니다!");
+                await loadIds(); // ID 목록 갱신
+                readRecords();
+            } catch (error) {
+                console.error("삭제 오류:", error);
+                alert("레코드 삭제 중 오류: " + error.message);
+            }
+        }
 
         async function addRecord() {
             const id = document.getElementById("id_add").value;
-            const add = document.getElementById("add").value;
+            const add = document.getElementById("add").value.trim();
+            
             if (!id || !add) return alert("ID와 추가할 취미를 입력하세요.");
-            {
-                const { data:rows } = await supabase.from("hobby").select('hobby').eq("id", id);
-                if (data.length === 0) return alert("해당 ID가 없습니다.");
-                for(const row of rows){
-                    for(const hobby of row.hobby) {
-                        if (hobby === add) return alert("이미 존재하는 취미입니다.");
-                    }
+            
+            try {
+                // 기존 취미 확인
+                const { data: row, error: fetchError } = await supabase
+                    .from("hobby")
+                    .select('hobby')
+                    .eq("id", id)
+                    .single();
+                    
+                if (fetchError) throw fetchError;
+                if (!row) return alert("해당 ID가 없습니다.");
+                
+                // 중복 확인
+                if (row.hobby.includes(add)) {
+                    return alert("이미 존재하는 취미입니다.");
                 }
+                
+                // 취미 추가
+                const updatedArray = [...row.hobby, add];
+                
+                const { error: updateError } = await supabase
+                    .from('hobby')
+                    .update({ hobby: updatedArray })
+                    .eq('id', id);
+                    
+                if (updateError) throw updateError;
+                
+                alert("취미가 성공적으로 추가되었습니다!");
+                readRecords();
+            } catch (error) {
+                console.error("취미 추가 오류:", error);
+                alert("취미 추가 중 오류: " + error.message);
             }
-
-            const { data: row } = await supabase.from("hobby").select('hobby').eq("id", id).single();
-            const updatedArray = [...row.hobby, add];
-
-            await supabase.from('hobby').update({ hobby: updatedArray }).eq('id', id);
-
-            readRecords();
         }
 
         async function removeRecord() {
             const id = document.getElementById("id_add").value;
-            const remove = document.getElementById("add").value;
+            const remove = document.getElementById("add").value.trim();
+            
             if (!id || !remove) return alert("ID와 삭제할 취미를 입력하세요");
-            let hasRecord = false;
-            if(!hasRecord) return alert("해당 취미가 없습니다.");
-
-            const { data: row } = await supabase.from("hobby").select('hobby').eq("id", id).single();
-            const filteredArray = row.hobby.filter(hobby => hobby !== remove);
-            if (filteredArray.length === row.hobby.length) return alert("해당 취미가 없습니다.")
-            await supabase.from('hobby').update({ hobby: filteredArray })
-                .eq('id', id);
-
-            readRecords();
+            
+            try {
+                const { data: row, error: fetchError } = await supabase
+                    .from("hobby")
+                    .select('hobby')
+                    .eq("id", id)
+                    .single();
+                    
+                if (fetchError) throw fetchError;
+                if (!row) return alert("해당 ID가 없습니다.");
+                
+                // 취미 존재 확인
+                if (!row.hobby.includes(remove)) {
+                    return alert("해당 취미가 없습니다.");
+                }
+                
+                // 취미 제거
+                const filteredArray = row.hobby.filter(hobby => hobby !== remove);
+                
+                const { error: updateError } = await supabase
+                    .from('hobby')
+                    .update({ hobby: filteredArray })
+                    .eq('id', id);
+                    
+                if (updateError) throw updateError;
+                
+                alert("취미가 성공적으로 제거되었습니다!");
+                readRecords();
+            } catch (error) {
+                console.error("취미 제거 오류:", error);
+                alert("취미 제거 중 오류: " + error.message);
+            }
         }
 
         async function updateRecord() {
-            const id = document.querySelector("#id_add").value;
-            if (!id) return;
-            const name = document.getElementById("name").value;
-            if (!name) return alert("이름을 입력하세요.");
-            const age = parseInt(document.getElementById("age").value);
-            if (!age) return alert("나이를 입력하세요.");
-            const hobbyInput = document.getElementById("hobby").value;
-            if (!hobbyInput) return alert("취미를 입력하세요.");
-            const job = !!(document.getElementById("job").checked);
+            const id = document.getElementById("id_add").value;
+            if (!id) return alert("ID를 선택하세요.");
             
-            const hobby = hobbyInput.split(",");
-
-            const { error } = await supabase.from("hobby").update({
-                name,
-                age,
-                hobby,
-                job
-            }).eq("id", id);
-            if (error) return alert("Update Error: " + error.message);
-            readRecords();
+            const name = document.getElementById("name").value;
+            const age = parseInt(document.getElementById("age").value);
+            const hobbyInput = document.getElementById("hobby").value;
+            const job = document.getElementById("job").checked;
+            
+            if (!name || isNaN(age)) return alert("이름과 나이를 올바르게 입력하세요.");
+            
+            const hobby = hobbyInput ? hobbyInput.split(",").map(h => h.trim()) : [];
+            
+            try {
+                const { error } = await supabase
+                    .from("hobby")
+                    .update({ name, age, hobby, job })
+                    .eq("id", id);
+                    
+                if (error) throw error;
+                
+                alert("레코드가 성공적으로 업데이트되었습니다!");
+                readRecords();
+            } catch (error) {
+                console.error("업데이트 오류:", error);
+                alert("레코드 업데이트 중 오류: " + error.message);
+            }
         }
 
+        async function update1Record() {
+            const id = document.getElementById("id_add").value;
+            if (!id) return alert("ID를 선택하세요.");
+
+            const name = document.getElementById("name").value;
+            const age = parseInt(document.getElementById("age").value);
+            const hobbyInput = document.getElementById("hobby").value.trim();
+            const job = document.getElementById("job").checked;
+
+            if (!name || isNaN(age)) return alert("이름과 나이를 올바르게 입력하세요.");
+            if (!hobbyInput) return alert("취미를 입력하세요."); // 첫 번째 취미로 사용할 값
+
+            try {
+    // 기존 레코드에서 hobby 배열만 가져오기
+    const { data: existingData, error: fetchError } = await supabase
+      .from("hobby")
+      .select("hobby")
+      .eq("id", id)
+      .single();
+
+    if (fetchError || !existingData) throw new Error("기존 취미 데이터를 불러올 수 없습니다.");
+
+    // 기존 hobby 배열을 복사하고 첫 번째 항목만 수정
+    const updatedHobby = Array.isArray(existingData.hobby) ? [...existingData.hobby] : [];
+
+    // 첫 번째 취미만 수정 (쉼표 구분된 첫 번째 항목만 사용)
+    const firstHobby = hobbyInput.split(",")[0].trim();
+    updatedHobby[0] = firstHobby; // 첫 번째 항목만 수정
+
+    // 수정된 데이터로 업데이트
+    const { error } = await supabase
+      .from("hobby")
+      .update({ name, age, hobby: updatedHobby, job })
+      .eq("id", id);
+
+    if (error) throw error;
+
+    alert("첫 번째 취미가 성공적으로 수정되었습니다!");
+    readRecords();
+  } catch (error) {
+    console.error("업데이트 오류:", error);
+    alert("레코드 업데이트 중 오류: " + error.message);
+  }
+}
+
+        // 레코드 표시 공통 함수
+        function displayRecords(records) {
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            
+            if (!records || records.length === 0) {
+                historyDiv.innerHTML = "<div class='record'>표시할 데이터가 없습니다.</div>";
+                return;
+            }
+            
+            records.forEach(record => {
+                const div = document.createElement("div");
+                div.className = "record";
+                div.innerHTML = `
+                    <strong>${record.name || '이름 없음'}</strong><br>
+                    나이: ${record.age || '미입력'}세<br>
+                    취미: ${Array.isArray(record.hobby) ? record.hobby.join(", ") : '없음'}<br>
+                    직업 여부: ${record.job ? "있음" : "없음"}<br>
+                    ID: ${record.id}
+                `;
+                historyDiv.appendChild(div);
+            });
+        }
     </script>
-
 </body>
-
 </html>
