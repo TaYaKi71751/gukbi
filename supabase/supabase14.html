@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Hobby CRUD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="datetime-local"] {
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        lo
+
+        /* 체크박스와 라디오 버튼 스타일 조정 */
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: auto;
+            margin: 0 5px 0 0;
+            transform: scale(0.8);
+            /* 버튼 크기 줄이기 */
+        }
+
+        button {
+            width: 48%;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .btn-read1 {
+            background-color: rgb(136, 81, 187);
+        }
+
+        .btn-count {
+            background-color: rgb(102, 96, 96);
+        }
+
+        .btn-search {
+            background-color: rgb(102, 96, 96);
+        }
+
+        .btn-remove {
+            background-color: rgb(102, 96, 96);
+        }
+
+        .btn-add {
+            background-color: rgb(102, 96, 96);
+        }
+
+        .btn-create {
+            background: #4CAF50;
+        }
+
+        .btn-read {
+            background: #008CBA;
+        }
+
+        .btn-update {
+            background: #f39c12;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+        }
+
+        .record {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .job-line {
+            margin: 10px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h1>Hobby 테이블 CRUD</h1>
+        <input type="text" id="search" placeholder="취미 검색">
+        <button class="btn-search" onclick="searchRecord()">검색</button>
+
+        <input type="text" id="count" placeholder="숫자를 입력하세요">
+        <button class="btn-count" onclick="countRecord()">검색</button>
+
+        <input type="text" id="id_add" placeholder="아이디 입력" />
+        <input type="text" id="add" placeholder="추가 또는 삭제 할 취미 입력" />
+        <div style="display:flex;">
+            <button class="btn-add" onclick="addRecord()">추가</button>
+            <button class="btn-remove" onclick="removeRecord()">제거</button>
+        </div>
+
+
+        <input type="text" id="name" placeholder="이름 입력" />
+        <input type="number" id="age" placeholder="나이 입력" />
+        <input type="text" id="hobby" placeholder="취미 입력" />
+
+        <div class="job-line">
+            <label>
+                <input type="checkbox" id="job" /> 직업여부
+            </label>
+        </div>
+
+        <button class="btn-create" onclick="createRecord()">Create</button>
+        <button class="btn-read" onclick="readRecords()">Read</button>
+        <button class="btn-read1" onclick="read1Record()">Read first record</button>
+        <button class="btn-update" onclick="updateRecord()">Update</button>
+        <button class="btn-delete" onclick="deleteRecord()">Delete</button>
+        <div id="history"></div>
+    </div>
+
+    <script>
+        const supabaseUrl = "https://zqaizmjhhrkkldcekctj.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYWl6bWpoaHJra2xkY2VrY3RqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzODczNTQsImV4cCI6MjA2MDk2MzM1NH0.l-TipfI-oCPH07e5bafs2XfpR0k-NECHzoUiJyWqaOw";
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const idElement = document.getElementById("id_add");
+        idElement.onchange = async function () {
+            const id = idElement.value;
+            if (!id) return;
+            const { data: row, error } = await supabase.from("hobby").select('*').eq("id", id).single();
+            if (!row) {
+                document.getElementById("name").value = "";
+                document.getElementById("age").value = "";
+                document.getElementById("hobby").value = "";
+                document.getElementById("job").checked = false;
+            }
+            document.getElementById("name").value = row.name;
+            document.getElementById("age").value = row.age;
+            document.getElementById("hobby").value = row.hobby.join(",");
+            document.getElementById("job").checked = row.job;
+        }
+        const hobbysElement = document.getElementById("hobby");
+        hobbysElement.onchange = function () {
+            const hobbys = hobbysElement.value;
+            if (!hobbys) return;
+            const hobbyArray = hobbys.split(",");
+            const result = hobbyArray
+            .map((hobby) => hobby.trim())
+            .filter((hobby, index) => {
+                for(let i = index + 1; i < hobbyArray.length; i++) {
+                    if (hobbyArray[i] === hobby) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+            hobbysElement.value = result.join(",");
+        }
+
+        async function searchRecord() {
+            const search = document.getElementById("search").value;
+
+            if (!search) return alert("검색창에 입력하세요");
+            const { data: records, error } = await supabase.from('hobby').select('*').contains('hobby', [search]);
+
+            if (error) return alert("Read Error: " + error.message);
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            records.forEach(record => {
+                const div = document.createElement("div");
+                div.className = "record role-" + record.role;
+                div.innerHTML = `<strong>${record.name}</strong><br>
+    나이: ${record.age}세<br>
+    취미: ${record.hobby}<br>
+    직업 여부: ${record.job ? "있음" : "없음"}<br>
+    ID: ${record.id}`;
+                historyDiv.appendChild(div);
+            });
+        }
+
+        async function countRecord() {
+            const count = parseInt(document.getElementById("count").value);
+            if (!count) return alert("검색창에 입력하세요");
+
+            const { data, error } = await supabase.from('hobby').select('*');
+
+            if (error) return alert("Read Error: " + error.message);
+            const filtered = data.filter(item => item.hobby.length === count);
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            filtered.forEach(record => {
+                const div = document.createElement("div");
+                div.className = "record role-" + record.role;
+                div.innerHTML = `<strong>${record.name}</strong><br>
+        나이: ${record.age}세<br>
+        취미: ${record.hobby}<br>
+        직업 여부: ${record.job ? "있음" : "없음"}<br>
+        ID: ${record.id}`;
+                historyDiv.appendChild(div);
+            });
+        }
+
+        /* ========== Create ========== */
+        async function createRecord() {
+            const name = document.getElementById("name").value;
+            const age = parseInt(document.getElementById("age").value);
+            const hobbyInput = document.getElementById("hobby").value;
+            const job = document.getElementById("job").checked;
+
+            if (!name || !age) return alert("모든 필드를 입력하세요.");
+
+            const hobby = hobbyInput.split(",");
+
+            const { data, error } = await supabase.from("hobby").insert([{
+                name,
+                age,
+                hobby,
+                job
+            }]).select();
+            if (error) return alert("Create Error: " + error.message);
+            readRecords();
+        }
+        /* ========== Read ==========*/
+        async function readRecords() {
+            const { data: records, error } = await supabase.from("hobby").select("*");
+            if (error) return alert("Read Error: " + error.message);
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            records.forEach(record => {
+                const div = document.createElement("div");
+                div.className = "record role-" + record.role;
+                div.innerHTML = `<strong>${record.name}</strong><br>
+        나이: ${record.age}세<br> 취미: ${record.hobby}<br>
+        직업 여부: ${record.job ? "있음" : "없음"}<br>
+        ID: ${record.id}`;
+                historyDiv.appendChild(div);
+            });
+        }
+
+        /* ========== 1번 인덱스만 Read ==========*/
+        async function read1Record() {
+            const { data: records, error } = await supabase.from("hobby").select("*");
+            if (error) return alert("Read Error: " + error.message);
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            records.forEach(record => {
+                const div = document.createElement("div");
+                div.className = "record role-" + record.role;
+                div.innerHTML = `<strong>${record.name}</strong><br>
+        나이: ${record.age}세<br> 취미: ${record.hobby[0]}<br>
+        직업 여부: ${record.job ? "있음" : "없음"}<br>
+        ID: ${record.id}`;
+                historyDiv.appendChild(div);
+            });
+        }
+        /* ========== Delete ========== */
+        async function deleteRecord() {
+            const id = prompt("삭제할 ID를 입력하세요:");
+            if (!id) return;
+            const { error } = await supabase.from("hobby").delete().eq("id", id);
+            if (error) return alert("Delete Error: " + error.message);
+            readRecords();
+        }
+
+
+        async function addRecord() {
+            const id = document.getElementById("id_add").value;
+            const add = document.getElementById("add").value;
+            if (!id || !add) return alert("ID와 추가할 취미를 입력하세요.");
+            {
+                const { data:rows } = await supabase.from("hobby").select('hobby').eq("id", id);
+                if (data.length === 0) return alert("해당 ID가 없습니다.");
+                for(const row of rows){
+                    for(const hobby of row.hobby) {
+                        if (hobby === add) return alert("이미 존재하는 취미입니다.");
+                    }
+                }
+            }
+
+            const { data: row } = await supabase.from("hobby").select('hobby').eq("id", id).single();
+            const updatedArray = [...row.hobby, add];
+
+            await supabase.from('hobby').update({ hobby: updatedArray }).eq('id', id);
+
+            readRecords();
+        }
+
+        async function removeRecord() {
+            const id = document.getElementById("id_add").value;
+            const remove = document.getElementById("add").value;
+            if (!id || !remove) return alert("ID와 삭제할 취미를 입력하세요");
+            let hasRecord = false;
+            if(!hasRecord) return alert("해당 취미가 없습니다.");
+
+            const { data: row } = await supabase.from("hobby").select('hobby').eq("id", id).single();
+            const filteredArray = row.hobby.filter(hobby => hobby !== remove);
+            if (filteredArray.length === row.hobby.length) return alert("해당 취미가 없습니다.")
+            await supabase.from('hobby').update({ hobby: filteredArray })
+                .eq('id', id);
+
+            readRecords();
+        }
+
+        async function updateRecord() {
+            const id = document.querySelector("#id_add").value;
+            if (!id) return;
+            const name = document.getElementById("name").value;
+            if (!name) return alert("이름을 입력하세요.");
+            const age = parseInt(document.getElementById("age").value);
+            if (!age) return alert("나이를 입력하세요.");
+            const hobbyInput = document.getElementById("hobby").value;
+            if (!hobbyInput) return alert("취미를 입력하세요.");
+            const job = !!(document.getElementById("job").checked);
+            
+            const hobby = hobbyInput.split(",");
+
+            const { error } = await supabase.from("hobby").update({
+                name,
+                age,
+                hobby,
+                job
+            }).eq("id", id);
+            if (error) return alert("Update Error: " + error.message);
+            readRecords();
+        }
+
+    </script>
+
+</body>
+
+</html>
