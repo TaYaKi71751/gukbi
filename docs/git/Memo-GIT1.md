@@ -3,6 +3,8 @@
 ```bash
 # This clones from remote to local in directory named 'Repository'
 git clone https://github.com/UserName/Repository.git
+# This clones from remote to local in current directory
+git clone https://github.com/UserName/Repository.git .
 ```
 ## [init](https://git-scm.com/docs/git-init)
 ```bash
