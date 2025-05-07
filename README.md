@@ -22,7 +22,7 @@
 # 📒 Memo
 
 ## React
-
+- [Memo-REACT1.md](./docs/Memo-REACT1.md)
 ## Supabase
 - [Memo-SUPABASE-SELF-HOSTED-MACOS.md](./docs/Memo-SUPABASE-SELF-HOSTED-MACOS.md)
 - [Memo-SUPABASE-SELF-HOSTED-WINDOWS.md](./docs/Memo-SUPABASE-SELF-HOSTED-WINDOWS.md)
