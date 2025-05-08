@@ -36,3 +36,10 @@ sudo chown -R 501:20 "$HOME/.npm"
 ### [Example 1](https://github.com/TaYaKi71751/react-01)
 #### [Add homepage to package.json](https://github.com/TaYaKi71751/react-01/blob/main/package.json)
 #### [Add deploy workflow](https://github.com/TaYaKi71751/react-01/blob/main/.github/workflows/Deploy.yml)
+- Go to github repository page
+- Click Settings
+- Click Actions in Settings
+- Click General at Actions in Settings
+- Scroll down to 'Workflow permissions'
+- Select 'Read and write permissions'
+- Click 'Save'
