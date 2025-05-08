@@ -3,7 +3,30 @@
 - JSX에서 태그를 사용할때 꼭 닫아 주어야 한다.
 - JSX에서 속성은 HTML과 비슷하게 작성되지만 class의 경우 className처럼 JavaScript의 관습에 따라 작성된다.
 - 변수의 경우 중괄호`{}`를 통해 접근 할 수 있다.
+- 여러 요소를 렌더링 할 경우 map함수를 사용 할 수 있다. (React 에서 반복되는 태그를 만들 경우에는 유니크한 값을 갖는 `key` 프로퍼티를 추가하는 것을 강력히 권장한다.)
 ```jsx
+/**
+ * map Example
+  */
+function NumberList(props){
+    const {numbers} = props;
+    const listItems = numbers.map((number) => 
+        <li key="number-list-1-{number}">
+            {number}
+        </li>
+    );
+    return (
+        <ul>{listItems}</ul>
+    );
+}
+function App(){
+    return <NumberList numbers={[1,2,3,4,5]}>;
+}
+```
+```jsx
+/**
+ * Props Example 1
+ */
 function GreetingProps(props){
     return (
     <h1>Hello, {props.name}({props.age})</h1>
@@ -16,6 +39,9 @@ function App(){
 }
 ```
 ```jsx
+/**
+ * Props Example 2
+ */
 function Greeting(props){
     if(props.isLoggedIn){
         return <h1>Welcome back!</h1>;
