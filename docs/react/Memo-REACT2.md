@@ -117,3 +117,5 @@ function App() {
   return <div className={styles.container}>Hello, World!</div>;
 }
 ```
+## Child Component
+### [Example 1](https://github.com/TaYaKi71751/react-01/blob/46eac90b07ce5194839c011af1a1aaa79a9596cf/src/App.js)

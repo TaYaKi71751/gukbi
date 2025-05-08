@@ -33,6 +33,10 @@ npm error You can rerun the command with `--loglevel=verbose` to see the logs in
 # Run
 sudo chown -R 501:20 "$HOME/.npm"
 ```
+### eslint
+```bash
+npx eslint --init
+```
 ### [Example 1](https://github.com/TaYaKi71751/react-01)
 #### [Add homepage to package.json](https://github.com/TaYaKi71751/react-01/blob/main/package.json)
 #### [Add deploy workflow](https://github.com/TaYaKi71751/react-01/blob/main/.github/workflows/Deploy.yml)
