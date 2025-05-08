@@ -3,7 +3,7 @@
 - JSX에서 태그를 사용할때 꼭 닫아 주어야 한다.
 - JSX에서 속성은 HTML과 비슷하게 작성되지만 class의 경우 className처럼 JavaScript의 관습에 따라 작성된다.
 - 변수의 경우 중괄호`{}`를 통해 접근 할 수 있다.
-```javascript
+```jsx
 function GreetingProps(props){
     return (
     <h1>Hello, {props.name}({props.age})</h1>
@@ -12,6 +12,23 @@ function GreetingProps(props){
 function App(){
     return (
     <GreetingProps name="John" age="15" />
+    );
+}
+```
+```jsx
+function Greeting(props){
+    if(props.isLoggedIn){
+        return <h1>Welcome back!</h1>;
+    } dlse {
+        return <h1>Please sign up.</h1>;
+    }
+}
+function App(){
+    const userIsLoggedIn = true;
+    return (
+    <div className="App">
+     <Greeting isLoggedIn={userIsLoggedIn}/>
+    </div>
     );
 }
 ```

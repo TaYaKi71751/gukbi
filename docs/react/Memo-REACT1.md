@@ -44,7 +44,7 @@ sudo chown -R 501:20 "$HOME/.npm"
 - Select 'Read and write permissions'
 - Click 'Save'
 - Create below in to `./.github/workflows/Deploy.yml`
-```
+```yaml
 name: Build and Deploy
 
 on:
