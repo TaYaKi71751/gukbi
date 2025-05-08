@@ -43,3 +43,26 @@ sudo chown -R 501:20 "$HOME/.npm"
 - Scroll down to 'Workflow permissions'
 - Select 'Read and write permissions'
 - Click 'Save'
+- Create below in to `./.github/workflows/Deploy.yml`
+```
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and Deploy React app to GitHub Pages
+      uses: omkartapale/react-deployment-gh-pages@v1.0.0
+```
+- Commit & Push
+- Go to GitHub Repository Settings
+- Click Pages
+- Select `gh-pages` branch and `/ (root)`
+- Click `Save` button
