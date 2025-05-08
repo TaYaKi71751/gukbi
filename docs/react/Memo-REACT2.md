@@ -63,3 +63,57 @@ function App(){
 ### [Export Example](https://github.com/TaYaKi71751/react-01/blob/ddc18bb6fad5c1c53904b7cf3117ee094aba3dbd/src/App.js)
 ## [useState](https://react.dev/reference/react/useState)
 ### [useState Example](https://github.com/TaYaKi71751/react-01/blob/822a644c467a786d7b59ceb2789b3287eef7914a/src/Counter.jsx)
+## CSS
+### Inline Style
+```jsx
+import React from 'react';
+import './App.css';
+
+// 스타일 객체 정의
+const divStyle = {
+  color: 'blue',
+  backgroundColor: 'lightgrey'
+};
+
+// App 컴포넌트 정의
+function App() {
+  return (
+    <div className="App">
+      <div style={divStyle}>Styled element</div>
+    </div>
+  );
+}
+```
+### Global Style
+```css
+/* styles.css */
+.container {
+  background-color: lightblue;
+  padding: 20px;
+}
+```
+```jsx
+// App.js
+import React from 'react';
+import './styles.css';
+function App() {
+  return <div className="container">Hello, World!</div>;
+}
+```
+### CSS Module
+```css
+/* App.module.css */
+.container {
+  background-color: lightblue;
+  padding: 20px;
+}
+```
+```jsx
+// App.js
+import React from 'react';
+import styles from './App.module.css';
+
+function App() {
+  return <div className={styles.container}>Hello, World!</div>;
+}
+```
