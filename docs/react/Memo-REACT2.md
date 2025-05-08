@@ -119,3 +119,31 @@ function App() {
 ```
 ## Child Component
 ### [Example 1](https://github.com/TaYaKi71751/react-01/blob/46eac90b07ce5194839c011af1a1aaa79a9596cf/src/App.js)
+#### When want to use custom onclick event to ChildComponent
+```jsx
+// You can write code like this
+function ChildComponent(props) {
+  const handleButtonClick = typeof props?.onClick == 'function' ? props?.onClick : () => {
+    alert("Button clicked!");
+   };
+   // 삼항 연산자 사용(Using state?A:B) 
+
+  return (
+    <div>
+	ChildComponent<br/>
+      <button onClick={handleButtonClick}>클릭하세요</button>
+    </div>
+  );
+}
+
+function App(){
+	return (
+    <div>
+     <ChildComponent />
+     <ChildComponent onClick={() => {
+         alert("Custom onClick!");
+         }} />
+    </div>
+    );
+}
+```
