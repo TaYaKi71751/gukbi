@@ -202,8 +202,6 @@ function App() {
               {student.name}
             </button>
             age : {student.age}
-
-
           </li>
         ))}
       </ul>
@@ -237,8 +235,7 @@ function App() {
             const newId = students.length + 1;
             setStudents([...students, { id: newId, name: newStudent.name, age: newStudent.age }]);
             setNewStudent({ name: "", age: "" });
-          }}
-        >
+          }}>
           추가
         </button>
       </div>
@@ -246,3 +243,6 @@ function App() {
   );
 }
 ```
+### Example 2
+#### [App.css](https://github.com/TaYaKi71751/react-01/blob/c75b52e3f1c970ea514543868d18f0e43b036464/src/App.css)
+#### [App.js](https://github.com/TaYaKi71751/react-01/blob/c75b52e3f1c970ea514543868d18f0e43b036464/src/App.js)
