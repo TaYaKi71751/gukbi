@@ -45,3 +45,8 @@ POST http://localhost:3010/words
     "isDone": true
 }
 ```
+### DELETE Delete
+```http
+### This deletes word which id is 7
+DELETE http://localhost:3010/words/7
+```
