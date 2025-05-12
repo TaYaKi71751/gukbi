@@ -34,3 +34,20 @@ function TimerComponent() {
 }
 export default TimerComponent;
 ```
+## React Router
+### [Router Example](https://github.com/TaYaKi71751/react-02)
+```jsx
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+function App(){
+    return (
+        <BrowserRouter basename={process.env.PUBLIC_URL}> /* This use homepage of package.json as root path, This is required for GitHub Pages */
+            <Routes>
+                <Route path="/" element={'This is root page'} />
+                <Route path="/hello" element={'This is hello'} />
+                <Route path="/user/:userId" element={'This is user page of userId, variable as userId'} />
+                <Route path="*" element={'This is else page'} />
+            </Routes>
+        </BrowserRouter>
+    )
+}
+```
