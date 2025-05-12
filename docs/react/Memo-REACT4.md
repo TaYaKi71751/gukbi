@@ -35,6 +35,15 @@ function TimerComponent() {
 export default TimerComponent;
 ```
 ## React Router
+### Install
+```bash
+# NPM
+npm install react-router-dom
+```
+```bash
+# PNPM
+pnpm install react-router-dom
+```
 ### [Router Example](https://github.com/TaYaKi71751/react-02)
 ```jsx
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
