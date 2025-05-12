@@ -64,6 +64,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build and Deploy React app to GitHub Pages
       uses: omkartapale/react-deployment-gh-pages@v1.0.0
+      env:
+        CI: false
 ```
 - Commit & Push
 - Go to GitHub Repository Settings
