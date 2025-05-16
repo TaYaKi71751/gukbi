@@ -29,6 +29,7 @@
 
 # TypeScript
 - [Memo-TS1.md](./docs/typescript/Memo-TS1.md)
+- [Memo-TS2.md](./docs/typescript/Memo-TS2.md)
 
 ---
 
