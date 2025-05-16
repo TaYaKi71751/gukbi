@@ -16,5 +16,35 @@ dispatch는 상태를 업데이트하기 위해 액션을 보내는 함수입니
 - 값변경시 화면에 변경된 값을 바로바로 표현해줄 변수를 생성한다.
 - 로직과 변수로 userReducer메소드를 이용해서 state와dispatch를 얻는다.
 - 변경된 데이터를 그때그때 보여줄 state변수 기술 디스패치 함수를 사용하여 액션을 보냄 
-
+## Running old react
+```bash
+npm install
+export NODE_OPTIONS=--openssl-legacy-provider
+npm install react-scripts@latest
+npm start
 ```
+### Fix npm permission
+```bash
+sudo chown -R 501:20 "${HOME}/.npm"
+```
+## React setups
+```bash
+# For react router
+npm install react-router-dom
+# For material ui
+npm install @mui/material 
+# For style
+npm install @emotion/react @emotion/styled
+# For icons
+npm install @mui/icons-material
+# For animated effects
+npm install framer-motion@12.6.2
+```
+## Directory structure
+[machadop1407/react-website-tutorial](https://github.com/machadop1407/react-website-tutorial)
+- [src](https://github.com/machadop1407/react-website-tutorial/tree/main/src)
+> - [assets](https://github.com/machadop1407/react-website-tutorial/tree/main/src/assets)
+> - [components](https://github.com/machadop1407/react-website-tutorial/tree/main/src/components)
+> - [helpers](https://github.com/machadop1407/react-website-tutorial/tree/main/src/helpers)
+> - [pages](https://github.com/machadop1407/react-website-tutorial/tree/main/src/pages)
+> - [styles](https://github.com/machadop1407/react-website-tutorial/tree/main/src/styles)
