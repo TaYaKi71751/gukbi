@@ -2,7 +2,11 @@
 ## Compile & Run
 ### Install
 ```bash
-npm i typescript
+npm i typescript @types/node
+```
+### Init
+```bash
+npx tsc --init
 ```
 ### Code
 ```typescript
@@ -24,6 +28,10 @@ node app.js
 ### Install
 ```bash
 npm i ts-node typescript @types/node
+```
+### Init
+```bash
+npx tsc --init
 ```
 ### Code
 ```typescript
