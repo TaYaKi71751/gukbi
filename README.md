@@ -1,8 +1,8 @@
 # 📚 목차
 - [📚 목차](#-목차)
 - [📒 Memo](#-memo)
-- [Bootstrap](#bootstrap)
-- [TypeScript](#typescript)
+  - [Bootstrap](#bootstrap)
+  - [TypeScript](#typescript)
   - [Git](#git)
   - [JSON Server](#json-server)
   - [React](#react)
