@@ -74,7 +74,7 @@ provides a full width container, spanning the entire width of the viewport
 </tr>
 </tbody></table>
 
-## Typography
+## [Typography](https://www.w3schools.com/bootstrap5/bootstrap_typography.php)
 ```html
 <!-- Headings -->
 <!-- h1~h6 & Bolder font-weight -->
