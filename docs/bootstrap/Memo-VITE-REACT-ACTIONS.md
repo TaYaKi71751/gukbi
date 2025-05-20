@@ -34,11 +34,12 @@ function App(){
     );
 }
 ```
-5. For images on `public/`, use like `<img src={\`\${import.meta.env.BASE\_URL}/images/1.png\`} />`
-6. Fix `noUnusedLocals`, `noUnusedParameters` to false in `tsconfig.app.json`,`tsconfig.node.json`
-7. Go to repository settings, then click Actions tab in settings, then click General in Actions
-8. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
-9. Add below code to .github/workflows/Deploy.yml
+5. Append ` && cp dist/index.html dist/404.html` to `scripts.build` in `package.json`
+6. For images on `public/`, use like `<img src={\`\${import.meta.env.BASE\_URL}/images/1.png\`} />`
+7. Fix `noUnusedLocals`, `noUnusedParameters` to false in `tsconfig.app.json`,`tsconfig.node.json`
+8. Go to repository settings, then click Actions tab in settings, then click General in Actions
+9. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
+10. Add below code to .github/workflows/Deploy.yml
 ```yml
 name: Deploy
 
@@ -92,6 +93,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 ```
-10. When Actions completed, go to repository settings, then click Pages in settings
-11. In `Branch` section, click `None` then select `gh-pages`
-12. Click `Save` button in `Branch` section
+11. When Actions completed, go to repository settings, then click Pages in settings
+12. In `Branch` section, click `None` then select `gh-pages`
+13. Click `Save` button in `Branch` section
