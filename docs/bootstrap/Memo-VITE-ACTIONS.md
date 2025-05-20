@@ -1,8 +1,9 @@
 ### [Github Actions for Github Pages](https://github.com/sitek94/vite-deploy-demo)
 1. Add `https://<USERNAME>.github.io/<REPOSITORY>` to `homepage` in `package.json`
-2. Go to repository settings, then click Actions tab in settings, then click General in Actions
-3. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
-4. Add below code to .github/workflows/Deploy.yml
+2. Fix `noUnusedLocals`, `noUnusedParameters` to false in `tsconfig.app.json`,`tsconfig.node.json`
+3. Go to repository settings, then click Actions tab in settings, then click General in Actions
+4. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
+5. Add below code to .github/workflows/Deploy.yml
 ```yml
 name: Deploy
 
@@ -69,6 +70,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 ```
-5. When Actions completed, go to repository settings, then click Pages in settings
-6. In `Branch` section, click `None` then select `gh-pages`
-7. Click `Save` button in `Branch` section
+6. When Actions completed, go to repository settings, then click Pages in settings
+7. In `Branch` section, click `None` then select `gh-pages`
+8. Click `Save` button in `Branch` section
