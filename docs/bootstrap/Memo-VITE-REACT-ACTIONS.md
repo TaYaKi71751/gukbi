@@ -19,7 +19,8 @@ export default function App(){
     );
 }
 ```
-3. Edit `<* href="/">Link</*>` to `<* as={Link} to="/">Link<*>`
+3. For html using href, Use `Link` from `react-router-dom` like `<Link to="/">Home</Link>`
+4. For bootstrap using href, edit `<* href="/">Link</*>` to `<* as={Link} to="/">Link<*>`
 ```tsx
 /* Example */
 import { Nav,Navbar } from 'react-bootstrap';
@@ -33,10 +34,11 @@ function App(){
     );
 }
 ```
-4. Fix `noUnusedLocals`, `noUnusedParameters` to false in `tsconfig.app.json`,`tsconfig.node.json`
-5. Go to repository settings, then click Actions tab in settings, then click General in Actions
-6. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
-7. Add below code to .github/workflows/Deploy.yml
+5. For images on `public/`, use like `<img src={\`\${import.meta.env.BASE\_URL}/images/1.png\`} />`
+6. Fix `noUnusedLocals`, `noUnusedParameters` to false in `tsconfig.app.json`,`tsconfig.node.json`
+7. Go to repository settings, then click Actions tab in settings, then click General in Actions
+8. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
+9. Add below code to .github/workflows/Deploy.yml
 ```yml
 name: Deploy
 
@@ -90,6 +92,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 ```
-8. When Actions completed, go to repository settings, then click Pages in settings
-9. In `Branch` section, click `None` then select `gh-pages`
-10. Click `Save` button in `Branch` section
+10. When Actions completed, go to repository settings, then click Pages in settings
+11. In `Branch` section, click `None` then select `gh-pages`
+12. Click `Save` button in `Branch` section
