@@ -30,7 +30,7 @@
 
 # Bootstrap
 - [Memo-BOOTSTRAP1.md](./docs/bootstrap/Memo-BOOTSTRAP1.md)
-- [Memo-VITE-ACTIONS.md](./docs/bootstrap/Memo-VITE-ACTIONS.md)
+- [Memo-VITE-REACT-ACTIONS.md](./docs/bootstrap/Memo-VITE-REACT-ACTIONS.md)
 - [Memo-VITE-BOOTSTRAP1.md](./docs/bootstrap/Memo-VITE-BOOTSTRAP1.md)
 
 ---
