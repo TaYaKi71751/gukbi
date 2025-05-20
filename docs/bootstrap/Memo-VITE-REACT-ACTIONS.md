@@ -19,13 +19,14 @@ export default function App(){
     );
 }
 ```
-3. Edit `<Nav.* href="/">Link</Nav.*>` to `<Nav.* as={Link} to="/">Link</Nav.*>`
+3. Edit `<* href="/">Link</*>` to `<* as={Link} to="/">Link<*>`
 ```tsx
 /* Example */
-import { Nav } from 'react-bootstrap';
+import { Nav,Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 function App(){
     return (
+        <Navbar.Brand as={Link} to="/"><h1>BookStore</h1></Navbar.Brand>
         <Nav.Link as={Link} to="/">
             Home
         </Nav.Link>
