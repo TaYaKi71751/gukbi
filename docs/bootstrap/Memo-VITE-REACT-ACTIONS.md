@@ -1,4 +1,6 @@
 ### [Github Actions for Github Pages](https://github.com/sitek94/vite-deploy-demo)
+### [Example Repository](https://github.com/TaYaKi71751/vite-react-02)
+### [Example Page](https://tayaki71751.github.io/vite-react-02)
 1. Edit `vite.config.ts` like below
 ```typescript
 import { defineConfig } from 'vite'
