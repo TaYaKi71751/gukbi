@@ -8,7 +8,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '<REPOSITORY_NAME>',
+  base: '/<REPOSITORY_NAME>',
   plugins: [react()],
 })
 ```
@@ -37,7 +37,14 @@ function App(){
 }
 ```
 5. Append ` && cp dist/index.html dist/404.html` to `scripts.build` in `package.json`
-6. For images on `public/`, use like `<img src={\`\${import.meta.env.BASE\_URL}/images/1.png\`} />`
+6. For images on `public/`, use like below
+```jsx
+function Logo(){
+    return (
+        <img src={`${import.meta.env.BASE_URL}/images/logo.png`} />
+    );
+}
+```
 7. Fix `noUnusedLocals`, `noUnusedParameters` to false in `tsconfig.app.json`,`tsconfig.node.json`
 8. Go to repository settings, then click Actions tab in settings, then click General in Actions
 9. Scroll down to `Workflow permissions`, then select `Read and write permissions`, then click Save below them 
