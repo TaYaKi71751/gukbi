@@ -1,8 +1,8 @@
 # 📚 목차
 - [📚 목차](#-목차)
 - [📒 Memo](#-memo)
-  - [Bootstrap](#bootstrap)
-  - [TypeScript](#typescript)
+- [Bootstrap](#bootstrap)
+- [TypeScript](#typescript)
   - [Git](#git)
   - [JSON Server](#json-server)
   - [React](#react)
@@ -30,6 +30,7 @@
 
 # Bootstrap
 - [Memo-BOOTSTRAP1.md](./docs/bootstrap/Memo-BOOTSTRAP1.md)
+- [Memo-BOOTSTRAP2.md](./docs/bootstrap/Memo-BOOTSTRAP2.md)
 - [Memo-VITE-REACT-ACTIONS.md](./docs/bootstrap/Memo-VITE-REACT-ACTIONS.md)
 - [Memo-VITE-BOOTSTRAP1.md](./docs/bootstrap/Memo-VITE-BOOTSTRAP1.md)
 
