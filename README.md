@@ -44,6 +44,7 @@
 
 ## Git
 - [Memo-GIT1.md](./docs/git/Memo-GIT1.md)
+- [Memo-GIT2.md](./docs/git/Memo-GIT2.md)
 
 ---
 
