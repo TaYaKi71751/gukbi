@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.BoardDAO">
+<!-- <insert id="create">INSERT INTO board (
+    bGroupKind, bId, bName, bTitle, bContent, bEtc, bWriteTime, bUpdateTime,
+    bHit, bGroup, bStep, bIndent, bDelete, bLike, bDislike
+) VALUES (
+    #{bGroupKind}, bId.nextval, #{bName}, #{bTitle}, #{bContent}, #{bEtc}, #{bWriteTime}, #{bUpdateTime},
+    0, #{bGroup}, #{bStep}, #{bIndent}, 'Y', 0, 0
+)
+</insert> -->
+<insert id="create">
+    INSERT INTO board (
+        bGroupKind, bId, bName, bTitle, bContent, bGroup,bStep,bIndent
+    ) VALUES (
+        #{bGroupKind}, bId.nextval, #{bName}, #{bTitle}, #{bContent}, bId.currval,#{bStep},#{bIndent}
+    )
+</insert>
+
+<insert id="reply">
+    INSERT INTO board (
+        bGroupKind, bId, bName, bTitle, bContent, bGroup,bStep,bIndent
+    ) VALUES (
+        #{bGroupKind}, bId.nextval, #{bName}, #{bTitle}, #{bContent}, #{bGroup} ,#{bStep}+1,#{bIndent}+1
+    )
+    
+</insert>
+<update id="replyUpdate">
+update board set bStep = bStep+1 where bGroup = #{bGroup} and bStep > #{bStep}
+</update>
+
+
+
+
+
+
+<!-- <insert id="reply">
+insert into board(
+	bGroupKind,bId)
+</insert> -->
+<select id="read" resultType="BoardDto"> 
+select * from board where bId = #{bId}
+ </select>
+<update id="update"> update board set bGroupKind=#{bGroupKind},bTitle =#{bTitle},
+ bContent =#{bContent} where bId = #{bId} </update>
+ 
+<update id="bHitUpdate">update board set bHit=bHit+1 where bId=#{bId}</update>
+
+<update id="bLike">update board set bLike=bLike+1 where bId=#{bId}</update>
+
+<delete id="delete"> delete from board where bId = #{bId} </delete>
+
+<select id="listAll" resultType="com.human.dto.BoardDto">
+<![CDATA[ select * from board where bId > 0 order by bGroup desc,bStep asc ]]>
+</select>
+<select id="listMenu" resultType="com.human.dto.BoardDto">
+<![CDATA[ select * from board where bId > 0  and bGroupKind=#{bGroupKind} order by bGroup desc,bStep asc]]>
+</select>
+<select id="menuKind" resultType="String">
+<![CDATA[ select distinct bGroupKind from board]]>
+</select>
+</mapper>
+
+
+
+
+
+
+

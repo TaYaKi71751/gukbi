@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.human.dao.BoardDAO">
+<!-- <insert id="create">INSERT INTO board (
+    bGroupKind, bId, bName, bTitle, bContent, bEtc, bWriteTime, bUpdateTime,
+    bHit, bGroup, bStep, bIndent, bDelete, bLike, bDislike
+) VALUES (
+    #{bGroupKind}, bId.nextval, #{bName}, #{bTitle}, #{bContent}, #{bEtc}, #{bWriteTime}, #{bUpdateTime},
+    0, #{bGroup}, #{bStep}, #{bIndent}, 'Y', 0, 0
+)
+</insert> -->
+<insert id="create">INSERT INTO board (
+     bId, bName, bTitle, bContent,
+    bHit, bLike
+) VALUES (
+     bId.nextval, #{bName}, #{bTitle}, #{bContent},
+    0,0
+)
+</insert>
+<select id="read" resultType="BoardDto"> 
+select * from board where bId = #{bId} </select>
+
+<update id="update"> update board set bTitle =#{bTitle},
+ bContent =#{bContent} where bId = #{bId} </update>
+
+
+<delete id="delete"> delete from board where bId = #{bId} </delete>
+<select id="listAll" resultType="com.human.dto.BoardDto">
+
+<![CDATA[ select * from board where bId > 0 order by bId desc, bWriteTime desc ]]>
+ 
+</select>
+</mapper>
