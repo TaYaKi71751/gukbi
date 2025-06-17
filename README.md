@@ -1,6 +1,7 @@
 # 📚 목차
 - [📚 목차](#-목차)
 - [📒 Memo](#-memo)
+- [Spring Legacy](#spring-legacy)
 - [Bootstrap](#bootstrap)
 - [TypeScript](#typescript)
   - [Git](#git)
@@ -27,6 +28,10 @@
 # 📒 Memo
 
 ---
+
+# Spring Legacy
+- [Memo-SPRING1.md](./docs/spring/Memo-SPRING1.md)
+- [Memo-SPRING2.md](./docs/spring/Memo-SPRING2.md)
 
 # Bootstrap
 - [Memo-BOOTSTRAP1.md](./docs/bootstrap/Memo-BOOTSTRAP1.md)
