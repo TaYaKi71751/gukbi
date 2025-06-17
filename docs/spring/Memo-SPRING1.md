@@ -1,6 +1,8 @@
 # Spring Legacy
 ## Install Spring Tools Suite 3
+- jdk 11 recommended
 ### [Installation](https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3)
+
 #### For Apple Sillicon Mac
 - Install Rosetta2
 ```bash
