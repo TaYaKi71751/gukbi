@@ -9,3 +9,7 @@
 - Click `Next`
 - Specify `top-level package` (example, `com.human.controller`)
 - Click `Finish`
+## Configure
+- Go to `pom.xml`
+- Use `java-version` as `1.8`
+- Use `org.springframework-version` as `4.3.5.RELEASE`
