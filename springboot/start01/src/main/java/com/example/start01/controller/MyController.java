@@ -1,7 +1,9 @@
 package com.example.start01.controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -74,5 +76,23 @@ public class MyController {
         model.addAttribute("message", "success");
         model.addAttribute("title", "<h1>제목</h1>");
         return "model3";
+    }
+    @GetMapping("/model4")
+    public String thymeleafControl(Model model) {
+        model.addAttribute("title", "이 문자열은 제목");
+        model.addAttribute("age", 20);
+
+        List<HumanDto> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            HumanDto dto = new HumanDto();
+            dto.setName("name" + i);
+            dto.setAge(25 + i);
+            dto.setHeight(170 + i);
+            dto.setBirthday(LocalDateTime.of(1993, 7, 21, 10, 30).plusYears(i)); // Set example birthday
+            list.add(dto);
+        }
+        model.addAttribute("list", list);
+
+        return "model4";
     }
 }

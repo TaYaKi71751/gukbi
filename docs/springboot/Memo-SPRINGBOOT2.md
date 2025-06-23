@@ -62,6 +62,7 @@ server.port=8081
 - Create [model3.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model3.jsp) into `src/main/webapp/WEB-INF/views/`
 - Create directory [dto](../../springboot/start01/src/main/java/com/example/start01/dto) into `src/main/java/com/example/start01/`
 - Create [HumanDto.java](../../springboot/start01/src/main/java/com/example/start01/dto/HumanDto.java) into `src/main/java/com/example/start01/`
+- Create [model4.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model4.jsp) into `src/main/webapp/WEB-INF/views/`
 ```java
 package com.example
 ```
