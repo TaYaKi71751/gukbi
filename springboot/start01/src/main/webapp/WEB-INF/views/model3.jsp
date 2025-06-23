@@ -12,5 +12,9 @@
     <p>key1 : ${mapData.key1}</p>
     <p>key2 : ${mapData.key2}</p>
     <p>key3 : ${mapData.key3}</p>
+    <p>name : ${humanDto.getName()}</p>
+    <p>age : ${humanDto.getAge()}</p>
+    <p>height : ${humanDto.getHeight()}</p>
+    <p>birthday : ${humanDto.getBirthday()}</p>
 </body>
 </html>
