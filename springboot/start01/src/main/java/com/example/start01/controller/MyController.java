@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.start01.dto.HumanDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class MyController {
@@ -112,6 +113,17 @@ public class MyController {
 
         model.addAttribute("result", "none dto send OK");
         return "model5";
+    }
+    //model6?name=John&age=25&height=175.5&birthday=2023-09-11T15:30
+    @GetMapping("/model6")
+    public String dtoSend(@ModelAttribute HumanDto humanDto, Model model) {
+        System.out.println("name : " + humanDto.getName());
+        System.out.println("age : " + humanDto.getAge());
+        System.out.println("height : " + humanDto.getHeight());
+        System.out.println("birthday : " + humanDto.getBirthday());
+
+        model.addAttribute("result", "dto send OK");
+        return "model6";
     }
 
 }
