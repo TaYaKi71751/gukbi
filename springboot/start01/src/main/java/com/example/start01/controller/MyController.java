@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.start01.dto.HumanDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
-
 
 @Controller
 public class MyController {
@@ -77,6 +77,7 @@ public class MyController {
         model.addAttribute("title", "<h1>제목</h1>");
         return "model3";
     }
+
     @GetMapping("/model4")
     public String thymeleafControl(Model model) {
         model.addAttribute("title", "이 문자열은 제목");
@@ -95,4 +96,22 @@ public class MyController {
 
         return "model4";
     }
+
+    // model5?name=John&age=25&height=175.5&birthday=2023-09-11T15:30
+    @GetMapping("model5")
+    public String noneDtoSend(
+            @RequestParam("name") String name,
+            @RequestParam("age") long age, // `long` 타입으로 수정
+            @RequestParam("height") double height, // 추가된 필드
+            @RequestParam("birthday") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime birthday,
+            Model model) {
+        System.out.println("name : " + name);
+        System.out.println("age : " + age);
+        System.out.println("height : " + height);
+        System.out.println("birthday : " + birthday);
+
+        model.addAttribute("result", "none dto send OK");
+        return "model5";
+    }
+
 }
