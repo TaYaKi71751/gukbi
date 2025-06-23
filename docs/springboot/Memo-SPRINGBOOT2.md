@@ -72,8 +72,16 @@ server.port=8081
 # cd to project then run
 ./gradlew bootRun
 ```
+#### Auto restart
+```bash
+watchexec -r -e java,xml,jsp,html,css,js,properties,gradle -i '.gradle' -i '.idea' -i 'out' -- ./gradlew clean bootRun
+```
 ### Windows
 ```powershell
 # cd to project then run
 gradlew.bat bootRun
+```
+#### Auto restart
+```powershell
+watchexec -r -e java,xml,jsp,html,css,js,properties,gradle -i '.gradle' -i '.idea' -i 'out' -- gradlew.bat clean bootRun
 ```
