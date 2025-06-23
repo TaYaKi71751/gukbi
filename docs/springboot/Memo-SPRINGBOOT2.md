@@ -28,10 +28,10 @@ Oracle Driver
 - Add `index.html` to `src/main/resources/static/`
 - Add below to dependencies in `build.gradle`
 ```
-	implementation 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0'
-	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
-	runtimeOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'jakarta.servlet:jakarta.servlet-api'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 ```
 - Click `File` > `Project Structure`, Select `temurin 21` as `jdk`, Select `SDK default` as `Language level`
 - Add below to `src/main/resources/application.properties`
