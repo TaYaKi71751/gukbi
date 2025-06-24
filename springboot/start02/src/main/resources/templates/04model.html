@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h2>DTO Data</h2>
+<p>Name: <span th:text="${humanDto.name}"></span></p>
+<p>Age: <span th:text="${humanDto.age}"></span></p>
+<p>Height: <span th:text="${humanDto.height}"></span></p>
+
+<p>Birthday: <span th:text="${humanDto.birthday}"></span></p>
+<p>Birthday: <span th:text="${#temporals.format(humanDto.birthday, 'dd-MM-yyyy HH:mm')}"></span></p>
+
+</body>
+</html>
+

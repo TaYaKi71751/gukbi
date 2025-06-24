@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>03model Example</title>
+</head>
+<body>
+<h1>사용자 정보</h1>
+<p>이름: <span th:text="${param.name}">이름이 없습니다</span></p>
+<p>나이: <span th:text="${param.age}">0</span></p>
+<p>키: <span th:text="${param.height}">0.0</span>cm</p>
+<p>생일: <span th:text="${param.birthday}">날짜 없음 시간객체가아닌 문자열</span></p>
+<!-- 시간 객체이면 #temporals 사용가능 문자열이면 사용 불가능 -->
+</body>
+</html>
