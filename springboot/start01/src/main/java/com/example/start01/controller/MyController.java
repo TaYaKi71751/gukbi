@@ -52,6 +52,17 @@ public class MyController {
         return "div";
     }
 
+    @GetMapping("/model0")
+    public String model0(Model model) {
+        return "model0";
+    }
+
+    @GetMapping("/model1")
+    public String model1(Model model) {
+        model.addAttribute("key", "value=model1");
+        return "model1";
+    }
+
     @GetMapping("/model2")
     public ModelAndView model2() {
         ModelAndView modelAndView = new ModelAndView("model2");
@@ -125,5 +136,34 @@ public class MyController {
         model.addAttribute("result", "dto send OK");
         return "model6";
     }
+    
+    @GetMapping("model7")
+    public String thymeleafContro(Model model) {
+        // 데이터를 모델에 추가
+        model.addAttribute("str", "control1");
+        model.addAttribute("age", 20);
 
+        List<HumanDto> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            HumanDto human = new HumanDto();
+            human.setName("이름" + i);
+            human.setAge(25 + i);
+            human.setHeight(170.0 + i); // height 추가
+            human.setBirthday(LocalDateTime.of(1993, 7, 21, 10, 30).plusYears(i)); // 생일 설정
+            list.add(human);
+        }
+
+        // 리스트 데이터를 모델에 추가
+        model.addAttribute("list", list);
+
+        HumanDto human = new HumanDto();
+        human.setName("이름");
+        human.setAge(25);
+        human.setHeight(170.0 ); // height 추가
+        human.setBirthday(LocalDateTime.of(1993, 7, 21, 10, 30).plusYears(1));
+
+        model.addAttribute("dto", human);
+        // 뷰 이름 반환
+        return "07model";
+    }
 }

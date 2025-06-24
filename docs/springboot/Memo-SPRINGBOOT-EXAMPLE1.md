@@ -10,6 +10,8 @@
 - Create [mul.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/mul.jsp) into `src/main/webapp/WEB-INF/views/`
 - Create [sub.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/sub.jsp) into `src/main/webapp/WEB-INF/views/`
 - Create [sum.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/sum.jsp) into `src/main/webapp/WEB-INF/views/`
+- Create [model0.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model0.jsp) into `src/main/webapp/WEB-INF/views`
+- Create [model1.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model1.jsp) into `src/main/webapp/WEB-INF/views`
 - Create [model2.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model2.jsp) into `src/main/webapp/WEB-INF/views`
 - Create [model3.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model3.jsp) into `src/main/webapp/WEB-INF/views/`
 - Create directory [dto](../../springboot/start01/src/main/java/com/example/start01/dto) into `src/main/java/com/example/start01/`
@@ -17,3 +19,4 @@
 - Create [model4.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model4.jsp) into `src/main/webapp/WEB-INF/views/`
 - Create [model5.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model5.jsp) into `src/main/webapp/WEB-INF/views/`
 - Create [model6.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model6.jsp) into `src/main/webapp/WEB-INF/views/`
+- Create [model7.jsp](../../springboot/start01/src/main/webapp/WEB-INF/views/model7.jsp) into `src/main/webapp/WEB-INF/views/`

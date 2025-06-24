@@ -17,5 +17,13 @@
     <p>age : ${humanDto.getAge()}</p>
     <p>height : ${humanDto.getHeight()}</p>
     <p>birthday : ${humanDto.getBirthday()}</p>
+
+    <h2>JavaScript Example</h2>
+    <script>
+        let message = "${message}";
+        if(message){
+            alert(message);
+        }
+    </script>
 </body>
 </html>
