@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+<p>Select</p>
+<table id="customers">
+  <thead>
+  <tr>
+    <th style="width: 10px">선택</th>
+    <th style="width: 10px">Name</th>
+    <th style="width: 100px">Age</th>
+    <th style="width: 200px">Height</th>
+    <th style="width: 40px">Birthday</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><a th:href="@{/delete(name=${dto.name})}">삭제</a></td>
+    <td th:text="${dto.name}"></td>
+    <td th:text="${dto.age}"></td>
+    <td th:text="${dto.height}"></td>
+    <td>
+      <span th:text="${#temporals.format(dto.birthday, 'yyyy-MM-dd HH:mm')}"></span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a th:href="@{/update(id=${dto.id}, name=${dto.name}, age=${dto.age}, height=${dto.height}, birthday=${#temporals.format(dto.birthday, 'yyyy-MM-dd''T''HH:mm')})}">
+  수정
+</a>
+
+
+
+<!--
+    시간 문자열이 2024-04-05T10:10:00 이면 2024-04-05T10:10으로,
+    2024-04-05T10:10:01 이면 2024-04-05T10:10:01으로 전달될 수 있어
+    시간 문자열 오류가 발생할 수 있습니다.
+-->
+</body>
+</html>

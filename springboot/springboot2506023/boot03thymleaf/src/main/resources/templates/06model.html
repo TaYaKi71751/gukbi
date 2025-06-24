@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Human List</title>
+</head>
+<body>
+<h1>Human List</h1>
+
+<!-- list를 반복하여 각 HumanDto의 속성 출력 -->
+<table border="1">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Height</th>
+    <th>Birthday</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="human : ${list}">
+    <!-- HumanDto 속성들을 출력 -->
+    <td th:text="${human.name}"></td>
+    <td th:text="${human.age}"></td>
+    <td th:text="${human.height}"></td>
+    <td th:text="${#temporals.format(human.birthday, 'dd-MM-yyyy HH:mm')}"></td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.start01.dao.HumanDao">
+    <insert id="humanInsert" parameterType="HumanDto">
+        INSERT INTO Human (name, age, height, birthday)
+        VALUES (#{name}, #{age}, #{height}, #{birthday})
+    </insert>
+    <select id="humanSelectAll" resultType="humanDto">
+        select * from human
+    </select>
+    <select id="humanSelectName" resultType="humanDto">
+        select * from human where name=#{name}
+    </select>
+    <update id="humanUpdate">
+        update human set height=#{height},age=#{age},birthday=#{birthday} where name=#{name}
+    </update>
+    <delete id="humanDelete" parameterType="java.lang.String">
+        delete from human where name=#{name}
+    </delete>
+</mapper>

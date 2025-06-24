@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <script th:inline="javascript">
+    var result = [[${msg}]];
+    if (result === 'success') {
+        alert("처리가 완료되었습니다.");
+    }
+  </script>
+  <style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+<p>Select</p>
+<table id="customers">
+  <thead>
+  <tr>
+    <th style="width: 10px">Name</th>
+    <th style="width: 100px">Age</th>
+    <th style="width: 200px">Height</th>
+    <th style="width: 40px">Birthday</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="dto : ${list}">
+    <td><a th:href="@{/selectName(name=${dto.name})}" th:text="${dto.name}"></a></td>
+    <td th:text="${dto.age}"></td>
+    <td th:text="${dto.height}"></td>
+    <td>
+      <span th:text="${#temporals.format(dto.birthday, 'yyyy-MM-dd HH:mm')}"></span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a th:href="@{/insert}">새글</a>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{{>common/head}}
+<div class="main">
+    <h2>TITLE selectOne</h2>
+    {{#entity}}
+    <table width="80%">
+        <tr>
+            <td>id:</td><td>{{id}}</td> <!-- 반복되는 시점의 개체안에 들어있는 id가 출력됨-->
+        </tr>
+        <tr>
+            <td>name:</td><td>{{name}}</td>
+        </tr>
+        <tr>
+            <td>password:</td><td>{{password}}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="/selectAll"> list All</a>
+                <a href="/delete/{{id}}"> delete</a>
+                <a href="/update/{{id}}"> update</a>
+            </td>
+        </tr>
+    </table>
+    {{/entity}}
+</div>
+{{>common/footer}}

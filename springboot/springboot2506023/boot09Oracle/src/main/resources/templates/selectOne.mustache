@@ -1,0 +1,165 @@
+{{>common/head}}
+<div class="main">
+    <h2>TITLE selectOne</h2>
+    {{#entity}}
+    <table width="80%">
+        <tr>
+            <td>id:</td><td>{{id}}</td> <!-- 반복되는 시점의 개체안에 들어있는 id가 출력됨-->
+        </tr>
+        <tr>
+            <td>name:</td><td>{{name}}</td>
+        </tr>
+        <tr>
+            <td>password:</td><td>{{password}}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="/selectAll"> list All</a>
+                <a href="/delete/{{id}}"> delete</a>
+                <a href="/update/{{id}}"> update</a>
+            </td>
+        </tr>
+    </table>
+    {{/entity}}
+    <button onclick="selectAll()">All Comments</button>
+    <button onclick="selectSome({{id}})">comments Some</button>
+    <div >
+        <p >
+            <input id="idInsert" type='hidden' value={{id}} >
+            name:<input id="nameInsert" type='text' >
+            comments:<input id="commentsInsert" type='text' >
+            <button class="btn-insert">insert</button>
+        </p>
+    </div>
+    <div id="commentList">
+        displaydata
+    </div>
+</div>
+<script>
+
+    document.querySelectorAll(".btn-insert")[0].addEventListener("click",function(){
+        var idInsert=document.querySelectorAll("#idInsert")[0].value;
+        var nameInsert=document.querySelectorAll("#nameInsert")[0].value;
+        var commentsInsert=document.querySelectorAll("#commentsInsert")[0].value;
+        alert(idInsert);
+
+        fetch("http://localhost:8080/rest/comment/insert",{
+            method: "POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify({
+                loginEntityId : idInsert,
+                name : nameInsert,
+                comments:commentsInsert,
+            })
+        })
+            .then((response)=>response.json())
+            .then((data)=>{
+                console.log(data)
+                alert("insert");
+            })
+    });
+
+
+
+
+
+
+        function selectSome(id){
+            var commentList = document.querySelectorAll("#commentList")[0];
+            console.log(commentList);
+            commentList.innerHTML="";
+
+            //특정아이디에 값요청
+            // /rest/comment/selectSome/loginEntityId
+            fetch("http://localhost:8080/rest/comment/selectSome/"+id)
+                .then((response)=>response.json())
+                .then((data)=>{
+                    for( var i of data){
+                        commentList.innerHTML+=
+                         `<p data-id=${i.id} data-loginEntityId=${i.loginEntityId} > id : ${i.id} userid : ${i.loginEntityId}
+                        <input class="name" type='text' value=${i.name} >
+                        <input class="comments" type='text' value=${i.comments} >
+                        <button class="btn-delete" onclick=bDelete(this)>delete</button>
+                        <button class="btn-modify" onclick=bModify(this) >modify</button></p>`;
+                    }
+                })
+        }
+
+        function selectAll(){
+            var commentList = document.querySelectorAll("#commentList")[0];
+            console.log(commentList);
+            commentList.innerHTML="";
+
+            //접근할 주소 기술
+            fetch("http://localhost:8080/rest/comment/selectAll")
+                // body의 텍스트를 json형식으로 바꾼 프로미스를 반환
+                .then((response) => response.json())
+                //
+                .then((data) =>{
+                    for( var i of data){
+                        commentList.innerHTML+=
+                         `<p data-id=${i.id} data-loginEntityId=${i.loginEntityId} > id : ${i.id} userid : ${i.loginEntityId}
+                        <input class="name" type='text' value=${i.name} >
+                        <input class="comments" type='text' value=${i.comments} >
+                        <button class="btn-delete" onclick=bDelete(this) >delete</button>
+                        <button class="btn-modify" onclick=bModify(this) >modify</button></p>`;
+                    }
+                 })
+        }
+    //삭제
+    function bDelete(button){
+        console.log(button);
+        console.log(button.parentNode);
+
+        var id =button.parentNode.getAttribute("data-id");
+
+        fetch("http://localhost:8080/rest/comment/delete/"+id,{
+            method:"DELETE",
+        })
+            .then((response)=>response.text())
+            .then((text)=>{
+                console.log(text);
+                button.parentNode.remove();
+            })
+
+    }
+
+
+
+    //수정 bModify 버튼  수정시에는 id,loginEntityid,name,comments 다필요하다.
+    function bModify(button){
+        console.log(button);
+        console.log(button.parentNode);
+
+        var id =button.parentNode.getAttribute("data-id");
+        var loginEntityId=button.parentNode.getAttribute("data-loginEntityId");
+        var name = button.parentNode.querySelectorAll(".name")[0].value;
+        var comments = button.parentNode.querySelectorAll(".comments")[0].value;
+
+        console.log(name);
+        console.log(comments);
+
+        fetch("http://localhost:8080/rest/comment/update",{
+            method:"put",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify({
+                id : id,
+                loginEntityId : loginEntityId,
+                name : name,
+                comments:comments,
+            })
+        })
+        .then((response)=>response.json())
+        .then((data)=>{
+            console.log(data)
+            alert("update");
+        })
+
+    }
+
+</script>
+{{>common/footer}}

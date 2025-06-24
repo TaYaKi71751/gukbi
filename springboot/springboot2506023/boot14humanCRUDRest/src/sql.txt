@@ -1,0 +1,7 @@
+CREATE TABLE Human (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    age INT,
+    height DOUBLE,
+    birthday TIMESTAMP
+);

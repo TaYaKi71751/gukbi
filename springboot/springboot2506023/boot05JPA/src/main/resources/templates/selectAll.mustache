@@ -1,0 +1,26 @@
+{{>common/head}}
+<div class="main">
+{{#msg}}
+<!--    msg변수에 값이 있으면 해당 블럭이 보인다.-->
+    <h2> Message:{{msg}}</h2> <!-- 변수에 들어 있는 msg 값을 출력 -->
+{{/msg}}
+    <h2> Title select All </h2>
+    <table width="80%">
+    {{#dtos}}<!--each문처럼 dtos 데이터가 반복됨 -->
+        <tr>
+            <td>id:</td><td>{{id}}</td> <!-- 반복되는 시점의 개체안에 들어있는 id가 출력됨-->
+        </tr>
+        <tr>
+            <td>name:</td><td><a href="/selectOne/{{id}}">{{name}}</a></td>
+        </tr>
+        <tr>
+            <td>password:</td><td>{{password}}</td>
+        </tr>
+    {{/dtos}}
+        <tr>
+            <td colspan="2"><a href="/insert">new data</a></td>
+        </tr>
+    </table>
+
+</div>
+{{>common/footer}}

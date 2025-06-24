@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:if="${name!=null}">
+  <p>이름이[[${str}]] 있습니다.</p>
+</th:block>
+
+<th:block th:unless="${name!=null}">
+  <p>이름이 없습니다.</p>
+</th:block>
+
+<p th:text="'이름 : '+${name}"></p>
+<p th:if="${age >=20}"> 성인입니다</p>
+<p th:if="${age <20}"> 미성년자 입니다</p>
+
+<h2>th:switch</h2>
+<p th:switch="${name}">
+    <span th:case="'홍길동'">홍길동 입니다.</span>
+    <span th:case="'홍길남'">홍길남 입니다.</span>
+    <span th:case="*">기타입니다.</span>
+</p>
+
+<h2>th:each</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th width="100">이름</th>
+        <th width="50">나이</th>
+        <th width="100">키</th>
+        <th width="150">생일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--each문법 list에 여러개의 데이터를 하나씩 human에 담아 list개수만큼 반복한다. -->
+    <tr th:each="human : ${list}">
+        <td th:text="${human.name}"></td>
+        <td th:text="${human.age}"></td>
+        <td th:text="${human.height}"></td>
+        <td th:text="${#temporals.format(human.birthday, 'dd-MM-yyyy HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>순번 (index)</th>
+        <th>반복 횟수 (count)</th>
+        <th>이름</th>
+        <th>나이</th>
+        <th>키</th>
+        <th>생일</th>
+        <th>첫 번째 항목 여부</th>
+        <th>마지막 항목 여부</th>
+        <th>홀수 여부</th>
+        <th>짝수 여부</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="human, stat : ${list}">
+        <td th:text="${stat.index}"></td> <!-- 목록의 순번 (0부터 시작) -->
+        <td th:text="${stat.count}"></td> <!-- 반복 횟수 (1부터 시작) -->
+        <td th:text="${human.name}"></td> <!-- 이름 -->
+        <td th:text="${human.age}"></td> <!-- 나이 -->
+        <td th:text="${human.height}"></td> <!-- 키 -->
+        <td th:text="${#temporals.format(human.birthday, 'dd-MM-yyyy HH:mm')}"></td> <!-- 생일 -->
+        <td th:if="${stat.first}">첫 번째 항목</td> <!-- 첫 번째 항목 여부 -->
+        <td th:if="${stat.last}">마지막 항목</td> <!-- 마지막 항목 여부 -->
+        <td th:if="${stat.index % 2 == 0}">짝수 번째</td> <!-- 짝수 여부 -->
+        <td th:if="${stat.index % 2 != 0}">홀수 번째</td> <!-- 홀수 여부 -->
+    </tr>
+    </tbody>
+</table>
+<!--타임리프의 url 표현식 -->
+<!--태임리프에서 a테그 주소처리 -->
+
+<a th:href="01model">01model로 이동</a>
+<a th:href="@{01model}">01model로 이동</a>
+<a th:href="@{01model(num1=10,num2=20)}">01model로 이동</a>
+<!--http://localhost:8080/01model?num1=10&num2=20-->
+</body>
+</html>
+
+
+
+
+
+
+
+
+

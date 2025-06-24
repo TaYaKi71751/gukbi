@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 Model Example</title>
+</head>
+<body>
+<h1>모델 데이터 예시</h1>
+
+<div>
+    <h2>Map Data</h2>
+    <ul>
+        <li>key1: <span th:text="${mapdata['key1']}"></span></li>
+        <li>key2: <span th:text="${mapdata['key2']}"></span></li>
+        <li>key3: <span th:text="${mapdata['key3']}"></span></li>
+        <li>key4 (HumanDto):
+            <ul>
+                <li>Name: <span th:text="${mapdata['key4'].name}"></span></li>
+                <li>Age: <span th:text="${mapdata['key4'].age}"></span></li>
+                <li>Height: <span th:text="${mapdata['key4'].height}"></span></li>
+                <li>Birthday: <span th:text="${mapdata['key4'].birthday}"></span></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>key1: <span th:text="${mapdata.key1}"></span></li>
+        <li>key2: <span th:text="${mapdata.key2}"></span></li>
+        <li>key3: <span th:text="${mapdata.key3}"></span></li>
+        <li>key4 (HumanDto):
+            <ul>
+                <li>Name: <span th:text="${mapdata.key4.name}"></span></li>
+                <li>Age: <span th:text="${mapdata.key4.age}"></span></li>
+                <li>Height: <span th:text="${mapdata.key4.height}"></span></li>
+                <li>Birthday: <span th:text="${mapdata.key4.birthday}"></span></li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>

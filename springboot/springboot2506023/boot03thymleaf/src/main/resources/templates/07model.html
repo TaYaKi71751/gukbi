@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+</head>
+<body>
+<h2>Tag Data</h2>
+
+<!-- th:text는 HTML 태그를 이스케이프하여 출력 -->
+<div th:text="${tagStr}"></div> <!-- HTML 태그를 텍스트로 출력 -->
+
+<!-- th:utext는 HTML 태그를 그대로 렌더링 -->
+<div th:utext="${tagStr}"></div> <!-- HTML 태그가 렌더링됨 -->
+
+
+<!-- [[...]] 구문은 JavaScript에서 Thymeleaf 변수 값을 사용 -->
+<div>[[${tagStr}]]</div> <!-- HTML 태그를 텍스트로 출력 -->
+
+<!-- 텍스트로 출력 -->
+<div>[(${tagStr})]</div> <!-- HTML 태그를 텍스트로 출력 -->
+
+<h2>Message</h2>
+<!-- message를 텍스트로 출력 -->
+<p th:text="${msgStr}"></p> <!-- success 텍스트 출력 -->
+
+<script th:inline="javascript">
+    let msg = [[${msgStr}]];  <!-- message 값을 JavaScript 변수로 삽입 -->
+    if(msg != null){
+        alert(msg);  <!-- msg가 null이 아니면 alert(msg) 실행 -->
+    }
+</script>
+</body>
+</html>
+
+
