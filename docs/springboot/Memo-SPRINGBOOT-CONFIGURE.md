@@ -11,7 +11,7 @@
 Spring Boot Dev Tools
 Lombok
 Spring Web
-Thymeleaf/Mustache (Select One, likley jstl)
+Thymeleaf/Mustache/JSTL (Select One)
 MyBatis Framework
 Spring Data JPA
 H2 Database
@@ -30,10 +30,11 @@ Oracle Driver
 ```
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'jakarta.servlet:jakarta.servlet-api'
-	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
-	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+	// JSTL
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 ```
 - Click `File` > `Project Structure`, Select `temurin 21` as `jdk`, Select `SDK default` as `Language level`
 - Add below to `src/main/resources/application.properties`
